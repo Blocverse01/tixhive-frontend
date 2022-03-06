@@ -7,9 +7,9 @@ function App() {
   return (
     <Router>
       <div className="bg-brand-black font-poppins">
-        <div className="max-w-8xl mx-auto px-5 sm:px-6 lg:px-8">
-          <nav className="lg:pt-[50px] lg:px-10">
-            <div className="flex items-center text-white">
+        <div className="max-w-8xl mx-auto">
+          <nav className="lg:pt-[50px] px-5 sm:px-6 lg:px-8">
+            <div className="flex items-center lg:px-10 text-white">
               <Link to="/">
                 <h3 className="lg:mr-[79px] lg:font-[500] lg:text-[30px] lg:leading-[45px]">
                   Bloc-Tick
@@ -26,6 +26,14 @@ function App() {
                   <Link to="/faqs">Need Help?</Link>
                 </li>
               </ul>
+              <div className="flex justify-end flex-1 z-10">
+                <button
+                  type="button"
+                  className="bg-brand-red connect-wallet h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
+                >
+                  Connect Wallet
+                </button>
+              </div>
             </div>
           </nav>
           <Routes>
