@@ -23,7 +23,7 @@ function CreateEvent() {
             alt="vector"
             className="fixed bottom-0 h-full top-0 z-[-1] right-0"
           />
-          <div className="create-event-section z-50 h-full lg:px-[40px] grid grid-cols-1 gap-[20px] lg:pt-[65px] lg:pb-[40px]">
+          <div className="create-event-section z-50 h-full lg:px-[40px] grid grid-cols-1 gap-[20px] lg:pt-[65px] lg:pb-[20px]">
             <div>
               <label className="text-[23px] font-[400] text-white leading-[37.5px]">
                 Who is hosting this event?
