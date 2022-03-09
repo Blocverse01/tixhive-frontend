@@ -18,25 +18,55 @@
   border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
-.bg-event-gradient { 
-  background: linear-gradient(180.04deg, rgba(255, 255, 255, 0.2) 0.04%, rgba(255, 255, 255, 0.05) 107.81%);
+.bg-event-gradient {
+  background: linear-gradient(
+    180.04deg,
+    rgba(255, 255, 255, 0.2) 0.04%,
+    rgba(255, 255, 255, 0.05) 107.81%
+  );
   border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .connect-wallet {
-  border: 1px solid rgba(255, 255, 255, 0.6)
+  border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
-.see-more-btn { 
-  background: linear-gradient(96.52deg, rgba(151, 151, 151, 0.8) 0%, rgba(151, 151, 151, 0.2) 105.62%);
-  border: 1px solid rgba(255, 255, 255, 0.6)
+.see-more-btn {
+  background: linear-gradient(
+    96.52deg,
+    rgba(151, 151, 151, 0.8) 0%,
+    rgba(151, 151, 151, 0.2) 105.62%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .create-event-section {
-  background: linear-gradient(96.52deg, rgba(62, 62, 62, 0.8) 0%, rgba(49, 49, 49, 0.2) 105.62%);
-  border: 1px solid rgba(255, 255, 255, 0.6)
+  background: linear-gradient(
+    96.52deg,
+    rgba(62, 62, 62, 0.8) 0%,
+    rgba(49, 49, 49, 0.2) 105.62%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .input {
   border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.create-event-gradient {
+  background: linear-gradient(
+    96.52deg,
+    rgba(151, 151, 151, 0.8) 0%,
+    rgba(151, 151, 151, 0.2) 105.62%
+  );
+  border: 1.15px solid #ffffff99;
+}
+
+.active-title {
+  background: linear-gradient(
+    96.52deg,
+    rgba(62, 62, 62, 0.8) 0%,
+    rgba(49, 49, 49, 0.2) 105.62%
+  );
+  border: 0.85px solid #ffffff4d;
 }

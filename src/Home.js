@@ -1,7 +1,7 @@
 import event from "./svgs/event.svg";
 import curveLine from "./svgs/curve-line.svg";
 import { Link } from "react-router-dom";
-import Events from "./Events.js";
+import Events from "components/Events.js";
 function Home() {
   return (
     <div>
@@ -30,12 +30,12 @@ function Home() {
               </button>
             </Link>
           </div>
-          <div className="flex mt-[61px] text-white lg:gap-[64px] xl:gap-[67.6px]">
+          <div className="flex mt-[61px] text-white lg:gap-[64px] xl:gap-[55px]">
             <div>
               <h3 className="lg:text-[48px] xl:text-[53px] lg:leading-[86.14px]">
                 20k+
               </h3>
-              <h4 className="lg:text-[16px] xl:text-[18px] lg:leading-[35.89px]">
+              <h4 className="lg:text-[16px] xl:text-[17px] lg:leading-[35.89px]">
                 Events Hosted
               </h4>
             </div>
@@ -43,7 +43,7 @@ function Home() {
               <h3 className="lg:text-[48px] xl:text-[53px] lg:leading-[86.14px]">
                 300k+
               </h3>
-              <h4 className="lg:text-[16px] xl:text-[18px] lg:leading-[35.89px]">
+              <h4 className="lg:text-[16px] xl:text-[17px] lg:leading-[35.89px]">
                 Tickets Generated
               </h4>
             </div>
@@ -51,7 +51,7 @@ function Home() {
               <h3 className="lg:text-[48px] xl:text-[53px] lg:leading-[86.14px]">
                 8k+
               </h3>
-              <h4 className="lg:text-[16px] xl:text-[18px] lg:leading-[35.89px]">
+              <h4 className="lg:text-[16px] xl:text-[17px] lg:leading-[35.89px]">
                 Daily Visitors
               </h4>
             </div>
@@ -59,7 +59,7 @@ function Home() {
         </div>
         <img
           src={event}
-          className="lg:h-[600px] xl:h-[700px] -mt-[110px]"
+          className="lg:h-[600px] xl:h-[760px] 2xl:h-[1088px] -mt-[110px]"
           alt="event"
         />
       </div>

@@ -7,7 +7,7 @@ function App() {
   return (
     <Router>
       <div className="bg-brand-black font-poppins">
-        <div className="max-w-8xl mx-auto">
+        <div className="max-w-[1728px] mx-auto">
           <nav className="lg:pt-[50px] px-5 sm:px-6 lg:px-8">
             <div className="flex items-center lg:px-10 text-white">
               <Link to="/">

@@ -1,7 +1,7 @@
-import eventCover from "./images/unsplash_nwLTVwb7DbU.png";
-import eventCover2 from "./images/pexels-teddy-yang-2263436.jpg";
-import eventCover3 from "./images/pexels-caio-59884.jpg";
-import eventCover4 from "./images/pexels-jonas-von-werne-2897462.jpg";
+import eventCover from "images/unsplash_nwLTVwb7DbU.png";
+import eventCover2 from "images/pexels-teddy-yang-2263436.jpg";
+import eventCover3 from "images/pexels-caio-59884.jpg";
+import eventCover4 from "images/pexels-jonas-von-werne-2897462.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { regular, solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
