@@ -1,14 +1,16 @@
 import vector from "svgs/Vector-4.svg";
-//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-//import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import React, { useState } from "react";
-//import EventFactory from "contract-abis/EventFactory.json";
-import { StepZero, StepOne, StepTwo } from "components/create-event-steps";
+import {
+  StepZero,
+  StepOne,
+  StepTwo,
+  StepThree,
+} from "components/create-event-steps";
 import moment from "moment";
 
 function CreateEvent() {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [inputValue, setInputValue] = useState({
+  const [currentStep, setCurrentStep] = useState(3);
+  const [event, setInputValue] = useState({
     name: "Get Cavvy 2.0",
     host: "Cavemen",
     category: "Live perfomance",
@@ -18,16 +20,32 @@ function CreateEvent() {
     start_date: "2022-03-13",
     end_time: "",
     end_date: "",
+    description: "",
+    cover_image: null,
   });
-  const event = inputValue;
+  const [tickets, addTicket] = useState([]);
+
+  const storeTicket = (ticket) => {
+    if (ticket.name.trim() === "" || parseInt(ticket.available_number) < 1) {
+      return;
+    }
+    if (ticket.type === 1 && parseInt(ticket.price) <= 0) {
+      return;
+    }
+    if (parseInt(ticket.price) <= 0) {
+      ticket.price = 0;
+      ticket.type = 0;
+    }
+    addTicket((prev) => [...prev, ticket]);
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputValue((prev) => ({
       ...prev,
       [name]: value,
     }));
-    console.log(inputValue);
   };
+
   const steps = [
     {
       title: "Create Your Event",
@@ -65,7 +83,13 @@ function CreateEvent() {
     },
     {
       title: "Tickets",
-      content: <div></div>,
+      content: (
+        <StepThree
+          storeTicket={storeTicket}
+          tickets={tickets}
+          setStep={setCurrentStep}
+        />
+      ),
     },
     {
       title: "Publish",

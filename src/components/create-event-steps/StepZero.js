@@ -34,33 +34,25 @@ function StepZero({ event, handleChange, setStep }) {
                 target: { name: "venue_type", value: "physical" },
               });
             }}
-            className="create-event-gradient text-[20px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3"
+            className={`${
+              event.venue_type === "physical"
+                ? "bg-brand-red"
+                : "create-event-gradient"
+            } text-[20px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3`}
           >
-            {event.venue_type === "physical" ? (
-              <FontAwesomeIcon
-                icon={solid("check-circle")}
-                className="mr-2 text-brand-red"
-              />
-            ) : (
-              ""
-            )}
-            <span>Physical Venue</span>
+            Physical Venue
           </button>
           <button
             onClick={() => {
               handleChange({ target: { name: "venue_type", value: "online" } });
             }}
-            className="create-event-gradient text-[20px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3"
+            className={`${
+              event.venue_type === "online"
+                ? "bg-brand-red"
+                : "create-event-gradient"
+            } text-[20px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3`}
           >
-            {event.venue_type === "online" ? (
-              <FontAwesomeIcon
-                icon={solid("check-circle")}
-                className="mr-2 text-brand-red"
-              />
-            ) : (
-              ""
-            )}
-            <span>Online Venue</span>
+            Online Venue
           </button>
         </div>
       </div>

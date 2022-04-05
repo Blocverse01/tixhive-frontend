@@ -1,7 +1,8 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Home from "./Home.js";
-import CreateEvent from "./CreateEvent.js";
+import Home from "./Home";
+import CreateEvent from "./CreateEvent";
+import ConnectWallet from "components/ConnectWallet";
 
 function App() {
   return (
@@ -27,12 +28,7 @@ function App() {
                 </li>
               </ul>
               <div className="flex justify-end flex-1 z-10">
-                <button
-                  type="button"
-                  className="bg-brand-red connect-wallet h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
-                >
-                  Connect Wallet
-                </button>
+                <ConnectWallet />
               </div>
             </div>
           </nav>

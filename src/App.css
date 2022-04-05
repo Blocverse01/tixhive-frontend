@@ -47,6 +47,7 @@
     rgba(49, 49, 49, 0.2) 105.62%
   );
   border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px);
 }
 
 .input {
