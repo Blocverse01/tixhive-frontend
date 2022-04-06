@@ -1,7 +1,7 @@
 import event from "./svgs/event.svg";
 import curveLine from "./svgs/curve-line.svg";
 import { Link } from "react-router-dom";
-import Events from "components/Events.js";
+import Events from "components/Events";
 function Home() {
   return (
     <div>

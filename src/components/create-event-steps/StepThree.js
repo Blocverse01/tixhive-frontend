@@ -6,9 +6,12 @@ function StepThree({ tickets, storeTicket, setStep }) {
   const [addTicket, setAddTicket] = useState(
     tickets.length === 0 ? true : false
   );
+  const intValue = (value) => {
+    return isNaN(parseInt(value)) ? 0 : parseInt(value);
+  };
   const [newTicket, setInputValue] = useState({
     name: "General Admission",
-    type: 0,
+    type: 1,
     price: 0,
     available_number: 30,
   });
@@ -90,18 +93,32 @@ function StepThree({ tickets, storeTicket, setStep }) {
             <div>
               <label className="block">Available Number</label>
               <input
-                onChange={handleChange}
+                onChange={(e) =>
+                  handleChange({
+                    target: {
+                      name: "available_number",
+                      value: intValue(e.target.value),
+                    },
+                  })
+                }
                 value={newTicket.available_number}
                 name="available_number"
                 className="create-event-gradient w-full px-3 mt-2 h-[45px]"
-                type="text"
+                type="number"
               />
             </div>
             {newTicket.type > 0 ? (
               <div>
                 <label className="block">Price</label>
                 <input
-                  onChange={handleChange}
+                  onChange={(e) =>
+                    handleChange({
+                      target: {
+                        name: "price",
+                        value: intValue(e.target.value),
+                      },
+                    })
+                  }
                   value={newTicket.price}
                   name="price"
                   className="create-event-gradient w-full px-3 mt-2 h-[45px]"
@@ -151,8 +168,11 @@ function StepThree({ tickets, storeTicket, setStep }) {
             </button>
           </div>
           <div className="grid grid-cols-1 gap-[27px]">
-            {tickets.map((ticket) => (
-              <div className="create-event-section px-[28px] py-[21px]">
+            {tickets.map((ticket, index) => (
+              <div
+                key={index}
+                className="create-event-section px-[28px] py-[21px]"
+              >
                 <h3 className="font-[500] text-white text-[25px] leading-[37.5px]">
                   {ticket.name}
                 </h3>

@@ -71,3 +71,23 @@
   );
   border: 0.85px solid #ffffff4d;
 }
+
+.another-gradient {
+  border: 1px solid #ffffff80 !important;
+}
+
+.visibility-header {
+  font-family: Poppins;
+  font-weight: 500;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.bg-visibility-selector {
+  background: linear-gradient(
+    96.52deg,
+    rgba(133, 133, 133, 0.8) 0%,
+    rgba(148, 148, 148, 0.2) 105.62%
+  );
+  border: 0.99px solid #ffffff99;
+}

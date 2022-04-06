@@ -7,9 +7,10 @@ import {
   StepThree,
 } from "components/create-event-steps";
 import moment from "moment";
+import Publish from "components/create-event-steps/Publish";
 
 function CreateEvent() {
-  const [currentStep, setCurrentStep] = useState(3);
+  const [currentStep, setCurrentStep] = useState(4);
   const [event, setInputValue] = useState({
     name: "Get Cavvy 2.0",
     host: "Cavemen",
@@ -22,6 +23,7 @@ function CreateEvent() {
     end_date: "",
     description: "",
     cover_image: null,
+    visibility: "public",
   });
   const [tickets, addTicket] = useState([]);
 
@@ -45,6 +47,8 @@ function CreateEvent() {
       [name]: value,
     }));
   };
+
+  const lowestTicketCost = tickets.map((ticket) => ticket.price).sort()[0] || 0;
 
   const steps = [
     {
@@ -93,7 +97,13 @@ function CreateEvent() {
     },
     {
       title: "Publish",
-      content: <div></div>,
+      content: (
+        <Publish
+          handleChange={handleChange}
+          event={event}
+          lowestTicketCost={lowestTicketCost}
+        />
+      ),
     },
   ];
 
@@ -152,7 +162,7 @@ function CreateEvent() {
                 </h3>
                 <h3 className="lg:text-[20px] lg:leading-[30px] font-[500]">
                   {moment(event.start_date + " " + event.start_time).format(
-                    "ddd, MMM D YYYY, h:mm A"
+                    "ddd, MMM DD YYYY, h:mm A"
                   )}
                 </h3>
                 <div className="mt-[18.86px]">{titleList}</div>
@@ -170,7 +180,13 @@ function CreateEvent() {
             alt="vector"
             className="fixed bottom-0 h-full top-0 z-[-1] right-0"
           />
-          <div className="create-event-section z-50 lg:px-[40px] lg:pt-[56px] lg:pb-[40px]">
+          <div
+            className={`${
+              currentStep < 4
+                ? "z-50 create-event-section lg:px-[40px] lg:pt-[56px] lg:pb-[40px]"
+                : ""
+            }`}
+          >
             {steps[currentStep].content}
           </div>
         </div>
