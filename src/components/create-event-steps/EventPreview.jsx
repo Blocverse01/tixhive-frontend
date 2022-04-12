@@ -2,23 +2,15 @@ import React, { useState } from "react";
 import { default as Ticket } from "components/DefaultTicketDesign";
 import QRCode from "react-qr-code";
 import moment from "moment";
-import { contracts } from "recoil/atoms/contracts";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useRecoilValue } from "recoil";
-import { useRecoilState } from "recoil";
-import { newEvent } from "recoil/atoms/newEvent";
-import { storeEventData } from "utils/create-event";
-import { newTickets } from "recoil/atoms/newTickets";
-import { web3User } from "recoil/atoms/web3-user";
-import { login } from "components/ConnectWallet";
+import { newEventState } from "recoil/atoms/newEvent";
+import { newTicketsState } from "recoil/atoms/newTickets";
+import EventPublisher from "components/EventPublisher";
 
-export default function Publish({ handleChange }) {
-  const [user, setUser] = useRecoilState(web3User);
-  const web3Contracts = useRecoilValue(contracts);
-  const tickets = useRecoilValue(newTickets);
+export default function EventPreview({ handleChange }) {
+  const tickets = useRecoilValue(newTicketsState);
   const lowestTicketCost = tickets.map((ticket) => ticket.price).sort()[0] || 0;
-  const event = useRecoilValue(newEvent);
+  const event = useRecoilValue(newEventState);
   const dateGenerated = moment(event.start_date + " " + event.start_time);
   const [QrCode, setQrCode] = useState("");
   const localDateGenerated = dateGenerated.local().format("hA") + " " + String(dateGenerated.local()._d).split(" ")[5];
@@ -30,12 +22,6 @@ export default function Publish({ handleChange }) {
   React.useEffect(() => {
     getImageFromQRCode();
   });
-  const publishEvent = async () => {
-    if (!user) {
-      await login(setUser);
-    }
-    await storeEventData(event, tickets, web3Contracts.eventFactory, web3Contracts.provider);
-  };
   return (
     <section>
       <div>
@@ -96,14 +82,7 @@ export default function Publish({ handleChange }) {
               <button></button>
             </div>
             <div>
-              <button
-                onClick={async () => {
-                  await publishEvent(event, tickets);
-                }}
-                className="bg-brand-red connect-wallet h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
-              >
-                Publish Now <FontAwesomeIcon icon={solid("chevron-right")} />
-              </button>
+              <EventPublisher />
             </div>
           </div>
         </div>

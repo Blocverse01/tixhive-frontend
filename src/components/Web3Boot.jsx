@@ -1,17 +1,22 @@
-import Moralis from "moralis";
 import React from "react";
-import { web3User } from "recoil/atoms/web3-user";
-import { contracts, updateContract } from "recoil/atoms/contracts";
-import useRecoilState from "recoil";
+import { eventFactoryState } from "recoil/atoms/contracts";
+import { useRecoilState } from "recoil";
+import { enableContract } from "utils/web3-utils";
+import { useMoralis } from "react-moralis";
 
 export default function Web3Boot({ children }) {
-  const [user, setUser] = useRecoilState(web3User);
-  const [web3Contracts, setContracts] = useRecoilState(contracts);
+  const { isWeb3Enabled, enableWeb3, web3, isAuthenticated, isWeb3EnableLoading } = useMoralis();
+  const connectorId = window.localStorage.getItem("connectorId");
+  const [EventFactory, setEventFactory] = useRecoilState(eventFactoryState);
   React.useEffect(() => {
-    setUser(Moralis.User.current());
-    if (user) {
-      updateContract(web3Contracts, setContracts, "eventFactory");
+    async function bootWeb3() {
+      if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) {
+        await enableWeb3({ provider: connectorId });
+        setEventFactory(await enableContract(EventFactory, web3));
+      }
     }
-  });
-  return { children };
+    bootWeb3();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated, isWeb3Enabled]);
+  return <div>{children}</div>;
 }

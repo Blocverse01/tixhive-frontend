@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 
-export const newTickets = atom({
-  key: "newTickets",
+export const newTicketsState = atom({
+  key: "newTicketsState",
   default: [
     {
       name: "General Admission",

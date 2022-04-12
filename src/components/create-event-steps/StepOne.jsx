@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import Label from "components/Label";
 import { useRecoilValue } from "recoil";
-import { newEvent } from "recoil/atoms/newEvent";
+import { newEventState } from "recoil/atoms/newEvent";
 
 function StepOne({ handleChange, setStep }) {
-  const event = useRecoilValue(newEvent);
+  const event = useRecoilValue(newEventState);
   return (
     <div className="grid grid-cols-1 gap-[27px]">
       <InputField
@@ -22,9 +22,7 @@ function StepOne({ handleChange, setStep }) {
         <div className="create-event-gradient p-5 grid mt-[23px] grid-cols-2">
           <div>
             <div>
-              <h3 className="text-white text-[16px] leading-[24px]">
-                Start Date
-              </h3>
+              <h3 className="text-white text-[16px] leading-[24px]">Start Date</h3>
               <input
                 onChange={handleChange}
                 name="start_date"
@@ -34,9 +32,7 @@ function StepOne({ handleChange, setStep }) {
               />
             </div>
             <div className="mt-[11px]">
-              <h3 className="text-white text-[16px] leading-[24px]">
-                End Date
-              </h3>
+              <h3 className="text-white text-[16px] leading-[24px]">End Date</h3>
               <input
                 onChange={handleChange}
                 value={event.end_date}
@@ -50,9 +46,7 @@ function StepOne({ handleChange, setStep }) {
           <div className="flex justify-center">
             <div>
               <div>
-                <h3 className="text-white text-[16px] leading-[24px]">
-                  Start Time
-                </h3>
+                <h3 className="text-white text-[16px] leading-[24px]">Start Time</h3>
                 <input
                   onChange={handleChange}
                   name="start_time"
@@ -62,9 +56,7 @@ function StepOne({ handleChange, setStep }) {
                 />
               </div>
               <div className="mt-[11px]">
-                <h3 className="text-white text-[16px] leading-[24px]">
-                  End Time
-                </h3>
+                <h3 className="text-white text-[16px] leading-[24px]">End Time</h3>
                 <input
                   type="time"
                   value={event.end_time}
@@ -98,10 +90,7 @@ function StepOne({ handleChange, setStep }) {
           className="bg-brand-red connect-wallet h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
         >
           <span className="flex items-center">
-            <FontAwesomeIcon
-              icon={solid("chevron-left")}
-              className="mr-[22px]"
-            />
+            <FontAwesomeIcon icon={solid("chevron-left")} className="mr-[22px]" />
             Previous
           </span>
         </button>
@@ -114,10 +103,7 @@ function StepOne({ handleChange, setStep }) {
         >
           <span className="flex items-center">
             Continue
-            <FontAwesomeIcon
-              icon={solid("chevron-right")}
-              className="ml-[22px]"
-            />
+            <FontAwesomeIcon icon={solid("chevron-right")} className="ml-[22px]" />
           </span>
         </button>
       </div>

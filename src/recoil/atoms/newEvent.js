@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 
-export const newEvent = atom({
-  key: "newEvent",
+export const newEventState = atom({
+  key: "newEventState",
   default: {
     name: "Get Cavvy 2.0",
     host: "Cavemen",

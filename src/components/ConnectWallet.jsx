@@ -1,32 +1,37 @@
-import { connectWallet, logOut } from ".utils/web3-utils";
-import { useRecoilState } from "recoil";
+import { useMoralis } from "react-moralis";
 import truncateEthAddress from "truncate-eth-address";
-import { web3User } from "recoil/atoms/web3-user";
 import React from "react";
-
-export const login = async (setUser) => {
-  let loggedInUser = await connectWallet({
-    signingMessage: "Log in to Bloc-Ticks",
-    chainId: 137,
-  });
-  setUser(loggedInUser);
-};
-
-export const disconnectWallet = async (setUser) => {
-  await logOut();
-  setUser(null);
-};
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 export default function ConnectWallet() {
-  const [user, setUser] = useRecoilState(web3User);
+  const chainId = 137;
+  const connectorId = window.ethereum ? "injected" : "walletconnect";
+  const { authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
+  const login = async () => {
+    if (!isAuthenticated) {
+      await authenticate({
+        signingMessage: "Log in to BlocTicks",
+        chainId: chainId,
+        provider: connectorId,
+      });
+      window.localStorage.setItem("connectorId", connectorId);
+    }
+  };
+  const logOut = async () => {
+    await logout();
+    console.log("logged out");
+  };
   return (
     <button
-      onClick={() => {
-        user ? disconnectWallet(setUser) : login(setUser);
+      onClick={async () => {
+        user ? await logOut() : await login();
       }}
       className="bg-brand-red connect-wallet h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
+      disabled={isAuthenticating}
     >
-      {user ? truncateEthAddress(user?.get("ethAddress")) : "Connect Wallet"}
+      {isAuthenticating ? <FontAwesomeIcon icon={solid("spinner")} spin /> : ""}{" "}
+      {user ? truncateEthAddress(account || user.get("ethAddress")) : "Connect Wallet"}
     </button>
   );
 }

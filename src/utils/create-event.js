@@ -21,7 +21,3 @@ export const storeEventData = async (newEvent, tickets, EventFactory, web3Provid
     console.error(err);
   }
 };
-
-export const replaceItemAtIndex = (arr, index, newValue) => {
-  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
-};

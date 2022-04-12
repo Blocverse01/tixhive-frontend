@@ -1,26 +1,24 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import Moralis from "moralis";
 import { RecoilRoot } from "recoil";
+import { createRoot } from "react-dom/client";
+import { MoralisProvider } from "react-moralis";
 
 const serverUrl = process.env.REACT_APP_MORALIS_SERVER_URL;
 const appId = process.env.REACT_APP_MORALIS_APP_ID;
+const container = document.getElementById("root");
+const root = createRoot(container);
 
-Moralis.start({
-  serverUrl,
-  appId,
-});
-
-ReactDOM.render(
+root.render(
   <React.StrictMode>
     <RecoilRoot>
-      <App />
+      <MoralisProvider serverUrl={serverUrl} appId={appId}>
+        <App />
+      </MoralisProvider>
     </RecoilRoot>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

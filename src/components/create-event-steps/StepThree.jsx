@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRecoilState } from "recoil";
-import { newTickets } from "recoil/atoms/newTickets";
+import { newTicketsState } from "recoil/atoms/newTickets";
 
 function StepThree({ setStep }) {
-  const [tickets, addTicket] = useRecoilState(newTickets);
+  const [tickets, addTicket] = useRecoilState(newTicketsState);
   const storeTicket = (ticket) => {
     if (ticket.name.trim() === "" || parseInt(ticket.available_number) < 1) {
       return;
@@ -19,9 +19,7 @@ function StepThree({ setStep }) {
     }
     addTicket((prev) => [...prev, ticket]);
   };
-  const [shouldAddTicket, setShouldAddTicket] = useState(
-    tickets.length === 0 ? true : false
-  );
+  const [shouldAddTicket, setShouldAddTicket] = useState(tickets.length === 0 ? true : false);
   const intValue = (value) => {
     return isNaN(parseInt(value)) ? 0 : parseInt(value);
   };
@@ -51,9 +49,7 @@ function StepThree({ setStep }) {
     <div className="lg:px-[30px]">
       {shouldAddTicket ? (
         <div>
-          <h3 className="font-[500] text-white lg:text-[34.41px] lg:leading-[51.62px]">
-            Let’s Setup Your Tickets
-          </h3>
+          <h3 className="font-[500] text-white lg:text-[34.41px] lg:leading-[51.62px]">Let’s Setup Your Tickets</h3>
           <h3 className="text-white mt-[8px]">What kind of ticket?</h3>
           <div className="mt-[5px] flex flex-wrap gap-[12.68px]">
             <button
@@ -163,9 +159,7 @@ function StepThree({ setStep }) {
         </div>
       ) : (
         <div>
-          <h3 className="font-[500] mb-[13px] text-white lg:text-[34.41px] lg:leading-[51.62px]">
-            Manage Tickets
-          </h3>
+          <h3 className="font-[500] mb-[13px] text-white lg:text-[34.41px] lg:leading-[51.62px]">Manage Tickets</h3>
           <div className="mb-[36.55px]">
             <button
               onClick={() => {
@@ -176,31 +170,17 @@ function StepThree({ setStep }) {
             >
               <span className="flex items-center">
                 Add Ticket
-                <FontAwesomeIcon
-                  icon={solid("chevron-right")}
-                  className="ml-[22px]"
-                />
+                <FontAwesomeIcon icon={solid("chevron-right")} className="ml-[22px]" />
               </span>
             </button>
           </div>
           <div className="grid grid-cols-1 gap-[27px]">
             {tickets.map((ticket, index) => (
-              <div
-                key={index}
-                className="create-event-section px-[28px] py-[21px]"
-              >
-                <h3 className="font-[500] text-white text-[25px] leading-[37.5px]">
-                  {ticket.name}
-                </h3>
-                <h3 className="font-[500] mt-1 text-[18px] leading-[37.5px] text-white">
-                  ${ticket.price}
-                </h3>
+              <div key={index} className="create-event-section px-[28px] py-[21px]">
+                <h3 className="font-[500] text-white text-[25px] leading-[37.5px]">{ticket.name}</h3>
+                <h3 className="font-[500] mt-1 text-[18px] leading-[37.5px] text-white">${ticket.price}</h3>
                 <h3 className="font-[500] mt-1 text-white text-[18px] leading-[37.5px]">
-                  {ticket.type === 0
-                    ? "Free"
-                    : ticket.type === 1
-                    ? "Paid"
-                    : "Donation"}
+                  {ticket.type === 0 ? "Free" : ticket.type === 1 ? "Paid" : "Donation"}
                 </h3>
               </div>
             ))}
