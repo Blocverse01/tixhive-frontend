@@ -30,11 +30,14 @@ export const logOut = async () => {
  */
 
 export const contractWithProvider = async (contractAddress, ABI) => {
-  let web3Provider = window.ethereum
-    ? await Moralis.enableWeb3()
-    : await Moralis.enableWeb3({ provider: "walletConnect" });
-  return [
-    new ethers.Contract(contractAddress, ABI, web3Provider),
-    web3Provider,
-  ];
+  if (Moralis.User.current()?.authenticated()) {
+    let web3Provider = window.ethereum
+      ? await Moralis.enableWeb3()
+      : await Moralis.enableWeb3({ provider: "walletConnect" });
+    return [
+      new ethers.Contract(contractAddress, ABI, web3Provider),
+      web3Provider,
+    ];
+  }
+  return [new ethers.Contract(contractAddress, ABI), null];
 };

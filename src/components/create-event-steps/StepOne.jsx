@@ -1,9 +1,12 @@
-import InputField from "components/InputField.js";
+import InputField from "components/InputField";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import Label from "components/Label.js";
+import Label from "components/Label";
+import { useRecoilValue } from "recoil";
+import { newEvent } from "recoil/atoms/newEvent";
 
-function StepOne({ event, handleChange, setStep }) {
+function StepOne({ handleChange, setStep }) {
+  const event = useRecoilValue(newEvent);
   return (
     <div className="grid grid-cols-1 gap-[27px]">
       <InputField

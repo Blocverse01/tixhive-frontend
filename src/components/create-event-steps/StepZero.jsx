@@ -31,11 +31,11 @@ function StepZero({ event, handleChange, setStep }) {
           <button
             onClick={() => {
               handleChange({
-                target: { name: "venue_type", value: "physical" },
+                target: { name: "venue_type", value: 0 },
               });
             }}
             className={`${
-              event.venue_type === "physical"
+              event.venue_type === 0
                 ? "bg-brand-red"
                 : "create-event-gradient"
             } text-[20px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3`}
@@ -44,10 +44,10 @@ function StepZero({ event, handleChange, setStep }) {
           </button>
           <button
             onClick={() => {
-              handleChange({ target: { name: "venue_type", value: "online" } });
+              handleChange({ target: { name: "venue_type", value: 1 } });
             }}
             className={`${
-              event.venue_type === "online"
+              event.venue_type === 1
                 ? "bg-brand-red"
                 : "create-event-gradient"
             } text-[20px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3`}

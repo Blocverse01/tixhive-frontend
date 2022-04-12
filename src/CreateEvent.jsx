@@ -5,50 +5,22 @@ import {
   StepOne,
   StepTwo,
   StepThree,
+  Publish,
 } from "components/create-event-steps";
 import moment from "moment";
-import Publish from "components/create-event-steps/Publish";
+import { useRecoilState } from "recoil";
+import { newEvent } from "recoil/atoms/newEvent";
 
 function CreateEvent() {
   const [currentStep, setCurrentStep] = useState(4);
-  const [event, setInputValue] = useState({
-    name: "Get Cavvy 2.0",
-    host: "Cavemen",
-    category: "Live perfomance",
-    venue_type: "physical",
-    venue: "O2 Arena, London, UK",
-    start_time: "09:00:00",
-    start_date: "2022-03-13",
-    end_time: "",
-    end_date: "",
-    description: "",
-    cover_image: null,
-    visibility: "public",
-  });
-  const [tickets, addTicket] = useState([]);
-
-  const storeTicket = (ticket) => {
-    if (ticket.name.trim() === "" || parseInt(ticket.available_number) < 1) {
-      return;
-    }
-    if (ticket.type === 1 && parseInt(ticket.price) <= 0) {
-      return;
-    }
-    if (parseInt(ticket.price) <= 0) {
-      ticket.price = 0;
-      ticket.type = 0;
-    }
-    addTicket((prev) => [...prev, ticket]);
-  };
+  const [event, setNewEvent] = useRecoilState(newEvent);
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setInputValue((prev) => ({
+    setNewEvent((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
-
-  const lowestTicketCost = tickets.map((ticket) => ticket.price).sort()[0] || 0;
 
   const steps = [
     {
@@ -56,54 +28,26 @@ function CreateEvent() {
       subtitle:
         "Teresa will insert some cool text here, ipsum dolor sit amet lorem.",
       content: (
-        <StepZero
-          setStep={setCurrentStep}
-          handleChange={handleChange}
-          event={event}
-        />
+        <StepZero setStep={setCurrentStep} handleChange={handleChange} />
       ),
     },
     {
       title: "Event Info",
       subtitle:
         "Teresa will insert some cool text here, ipsum dolor sit amet lorem.",
-      content: (
-        <StepOne
-          setStep={setCurrentStep}
-          handleChange={handleChange}
-          event={event}
-        />
-      ),
+      content: <StepOne setStep={setCurrentStep} handleChange={handleChange} />,
     },
     {
       title: "Details",
-      content: (
-        <StepTwo
-          setStep={setCurrentStep}
-          handleChange={handleChange}
-          event={event}
-        />
-      ),
+      content: <StepTwo setStep={setCurrentStep} handleChange={handleChange} />,
     },
     {
       title: "Tickets",
-      content: (
-        <StepThree
-          storeTicket={storeTicket}
-          tickets={tickets}
-          setStep={setCurrentStep}
-        />
-      ),
+      content: <StepThree setStep={setCurrentStep} />,
     },
     {
       title: "Publish",
-      content: (
-        <Publish
-          handleChange={handleChange}
-          event={event}
-          lowestTicketCost={lowestTicketCost}
-        />
-      ),
+      content: <Publish handleChange={handleChange} />,
     },
   ];
 

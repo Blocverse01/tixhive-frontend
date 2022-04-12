@@ -1,10 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FileUploader } from "react-drag-drop-files";
 import { solid, regular } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { useRecoilValue } from "recoil";
+import { newEvent } from "recoil/atoms/newEvent";
 
 const fileTypes = ["JPG", "PNG", "GIF", "SVG"];
 
-function StepTwo({ event, handleChange, setStep }) {
+function StepTwo({ handleChange, setStep }) {
+  const event = useRecoilValue(newEvent);
   return (
     <div className="grid grid-cols-1 lg:px-[30px] gap-[27px]">
       <div>

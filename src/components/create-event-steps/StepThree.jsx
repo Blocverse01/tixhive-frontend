@@ -1,9 +1,25 @@
 import React, { useState } from "react";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRecoilState } from "recoil";
+import { newTickets } from "recoil/atoms/newTickets";
 
-function StepThree({ tickets, storeTicket, setStep }) {
-  const [addTicket, setAddTicket] = useState(
+function StepThree({ setStep }) {
+  const [tickets, addTicket] = useRecoilState(newTickets);
+  const storeTicket = (ticket) => {
+    if (ticket.name.trim() === "" || parseInt(ticket.available_number) < 1) {
+      return;
+    }
+    if (ticket.type === 1 && parseInt(ticket.price) <= 0) {
+      return;
+    }
+    if (parseInt(ticket.price) <= 0) {
+      ticket.price = 0;
+      ticket.type = 0;
+    }
+    addTicket((prev) => [...prev, ticket]);
+  };
+  const [shouldAddTicket, setShouldAddTicket] = useState(
     tickets.length === 0 ? true : false
   );
   const intValue = (value) => {
@@ -16,12 +32,12 @@ function StepThree({ tickets, storeTicket, setStep }) {
     available_number: 30,
   });
 
-  const beforeSetAddTicket = (status) => {
+  const beforeSetShouldAddTicket = (status) => {
     if (tickets.length === 0 && status === false) {
-      setAddTicket(false);
+      setShouldAddTicket(false);
       return;
     }
-    setAddTicket(status);
+    setShouldAddTicket(status);
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +49,7 @@ function StepThree({ tickets, storeTicket, setStep }) {
   };
   return (
     <div className="lg:px-[30px]">
-      {addTicket ? (
+      {shouldAddTicket ? (
         <div>
           <h3 className="font-[500] text-white lg:text-[34.41px] lg:leading-[51.62px]">
             Let’s Setup Your Tickets
@@ -132,7 +148,7 @@ function StepThree({ tickets, storeTicket, setStep }) {
               <button
                 onClick={() => {
                   storeTicket(newTicket);
-                  beforeSetAddTicket(false);
+                  beforeSetShouldAddTicket(false);
                 }}
                 type="button"
                 className="bg-brand-red connect-wallet h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
@@ -153,7 +169,7 @@ function StepThree({ tickets, storeTicket, setStep }) {
           <div className="mb-[36.55px]">
             <button
               onClick={() => {
-                setAddTicket(true);
+                setShouldAddTicket(true);
               }}
               type="button"
               className="bg-brand-red connect-wallet h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
@@ -180,7 +196,6 @@ function StepThree({ tickets, storeTicket, setStep }) {
                   ${ticket.price}
                 </h3>
                 <h3 className="font-[500] mt-1 text-white text-[18px] leading-[37.5px]">
-                  $
                   {ticket.type === 0
                     ? "Free"
                     : ticket.type === 1

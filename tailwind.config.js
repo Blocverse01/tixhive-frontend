@@ -16,3 +16,4 @@ module.exports = {
   },
   plugins: [],
 };
+const originalRed = "#FF4601";

@@ -58,7 +58,7 @@ function Events() {
               <img
                 src={eventCover}
                 alt="cover"
-                class="w-full h-[220px] sm:h-[195px] object-cover"
+                className="w-full h-[220px] sm:h-[195px] object-cover"
               />
               <div className="absolute bg-black bg-opacity-30 py-1 px-2 top-[17px] right-[17px]">
                 <FontAwesomeIcon
@@ -90,7 +90,7 @@ function Events() {
               <img
                 src={eventCover2}
                 alt="cover"
-                class="w-full h-[220px] sm:h-[195px] object-cover"
+                className="w-full h-[220px] sm:h-[195px] object-cover"
               />
               <div className="absolute bg-black bg-opacity-30 py-1 px-2 top-[17px] right-[17px]">
                 <FontAwesomeIcon
@@ -122,7 +122,7 @@ function Events() {
               <img
                 src={eventCover3}
                 alt="cover"
-                class="w-full h-[220px] sm:h-[195px] object-cover"
+                className="w-full h-[220px] sm:h-[195px] object-cover"
               />
               <div className="absolute bg-black bg-opacity-30 py-1 px-2 top-[17px] right-[17px]">
                 <FontAwesomeIcon
@@ -154,7 +154,7 @@ function Events() {
               <img
                 src={eventCover4}
                 alt="cover"
-                class="w-full h-[220px] sm:h-[195px] object-cover"
+                className="w-full h-[220px] sm:h-[195px] object-cover"
               />
               <div className="absolute bg-black bg-opacity-30 py-1 px-2 top-[17px] right-[17px]">
                 <FontAwesomeIcon
