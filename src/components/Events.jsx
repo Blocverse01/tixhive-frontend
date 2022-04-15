@@ -7,7 +7,7 @@ import { regular, solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 function Events() {
   return (
-    <section className="pb-12 pt-28 px-5 sm:px-6 lg:px-8">
+    <section className="pb-12 pt-[60px] lg:pt-28 px-5 sm:px-6 lg:px-8">
       <div className="lg:px-10">
         <div className="relative text-white focus-within:text-gray-200">
           <span className="absolute inset-y-0 left-[20px] flex items-center pl-2">
@@ -52,7 +52,7 @@ function Events() {
           </button>
         </div>
 
-        <section className="xl:grid-cols-4 mt-9 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[31px]">
+        <section className="xl:grid-cols-4 mt-9 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-[31px]">
           <div>
             <div className="relative">
               <img

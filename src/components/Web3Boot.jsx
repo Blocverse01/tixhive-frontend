@@ -12,7 +12,7 @@ export default function Web3Boot({ children }) {
     async function bootWeb3() {
       if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) {
         await enableWeb3({ provider: connectorId });
-        setEventFactory(await enableContract(EventFactory, web3));
+        setEventFactory(await enableContract(EventFactory.deployedAddress, EventFactory.abi, web3));
       }
     }
     bootWeb3();

@@ -7,15 +7,15 @@ import { newTicketsState } from "recoil/atoms/newTickets";
 function StepThree({ setStep }) {
   const [tickets, addTicket] = useRecoilState(newTicketsState);
   const storeTicket = (ticket) => {
-    if (ticket.name.trim() === "" || parseInt(ticket.available_number) < 1) {
+    if (ticket.name.trim() === "" || parseInt(ticket.quantity_available) < 1) {
       return;
     }
-    if (ticket.type === 1 && parseInt(ticket.price) <= 0) {
+    if (ticket.ticket_type === 1 && parseInt(ticket.price) <= 0) {
       return;
     }
     if (parseInt(ticket.price) <= 0) {
       ticket.price = 0;
-      ticket.type = 0;
+      ticket.ticket_type = 0;
     }
     addTicket((prev) => [...prev, ticket]);
   };
@@ -25,9 +25,10 @@ function StepThree({ setStep }) {
   };
   const [newTicket, setInputValue] = useState({
     name: "General Admission",
-    type: 1,
-    price: 0,
-    available_number: 30,
+    description: "",
+    ticket_type: 1,
+    quantity_available: 300,
+    price: 200,
   });
 
   const beforeSetShouldAddTicket = (status) => {
@@ -55,11 +56,11 @@ function StepThree({ setStep }) {
             <button
               onClick={() => {
                 handleChange({
-                  target: { name: "type", value: 1 },
+                  target: { name: "ticket_type", value: 1 },
                 });
               }}
               className={`${
-                newTicket.type === 1 ? "bg-brand-red" : "create-event-gradient"
+                newTicket.ticket_type === 1 ? "bg-brand-red" : "create-event-gradient"
               } text-[20px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3`}
             >
               Paid
@@ -67,11 +68,11 @@ function StepThree({ setStep }) {
             <button
               onClick={() => {
                 handleChange({
-                  target: { name: "type", value: 0 },
+                  target: { name: "ticket_type", value: 0 },
                 });
               }}
               className={`${
-                newTicket.type === 0 ? "bg-brand-red" : "create-event-gradient"
+                newTicket.ticket_type === 0 ? "bg-brand-red" : "create-event-gradient"
               } text-[20px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3`}
             >
               Free
@@ -79,11 +80,11 @@ function StepThree({ setStep }) {
             <button
               onClick={() => {
                 handleChange({
-                  target: { name: "type", value: 2 },
+                  target: { name: "ticket_type", value: 2 },
                 });
               }}
               className={`${
-                newTicket.type === 2 ? "bg-brand-red" : "create-event-gradient"
+                newTicket.ticket_type === 2 ? "bg-brand-red" : "create-event-gradient"
               } text-[20px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3`}
             >
               Donation
@@ -108,18 +109,18 @@ function StepThree({ setStep }) {
                 onChange={(e) =>
                   handleChange({
                     target: {
-                      name: "available_number",
+                      name: "quantity_available",
                       value: intValue(e.target.value),
                     },
                   })
                 }
-                value={newTicket.available_number}
-                name="available_number"
+                value={newTicket.quantity_available}
+                name="quantity_available"
                 className="create-event-gradient w-full px-3 mt-2 h-[45px]"
                 type="number"
               />
             </div>
-            {newTicket.type > 0 ? (
+            {newTicket.ticket_type > 0 ? (
               <div>
                 <label className="block">Price</label>
                 <input
@@ -180,7 +181,7 @@ function StepThree({ setStep }) {
                 <h3 className="font-[500] text-white text-[25px] leading-[37.5px]">{ticket.name}</h3>
                 <h3 className="font-[500] mt-1 text-[18px] leading-[37.5px] text-white">${ticket.price}</h3>
                 <h3 className="font-[500] mt-1 text-white text-[18px] leading-[37.5px]">
-                  {ticket.type === 0 ? "Free" : ticket.type === 1 ? "Paid" : "Donation"}
+                  {ticket.ticket_type === 0 ? "Free" : ticket.ticket_type === 1 ? "Paid" : "Donation"}
                 </h3>
               </div>
             ))}

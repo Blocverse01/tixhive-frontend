@@ -9,8 +9,8 @@ export const ethers = Moralis.web3Library;
  * @return new ethers.Contract;
  */
 
-export const enableContract = async (defaultState, web3Provider) => {
+export const enableContract = async (contractAddress, ABI, web3Provider) => {
   console.log(web3Provider);
-  const Contract = new ethers.Contract(defaultState.deployedAddress, defaultState.abi, web3Provider);
+  const Contract = new ethers.Contract(contractAddress, ABI, web3Provider);
   return Contract;
 };

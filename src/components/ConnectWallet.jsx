@@ -30,8 +30,12 @@ export default function ConnectWallet() {
       className="bg-brand-red connect-wallet h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
       disabled={isAuthenticating}
     >
-      {isAuthenticating ? <FontAwesomeIcon icon={solid("spinner")} spin /> : ""}{" "}
-      {user ? truncateEthAddress(account || user.get("ethAddress")) : "Connect Wallet"}
+      {isAuthenticating ? <FontAwesomeIcon className="mr-2" icon={solid("spinner")} spin /> : ""}
+      {user
+        ? truncateEthAddress(account || user.get("ethAddress"))
+        : isAuthenticating
+        ? "Connecting"
+        : "Connect Wallet"}
     </button>
   );
 }
