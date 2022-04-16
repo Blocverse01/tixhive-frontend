@@ -3,3 +3,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .create-event-headline {
+    @apply text-[18px] leading-[28px] md:text-[25px] text-white font-[500] md:leading-[51.62px];
+  }
+  .create-event-subheadline {
+    @apply text-[10px] md:text-[14px] text-white font-[500] leading-[25.81px];
+  }
+}

@@ -18,5 +18,5 @@ export default function Web3Boot({ children }) {
     bootWeb3();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isWeb3Enabled]);
-  return <div>{children}</div>;
+  return <>{children}</>;
 }

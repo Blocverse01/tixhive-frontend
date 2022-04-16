@@ -2,7 +2,7 @@ import React from "react";
 import Label from "./Label";
 
 const InputField = ({ value, label, name, placeholder, type, onChange }) => (
-  <div className="text-[18px] font-[400] text-white leading-[30px]">
+  <div className="text-[15px] md:text-[18px] font-[400] text-white leading-[30px]">
     {label && <Label value={label} htmlFor={name} />}
     <input
       id={name}

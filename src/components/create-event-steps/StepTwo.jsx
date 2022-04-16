@@ -11,8 +11,8 @@ function StepTwo({ handleChange, setStep }) {
   return (
     <div className="grid grid-cols-1 lg:px-[30px] gap-[27px]">
       <div>
-        <h3 className="text-[25px] text-white font-[500] leading-[51.62px]">Add Your Main Event Image</h3>
-        <h4 className="text-[14px] text-white font-[500] leading-[25.81px]">
+        <h3 className="create-event-headline">Add Your Main Event Image</h3>
+        <h4 className="create-event-subheadline">
           This is the first image attendees will see at the top of your listing. Use a high quality image : 2033px by
           20393px (2:1)
         </h4>
@@ -47,10 +47,10 @@ function StepTwo({ handleChange, setStep }) {
                     <div className="text-center">
                       <FontAwesomeIcon icon={solid("image")} className="text-white text-4xl" />
                     </div>
-                    <h3 className="text-center mt-[15.45px] text-[15px] font-[600] leading-[27.58px]">
+                    <h3 className="text-center mt-[15.45px] text-[10px] md:text-[14px] font-[600] leading-[27.58px]">
                       Drag and Drop or Click to Add an Image
                     </h3>
-                    <h3 className="text-center font-[500] text-[12px] leading-[22.07px]">
+                    <h3 className="text-center font-[500] text-[9px] leading-[22.07px]">
                       Must be JPEG, SVG, PNG or GIF; Must not exceed 10MB
                     </h3>
                   </div>
@@ -62,8 +62,8 @@ function StepTwo({ handleChange, setStep }) {
       </div>
 
       <div>
-        <h3 className="text-[25px] text-white font-[500] leading-[51.62px]">Add a Description</h3>
-        <h4 className="text-[14px] text-white font-[500] leading-[25.81px]">
+        <h3 className="create-event-headline">Add a Description</h3>
+        <h4 className="create-event-subheadline">
           Add a short summary of your event for your attendees (Max 200 Characters)
         </h4>
         <textarea
@@ -72,25 +72,37 @@ function StepTwo({ handleChange, setStep }) {
           name="description"
           placeholder="Write Summary..."
           rows="4"
-          className="create-event-gradient focus:outline-none text-white placeholder-[#FFFFFFB2] w-full p-5 mt-[20.21px]"
+          className="create-event-gradient text-[15px] md:text-[18px] focus:outline-none text-white placeholder-[#FFFFFFB2] w-full p-5 mt-[20.21px]"
           onChange={handleChange}
         ></textarea>
-        <h3 className="text-right mt-[18px] text-white text-[18px] leading-[30.97px] font-[500]">
+        <h3 className="text-right mt-[18px] text-white text-[15px] md:text-[18px] leading-[30.97px] font-[500]">
           {event.description.length}/200
         </h3>
       </div>
 
-      <div className="flex justify-end mt-[10px]">
+      <div className="flex justify-between mt-[10px]">
+        <button
+          onClick={() => {
+            setStep(1);
+          }}
+          type="button"
+          className="bg-brand-red connect-wallet h-[45px] lg:h-[56px] px-3 lg:px-0 lg:w-[170px] text-white text-[12px] md:text-[18px] leading-[35px] flex justify-center items-center"
+        >
+          <span className="flex items-center">
+            <FontAwesomeIcon icon={solid("chevron-left")} className="mr-[13px] md:mr-[22px]" />
+            Previous
+          </span>
+        </button>
         <button
           onClick={() => {
             setStep(3);
           }}
           type="button"
-          className="bg-brand-red connect-wallet h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
+          className="bg-brand-red connect-wallet h-[45px] lg:h-[56px] px-3 lg:px-0 lg:w-[170px] text-white text-[12px] md:text-[18px] leading-[35px] flex justify-center items-center"
         >
           <span className="flex items-center">
             Continue
-            <FontAwesomeIcon icon={solid("chevron-right")} className="ml-[22px]" />
+            <FontAwesomeIcon icon={solid("chevron-right")} className="ml-[13px] md:ml-[22px]" />
           </span>
         </button>
       </div>

@@ -3,9 +3,11 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRecoilState } from "recoil";
 import { newTicketsState } from "recoil/atoms/newTickets";
+import NewTicket from "components/NewTicket";
+import { safeInt } from "utils/safe-int";
 
 function StepThree({ setStep }) {
-  const [tickets, addTicket] = useRecoilState(newTicketsState);
+  const [tickets, setTickets] = useRecoilState(newTicketsState);
   const storeTicket = (ticket) => {
     if (ticket.name.trim() === "" || parseInt(ticket.quantity_available) < 1) {
       return;
@@ -17,12 +19,10 @@ function StepThree({ setStep }) {
       ticket.price = 0;
       ticket.ticket_type = 0;
     }
-    addTicket((prev) => [...prev, ticket]);
+    setTickets((prev) => [...prev, ticket]);
+    setShouldAddTicket(false);
   };
   const [shouldAddTicket, setShouldAddTicket] = useState(tickets.length === 0 ? true : false);
-  const intValue = (value) => {
-    return isNaN(parseInt(value)) ? 0 : parseInt(value);
-  };
   const [newTicket, setInputValue] = useState({
     name: "General Admission",
     description: "",
@@ -33,7 +33,7 @@ function StepThree({ setStep }) {
 
   const beforeSetShouldAddTicket = (status) => {
     if (tickets.length === 0 && status === false) {
-      setShouldAddTicket(false);
+      setShouldAddTicket(true);
       return;
     }
     setShouldAddTicket(status);
@@ -48,9 +48,14 @@ function StepThree({ setStep }) {
   };
   return (
     <div className="lg:px-[30px]">
-      {shouldAddTicket ? (
+      {shouldAddTicket || tickets.length === 0 ? (
         <div>
-          <h3 className="font-[500] text-white lg:text-[34.41px] lg:leading-[51.62px]">Let’s Setup Your Tickets</h3>
+          <div className="flex justify-between">
+            <h3 className="font-[500] text-white lg:text-[34.41px] lg:leading-[51.62px]">Let’s Setup Your Tickets</h3>
+            <button className="text-white text-2xl" onClick={() => beforeSetShouldAddTicket(false)}>
+              <FontAwesomeIcon icon={solid("times")} />
+            </button>
+          </div>
           <h3 className="text-white mt-[8px]">What kind of ticket?</h3>
           <div className="mt-[5px] flex flex-wrap gap-[12.68px]">
             <button
@@ -110,7 +115,7 @@ function StepThree({ setStep }) {
                   handleChange({
                     target: {
                       name: "quantity_available",
-                      value: intValue(e.target.value),
+                      value: safeInt(e.target.value),
                     },
                   })
                 }
@@ -128,7 +133,7 @@ function StepThree({ setStep }) {
                     handleChange({
                       target: {
                         name: "price",
-                        value: intValue(e.target.value),
+                        value: safeInt(e.target.value),
                       },
                     })
                   }
@@ -145,10 +150,9 @@ function StepThree({ setStep }) {
               <button
                 onClick={() => {
                   storeTicket(newTicket);
-                  beforeSetShouldAddTicket(false);
                 }}
                 type="button"
-                className="bg-brand-red connect-wallet h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
+                className="bg-brand-red connect-wallet h-[45px] md:h-[55px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
               >
                 <span className="flex items-center">
                   <FontAwesomeIcon icon={solid("plus")} className="mr-[22px]" />
@@ -177,14 +181,34 @@ function StepThree({ setStep }) {
           </div>
           <div className="grid grid-cols-1 gap-[27px]">
             {tickets.map((ticket, index) => (
-              <div key={index} className="create-event-section px-[28px] py-[21px]">
-                <h3 className="font-[500] text-white text-[25px] leading-[37.5px]">{ticket.name}</h3>
-                <h3 className="font-[500] mt-1 text-[18px] leading-[37.5px] text-white">${ticket.price}</h3>
-                <h3 className="font-[500] mt-1 text-white text-[18px] leading-[37.5px]">
-                  {ticket.ticket_type === 0 ? "Free" : ticket.ticket_type === 1 ? "Paid" : "Donation"}
-                </h3>
-              </div>
+              <NewTicket ticket={ticket} key={index} />
             ))}
+          </div>
+          <div className="flex justify-between mt-[40px]">
+            <button
+              onClick={() => {
+                setStep(2);
+              }}
+              type="button"
+              className="bg-brand-red connect-wallet h-[45px] lg:h-[56px] px-3 lg:px-0 lg:w-[170px] text-white text-[12px] md:text-[18px] leading-[35px] flex justify-center items-center"
+            >
+              <span className="flex items-center">
+                <FontAwesomeIcon icon={solid("chevron-left")} className="mr-[13px] md:mr-[22px]" />
+                Previous
+              </span>
+            </button>
+            <button
+              onClick={() => {
+                setStep(4);
+              }}
+              type="button"
+              className="bg-brand-red connect-wallet h-[45px] lg:h-[56px] px-3 lg:px-0 lg:w-[170px] text-white text-[12px] md:text-[18px] leading-[35px] flex justify-center items-center"
+            >
+              <span className="flex items-center">
+                Continue
+                <FontAwesomeIcon icon={solid("chevron-right")} className="ml-[13px] md:ml-[22px]" />
+              </span>
+            </button>
           </div>
         </div>
       )}

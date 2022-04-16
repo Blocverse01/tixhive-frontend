@@ -2,8 +2,11 @@ import InputField from "components/InputField";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import Label from "components/Label";
+import { useRecoilValue } from "recoil";
+import { newEventState } from "recoil/atoms/newEvent";
 
-function StepZero({ event, handleChange, setStep }) {
+function StepZero({ handleChange, setStep }) {
+  const event = useRecoilValue(newEventState);
   return (
     <div className="grid grid-cols-1 gap-[27px]">
       <InputField
@@ -23,10 +26,7 @@ function StepZero({ event, handleChange, setStep }) {
         onChange={handleChange}
       />
       <div>
-        <Label
-          value="What kind of venue will your event be held in?"
-          htmlFor="venue_type"
-        />
+        <Label value="What kind of venue will your event be held in?" htmlFor="venue_type" />
         <div className="mt-[13.11px] flex flex-wrap gap-[12.68px]">
           <button
             onClick={() => {
@@ -35,10 +35,8 @@ function StepZero({ event, handleChange, setStep }) {
               });
             }}
             className={`${
-              event.venue_type === 0
-                ? "bg-brand-red"
-                : "create-event-gradient"
-            } text-[20px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3`}
+              event.venue_type === 0 ? "bg-brand-red" : "create-event-gradient"
+            } text-[15px] md:text-[18px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3`}
           >
             Physical Venue
           </button>
@@ -47,10 +45,8 @@ function StepZero({ event, handleChange, setStep }) {
               handleChange({ target: { name: "venue_type", value: 1 } });
             }}
             className={`${
-              event.venue_type === 1
-                ? "bg-brand-red"
-                : "create-event-gradient"
-            } text-[20px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3`}
+              event.venue_type === 1 ? "bg-brand-red" : "create-event-gradient"
+            } text-[15px] md:text-[18px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3`}
           >
             Online Venue
           </button>
@@ -62,14 +58,11 @@ function StepZero({ event, handleChange, setStep }) {
             setStep(1);
           }}
           type="button"
-          className="bg-brand-red connect-wallet h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
+          className="bg-brand-red connect-wallet h-[45px] lg:h-[56px] px-3 lg:px-0 lg:w-[170px] text-white text-[15px] md:text-[18px] leading-[35px] flex justify-center items-center"
         >
           <span className="flex items-center">
             Continue
-            <FontAwesomeIcon
-              icon={solid("chevron-right")}
-              className="ml-[22px]"
-            />
+            <FontAwesomeIcon icon={solid("chevron-right")} className="ml-[22px]" />
           </span>
         </button>
       </div>

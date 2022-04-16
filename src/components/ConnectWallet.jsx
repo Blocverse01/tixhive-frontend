@@ -27,7 +27,7 @@ export default function ConnectWallet() {
       onClick={async () => {
         user ? await logOut() : await login();
       }}
-      className="bg-brand-red connect-wallet h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
+      className="bg-brand-red connect-wallet h-[45px] md:h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
       disabled={isAuthenticating}
     >
       {isAuthenticating ? <FontAwesomeIcon className="mr-2" icon={solid("spinner")} spin /> : ""}

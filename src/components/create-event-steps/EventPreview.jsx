@@ -39,7 +39,7 @@ export default function EventPreview({ handleChange }) {
         />
       </div>
       <div className="active-title text-white another-gradient p-[26px] mt-[50.17px]">
-        <h3 className="visibility-header lg:text-[25px] lg:leading-[38px] lg:mb-[15px]">Who can see your event?</h3>
+        <h3 className="visibility-header lg:text-[25px] lg:leading-[38px] mb-[15px]">Who can see your event?</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[34px]">
           <div className="bg-visibility-selector md:col-span-2 p-[23px]">
             <div className="flex gap-2">

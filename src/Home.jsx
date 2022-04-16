@@ -8,9 +8,9 @@ function Home() {
   return (
     <div>
       <div className="flex lg:px-8 justify-between lg:flex-row flex-col">
-        <div className="mt-[90px] lg:mt-[60px] px-5 sm:px-6 order-2 lg:order-1 lg:pl-10">
+        <div className="mt-[110px] z-30 lg:mt-[60px] px-5 sm:px-6 order-2 lg:order-1 lg:pl-10">
           <div className="relative">
-            <h3 className="font-medium text-[36.97px] max-w-[226px] leading-[55.45px] lg:max-w-[546px] text-white lg:text-[78px] lg:leading-[132px]">
+            <h3 className="font-medium text-[2.311rem] max-w-[226px] leading-[55.45px] lg:max-w-[546px] text-white lg:text-[78px] lg:leading-[132px]">
               A New Era of NFT Utility
             </h3>
             <img
@@ -22,12 +22,12 @@ function Home() {
           <div className="mt-[10px] font-[400] max-w-[218.45px] lg:max-w-[520px] text-[10.5px] leading-[15.75px] lg:text-[25px] lg:leading-[37.5px] text-white">
             Teresa will insert some cool text here, ipsum dolor sit amet lorem.
           </div>
-          <div className="mt-[13.3px] lg:mt-[54px] flex gap-[43px] items-center">
-            <button className="bg-black-gradient px-5 lg:px-0 lg:w-[233px] btn-border h-[50px] lg:h-[65px] text-white text-[20px] lg:text-[25px] leading-[37.5px] flex justify-center items-center">
+          <div className="mt-[13.3px] lg:mt-[54px] flex gap-[27px] sm:gap-[35px] md:gap-[43px] items-center">
+            <button className="bg-black-gradient px-3 flex-shrink-0 lg:px-0 lg:w-[233px] btn-border h-[45px] lg:h-[65px] text-white text-[16px] sm:text-[20px] lg:text-[25px] leading-[37.5px] flex justify-center items-center">
               Get Started
             </button>
-            <Link to="/create-event">
-              <button className="bg-brand-red h-[50px] lg:h-[65px] px-5 lg:px-0 lg:w-[233px] text-white text-[20px] lg:text-[25px] leading-[37.5px] flex justify-center items-center">
+            <Link className="flex-shrink-0" to="/create-event">
+              <button className="bg-brand-red h-[45px] lg:h-[65px] px-3 lg:px-0 lg:w-[233px] text-white text-[16px] sm:text-[20px] lg:text-[25px] leading-[37.5px] flex justify-center items-center">
                 Create Event
               </button>
             </Link>
@@ -48,8 +48,8 @@ function Home() {
           </div>
         </div>
         <div className="order-1 w-full lg:order-2">
-          <img src={eventPeople} alt="event-people" className="lg:hidden h-full w-full -mt-[110px]" />
-          <img src={eventTickets} alt="event-tickets" className="lg:hidden h-full w-full absolute top-[150px]" />
+          <img src={eventPeople} alt="event-people" className="lg:hidden w-full -mt-[110px]" />
+          <img src={eventTickets} alt="event-tickets" className="lg:hidden w-full absolute top-[100px]" />
           <img
             src={event}
             className="lg:h-[600px] hidden lg:block xl:h-[760px] 2xl:h-[1088px] lg:-mt-[110px]"
