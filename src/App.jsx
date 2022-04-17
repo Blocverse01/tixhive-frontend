@@ -5,6 +5,7 @@ import CreateEvent from "./CreateEvent";
 import ConnectWallet from "components/ConnectWallet";
 import Web3Boot from "components/Web3Boot";
 import ScrollToTop from "ScrollToTop";
+import EventDisplay from "components/EventDisplay";
 
 function App() {
   return (
@@ -13,10 +14,10 @@ function App() {
         <Web3Boot>
           <div className="bg-brand-black font-poppins">
             <div className="max-w-[1728px] mx-auto">
-              <nav className="pt-[25px] z-50 lg:pt-[45px] px-5 sm:px-6 lg:px-8">
+              <nav className="pt-[25px] z-50 lg:pt-[45px] px-5 sm:px-10 lg:px-8">
                 <div className="flex items-center lg:px-10 text-white">
                   <Link to="/">
-                    <h3 className="lg:mr-[79px] lg:font-[500] lg:text-[30px] lg:leading-[45px]">Bloc-Tick</h3>
+                    <h3 className="lg:mr-[79px] lg:font-[500] lg:text-[30px] lg:leading-[45px]">Bloc-Ticks</h3>
                   </Link>
                   <ul className="lg:flex hidden appearance-none lg:font-[500] lg:text-[18.65px] lg:leading-[27.98px] lg:gap-[40.29px] items-center">
                     <li>
@@ -29,14 +30,15 @@ function App() {
                       <Link to="/faqs">Need Help?</Link>
                     </li>
                   </ul>
-                  <div className="flex justify-end flex-1 lg:pr-6 z-10">
+                  <div className="flex justify-end flex-1 lg:pr-4 z-10">
                     <ConnectWallet />
                   </div>
                 </div>
               </nav>
               <Routes>
-                <Route exact path="/" element={<Home />}></Route>
-                <Route exact path="/create-event" element={<CreateEvent />}></Route>
+                <Route exact path="/" element={<Home />} />
+                <Route exact path="/create-event" element={<CreateEvent />} />
+                <Route element={<EventDisplay />} path="/events/:contract" />
               </Routes>
             </div>
           </div>

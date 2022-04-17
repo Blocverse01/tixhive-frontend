@@ -11,4 +11,10 @@
   .create-event-subheadline {
     @apply text-[10px] md:text-[14px] text-white font-[500] leading-[25.81px];
   }
+  .btn {
+    @apply bg-brand-red h-[45px] md:h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center;
+  }
+  .social-icon {
+    @apply w-[18.55px] h-[18.55px] md:w-[42px] md:h-[42px];
+  }
 }

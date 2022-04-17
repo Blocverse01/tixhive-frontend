@@ -19,7 +19,7 @@ function StepOne({ handleChange, setStep }) {
       />
       <div>
         <Label value="When will your event happen?" htmlFor="event_time" />
-        <div className="create-event-gradient p-4 md:p-5 grid mt-[23px] grid-cols-2">
+        <div className="create-event-gradient p-4 md:p-5 grid mt-[23px] grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
             <div>
               <h3 className="text-white text-[15px] sm:text-[16px] leading-[24px]">Start Date</h3>
@@ -31,7 +31,7 @@ function StepOne({ handleChange, setStep }) {
                 className="bg-transparent text-[15px] sm:text-[16px] text-white uppercase"
               />
             </div>
-            <div className="mt-[11px]">
+            <div className="mt-2 sm:mt-[11px]">
               <h3 className="text-white text-[15px] sm:text-[16px] leading-[24px]">End Date</h3>
               <input
                 onChange={handleChange}
@@ -43,7 +43,7 @@ function StepOne({ handleChange, setStep }) {
             </div>
           </div>
 
-          <div className="flex justify-center">
+          <div className="sm:flex justify-center">
             <div>
               <div>
                 <h3 className="text-white text-[15px] sm:text-[16px] leading-[24px]">Start Time</h3>
@@ -55,14 +55,14 @@ function StepOne({ handleChange, setStep }) {
                   className="bg-transparent text-[15px] sm:text-[16px] text-white uppercase"
                 />
               </div>
-              <div className="mt-[11px]">
+              <div className="mt-2 sm:mt-[11px]">
                 <h3 className="text-white text-[15px] sm:text-[16px] leading-[24px]">End Time</h3>
                 <input
                   type="time"
                   value={event.end_time}
                   onChange={handleChange}
                   name="end_time"
-                  className="bg-transparent text-white text-[12px] sm:text-[16px] uppercase"
+                  className="bg-transparent text-white text-[15px] sm:text-[16px] uppercase"
                 />
               </div>
             </div>
