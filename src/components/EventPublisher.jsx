@@ -1,4 +1,4 @@
-import { eventFactoryState } from "recoil/atoms/contracts";
+import { eventFactory } from "data/contracts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useRecoilValue } from "recoil";
@@ -7,10 +7,8 @@ import { useMoralisFile } from "react-moralis";
 import { newTicketsState } from "recoil/atoms/newTickets";
 import { useMoralis } from "react-moralis";
 import Swal from "sweetalert2";
-import { ethers } from "utils/web3-utils";
+import { enableContract, ethers } from "utils/web3-utils";
 import { replaceItemAtIndex } from "utils/arrays";
-import Event from "contract-abis/Event.json";
-import { enableContract } from "utils/web3-utils";
 
 const getTicker = (name) => {
   if (name.trim() === "") {
@@ -24,12 +22,9 @@ const getTicker = (name) => {
 export default function EventPublisher() {
   const { user, web3 } = useMoralis();
   const { isUploading, saveFile } = useMoralisFile();
-  const EventFactory = useRecoilValue(eventFactoryState);
   const tickets = useRecoilValue(newTicketsState);
   const newEvent = useRecoilValue(newEventState);
   const publishEvent = async () => {
-    const events = await EventFactory.connect(web3.getSigner()).allEvents();
-    console.log(await (await enableContract(events[0], Event.abi, web3))._eventData());
     if (!user) {
       Swal.fire({
         title: "Error!",
@@ -39,6 +34,7 @@ export default function EventPublisher() {
       return;
     }
     try {
+      const EventFactory = await enableContract(eventFactory.contractAddress, eventFactory.abi, web3);
       const file = newEvent.cover_image;
       if (!file && !(file instanceof File)) {
         Swal.fire({
