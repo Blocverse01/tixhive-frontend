@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 export default function ConnectWallet() {
-  const chainId = 137;
+  const chainId = process.env.REACT_APP_CHAIN_ID;
   const connectorId = window.ethereum ? "injected" : "walletconnect";
   const { authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
   const login = async () => {

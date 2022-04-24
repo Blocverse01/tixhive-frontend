@@ -4,7 +4,7 @@ import { solid, regular } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useRecoilValue } from "recoil";
 import { newEventState } from "recoil/atoms/newEvent";
 
-const fileTypes = ["JPG", "PNG", "GIF", "SVG"];
+const fileTypes = ["JPG", "PNG", "GIF", "SVG", "JPEG"];
 
 function StepTwo({ handleChange, setStep }) {
   const event = useRecoilValue(newEventState);

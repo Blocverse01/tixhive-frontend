@@ -4,12 +4,11 @@ import QRCode from "react-qr-code";
 import moment from "moment";
 import { useRecoilValue } from "recoil";
 import { newEventState } from "recoil/atoms/newEvent";
-import { newTicketsState } from "recoil/atoms/newTickets";
+import { leastTicketPriceState } from "recoil/atoms/newTickets";
 import EventPublisher from "components/EventPublisher";
 
 export default function EventPreview({ handleChange }) {
-  const tickets = useRecoilValue(newTicketsState);
-  const lowestTicketCost = tickets.map((ticket) => ticket.price).sort()[0] || 0;
+  const lowestTicketCost = useRecoilValue(leastTicketPriceState);
   const event = useRecoilValue(newEventState);
   const dateGenerated = moment(event.start_date + " " + event.start_time);
   const [QrCode, setQrCode] = useState("");
@@ -23,7 +22,7 @@ export default function EventPreview({ handleChange }) {
     getImageFromQRCode();
   });
   return (
-    <section>
+    <section className="relative">
       <div>
         <div className="hidden">
           <QRCode id="QRCode" value={event.name + " - Ticket Preview"} />

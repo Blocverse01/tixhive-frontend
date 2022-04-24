@@ -69,7 +69,7 @@ function StepOne({ handleChange, setStep }) {
           </div>
         </div>
       </div>
-      {event.venue_type === "physical" ? (
+      {event.venue_type === 0 ? (
         <InputField
           type="text"
           value={event.venue}

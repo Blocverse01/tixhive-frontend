@@ -7,7 +7,7 @@ import { useRecoilState } from "recoil";
 import { newEventState } from "recoil/atoms/newEvent";
 
 function CreateEvent() {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(4);
   const [event, setNewEventState] = useRecoilState(newEventState);
   const handleChange = (e) => {
     const { name, value } = e.target;

@@ -3,27 +3,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useRecoilValue } from "recoil";
 import { newEventState } from "recoil/atoms/newEvent";
-import { useMoralisFile } from "react-moralis";
+import { useMoralisFile, useMoralis } from "react-moralis";
 import { newTicketsState } from "recoil/atoms/newTickets";
-import { useMoralis } from "react-moralis";
 import Swal from "sweetalert2";
-import { enableContract, ethers } from "utils/web3-utils";
-import { replaceItemAtIndex } from "utils/arrays";
-
-const getTicker = (name) => {
-  if (name.trim() === "") {
-    throw new Error("Invalid Event Name");
-  }
-  let nameArray = name.split(" ");
-  nameArray.map((item) => item.charAt(0));
-  return nameArray.join("");
-};
+import { enableContract } from "utils/web3-utils";
+import { getTicker, parseTicketsPriceToEther, saveToMoralis } from "utils/create-event";
+import { leastTicketPriceState } from "recoil/atoms/newTickets";
+import { useState } from "react";
+import EventPublishingProgressTracker from "./EventPublishingProgressTracker";
 
 export default function EventPublisher() {
   const { user, web3 } = useMoralis();
-  const { isUploading, saveFile } = useMoralisFile();
+  const { saveFile } = useMoralisFile();
+  const [publishingState, setPublishingState] = useState(-1);
   const tickets = useRecoilValue(newTicketsState);
   const newEvent = useRecoilValue(newEventState);
+  const leastTicketCost = useRecoilValue(leastTicketPriceState);
+
   const publishEvent = async () => {
     if (!user) {
       Swal.fire({
@@ -44,45 +40,56 @@ export default function EventPublisher() {
         });
         return;
       }
-      const ipfsLink = (await saveFile(file.name, file, { saveIPFS: true, throwOnError: true }))._ipfs;
-      const event = {
-        name: newEvent.name,
-        ticker: getTicker(newEvent.name),
-        host_name: newEvent.host,
-        starts_on: newEvent.start_date + " " + newEvent.start_time,
-        ends_on: newEvent.end_date + " " + newEvent.end_time,
-        category: newEvent.category,
-        description: newEvent.description,
-        visibility: newEvent.visibility,
-        venue_type: newEvent.venue_type,
-        venue: newEvent.venue,
-        cover_image_url: ipfsLink,
-      };
-      let freshTickets = [];
-      tickets.forEach((ticket, index) => {
-        freshTickets.push(
-          replaceItemAtIndex(tickets, index, {
-            ...ticket,
-            price: ethers.utils.parseEther(ticket.price.toString()),
-          })[index]
-        );
+      setPublishingState(0);
+      const cover_image = await saveFile(file.name.replace(/[^a-zA-Z0-9]/g, "_"), file, {
+        saveIPFS: true,
+        throwOnError: true,
       });
-      console.log(await EventFactory.connect(web3.getSigner()).addEvent(event, freshTickets));
+      setPublishingState(1);
+      const transaction = await EventFactory.connect(web3.getSigner()).addEvent(
+        newEvent.name,
+        getTicker(newEvent.name),
+        parseTicketsPriceToEther(tickets)
+      );
+      const receipt = await transaction.wait();
+      const eventContractAddress = receipt.events[0].args.contractAddress;
+      setPublishingState(2);
+      const eventOnMoralis = await saveToMoralis(newEvent, eventContractAddress, cover_image, leastTicketCost);
+      eventOnMoralis.set("owner", user.get("ethAddress"));
+      await eventOnMoralis.save();
+      setPublishingState(3);
+      setTimeout(() => {
+        setPublishingState(-1);
+        Swal.fire({
+          title: "Success!",
+          text: `${newEvent.name} has been published successfully`,
+          icon: "success",
+        });
+      }, 2000);
       return true;
     } catch (err) {
+      setPublishingState(-1);
       console.error(err);
     }
   };
 
   return (
-    <button
-      disabled={isUploading}
-      onClick={async () => {
-        await publishEvent();
-      }}
-      className="bg-brand-red connect-wallet h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
-    >
-      Publish Now <FontAwesomeIcon icon={solid("chevron-right")} />
-    </button>
+    <div>
+      {publishingState >= 0 ? <EventPublishingProgressTracker state={publishingState} /> : ""}
+      <button
+        disabled={publishingState >= 0}
+        onClick={async () => {
+          await publishEvent();
+        }}
+        className="bg-brand-red disabled:bg-brand-black h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
+      >
+        Publish Now{" "}
+        {publishingState >= 0 ? (
+          <FontAwesomeIcon className="ml-2" icon={solid("spinner")} spin />
+        ) : (
+          <FontAwesomeIcon className="ml-2" icon={solid("chevron-right")} />
+        )}
+      </button>
+    </div>
   );
 }

@@ -44,7 +44,6 @@ function StepThree({ setStep }) {
       ...prev,
       [name]: value,
     }));
-    console.log(newTicket);
   };
   return (
     <div className="lg:px-[30px]">

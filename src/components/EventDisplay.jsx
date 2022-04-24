@@ -5,30 +5,31 @@ import { regular } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { twitterIcon, faceBookIcon, whatsappIcon, telegramIcon, instagramIcon } from "svgs/social-icons";
 import map from "svgs/unsplash_Uk3t05ndSng.png";
 import EventsList from "components/EventsList";
-import { eventsState } from "recoil/atoms/events"
-import { useRecoilValue } from "recoil"
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { useRecoilValue } from "recoil";
+import { eventsState } from "recoil/atoms/events";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function EventDisplay() {
+  const { contract } = useParams();
   const events = useRecoilValue(eventsState);
-  const event = {
-    cover_image_url: "https://ipfs.moralis.io:2053/ipfs/QmXeDQ9Q4sjhjtFs2ErDc2oBzyCdpEa53kUFvH1zFWhsfJ",
-    name: "Abakaliki BlocSummit",
-    host_name: "Blocverse",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lobortis sed sed mauris est. Malesuada vitae faucibus facilisi pulvinar lacus scelerisque. Sit pharetra adipiscing sollicitudin in mi. At sit odio non consequat. Eu diam pellentesque ipsum adipiscing diam vitae, egestas. Arcu aliquam, convallis tellus blandit. Nullam at et mattis mauris, nisl cursus dolor. Porta vel gravida porttitor id vestibulum, quisque maecenas tristique vel. Lacus, sodales non nisi tellus habitant turpis et pulvinar.",
-    starts_on: "2022-08-25 09:40:00",
-    ends_on: "2022-08-27 12:40:00",
-    leastTicketCost: 20,
-    venue: "No. 2383 Mile 50, Along Enugu-Abakaliki Express Road",
-  };
-  const eventStartDate = moment(event.starts_on);
+  const [event, setEvent] = useState(null);
+
+  useEffect(() => {
+    setEvent(events.find((event) => event.contractAddress === contract));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [events, contract]);
+
+  const eventStartDate = event ? moment(event.starts_on) : null;
   const aboutEvent = (
     <div>
       <h3 className="font-medium text-[12.4px] leading-[18.6px] md:text-[18px] md:leading-[25px] lg:text-[24.75px] lg:leading-[37.13px]">
         About the Event
       </h3>
       <p className="text-[9.02px] mt-[7.54px] leading-[13.52px] md:text-[14px] md:leading-[23px] lg:text-[18px] lg:leading-[27px]">
-        {event.description}
+        {event?.description || <Skeleton />}
       </p>
     </div>
   );
@@ -43,38 +44,46 @@ export default function EventDisplay() {
         />
         <div className="z-50 px-[28px] pb-[28px] pt-[12px] md:pb-[54px] md:px-[54px] md:pt-[20px] lg:p-[45px] lg:gap-[45px] grid lg:grid-cols-2">
           <div className="relative">
-            <img src={event.cover_image_url} className="lg:h-full lg:object-cover w-full" alt={event.name} />
+            {event ? (
+              <img src={event.cover_image_url} className="lg:h-full lg:object-cover w-full" alt={event.name} />
+            ) : (
+              <SkeletonTheme baseColor="#1A1D25" highlightColor="#FF4601" />
+            )}
             <div className="absolute inset-0 p-[12px] md:p-[20px] flex items-end event-image-gradient">
               <div className="text-white lg:hidden">
                 <h3 className="text-[15.86px] font-medium leading-[23.79px] md:text-[33px] md:leading-[41px]">
-                  {event.name}
+                  {event?.name || <Skeleton />}
                 </h3>
                 <h4 className="text-[7.93px] md:text-[20px] md:leading-[23px] leading-[11.9px]">
-                  by {event.host_name}
+                  {event ? `by ${event.host_name}` : <Skeleton />}
                 </h4>
               </div>
             </div>
           </div>
           <div>
             <div className="hidden lg:block text-white mb-[27px]">
-              <h3 className="lg:text-[33px] xl:text-[44px] font-medium lg:leading-[50px] xl:leading-[74.26px]">{event.name}</h3>
-              <h4 className="lg:text-[20px] xl:text-[24.75px] leading-[37.13px]">by {event.host_name}</h4>
+              <h3 className="lg:text-[33px] xl:text-[44px] font-medium lg:leading-[50px] xl:leading-[74.26px]">
+                {event?.name || <Skeleton />}
+              </h3>
+              <h4 className="lg:text-[20px] xl:text-[24.75px] leading-[37.13px]">
+                {event ? `by ${event.host_name}` : <Skeleton />}
+              </h4>
             </div>
-            <div className="w-[217.75px] md:w-[65%] lg:static h-[47.37px] absolute right-0 left-0 -bottom-[34px] md:-bottom-[61px] px-[16px] md:px-[25px] md:py-[15px] lg:px-[47px] lg:py-[23px] py-[8.5px] flex items-center justify-between bg-brand-eventDate text-white mx-auto lg:w-full font-medium md:h-[90px] lg:h-[131px] lg:-mt-[27px] lg:mx-0">
+            <div className="w-[217.75px] md:w-[65%] lg:static h-[47.37px] absolute right-0 left-0 -bottom-[34px] md:-bottom-[61px] px-[16px] md:px-[25px] md:py-[15px] lg:px-[47px] lg:py-[23px] py-[8.5px] flex items-center justify-between bg-brand-eventDate text-white mx-auto lg:w-auto font-medium md:h-[90px] lg:h-[131px] lg:-mt-[0] lg:mx-0">
               <div>
                 <h3 className="text-[8.17px] md:text-[18px] lg:text-[22.59px] md:leading-[33.88px] leading-[12.25px]">
-                  {eventStartDate.format("MMM")}
+                  {eventStartDate?.format("MMM") || <Skeleton />}
                 </h3>
                 <h3 className="text-[14.37px] md:text-[28px] lg:text-[39.75px] md:leading-[59.63px] leading-[21.56px]">
-                  {eventStartDate.format("DD")}
+                  {eventStartDate?.format("DD") || <Skeleton />}
                 </h3>
               </div>
               <div>
                 <h3 className="text-[10.69px] md:text-[20px] lg:text-[29.57px] md:leading-[44.35px] leading-[16.04px]">
-                  {eventStartDate.format("dddd")}
+                  {eventStartDate?.format("dddd") || <Skeleton />}
                 </h3>
                 <h3 className="text-[8.76px] leading-[13.14px] md:text-[16px] lg:text-[24.23px] md:leading-[36.34px]">
-                  {eventStartDate.format("HH:mm a")}
+                  {eventStartDate?.format("HH:mm a") || <Skeleton />}
                 </h3>
               </div>
               <FontAwesomeIcon className="text-lg md:text-3xl lg:text-4xl" icon={regular("heart")} />
@@ -86,7 +95,7 @@ export default function EventDisplay() {
       <div className="mt-[75px] md:mt-[140px] lg:hidden px-[28px] pb-[28px] md:px-[54px] text-white">{aboutEvent}</div>
       <div className="grid grid-cols-1 lg:grid-cols-2 px-[28px] md:px-[54px] lg:px-[45px] mt-[24.54px] gap-[45px]">
         <div className="order-2 lg:order-1">
-          <h3 className="text-[9.26px] leading-[13.89px] md:text-[13px] md:leading-[13.89px] lg:text-[18px] lg:leading-[27px]">
+          <h3 className="text-[9.26px] text-white leading-[13.89px] md:text-[13px] md:leading-[13.89px] lg:text-[18px] lg:leading-[27px]">
             Share Event
           </h3>
           <div className="flex mt-[7.12px] gap-[9.27px] md:gap-[21px] md:mt-[8px]">
@@ -104,7 +113,7 @@ export default function EventDisplay() {
                 Price
               </h3>
               <h3 className="text-[20.03px] leading-[30.05px] md:text-[28px] md:leading-[37px] font-medium lg:text-[40px] lg:leading-[60px]">
-                ${event.leastTicketCost}
+                ${event?.leastTicketCost || <Skeleton />}
               </h3>
             </div>
             <div className="">
@@ -115,7 +124,7 @@ export default function EventDisplay() {
       </div>
       <section className="mt-[28.2px] px-[28px] md:px-[54px] lg:px-[45px] lg:mt-[121px]">
         <h3 className="text-[8px] text-center text-white leading-[12px] md:text-[14px] md:leading-[18px] lg:text-[30px] lg:leading-[45px]">
-          {event.venue}
+          {event?.venue || <Skeleton />}
         </h3>
         <img src={map} className="w-full mt-5" alt="map" />
       </section>

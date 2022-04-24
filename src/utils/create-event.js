@@ -1,23 +1,46 @@
-import { uploadFile } from "./upload-to-ipfs";
+import { replaceItemAtIndex } from "utils/arrays";
 import { ethers } from "./web3-utils";
+import Moralis from "moralis";
 
-export const storeEventData = async (newEvent, tickets, EventFactory, web3Provider) => {
-  try {
-    console.log(EventFactory, web3Provider);
-    const [ipfsLink] = await uploadFile(newEvent.cover_image);
-    const event = {
-      ...newEvent,
-      cover_image_url: ipfsLink,
-      starts_on: newEvent.start_date + " " + newEvent.start_time,
-      ends_on: newEvent.end_date + " " + newEvent.end_time,
-    };
-    let freshTickets = [...tickets];
-    console.log(freshTickets);
-    freshTickets = freshTickets.forEach((ticket) => (ticket.price = ethers.utils.parseEther(ticket.price.toString())));
-    console.log(freshTickets);
-    await EventFactory.connect(web3Provider.getSigner()).addEvent(event, freshTickets);
-    return true;
-  } catch (err) {
-    console.error(err);
+export const eventVisibility = ["private", "public"];
+export const venue_type = ["physical", "virtual"];
+
+export const saveToMoralis = async (newEvent, contractAddress, cover_image, leastTicketCost) => {
+  const event = new Moralis.Object("Event");
+  event.set("name", newEvent.name);
+  event.set("cover_image_url", cover_image._ipfs);
+  event.set("host_name", newEvent.host);
+  event.set("ticker", getTicker(newEvent.name));
+  event.set("starts_on", newEvent.start_date + " " + newEvent.start_time);
+  event.set("ends_on", newEvent.end_date + " " + newEvent.end_time);
+  event.set("category", newEvent.category);
+  event.set("visibility", newEvent.visibility);
+  event.set("venue_type", newEvent.venue_type);
+  event.set("venue", newEvent.venue);
+  event.set("contractAddress", contractAddress);
+  event.set("leastTicketCost", leastTicketCost);
+  event.set("description", newEvent.description);
+  return await event.save();
+};
+
+export const getTicker = (name) => {
+  if (name.trim() === "") {
+    throw new Error("Invalid Event Name");
   }
+  let nameArray = name.split(" ");
+  nameArray.map((item) => item.charAt(0));
+  return nameArray.join("");
+};
+
+export const parseTicketsPriceToEther = (tickets) => {
+  let freshTickets = [];
+  tickets.forEach((ticket, index) => {
+    freshTickets.push(
+      replaceItemAtIndex(tickets, index, {
+        ...ticket,
+        price: ethers.utils.parseEther(ticket.price.toString()),
+      })[index]
+    );
+  });
+  return freshTickets;
 };
