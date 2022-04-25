@@ -15,7 +15,7 @@ export default function EventListCard({ event }) {
       <div className="bg-event-gradient text-white py-[24px] px-[14px] sm:px-[20px]">
         <div className="flex justify-end">
           <div className="bg-brand-black z-10 text-[19px] leading-[28.92px] py-1 h-[36.81px] px-3 text-white -mr-[3px] -mt-[44px]">
-            ${event.leastTicketCost}
+            {event.leastTicketCost} MATIC
           </div>
         </div>
         <h3 className="text-[13px] line-clamp-1 sm:text-[18px] leading-[28.92px] font-[500]">{event.name}</h3>
