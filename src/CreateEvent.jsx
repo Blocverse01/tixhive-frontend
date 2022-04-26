@@ -7,7 +7,7 @@ import { useRecoilState } from "recoil";
 import { newEventState } from "recoil/atoms/newEvent";
 
 function CreateEvent() {
-  const [currentStep, setCurrentStep] = useState(4);
+  const [currentStep, setCurrentStep] = useState(0);
   const [event, setNewEventState] = useRecoilState(newEventState);
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -79,7 +79,7 @@ function CreateEvent() {
   });
 
   return (
-    <div className="relative h-screen z-0">
+    <div className="relative z-0 h-screen">
       <div className={`grid grid-cols-1  ${currentStep > 1 ? "lg:grid-cols-6" : "lg:grid-cols-5"}`}>
         <div className={`px-5 sm:px-10 lg:px-8 lg:col-span-2`}>
           <div className="lg:pl-10 mt-[60px] text-white">

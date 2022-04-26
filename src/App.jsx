@@ -6,6 +6,7 @@ import ConnectWallet from "components/ConnectWallet";
 import Web3Boot from "components/Web3Boot";
 import ScrollToTop from "ScrollToTop";
 import EventDisplay from "components/EventDisplay";
+import ManageEvents from "./ManageEvents"
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           <div className="bg-brand-black font-poppins">
             <div className="max-w-[1728px] mx-auto">
               <nav className="pt-[25px] z-50 lg:pt-[45px] px-5 sm:px-10 lg:px-8">
-                <div className="flex items-center lg:px-10 text-white">
+                <div className="flex items-center text-white lg:px-10">
                   <Link to="/">
                     <h3 className="lg:mr-[79px] lg:font-[500] lg:text-[30px] lg:leading-[45px]">Bloc-Ticks</h3>
                   </Link>
@@ -24,13 +25,13 @@ function App() {
                       <Link to="/my-tickets">My Tickets</Link>
                     </li>
                     <li>
-                      <Link to="/manage-events">Manage Events</Link>
+                      <Link to="/my-events">Manage Events</Link>
                     </li>
                     <li>
                       <Link to="/faqs">Need Help?</Link>
                     </li>
                   </ul>
-                  <div className="flex justify-end flex-1 lg:pr-4 z-10">
+                  <div className="z-10 flex justify-end flex-1 lg:pr-4">
                     <ConnectWallet />
                   </div>
                 </div>
@@ -39,6 +40,7 @@ function App() {
                 <Route exact path="/" element={<Home />} />
                 <Route exact path="/create-event" element={<CreateEvent />} />
                 <Route element={<EventDisplay />} path="/events/:contract" />
+                <Route element={<ManageEvents />} path="/my-events" />
               </Routes>
             </div>
           </div>

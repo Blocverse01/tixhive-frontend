@@ -1,24 +1,31 @@
 import { eventFactory } from "data/contracts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { newEventState } from "recoil/atoms/newEvent";
+import { eventsState } from "recoil/atoms/events";
 import { useMoralisFile, useMoralis } from "react-moralis";
 import { newTicketsState } from "recoil/atoms/newTickets";
 import Swal from "sweetalert2";
 import { enableContract } from "utils/web3-utils";
-import { getTicker, parseTicketsPriceToEther, saveToMoralis } from "utils/create-event";
+import {
+  getTicker,
+  parseTicketsPriceToEther,
+  saveToMoralis,
+} from "utils/create-event";
 import { leastTicketPriceState } from "recoil/atoms/newTickets";
 import { useState } from "react";
 import EventPublishingProgressTracker from "./EventPublishingProgressTracker";
 
 export default function EventPublisher() {
-  const { user, web3 } = useMoralis();
+  const { user, web3, Moralis } = useMoralis();
   const { saveFile } = useMoralisFile();
   const [publishingState, setPublishingState] = useState(-1);
   const tickets = useRecoilValue(newTicketsState);
   const newEvent = useRecoilValue(newEventState);
   const leastTicketCost = useRecoilValue(leastTicketPriceState);
+  // eslint-disable-next-line no-unused-vars
+  const [events, setEvents] = useRecoilState(eventsState);
 
   const publishEvent = async () => {
     if (!user) {
@@ -30,7 +37,11 @@ export default function EventPublisher() {
       return;
     }
     try {
-      const EventFactory = await enableContract(eventFactory.contractAddress, eventFactory.abi, web3);
+      const EventFactory = await enableContract(
+        eventFactory.contractAddress,
+        eventFactory.abi,
+        web3
+      );
       const file = newEvent.cover_image;
       if (!file && !(file instanceof File)) {
         Swal.fire({
@@ -41,10 +52,14 @@ export default function EventPublisher() {
         return;
       }
       setPublishingState(0);
-      const cover_image = await saveFile(file.name.replace(/[^a-zA-Z0-9]/g, "_"), file, {
-        saveIPFS: true,
-        throwOnError: true,
-      });
+      const cover_image = await saveFile(
+        file.name.replace(/[^a-zA-Z0-9]/g, "_"),
+        file,
+        {
+          saveIPFS: true,
+          throwOnError: true,
+        }
+      );
       setPublishingState(1);
       const transaction = await EventFactory.connect(web3.getSigner()).addEvent(
         newEvent.name,
@@ -54,7 +69,13 @@ export default function EventPublisher() {
       const receipt = await transaction.wait();
       const eventContractAddress = receipt.events[0].args.contractAddress;
       setPublishingState(2);
-      const eventOnMoralis = await saveToMoralis(newEvent, eventContractAddress, cover_image, leastTicketCost);
+      const eventOnMoralis = await saveToMoralis(
+        newEvent,
+        eventContractAddress,
+        cover_image,
+        leastTicketCost,
+        tickets
+      );
       eventOnMoralis.set("owner", user.get("ethAddress"));
       await eventOnMoralis.save();
       setPublishingState(3);
@@ -66,6 +87,20 @@ export default function EventPublisher() {
           icon: "success",
         });
       }, 2000);
+      const query = new Moralis.Query("Event");
+      query.descending("createdAt").equalTo("owner", user?.get("ethAddress"));
+      query
+        .find()
+        .then((events) => {
+          setEvents(
+            events.map((eventObject) => {
+              return {
+                ...eventObject.attributes,
+              };
+            })
+          );
+        })
+        .catch((err) => console.log(err));
       return true;
     } catch (err) {
       setPublishingState(-1);
@@ -75,7 +110,11 @@ export default function EventPublisher() {
 
   return (
     <div>
-      {publishingState >= 0 ? <EventPublishingProgressTracker state={publishingState} /> : ""}
+      {publishingState >= 0 ? (
+        <EventPublishingProgressTracker state={publishingState} />
+      ) : (
+        ""
+      )}
       <button
         disabled={publishingState >= 0}
         onClick={async () => {

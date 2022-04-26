@@ -5,8 +5,10 @@ import Moralis from "moralis";
 export const eventVisibility = ["private", "public"];
 export const venue_type = ["physical", "virtual"];
 
-export const saveToMoralis = async (newEvent, contractAddress, cover_image, leastTicketCost) => {
+export const saveToMoralis = async (newEvent, contractAddress, cover_image, leastTicketCost, tickets) => {
   const event = new Moralis.Object("Event");
+  const eventACL = new Moralis.ACL(Moralis.User.current());
+  eventACL.setPublicReadAccess(true);
   event.set("name", newEvent.name);
   event.set("cover_image_url", cover_image._ipfs);
   event.set("host_name", newEvent.host);
@@ -20,6 +22,9 @@ export const saveToMoralis = async (newEvent, contractAddress, cover_image, leas
   event.set("contractAddress", contractAddress);
   event.set("leastTicketCost", leastTicketCost);
   event.set("description", newEvent.description);
+  event.set("saleIsActive", true);
+  event.set("tickets", tickets);
+  event.setACL(eventACL);
   return await event.save();
 };
 

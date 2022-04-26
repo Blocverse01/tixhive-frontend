@@ -2,7 +2,13 @@ import rectangle7 from "svgs/Rectangle-7.png";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { regular } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { twitterIcon, faceBookIcon, whatsappIcon, telegramIcon, instagramIcon } from "svgs/social-icons";
+import {
+  twitterIcon,
+  faceBookIcon,
+  whatsappIcon,
+  telegramIcon,
+  instagramIcon,
+} from "svgs/social-icons";
 import map from "svgs/unsplash_Uk3t05ndSng.png";
 import EventsList from "components/EventsList";
 import { useEffect, useState } from "react";
@@ -11,8 +17,10 @@ import { useRecoilValue } from "recoil";
 import { eventsState } from "recoil/atoms/events";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import MintTickets from "./MintTickets";
 
 export default function EventDisplay() {
+  const [bodyScroll, setBodyScroll] = useState(true);
   const { contract } = useParams();
   const events = useRecoilValue(eventsState);
   const [event, setEvent] = useState(null);
@@ -29,13 +37,21 @@ export default function EventDisplay() {
         About the Event
       </h3>
       <p className="text-[9.02px] mt-[7.54px] leading-[13.52px] md:text-[14px] md:leading-[23px] lg:text-[18px] lg:leading-[27px]">
-        {event?.description || <Skeleton />}
+        {event?.description || (
+          <SkeletonTheme baseColor="black" highlightColor="#374151">
+            <Skeleton count={6} />
+          </SkeletonTheme>
+        )}
       </p>
     </div>
   );
 
   return (
-    <section className="py-[38px] lg:px-20 lg:py-[65px]">
+    <section
+      className={`py-[38px] lg:px-20 lg:py-[65px] ${
+        bodyScroll ? "overflow-auto" : "overflow-hidden"
+      }`}
+    >
       <div className="relative z-0">
         <img
           src={rectangle7}
@@ -45,9 +61,15 @@ export default function EventDisplay() {
         <div className="z-50 px-[28px] pb-[28px] pt-[12px] md:pb-[54px] md:px-[54px] md:pt-[20px] lg:p-[45px] lg:gap-[45px] grid lg:grid-cols-2">
           <div className="relative">
             {event ? (
-              <img src={event.cover_image_url} className="lg:h-full lg:object-cover w-full" alt={event.name} />
+              <img
+                src={event.cover_image_url}
+                className="w-full lg:h-full lg:object-cover"
+                alt={event.name}
+              />
             ) : (
-              <SkeletonTheme baseColor="#1A1D25" highlightColor="#FF4601" />
+              <SkeletonTheme baseColor="#1A1D25" highlightColor="#374151">
+                <Skeleton height="100%" />
+              </SkeletonTheme>
             )}
             <div className="absolute inset-0 p-[12px] md:p-[20px] flex items-end event-image-gradient">
               <div className="text-white lg:hidden">
@@ -62,11 +84,21 @@ export default function EventDisplay() {
           </div>
           <div>
             <div className="hidden lg:block text-white mb-[27px]">
-              <h3 className="lg:text-[33px] xl:text-[44px] font-medium lg:leading-[50px] xl:leading-[74.26px]">
-                {event?.name || <Skeleton />}
+              <h3 className="lg:text-[33px] font-medium lg:leading-[50px]">
+                {event?.name || (
+                  <SkeletonTheme baseColor="#1A1D25" highlightColor="#374151">
+                    <Skeleton />
+                  </SkeletonTheme>
+                )}
               </h3>
               <h4 className="lg:text-[20px] xl:text-[24.75px] leading-[37.13px]">
-                {event ? `by ${event.host_name}` : <Skeleton />}
+                {event ? (
+                  `by ${event.host_name}`
+                ) : (
+                  <SkeletonTheme baseColor="#1A1D25" highlightColor="#374151">
+                    <Skeleton />
+                  </SkeletonTheme>
+                )}
               </h4>
             </div>
             <div className="w-[217.75px] md:w-[65%] lg:static h-[47.37px] absolute right-0 left-0 -bottom-[34px] md:-bottom-[61px] px-[16px] md:px-[25px] md:py-[15px] lg:px-[47px] lg:py-[23px] py-[8.5px] flex items-center justify-between bg-brand-eventDate text-white mx-auto lg:w-auto font-medium md:h-[90px] lg:h-[131px] lg:-mt-[0] lg:mx-0">
@@ -86,28 +118,51 @@ export default function EventDisplay() {
                   {eventStartDate?.format("HH:mm a") || <Skeleton />}
                 </h3>
               </div>
-              <FontAwesomeIcon className="text-lg md:text-3xl lg:text-4xl" icon={regular("heart")} />
+              <FontAwesomeIcon
+                className="text-lg md:text-3xl lg:text-4xl"
+                icon={regular("heart")}
+              />
             </div>
-            <div className="hidden lg:block text-white mt-[75px]">{aboutEvent}</div>
+            <div className="hidden lg:block text-white mt-[75px]">
+              {aboutEvent}
+            </div>
           </div>
         </div>
       </div>
-      <div className="mt-[75px] md:mt-[140px] lg:hidden px-[28px] pb-[28px] md:px-[54px] text-white">{aboutEvent}</div>
+      <div className="mt-[75px] md:mt-[140px] lg:hidden px-[28px] pb-[28px] md:px-[54px] text-white">
+        {aboutEvent}
+      </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 px-[28px] md:px-[54px] lg:px-[45px] mt-[24.54px] gap-[45px]">
         <div className="order-2 lg:order-1">
           <h3 className="text-[9.26px] text-white leading-[13.89px] md:text-[13px] md:leading-[13.89px] lg:text-[18px] lg:leading-[27px]">
             Share Event
           </h3>
           <div className="flex mt-[7.12px] gap-[9.27px] md:gap-[21px] md:mt-[8px]">
-            <img src={faceBookIcon} className="social-icon" alt="facebookicon" />
-            <img src={whatsappIcon} className="social-icon" alt="whatsappicon" />
-            <img src={telegramIcon} className="social-icon" alt="telegramIcon" />
-            <img src={instagramIcon} className="social-icon" alt="instagramIcon" />
+            <img
+              src={faceBookIcon}
+              className="social-icon"
+              alt="facebookicon"
+            />
+            <img
+              src={whatsappIcon}
+              className="social-icon"
+              alt="whatsappicon"
+            />
+            <img
+              src={telegramIcon}
+              className="social-icon"
+              alt="telegramIcon"
+            />
+            <img
+              src={instagramIcon}
+              className="social-icon"
+              alt="instagramIcon"
+            />
             <img src={twitterIcon} className="social-icon" alt="twitterIcon" />
           </div>
         </div>
         <div className="order-1 lg:order-2">
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <div className="text-white">
               <h3 className="text-[9.02px] lg:text-[18px] leading-[13.52px] md:text-[14px] md:leading-[23px] lg:leading-[27px]">
                 Price
@@ -117,7 +172,11 @@ export default function EventDisplay() {
               </h3>
             </div>
             <div className="">
-              <button className="btn">Get a Ticket</button>
+              {event ? (
+                <MintTickets event={event} setBodyScroll={setBodyScroll} />
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>
