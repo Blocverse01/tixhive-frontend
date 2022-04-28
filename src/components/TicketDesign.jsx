@@ -6,242 +6,165 @@ export default function TicketDesign({
   eventTime,
   eventDate,
   qrCode,
-  price,
-  ticketName,
+  ticketInfo,
   eventCategory,
 }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      width="100%"
-      height="100%"
+      width="835"
+      height="359"
       fill="none"
-      viewBox="0 0 1092 430"
+      viewBox="0 0 835 359"
     >
-      <g filter="url(#filter0_b_61_153)">
-        <g>
-          <rect
-            width="834.804"
-            height="429.662"
-            y="0.17"
-            fill="url(#paint0_linear_61_153)"
-            rx="31.094"
-          ></rect>
-          <rect
-            width="833.609"
-            height="428.466"
-            x="0.598"
-            y="0.768"
-            stroke="#fff"
-            strokeOpacity="0.6"
-            strokeWidth="1.196"
-            rx="30.496"
-          ></rect>
-        </g>
-        <rect
-          width="257.123"
-          height="429.336"
-          x="834.877"
-          y="0.17"
-          fill="#FF1A87"
-          rx="31.094"
-        ></rect>
-        <text
-          fill="#fff"
-          xmlSpace="preserve"
-          style={{ whiteSpace: "pre" }}
-          fontFamily="Poppins"
-          fontSize="47.837"
-          fontWeight="500"
-          letterSpacing="0em"
-        >
-          <tspan x="56.208" y="149.783">
-            {eventName}
-          </tspan>
-        </text>
-        <text
-          fill="#fff"
-          fontFamily="Poppins"
-          fontSize="32.948"
-          fontWeight="500"
-          letterSpacing="0em"
-          transform="rotate(90 498.463 556.037)"
-          xmlSpace="preserve"
-          style={{ whiteSpace: "pre" }}
-        >
-          <tspan x="0" y="36.032">
-            {eventName}
-          </tspan>
-        </text>
-        <text
-          fill="#fff"
-          fontFamily="Poppins"
-          fontSize="29.898"
-          fontWeight="500"
-          letterSpacing="0em"
-          transform="rotate(90 457.607 515.182)"
-          xmlSpace="preserve"
-          style={{ whiteSpace: "pre" }}
-        >
-          <tspan x="0" y="32.964">
-            {eventDate}
-          </tspan>
-        </text>
-        <text
-          fill="#fff"
-          xmlSpace="preserve"
-          style={{ whiteSpace: "pre" }}
-          fontFamily="Poppins"
-          fontSize="47.837"
-          fontWeight="500"
-          letterSpacing="0em"
-        >
-          <tspan x="53.816" y="359.069">
-            {price} - {ticketName}
-          </tspan>
-        </text>
-        <text
-          fill="#fff"
-          xmlSpace="preserve"
-          style={{ whiteSpace: "pre" }}
-          fontFamily="Poppins"
-          fontSize="23.918"
-          fontWeight="500"
-          letterSpacing=".08em"
-        >
-          <tspan x="56.208" y="95.905">
-            {eventHost} PRESENTS
-          </tspan>
-        </text>
-        <text
-          fill="#fff"
-          xmlSpace="preserve"
-          style={{ whiteSpace: "pre" }}
-          fontFamily="Poppins"
-          fontSize="23.918"
-          fontWeight="500"
-          letterSpacing=".08em"
-        >
-          <tspan x="56.208" y="193.971">
-            {eventCategory}
-          </tspan>
-        </text>
-        <text
-          fill="#fff"
-          fontFamily="Poppins"
-          fontSize="16.471"
-          fontWeight="500"
-          letterSpacing=".08em"
-          transform="rotate(90 474.168 531.742)"
-          xmlSpace="preserve"
-          style={{ whiteSpace: "pre" }}
-        >
-          <tspan x="0" y="18.265">
-            {eventCategory}
-          </tspan>
-        </text>
-        <text
-          fill="#fff"
-          fontFamily="Poppins"
-          fontSize="16.471"
-          fontWeight="500"
-          letterSpacing=".08em"
-          transform="rotate(90 434.49 492.065)"
-          xmlSpace="preserve"
-          style={{ whiteSpace: "pre" }}
-        >
-          <tspan x="0" y="18.265">
-            {eventTime}
-          </tspan>
-        </text>
-        <text
-          fill="#fff"
-          xmlSpace="preserve"
-          style={{ whiteSpace: "pre" }}
-          fontFamily="Poppins"
-          fontSize="23.918"
-          fontWeight="500"
-          letterSpacing=".08em"
-        >
-          <tspan x="53.816" y="303.995">
-            PRICE
-          </tspan>
-        </text>
-        <g clipPath="url(#clip0_61_153)">
-          <path
-            stroke="#00B2FF"
-            strokeWidth="3.459"
-            d="M691.241-16.605C878.028-15.223 353.64 447.25 801.93 477.342"
-          ></path>
-          <path
-            stroke="#00B2FF"
-            strokeWidth="3.459"
-            d="M634.85-67.997c186.788 1.383-337.6 463.855 110.689 493.948"
-          ></path>
-          <path
-            fill="url(#pattern0)"
-            d="M680.005 274.037H788.834V382.866H680.005z"
-          ></path>
-        </g>
+      <rect width="624" height="359" fill="#262626" rx="26"></rect>
+      <rect width="215" height="359" x="620" fill="#FE5252" rx="26"></rect>
+      <text
+        fill="#fff"
+        fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
+        fontSize="40"
+        letterSpacing="0em"
+        transform="translate(47 81)"
+        style={{ whiteSpace: "pre" }}
+        fontWeight="500"
+      >
+        <tspan x="0" y="44">
+          {eventName}
+        </tspan>
+      </text>
+      <text
+        fill="#fff"
+        fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
+        fontSize="27.546"
+        letterSpacing="0em"
+        transform="rotate(90 377.822 425.823)"
+        style={{ whiteSpace: "pre" }}
+        fontWeight="500"
+      >
+        <tspan x="0" y="30.141">
+          {eventName}
+        </tspan>
+      </text>
+      <text
+        fill="#fff"
+        fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
+        fontSize="25"
+        letterSpacing="0em"
+        transform="rotate(90 343.66 391.66)"
+        style={{ whiteSpace: "pre" }}
+        fontWeight="500"
+      >
+        <tspan x="0" y="27.75">
+          {eventDate}
+        </tspan>
+      </text>
+      <text
+        fill="#fff"
+        fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
+        fontSize="24"
+        letterSpacing="0em"
+        transform="translate(45 256)"
+        style={{ whiteSpace: "pre" }}
+        fontWeight="500"
+      >
+        <tspan x="0" y="44">
+          {ticketInfo.text}
+        </tspan>
+      </text>
+      <text
+        fill="#fff"
+        fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
+        fontSize="20"
+        letterSpacing=".08em"
+        transform="translate(47 58)"
+        style={{ whiteSpace: "pre" }}
+        fontWeight="500"
+      >
+        <tspan x="0" y="22">
+          {eventHost} PRESENTS
+        </tspan>
+      </text>
+      <text
+        fill="#fff"
+        fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
+        fontSize="20"
+        letterSpacing=".08em"
+        transform="translate(47 140)"
+        style={{ whiteSpace: "pre" }}
+        fontWeight="500"
+      >
+        <tspan x="0" y="22">
+          {eventCategory}
+        </tspan>
+      </text>
+      <text
+        fill="#fff"
+        fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
+        fontSize="13.773"
+        letterSpacing=".08em"
+        transform="rotate(90 357.507 405.508)"
+        style={{ whiteSpace: "pre" }}
+        fontWeight="500"
+      >
+        <tspan x="0" y="15.321">
+          {eventCategory}
+        </tspan>
+      </text>
+      <text
+        fill="#fff"
+        fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
+        fontSize="13.773"
+        letterSpacing=".08em"
+        transform="rotate(90 324.33 372.33)"
+        style={{ whiteSpace: "pre" }}
+        fontWeight="500"
+      >
+        <tspan x="0" y="15.321">
+          {eventTime}
+        </tspan>
+      </text>
+      <text
+        fill="#fff"
+        fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
+        fontSize="20"
+        letterSpacing=".08em"
+        transform="translate(45 232)"
+        style={{ whiteSpace: "pre" }}
+        fontWeight="500"
+      >
+        <tspan x="0" y="22">
+          {ticketInfo.title}
+        </tspan>
+      </text>
+      <g clipPath="url(#clip0_17_24)">
+        <path
+          stroke="#FE5252"
+          strokeWidth="2.892"
+          d="M490.133-14.027C646.319-12.87 207.839 373.837 582.688 399M452.743-57c156.187 1.157-282.293 387.864 92.555 413.027"
+        ></path>
+        <path fill="url(#pattern0)" d="M490.5 229H581.5V320H490.5z"></path>
       </g>
       <defs>
-        <filter
-          id="filter0_b_61_153"
-          width="1106.87"
-          height="444.535"
-          x="-7.437"
-          y="-7.267"
-          colorInterpolationFilters="sRGB"
-          filterUnits="userSpaceOnUse"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
-          <feGaussianBlur
-            in="BackgroundImage"
-            stdDeviation="3.719"
-          ></feGaussianBlur>
-          <feComposite
-            in2="SourceAlpha"
-            operator="in"
-            result="effect1_backgroundBlur_61_153"
-          ></feComposite>
-          <feBlend
-            in="SourceGraphic"
-            in2="effect1_backgroundBlur_61_153"
-            result="shape"
-          ></feBlend>
-        </filter>
         <pattern
           id="pattern0"
           width="1"
           height="1"
           patternContentUnits="objectBoundingBox"
         >
-          <use transform="scale(.00444)" xlinkHref="#image0_61_153"></use>
+          <use transform="scale(.00444)" xlinkHref="#image0_17_24"></use>
         </pattern>
-        <linearGradient
-          id="paint0_linear_61_153"
-          x1="-3.006"
-          x2="788.158"
-          y1="3"
-          y2="504.884"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopOpacity="0.8"></stop>
-          <stop offset="1" stopColor="#616161" stopOpacity="0.2"></stop>
-        </linearGradient>
-        <clipPath id="clip0_61_153">
+        <clipPath id="clip0_17_24">
           <path
             fill="#fff"
-            d="M0 0H397.046V429.336H0z"
-            transform="translate(388.675 .17)"
+            d="M0 0H332V359H0z"
+            transform="translate(325)"
           ></path>
         </clipPath>
         <image
-          id="image0_61_153"
+          id="image0_17_24"
           width="225"
           height="225"
-          data-name="image.png"
           xlinkHref={qrCode}
         ></image>
       </defs>

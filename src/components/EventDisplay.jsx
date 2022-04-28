@@ -168,7 +168,7 @@ export default function EventDisplay() {
                 Price
               </h3>
               <h3 className="text-[20.03px] leading-[30.05px] md:text-[28px] md:leading-[37px] font-medium lg:text-[40px] lg:leading-[60px]">
-                ${event?.leastTicketCost || <Skeleton />}
+                {event ? `${event?.leastTicketCost} MATIC` : <Skeleton />}
               </h3>
             </div>
             <div className="">

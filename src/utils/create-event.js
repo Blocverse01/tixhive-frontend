@@ -24,6 +24,7 @@ export const saveToMoralis = async (newEvent, contractAddress, cover_image, leas
   event.set("description", newEvent.description);
   event.set("saleIsActive", true);
   event.set("tickets", tickets);
+  event.set("tickets_with_ether", parseTicketsPriceToEther(tickets));
   event.setACL(eventACL);
   return await event.save();
 };

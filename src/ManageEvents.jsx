@@ -184,7 +184,7 @@ export default function ManageEvents() {
             ) : (
               ""
             )}
-            <div className="mt-7">
+            <div className="mt-7 flex justify-start">
               <Link to="/create-event" className="text-lg btn md:text-xl">
                 Create Event
               </Link>

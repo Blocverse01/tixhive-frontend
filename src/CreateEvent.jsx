@@ -1,7 +1,13 @@
 import vector from "svgs/Vector-4.png";
 import vectorMobile from "svgs/Vector-4-mobile.png";
 import React, { useState, useEffect } from "react";
-import { StepZero, StepOne, StepTwo, StepThree, EventPreview } from "components/create-event-steps";
+import {
+  StepZero,
+  StepOne,
+  StepTwo,
+  StepThree,
+  EventPreview,
+} from "components/create-event-steps";
 import moment from "moment";
 import { useRecoilState } from "recoil";
 import { newEventState } from "recoil/atoms/newEvent";
@@ -24,12 +30,16 @@ function CreateEvent() {
   const steps = [
     {
       title: "Create Your Event",
-      subtitle: "Teresa will insert some cool text here, ipsum dolor sit amet lorem.",
-      content: <StepZero setStep={setCurrentStep} handleChange={handleChange} />,
+      subtitle:
+        "Teresa will insert some cool text here, ipsum dolor sit amet lorem.",
+      content: (
+        <StepZero setStep={setCurrentStep} handleChange={handleChange} />
+      ),
     },
     {
       title: "Event Info",
-      subtitle: "Teresa will insert some cool text here, ipsum dolor sit amet lorem.",
+      subtitle:
+        "Teresa will insert some cool text here, ipsum dolor sit amet lorem.",
       content: <StepOne setStep={setCurrentStep} handleChange={handleChange} />,
     },
     {
@@ -80,7 +90,11 @@ function CreateEvent() {
 
   return (
     <div className="relative z-0 h-screen">
-      <div className={`grid grid-cols-1  ${currentStep > 1 ? "lg:grid-cols-6" : "lg:grid-cols-5"}`}>
+      <div
+        className={`grid grid-cols-1  ${
+          currentStep > 1 ? "lg:grid-cols-6" : "lg:grid-cols-5"
+        }`}
+      >
         <div className={`px-5 sm:px-10 lg:px-8 lg:col-span-2`}>
           <div className="lg:pl-10 mt-[60px] text-white">
             {currentStep < 2 ? (
@@ -98,9 +112,13 @@ function CreateEvent() {
                   {event.name}
                 </h3>
                 <h3 className="lg:text-[20px] text-[12px] sm:text-[18px] sm:leading-[28px] lg:leading-[30px] font-[500]">
-                  {moment(event.start_date + " " + event.start_time).format("ddd, MMM DD YYYY, h:mm A")}
+                  {moment(event.start_date + " " + event.start_time).format(
+                    "ddd, MMM DD YYYY, h:mm A"
+                  )}
                 </h3>
-                <div className="mt-[18.86px] flex flex-wrap gap-2.5 lg:gap-0 lg:flex-col">{titleList}</div>
+                <div className="mt-[18.86px] flex flex-wrap gap-2.5 lg:gap-0 lg:flex-col">
+                  {titleList}
+                </div>
               </div>
             )}
           </div>
@@ -110,8 +128,16 @@ function CreateEvent() {
             currentStep > 1 ? "lg:col-span-4" : "lg:col-span-3"
           }`}
         >
-          <img src={vector} alt="vector" className="fixed hidden lg:block bottom-0 h-full top-0 z-[-1] right-0" />
-          <img src={vectorMobile} alt="vector" className="fixed lg:hidden inset-0 h-full z-[-1] w-full" />
+          <img
+            src={vector}
+            alt="vector"
+            className="fixed hidden lg:block bottom-0 h-full top-0 z-[-1] right-0"
+          />
+          <img
+            src={vectorMobile}
+            alt="vector"
+            className="fixed lg:hidden inset-0 h-full z-[-1] w-full"
+          />
           <div
             className={`${
               currentStep < 4

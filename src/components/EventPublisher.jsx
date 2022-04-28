@@ -123,11 +123,7 @@ export default function EventPublisher() {
         className="bg-brand-red disabled:bg-brand-black h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
       >
         Publish Now{" "}
-        {publishingState >= 0 ? (
-          <FontAwesomeIcon className="ml-2" icon={solid("spinner")} spin />
-        ) : (
-          <FontAwesomeIcon className="ml-2" icon={solid("chevron-right")} />
-        )}
+        <FontAwesomeIcon className="ml-2" icon={solid("chevron-right")} />
       </button>
     </div>
   );

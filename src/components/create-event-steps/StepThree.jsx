@@ -4,25 +4,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRecoilState } from "recoil";
 import { newTicketsState } from "recoil/atoms/newTickets";
 import NewTicket from "components/NewTicket";
-import { safeInt } from "utils/safe-int";
+import { safeFloat, safeInt } from "utils/numbers";
+import Swal from "sweetalert2";
 
 function StepThree({ setStep }) {
   const [tickets, setTickets] = useRecoilState(newTicketsState);
   const storeTicket = (ticket) => {
-    if (ticket.name.trim() === "" || parseInt(ticket.quantity_available) < 1) {
+    if (ticket.name.trim() === "" || safeInt(ticket.quantity_available) < 1) {
+      Swal.fire("Error", "Please fill in all fields", "error");
       return;
     }
-    if (ticket.ticket_type === 1 && parseInt(ticket.price) <= 0) {
+    if (ticket.ticket_type === 1 && safeFloat(ticket.price) <= 0) {
+      Swal.fire("Error", "Price must be greater than 0", "error");
       return;
     }
-    if (parseInt(ticket.price) <= 0) {
+    if (safeInt(ticket.price) <= 0) {
       ticket.price = 0;
       ticket.ticket_type = 0;
     }
     setTickets((prev) => [...prev, ticket]);
     setShouldAddTicket(false);
   };
-  const [shouldAddTicket, setShouldAddTicket] = useState(tickets.length === 0 ? true : false);
+  const [shouldAddTicket, setShouldAddTicket] = useState(
+    tickets.length === 0 ? true : false
+  );
   const [newTicket, setInputValue] = useState({
     name: "General Admission",
     description: "",
@@ -50,8 +55,13 @@ function StepThree({ setStep }) {
       {shouldAddTicket || tickets.length === 0 ? (
         <div>
           <div className="flex justify-between">
-            <h3 className="font-[500] text-white lg:text-[34.41px] lg:leading-[51.62px]">Let’s Setup Your Tickets</h3>
-            <button className="text-white text-2xl" onClick={() => beforeSetShouldAddTicket(false)}>
+            <h3 className="font-[500] text-white lg:text-[34.41px] lg:leading-[51.62px]">
+              Let’s Setup Your Tickets
+            </h3>
+            <button
+              className="text-white text-2xl"
+              onClick={() => beforeSetShouldAddTicket(false)}
+            >
               <FontAwesomeIcon icon={solid("times")} />
             </button>
           </div>
@@ -64,7 +74,9 @@ function StepThree({ setStep }) {
                 });
               }}
               className={`${
-                newTicket.ticket_type === 1 ? "bg-brand-red" : "create-event-gradient"
+                newTicket.ticket_type === 1
+                  ? "bg-brand-red"
+                  : "create-event-gradient"
               } text-[20px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3`}
             >
               Paid
@@ -76,7 +88,9 @@ function StepThree({ setStep }) {
                 });
               }}
               className={`${
-                newTicket.ticket_type === 0 ? "bg-brand-red" : "create-event-gradient"
+                newTicket.ticket_type === 0
+                  ? "bg-brand-red"
+                  : "create-event-gradient"
               } text-[20px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3`}
             >
               Free
@@ -88,7 +102,9 @@ function StepThree({ setStep }) {
                 });
               }}
               className={`${
-                newTicket.ticket_type === 2 ? "bg-brand-red" : "create-event-gradient"
+                newTicket.ticket_type === 2
+                  ? "bg-brand-red"
+                  : "create-event-gradient"
               } text-[20px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3`}
             >
               Donation
@@ -122,6 +138,7 @@ function StepThree({ setStep }) {
                 name="quantity_available"
                 className="create-event-gradient w-full px-3 mt-2 h-[45px]"
                 type="number"
+                step="any"
               />
             </div>
             {newTicket.ticket_type > 0 ? (
@@ -132,7 +149,7 @@ function StepThree({ setStep }) {
                     handleChange({
                       target: {
                         name: "price",
-                        value: safeInt(e.target.value),
+                        value: safeFloat(e.target.value),
                       },
                     })
                   }
@@ -163,7 +180,9 @@ function StepThree({ setStep }) {
         </div>
       ) : (
         <div>
-          <h3 className="font-[500] mb-[13px] text-white lg:text-[34.41px] lg:leading-[51.62px]">Manage Tickets</h3>
+          <h3 className="font-[500] mb-[13px] text-white lg:text-[34.41px] lg:leading-[51.62px]">
+            Manage Tickets
+          </h3>
           <div className="mb-[36.55px]">
             <button
               onClick={() => {
@@ -174,7 +193,10 @@ function StepThree({ setStep }) {
             >
               <span className="flex items-center">
                 Add Ticket
-                <FontAwesomeIcon icon={solid("chevron-right")} className="ml-[22px]" />
+                <FontAwesomeIcon
+                  icon={solid("chevron-right")}
+                  className="ml-[22px]"
+                />
               </span>
             </button>
           </div>
@@ -192,7 +214,10 @@ function StepThree({ setStep }) {
               className="bg-brand-red connect-wallet h-[45px] lg:h-[56px] px-3 lg:px-0 lg:w-[170px] text-white text-[12px] md:text-[18px] leading-[35px] flex justify-center items-center"
             >
               <span className="flex items-center">
-                <FontAwesomeIcon icon={solid("chevron-left")} className="mr-[13px] md:mr-[22px]" />
+                <FontAwesomeIcon
+                  icon={solid("chevron-left")}
+                  className="mr-[13px] md:mr-[22px]"
+                />
                 Previous
               </span>
             </button>
@@ -205,7 +230,10 @@ function StepThree({ setStep }) {
             >
               <span className="flex items-center">
                 Continue
-                <FontAwesomeIcon icon={solid("chevron-right")} className="ml-[13px] md:ml-[22px]" />
+                <FontAwesomeIcon
+                  icon={solid("chevron-right")}
+                  className="ml-[13px] md:ml-[22px]"
+                />
               </span>
             </button>
           </div>

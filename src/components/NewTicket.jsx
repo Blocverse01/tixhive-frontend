@@ -3,8 +3,8 @@ import { newTicketsState } from "recoil/atoms/newTickets";
 import { removeItemAtIndex, replaceItemAtIndex } from "utils/arrays";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
-import { safeInt } from "utils/safe-int";
+import { useEffect, useState } from "react";
+import { safeFloat, safeInt } from "utils/numbers";
 
 export default function NewTicket({ ticket }) {
   const [tickets, setTickets] = useRecoilState(newTicketsState);
@@ -15,7 +15,7 @@ export default function NewTicket({ ticket }) {
     setTickets(newTickets);
   };
   const editTicket = ({ target: { name, value } }) => {
-    const freshTicket = {...ticket};
+    const freshTicket = { ...ticket };
     if (name === "ticket_type" && value === 0) {
       freshTicket.price = 0;
     }
@@ -25,31 +25,60 @@ export default function NewTicket({ ticket }) {
     });
     setTickets(newTickets);
   };
+  useEffect(() => {
+    if (ticket.price === 0 && ticket.ticket_type !== 0) {
+      const newTickets = replaceItemAtIndex(tickets, index, {
+        ...ticket,
+        ticket_type: 0,
+      });
+      setTickets(newTickets);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [editing]);
   return (
     <div className="create-event-section px-[28px] py-[21px]">
       {!editing ? (
         <div>
           <div className="flex justify-between">
-            <h3 className="font-[500] text-white text-[18px] md:text-[25px] leading-[37.5px]">{ticket.name}</h3>
+            <h3 className="font-[500] text-white text-[18px] md:text-[25px] leading-[37.5px]">
+              {ticket.name}
+            </h3>
             <div className="flex">
-              <button className="text-white pr-3 text-lg" onClick={() => setEditing(true)}>
+              <button
+                className="text-white pr-3 text-lg"
+                onClick={() => setEditing(true)}
+              >
                 <FontAwesomeIcon icon={solid("pen")} />
               </button>
-              <button className="text-white text-lg" onClick={() => deleteTicket(index)}>
+              <button
+                className="text-white text-lg"
+                onClick={() => deleteTicket(index)}
+              >
                 <FontAwesomeIcon icon={solid("trash")} />
               </button>
             </div>
           </div>
-          <h3 className="font-[500] mt-1 text-[13px] md:text-[18px] leading-[37.5px] text-white">${ticket.price}</h3>
+          <h3 className="font-[500] mt-1 text-[13px] md:text-[18px] leading-[37.5px] text-white">
+            {ticket.price} MATIC
+          </h3>
           <h3 className="font-[500] mt-1 text-white text-[13px] md:text-[18px] leading-[37.5px]">
-            {ticket.ticket_type === 0 ? "Free" : ticket.ticket_type === 1 ? "Paid" : "Donation"}
+            {ticket.ticket_type === 0
+              ? "Free"
+              : ticket.ticket_type === 1
+              ? "Paid"
+              : "Donation"}
           </h3>
         </div>
       ) : (
         <div>
           <div className="flex justify-between">
-            <h3 className="font-[500] text-white lg:text-[24px] lg:leading-[51.62px]">Editing {ticket.name}</h3>
-            <button className="text-white text-2xl" onClick={() => setEditing(false)}>
+            <h3 className="font-[500] text-white lg:text-[24px] lg:leading-[51.62px]">
+              Editing {ticket.name}
+            </h3>
+            <button
+              className="text-white text-2xl"
+              onClick={() => setEditing(false)}
+            >
               <FontAwesomeIcon icon={solid("times")} />
             </button>
           </div>
@@ -62,7 +91,9 @@ export default function NewTicket({ ticket }) {
                 });
               }}
               className={`${
-                ticket.ticket_type === 1 ? "bg-brand-red" : "create-event-gradient"
+                ticket.ticket_type === 1
+                  ? "bg-brand-red"
+                  : "create-event-gradient"
               } text-[20px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3`}
             >
               Paid
@@ -74,7 +105,9 @@ export default function NewTicket({ ticket }) {
                 });
               }}
               className={`${
-                ticket.ticket_type === 0 ? "bg-brand-red" : "create-event-gradient"
+                ticket.ticket_type === 0
+                  ? "bg-brand-red"
+                  : "create-event-gradient"
               } text-[20px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3`}
             >
               Free
@@ -86,7 +119,9 @@ export default function NewTicket({ ticket }) {
                 });
               }}
               className={`${
-                ticket.ticket_type === 2 ? "bg-brand-red" : "create-event-gradient"
+                ticket.ticket_type === 2
+                  ? "bg-brand-red"
+                  : "create-event-gradient"
               } text-[20px] leading-[34.75px] text-white h-[45px] flex items-center justify-center px-3`}
             >
               Donation
@@ -130,7 +165,7 @@ export default function NewTicket({ ticket }) {
                     editTicket({
                       target: {
                         name: "price",
-                        value: safeInt(e.target.value),
+                        value: safeFloat(e.target.value),
                       },
                     })
                   }

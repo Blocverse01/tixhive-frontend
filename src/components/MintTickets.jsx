@@ -5,15 +5,21 @@ import { useMoralis, useMoralisFile } from "react-moralis";
 import { useState, useEffect } from "react";
 import QRCode from "react-qr-code";
 import TicketDesign from "components/TicketDesign";
-import EVENT from "contract-abis/Event.json";
 import { enableContract, ethers } from "utils/web3-utils";
 import { eventFactory } from "data/contracts";
+import { safeInt, safeFloat } from "utils/numbers";
+import { nanoid } from "nanoid";
+import { jsxToPng } from "jsx-to-png";
 
 export default function MintTickets({ event, setBodyScroll }) {
   const [modalOpen, setModalOpen] = useState(false);
   const { user, isAuthenticated, web3 } = useMoralis();
   const { saveFile } = useMoralisFile();
   const eventStartDate = moment(event.starts_on);
+  const localDateGenerated =
+    eventStartDate.local().format("hA") +
+    " " +
+    String(eventStartDate.local()._d).split(" ")[5];
   const [purchases, setPurchases] = useState(
     event.tickets.map((ticket, index) => ({
       quantity: 1,
@@ -22,54 +28,121 @@ export default function MintTickets({ event, setBodyScroll }) {
     }))
   );
 
-  const generateTicketImage = async (purchaseId, ticket) => {
-    const QRCodeElement = (
-      <QRCode
-        value={`${window.location.origin}/${event.contractAddress}/tickets/${purchaseId}`}
-      />
-    );
-    const svgData = new XMLSerializer().serializeToString(QRCodeElement);
-    const localDateGenerated =
-      eventStartDate.local().format("hA") +
-      " " +
-      String(eventStartDate.local()._d).split(" ")[5];
-    const Ticket = (
-      <TicketDesign
-        eventHost={event.host}
-        eventName={event.name}
-        qrCode={`data:image/svg+xml;base64,${btoa(svgData)}`}
-        eventCategory={event.category.toUpperCase()}
-        price={ticket.price}
-        eventTime={localDateGenerated}
-        ticketName={ticket.name}
-        eventDate={eventStartDate.format("DD-MM-YYYY")}
-      />
-    );
-    const ticketSvgData = new XMLSerializer().serializeToString(Ticket);
-    const base64 = `data:image/svg+xml;base64,${btoa(ticketSvgData)}`;
-    const ticketImage = await saveFile(
-      `${purchaseId}.png`,
+  const preparePuchases = async () => {
+    const purchasePromises = [];
+    const preparedPurchases = [];
+    purchases
+      .filter((purchase) => purchase.quantity > 0)
+      .forEach((purchase) => {
+        purchasePromises.push(
+          new Promise(async (res, rej) => {
+            for (var i = 1; i <= purchase.quantity; i++) {
+              try {
+                let purchaseId = nanoid();
+                let ticket = event.tickets.find(
+                  (ticket, index) => index === purchase.ticketId
+                );
+                const metadata = await generateTicket(
+                  purchaseId,
+                  ticket,
+                  purchase
+                );
+                preparedPurchases.push({
+                  purchaseId: purchaseId,
+                  ticketId: purchase.ticketId,
+                  tokenURI: metadata,
+                  buyer: user.get("ethAddress"),
+                  cost: event.tickets_with_ether[purchase.ticketId].cost,
+                });
+                res(metadata);
+              } catch (err) {
+                rej(err);
+              }
+            }
+          })
+        );
+      });
+    await Promise.all(purchasePromises);
+    return preparedPurchases;
+  };
+
+  const generateTicketMetadata = async (
+    purchaseId,
+    purchase,
+    ticket,
+    image
+  ) => {
+    const metadata = {
+      name: `${event.name} - ${ticket.name}`,
+      image: image,
+      traits: [
+        { trait_type: "Checked In", value: "true" },
+        { trait_type: "Purchased", value: "true" },
+      ],
+      ticketId: purchase.ticketId,
+    };
+    const base64 = btoa(JSON.stringify(metadata));
+    const storedMetadata = await saveFile(
+      `${purchaseId.replace(/[^a-zA-Z0-9]/g, "_")}.json`,
       { base64 },
-      {
-        type: "base64",
-        saveIPFS: true,
-        throwOnError: true,
-      }
+      { type: "base64", saveIPFS: true, throwOnError: true }
     );
-    return ticketImage;
+    return storedMetadata._ipfs;
+  };
+
+  const generateTicket = async (purchaseId, ticket, purchase) => {
+    try {
+      const validateUrl = `${window.location.origin}/${event.contractAddress}/tickets/${purchaseId}`;
+      const qrCodeSVG = await jsxToPng(<QRCode value={validateUrl}></QRCode>, {
+        height: 225,
+        width: 225,
+      });
+      const ticketSvgData = await jsxToPng(
+        <TicketDesign
+          eventHost={event.host_name}
+          eventName={event.name}
+          qrCode={`${qrCodeSVG}`}
+          eventCategory={event.category.toUpperCase()}
+          eventTime={localDateGenerated}
+          ticketInfo={{
+            text: purchaseId.toUpperCase(),
+            title: "TICKET ID",
+          }}
+          eventDate={eventStartDate.format("DD-MM-YYYY")}
+        />,
+        {
+          height: 359,
+          width: 835,
+        }
+      );
+      const ticketImage = await saveFile(
+        `${purchaseId.replace(/[^a-zA-Z0-9]/g, "_")}.png`,
+        { base64: ticketSvgData },
+        {
+          saveIPFS: true,
+          throwOnError: true,
+        }
+      );
+      return await generateTicketMetadata(
+        purchaseId,
+        purchase,
+        ticket,
+        ticketImage._ipfs
+      );
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const totalAmount = purchases
-    .map((purchase) =>
-      isNaN(parseInt(purchase.quantity))
-        ? 0
-        : parseInt(purchase.quantity) * purchase.cost
-    )
+    .map((purchase) => safeFloat(purchase.quantity) * safeFloat(purchase.cost))
     .reduce((a, b) => a + b, 0);
   useEffect(() => {
     if (modalOpen) {
       setBodyScroll(false);
+      return;
     }
+    setBodyScroll(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modalOpen]);
 
@@ -77,63 +150,19 @@ export default function MintTickets({ event, setBodyScroll }) {
     if (!isAuthenticated) {
       return;
     }
-    const eventContract = await enableContract(
-      event.contractAddress,
-      EVENT,
-      web3
-    );
-    const tokenCount = (
-      await eventContract.balanceOf(user.get("ethAddress"))
-    ).toNumber();
-    const preparedPurchases = [];
-    purchases
-      .filter((purchase) => purchase.quantity > 0)
-      .forEach(async (purchase) => {
-        for (var i = 1; i <= purchase.quantity; i++) {
-          let ticket = event.tickets.find(
-            (ticket, index) => index === purchase.ticketId
-          );
-          let purchaseId = `${event.contractAddress}${Math.round(
-            Math.random() * 1000
-          )}${user.getSessionToken()}${tokenCount}${user.get("ethAddress")}`;
-          const metadata = {
-            name: `${event.name} - ${ticket.name}`,
-            image: (await generateTicketImage(purchaseId, ticket))._ipfs,
-            traits: [
-              { trait_type: "Checked In", value: "true" },
-              { trait_type: "Purchased", value: "true" },
-            ],
-            ticketId: purchase.ticketId,
-          };
-          const base64 = btoa(JSON.stringify(metadata));
-          preparedPurchases.push({
-            purchaseId: purchaseId,
-            ticketId: purchase.ticketId,
-            tokenURI: (
-              await saveFile(
-                `${purchaseId}.json`,
-                { base64 },
-                {
-                  type: "base64",
-                  saveIPFS: true,
-                  throwOnError: true,
-                }
-              )
-            )._ipfs,
-            buyer: user.get("ethAddress"),
-            cost: purchase.cost,
-          });
-        }
-      });
+
     const EventFactory = await enableContract(
       eventFactory.contractAddress,
       eventFactory.abi,
       web3
     );
-    const tx = await EventFactory.mintTickets(
+    const preparedPurchases = await preparePuchases();
+    const tx = await EventFactory.connect(web3.getSigner()).mintTickets(
       event.contractAddress,
       preparedPurchases,
-      { value: ethers.utils.parseEther(totalAmount.toString()) }
+      {
+        value: ethers.utils.parseEther(totalAmount.toString()),
+      }
     );
     const receipt = await tx.wait();
     console.log(receipt);
@@ -215,6 +244,7 @@ export default function MintTickets({ event, setBodyScroll }) {
                         name={index}
                         className="field-input"
                         type="number"
+                        min="0"
                         value={purchases[index].quantity}
                         max={ticket.quantity_available}
                       />
@@ -239,11 +269,9 @@ export default function MintTickets({ event, setBodyScroll }) {
           </div>
         </div>
       </div>
-      <div>
-        <button onClick={() => setModalOpen(true)} className="btn">
-          Get a Ticket
-        </button>
-      </div>
+      <button onClick={() => setModalOpen(true)} className="btn">
+        Get a Ticket
+      </button>
     </section>
   );
 }
