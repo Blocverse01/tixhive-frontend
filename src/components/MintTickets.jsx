@@ -7,7 +7,7 @@ import QRCode from "react-qr-code";
 import TicketDesign from "components/TicketDesign";
 import { enableContract, ethers } from "utils/web3-utils";
 import { eventFactory } from "data/contracts";
-import { safeInt, safeFloat } from "utils/numbers";
+import { safeFloat } from "utils/numbers";
 import { nanoid } from "nanoid";
 import { jsxToPng } from "jsx-to-png";
 
