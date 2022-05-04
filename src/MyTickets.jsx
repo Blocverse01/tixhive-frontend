@@ -6,17 +6,11 @@ import EVENT from "contract-abis/Event.json";
 import { enableContract } from "utils/web3-utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { Link } from "react-router-dom";
-import OptionModal from "components/OptionModal";
-import ClickToCopy from "components/ClickToCopy";
-import ViewTickets from "components/ViewTickets";
 
 export default function MyTickets() {
   const { user, isAuthenticated, Moralis, web3, isWeb3Enabled } = useMoralis();
   const [userEvents, setUserEvents] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [focusedEvent, setFocusedEvent] = useState(false);
-  const eventOptions = ["View Event", "View Tickets", "Copy URL"];
 
   useEffect(() => {
     if (isAuthenticated && isWeb3Enabled) {
@@ -53,21 +47,6 @@ export default function MyTickets() {
 
   return (
     <section className="page">
-      {focusedEvent ? (
-        <ViewTickets
-          event={focusedEvent}
-          closeBtn={
-            <button onClick={() => setFocusedEvent(false)}>
-              <FontAwesomeIcon
-                className="text-3xl text-brand-red md:text-5xl"
-                icon={solid("times")}
-              />
-            </button>
-          }
-        />
-      ) : (
-        ""
-      )}
       <div className="page-wrapper">
         <h3 className="page-title">Your Events {"&"} Tickets</h3>
         {isAuthenticated ? (
@@ -117,61 +96,6 @@ export default function MyTickets() {
                         </div>
                       )}
                     </div>
-                    <div className="table-cell p-[16.5px] md:p-[24px] lg:p-[32px] text-right">
-                      <OptionModal
-                        toggle={
-                          <FontAwesomeIcon
-                            className="text-2xl md:text-3xl"
-                            icon={solid("ellipsis-v")}
-                          />
-                        }
-                        options={eventOptions.map((option, index) => {
-                          switch (option) {
-                            case "View Tickets":
-                              return (
-                                <button
-                                  className="py-[24px] px-[20px] md:px-[54px] text-center"
-                                  key={index}
-                                  onClick={() => setFocusedEvent(event)}
-                                  sales={event.sales}
-                                >
-                                  View Tickets
-                                </button>
-                              );
-                            case "View Event":
-                              return (
-                                <Link
-                                  key={index}
-                                  className="py-[24px] px-[20px] md:px-[54px] text-center"
-                                  to={`/events/${event.contractAddress}`}
-                                >
-                                  {option}
-                                </Link>
-                              );
-                            case "Copy URL":
-                              return (
-                                <ClickToCopy
-                                  key={index}
-                                  buttonText={option}
-                                  text={`${window.location.origin}/events/${event.contractAddress}`}
-                                />
-                              );
-                            default:
-                              return (
-                                <Link
-                                  key={index}
-                                  className="py-[24px] px-[20px] md:px-[54px] text-center"
-                                  to={`/event/${event.contractAddress}/${option
-                                    .replace(/[^a-zA-Z0-9]/g, "-")
-                                    .toLowerCase()}`}
-                                >
-                                  {option}
-                                </Link>
-                              );
-                          }
-                        })}
-                      />
-                    </div>
                   </div>
                 ))}
               </div>
@@ -193,11 +117,6 @@ export default function MyTickets() {
             ) : (
               ""
             )}
-            {/* <div className="flex justify-start mt-7">
-              <Link to="/create-event" className="text-lg btn md:text-xl">
-                Create Event
-              </Link>
-            </div> */}
           </section>
         ) : (
           <div>
