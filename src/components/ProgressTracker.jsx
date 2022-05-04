@@ -1,19 +1,11 @@
-import { useRecoilValue } from "recoil";
-import { newEventState } from "recoil/atoms/newEvent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid, regular } from "@fortawesome/fontawesome-svg-core/import.macro";
 
-export default function EventPublishingProgressTracker({ state }) {
-  const event = useRecoilValue(newEventState);
-  const processes = [
-    { title: "Uploading Cover Photo", width: 0 },
-    { title: "Creating NFT Contract", width: 0 },
-    { title: `Saving ${event.name}`, width: 0 },
-  ];
+export default function ProgressTracker({ state, processes, title }) {
   return (
     <section className="absolute inset-0 p-5 create-event-section">
       <h3 className="mb-8 text-xl font-semibold text-white md:text-2xl">
-        Publishing {event.name}
+        {title}
       </h3>
       {processes.map((item, index) => (
         <div
@@ -51,9 +43,7 @@ export default function EventPublishingProgressTracker({ state }) {
                 className="text-3xl text-white md:text-5xl"
               />
             )}
-            <h3 className="ml-4 text-xl text-white md:text-2xl">
-              {item.title}
-            </h3>
+            <h3 className="ml-4 text-xl text-white md:text-2xl">{item}</h3>
           </div>
         </div>
       ))}

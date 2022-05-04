@@ -15,7 +15,7 @@ import {
 } from "utils/create-event";
 import { leastTicketPriceState } from "recoil/atoms/newTickets";
 import { useState } from "react";
-import EventPublishingProgressTracker from "./EventPublishingProgressTracker";
+import ProgressTracker from "./ProgressTracker";
 
 export default function EventPublisher() {
   const { user, web3, Moralis } = useMoralis();
@@ -26,6 +26,11 @@ export default function EventPublisher() {
   const leastTicketCost = useRecoilValue(leastTicketPriceState);
   // eslint-disable-next-line no-unused-vars
   const [events, setEvents] = useRecoilState(eventsState);
+  const processes = [
+    "Uploading Cover Photo",
+    "Creating NFT Contract",
+    `Saving ${newEvent.name}`,
+  ];
 
   const publishEvent = async () => {
     if (!user) {
@@ -86,7 +91,7 @@ export default function EventPublisher() {
           text: `${newEvent.name} has been published successfully`,
           icon: "success",
         });
-      }, 2000);
+      }, 1000);
       const query = new Moralis.Query("Event");
       query.descending("createdAt").equalTo("owner", user?.get("ethAddress"));
       query
@@ -111,7 +116,11 @@ export default function EventPublisher() {
   return (
     <div>
       {publishingState >= 0 ? (
-        <EventPublishingProgressTracker state={publishingState} />
+        <ProgressTracker
+          title={`Publishing ${newEvent.name}`}
+          state={publishingState}
+          processes={processes}
+        />
       ) : (
         ""
       )}

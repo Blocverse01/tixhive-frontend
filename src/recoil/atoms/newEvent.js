@@ -15,5 +15,6 @@ export const newEventState = atom({
     description: "An event to get cavy in",
     cover_image: null,
     visibility: 1,
+    currency: process.env.REACT_APP_EVENT_CURRENCY || "MATIC"
   },
 });

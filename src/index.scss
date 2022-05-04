@@ -18,10 +18,10 @@
     @apply w-[18.55px] h-[18.55px] md:w-[42px] md:h-[42px];
   }
   .mint-modal {
-    @apply px-5 xl:px-8 fixed bottom-0 z-[9999] transition-all duration-[3000ms] ease-linear top-0 py-8  2xl:top-36 right-0 left-0 flex items-center;
+    @apply px-5 xl:px-8 fixed bottom-0 z-[50] transition-all duration-[1000ms] ease-linear top-0 py-8  right-0 left-0 flex items-center;
     backdrop-filter: blur(6px);
     .mint-modal-content {
-      @apply max-w-[1220px] w-full flex-1 mx-auto p-5 md:px-[84px] sm:py-[64px];
+      @apply max-w-[1220px] w-full flex-1 mx-auto overflow-auto p-5 md:px-[84px] sm:py-[64px];
       background: linear-gradient(
         110.95deg,
         #0d0d0d -0.79%,

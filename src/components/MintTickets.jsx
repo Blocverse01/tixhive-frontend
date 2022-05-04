@@ -10,10 +10,14 @@ import { eventFactory } from "data/contracts";
 import { safeFloat } from "utils/numbers";
 import { nanoid } from "nanoid";
 import { jsxToPng } from "jsx-to-png";
+import Swal from "sweetalert2";
+import ProgressTracker from "./ProgressTracker";
 
 export default function MintTickets({ event, setBodyScroll }) {
   const [modalOpen, setModalOpen] = useState(false);
   const { user, isAuthenticated, web3 } = useMoralis();
+  const [mintingState, setMintingState] = useState(-1);
+  const processes = ["Generating Tickets and Metadata", "Minting Tickets"];
   const { saveFile } = useMoralisFile();
   const eventStartDate = moment(event.starts_on);
   const localDateGenerated =
@@ -34,9 +38,9 @@ export default function MintTickets({ event, setBodyScroll }) {
     purchases
       .filter((purchase) => purchase.quantity > 0)
       .forEach((purchase) => {
-        purchasePromises.push(
-          new Promise(async (res, rej) => {
-            for (var i = 1; i <= purchase.quantity; i++) {
+        for (let i = 1; i <= purchase.quantity; i++) {
+          purchasePromises.push(
+            new Promise(async (res, rej) => {
               try {
                 let purchaseId = nanoid();
                 let ticket = event.tickets.find(
@@ -52,15 +56,15 @@ export default function MintTickets({ event, setBodyScroll }) {
                   ticketId: purchase.ticketId,
                   tokenURI: metadata,
                   buyer: user.get("ethAddress"),
-                  cost: event.tickets_with_ether[purchase.ticketId].cost,
+                  cost: `${ticket.price.toString()}`,
                 });
                 res(metadata);
               } catch (err) {
                 rej(err);
               }
-            }
-          })
-        );
+            })
+          );
+        }
       });
     await Promise.all(purchasePromises);
     return preparedPurchases;
@@ -74,6 +78,7 @@ export default function MintTickets({ event, setBodyScroll }) {
   ) => {
     const metadata = {
       name: `${event.name} - ${ticket.name}`,
+      description: event.description,
       image: image,
       traits: [
         { trait_type: "Checked In", value: "true" },
@@ -105,8 +110,8 @@ export default function MintTickets({ event, setBodyScroll }) {
           eventCategory={event.category.toUpperCase()}
           eventTime={localDateGenerated}
           ticketInfo={{
-            text: purchaseId.toUpperCase(),
-            title: "TICKET ID",
+            text: `${ticket.price} ${event.currency}`,
+            title: "TICKET FEE",
           }}
           eventDate={eventStartDate.format("DD-MM-YYYY")}
         />,
@@ -147,25 +152,47 @@ export default function MintTickets({ event, setBodyScroll }) {
   }, [modalOpen]);
 
   const purchaseTickets = async () => {
-    if (!isAuthenticated) {
-      return;
-    }
-
-    const EventFactory = await enableContract(
-      eventFactory.contractAddress,
-      eventFactory.abi,
-      web3
-    );
-    const preparedPurchases = await preparePuchases();
-    const tx = await EventFactory.connect(web3.getSigner()).mintTickets(
-      event.contractAddress,
-      preparedPurchases,
-      {
-        value: ethers.utils.parseEther(totalAmount.toString()),
+    try {
+      if (!isAuthenticated) {
+        Swal.fire({
+          title: "Error!",
+          text: "Please connect your wallet to continue",
+          icon: "error",
+        });
+        return;
       }
-    );
-    const receipt = await tx.wait();
-    console.log(receipt);
+
+      const EventFactory = await enableContract(
+        eventFactory.contractAddress,
+        eventFactory.abi,
+        web3
+      );
+      setMintingState(0);
+      const preparedPurchases = await preparePuchases();
+      setMintingState(1);
+      const matic = ethers.utils.parseEther(totalAmount.toString());
+      const tx = await EventFactory.connect(web3.getSigner()).mintTickets(
+        event.contractAddress,
+        preparedPurchases,
+        { value: matic }
+      );
+      const receipt = await tx.wait();
+      if (receipt && receipt.blockNumber) {
+        Swal.fire({
+          title: "Success!",
+          text: `Tickets minted successfully`,
+          icon: "success",
+        });
+        setMintingState(-1);
+      }
+    } catch (err) {
+      setMintingState(-1);
+      Swal.fire({
+        title: "Error!",
+        text: `${err.data?.message || err.message}`,
+        icon: "error",
+      });
+    }
   };
   return (
     <section>
@@ -176,7 +203,17 @@ export default function MintTickets({ event, setBodyScroll }) {
             : "max-h-0 h-0 overflow-hidden hidden"
         }`}
       >
-        <div className="mint-modal-content">
+        <div className="mint-modal-content relative">
+          {mintingState >= 0 ? (
+            <ProgressTracker
+              state={mintingState}
+              processes={processes}
+              title={`Minting tickets ${event.name}`}
+            />
+          ) : (
+            ""
+          )}
+
           <div className="mint-modal-header">
             <h3 className="mint-modal-title">Get Your Tickets</h3>
             <button onClick={() => setModalOpen(false)}>
@@ -257,7 +294,7 @@ export default function MintTickets({ event, setBodyScroll }) {
                 </div>
               </div>
               <div className="lg:mt-[55px] flex justify-end">
-                <button onClick={() => purchaseTickets()} className="btn px-3">
+                <button onClick={() => purchaseTickets()} className="px-3 btn">
                   Pay {totalAmount} MATIC{" "}
                   <FontAwesomeIcon
                     className="ml-3"
