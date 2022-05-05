@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap";
 
 @tailwind base;
 @tailwind components;
@@ -6,10 +6,10 @@
 
 @layer base {
   .create-event-headline {
-    @apply text-[18px] leading-[28px] md:text-[25px] text-white font-[500] md:leading-[51.62px];
+    @apply text-[18px] leading-[28px] md:text-[25px] font-[500] md:leading-[51.62px] text-white;
   }
   .create-event-subheadline {
-    @apply text-[10px] md:text-[14px] text-white font-[500] leading-[25.81px];
+    @apply text-[10px] md:text-[14px] font-[500] leading-[25.81px] text-white;
   }
   .btn {
     @apply bg-brand-red h-[45px] md:h-[56px] px-5 lg:px-0 lg:min-w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center;
