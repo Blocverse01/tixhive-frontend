@@ -1,5 +1,5 @@
 import React from "react";
-import "./index.scss";
+import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { RecoilRoot } from "recoil";
