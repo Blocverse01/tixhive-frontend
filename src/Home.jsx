@@ -1,5 +1,5 @@
-import event from "svgs/event.png";
-import eventPeople from "svgs/event-people.png";
+import event from "svgs/event.svg";
+import eventPeople from "svgs/event-people.svg";
 import eventTickets from "svgs/event-tickets-sharp.png";
 import curveLine from "svgs/curve-line.svg";
 import { Link } from "react-router-dom";
