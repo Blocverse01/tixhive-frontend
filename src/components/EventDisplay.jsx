@@ -168,7 +168,13 @@ export default function EventDisplay() {
                 Price
               </h3>
               <h3 className="text-[20.03px] leading-[30.05px] md:text-[28px] md:leading-[37px] font-medium lg:text-[40px] lg:leading-[60px]">
-                {event ? `${event?.leastTicketCost} MATIC` : <Skeleton />}
+                {event ? (
+                  `${event?.leastTicketCost} MATIC`
+                ) : (
+                  <SkeletonTheme baseColor="#1A1D25" highlightColor="#374151">
+                    <Skeleton />
+                  </SkeletonTheme>
+                )}
               </h3>
             </div>
             <div className="">
@@ -183,7 +189,11 @@ export default function EventDisplay() {
       </div>
       <section className="mt-[28.2px] px-[28px] md:px-[54px] lg:px-[45px] lg:mt-[121px]">
         <h3 className="text-[8px] text-center text-white leading-[12px] md:text-[14px] md:leading-[18px] lg:text-[30px] lg:leading-[45px]">
-          {event?.venue || <Skeleton />}
+          {event?.venue || (
+            <SkeletonTheme baseColor="#1A1D25" highlightColor="#374151">
+              <Skeleton />
+            </SkeletonTheme>
+          )}
         </h3>
         <img src={map} className="w-full mt-5" alt="map" />
       </section>
