@@ -23,7 +23,6 @@ export default function Web3Boot({ children }) {
   useEffect(() => {
     async function fetchEvents() {
       const blocEvents = (await fetch()) || [];
-      console.log(blocEvents, await fetch());
       setEvents(
         blocEvents.map((eventObject) => {
           return {
