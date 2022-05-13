@@ -1,40 +1,50 @@
-[{
+[
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_tokenImplementation",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
     "anonymous": false,
-    "inputs": [{
-      "indexed": false,
-      "internalType": "address",
-      "name": "contractAddress",
-      "type": "address"
-    }],
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "contractAddress",
+        "type": "address"
+      }
+    ],
     "name": "NewEvent",
     "type": "event"
   },
   {
-    "inputs": [],
-    "name": "feesEarned",
-    "outputs": [{
-      "internalType": "uint256",
-      "name": "",
-      "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
   },
   {
-    "inputs": [],
-    "name": "allEvents",
-    "outputs": [{
-      "internalType": "contract Event[]",
-      "name": "",
-      "type": "address[]"
-    }],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [{
+    "inputs": [
+      {
         "internalType": "string",
         "name": "name",
         "type": "string"
@@ -45,7 +55,8 @@
         "type": "string"
       },
       {
-        "components": [{
+        "components": [
+          {
             "internalType": "string",
             "name": "name",
             "type": "string"
@@ -82,24 +93,41 @@
     "type": "function"
   },
   {
-    "inputs": [{
-      "internalType": "uint256",
-      "name": "fee",
-      "type": "uint256"
-    }],
-    "name": "setPlatformPercent",
-    "outputs": [],
-    "stateMutability": "nonpayable",
+    "inputs": [],
+    "name": "allEvents",
+    "outputs": [
+      {
+        "internalType": "contract Event[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [{
+    "inputs": [],
+    "name": "feesEarned",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "contract Event",
         "name": "e",
         "type": "address"
       },
       {
-        "components": [{
+        "components": [
+          {
             "internalType": "string",
             "name": "purchaseId",
             "type": "string"
@@ -120,9 +148,9 @@
             "type": "address"
           },
           {
-            "internalType": "string",
+            "internalType": "uint256",
             "name": "cost",
-            "type": "string"
+            "type": "uint256"
           }
         ],
         "internalType": "struct BlocTick.TicketPurchase[]",
@@ -133,7 +161,65 @@
     "name": "mintTickets",
     "outputs": [],
     "stateMutability": "payable",
-    "type": "function",
-    "payable": true
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "platform_percent",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "fee",
+        "type": "uint256"
+      }
+    ],
+    "name": "setPlatformPercent",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   }
 ]

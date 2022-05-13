@@ -72,7 +72,8 @@ export default function EventPublisher() {
         parseTicketsPriceToEther(tickets)
       );
       const receipt = await transaction.wait();
-      const eventContractAddress = receipt.events[0].args.contractAddress;
+      //console.log(receipt)
+      const eventContractAddress = receipt.events[3].args.contractAddress;
       setPublishingState(2);
       const eventOnMoralis = await saveToMoralis(
         newEvent,

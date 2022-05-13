@@ -56,7 +56,7 @@ export default function MintTickets({ event, setBodyScroll }) {
                   ticketId: purchase.ticketId,
                   tokenURI: metadata,
                   buyer: user.get("ethAddress"),
-                  cost: `${ticket.price.toString()}`,
+                  cost: ethers.utils.parseEther(ticket.price.toString()),
                 });
                 res(metadata);
               } catch (err) {
@@ -171,6 +171,7 @@ export default function MintTickets({ event, setBodyScroll }) {
       const preparedPurchases = await preparePuchases();
       setMintingState(1);
       const matic = ethers.utils.parseEther(totalAmount.toString());
+      console.log(event.contractAddress);
       const tx = await EventFactory.connect(web3.getSigner()).mintTickets(
         event.contractAddress,
         preparedPurchases,
