@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import { useMoralis, useMoralisQuery } from "react-moralis";
 import { eventsState } from "recoil/atoms/events";
 import { useRecoilState } from "recoil";
@@ -8,9 +8,9 @@ export default function Web3Boot({ children }) {
   // eslint-disable-next-line no-unused-vars
   const [events, setEvents] = useRecoilState(eventsState);
   const { fetch } = useMoralisQuery("Event", (query) => query.descending("createdAt"), [], { autoFetch: false });
-  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, user } = useMoralis();
+  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, user, isInitialized } = useMoralis();
   const connectorId = window.localStorage.getItem("connectorId");
-  React.useEffect(() => {
+  useEffect(() => {
     async function bootWeb3() {
       if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) {
         console.log("enabling web3");
@@ -20,7 +20,7 @@ export default function Web3Boot({ children }) {
     bootWeb3();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isWeb3Enabled, user]);
-  React.useEffect(() => {
+  useEffect(() => {
     async function fetchEvents() {
       const blocEvents = (await fetch()) || [];
       setEvents(
@@ -33,6 +33,6 @@ export default function Web3Boot({ children }) {
     }
     fetchEvents();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chainId]);
+  }, [isInitialized]);
   return <>{children}</>;
 }

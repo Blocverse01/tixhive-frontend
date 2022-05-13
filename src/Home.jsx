@@ -49,7 +49,11 @@ function Home() {
         </div>
         <div className="order-1 w-full lg:order-2">
           <img src={eventPeople} alt="event-people" className="lg:hidden w-full -mt-[110px]" />
-          <img src={eventTickets} alt="event-tickets" className="lg:hidden w-full absolute z-20 top-[140px] sm:top-[330px]" />
+          <img
+            src={eventTickets}
+            alt="event-tickets"
+            className="lg:hidden w-full absolute z-20 top-[140px] sm:top-[330px]"
+          />
           <img
             src={event}
             className="lg:h-[600px] hidden lg:block xl:h-[760px] 2xl:h-[1088px] lg:-mt-[110px]"
