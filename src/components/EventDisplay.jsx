@@ -18,7 +18,8 @@ import {eventsState} from "recoil/atoms/events";
 import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import MintTickets from "./MintTickets";
-import MetaTags from "react-meta-tags";
+//import MetaTags from "react-meta-tags";
+import {Helmet} from "react-helmet";
 
 export default function EventDisplay() {
     // eslint-disable-next-line no-unused-vars
@@ -52,7 +53,7 @@ export default function EventDisplay() {
         <section
             className={`py-[38px] lg:px-20 lg:py-[65px]`}
         >
-            <MetaTags id={"event-display"}>
+            <Helmet id={"event-display"}>
                 <title>Bloc-Tickets Event - {event ? event.name : "Loading"}</title>
                 <meta name="description" content={event ? event.description : "Loading"}/>
                 <meta property="og:url" content={`https://www.bloctickets.co/events/${contract}`}/>
@@ -65,7 +66,7 @@ export default function EventDisplay() {
                 <meta property="twitter:title" content={`Bloc-Tickets Event - ${event ? event.name : "Loading"}`}/>
                 <meta property="twitter:description" content={event ? event.description : "Loading"}/>
                 <meta property="twitter:image" content={event?.cover_image_url}/>
-            </MetaTags>
+            </Helmet>
             <div className="relative z-0">
                 <img
                     src={rectangle7}
