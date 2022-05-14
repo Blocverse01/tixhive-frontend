@@ -73,7 +73,7 @@ function StepOne({ handleChange, setStep }) {
         <InputField
           type="text"
           value={event.venue}
-          placeholder=""
+          placeholder="eg. O2 Arena, London, UK"
           name="venue"
           label="Where will your event happen?"
           onChange={handleChange}

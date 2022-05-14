@@ -31,7 +31,7 @@ function CreateEvent() {
     {
       title: "Create Your Event",
       subtitle:
-        "Teresa will insert some cool text here, ipsum dolor sit amet lorem.",
+        "Let your audience know what to expect ",
       content: (
         <StepZero setStep={setCurrentStep} handleChange={handleChange} />
       ),
@@ -39,7 +39,7 @@ function CreateEvent() {
     {
       title: "Event Info",
       subtitle:
-        "Teresa will insert some cool text here, ipsum dolor sit amet lorem.",
+        "Let your audience know what to expect ",
       content: <StepOne setStep={setCurrentStep} handleChange={handleChange} />,
     },
     {

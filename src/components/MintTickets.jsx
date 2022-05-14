@@ -209,7 +209,7 @@ export default function MintTickets({ event, setBodyScroll }) {
             <ProgressTracker
               state={mintingState}
               processes={processes}
-              title={`Minting tickets ${event.name}`}
+              title={`Proccesing tickets`}
             />
           ) : (
             ""
@@ -294,7 +294,7 @@ export default function MintTickets({ event, setBodyScroll }) {
                   <h3 className="">{totalAmount} MATIC</h3>
                 </div>
               </div>
-              <div className="lg:mt-[55px] flex justify-end">
+              <div className="lg:mt-[55px] mt-[15px] flex justify-end">
                 <button onClick={() => purchaseTickets()} className="px-3 btn">
                   Pay {totalAmount} MATIC{" "}
                   <FontAwesomeIcon

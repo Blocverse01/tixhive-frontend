@@ -20,7 +20,7 @@ function Home() {
             />
           </div>
           <div className="mt-[10px] font-[400] max-w-[218.45px] lg:max-w-[520px] text-[10.5px] leading-[15.75px] lg:text-[25px] lg:leading-[37.5px] text-white">
-            Teresa will insert some cool text here, ipsum dolor sit amet lorem.
+            Put Your Event on Chain and Let’s Freaking GO!!!!
           </div>
           <div className="mt-[13.3px] lg:mt-[54px] flex gap-[27px] sm:gap-[35px] md:gap-[43px] items-center">
             <button className="bg-black-gradient px-3 flex-shrink-0 lg:px-0 lg:w-[233px] btn-border h-[45px] lg:h-[65px] text-white text-[16px] sm:text-[20px] lg:text-[25px] leading-[37.5px] flex justify-center items-center">
