@@ -26,7 +26,7 @@ export const saveToMoralis = async (newEvent, contractAddress, cover_image, leas
   event.set("tickets", tickets);
   event.set("currency", newEvent.currency);
   event.setACL(eventACL);
-  return await event.save();
+  return event;
 };
 
 export const getTicker = (name) => {
