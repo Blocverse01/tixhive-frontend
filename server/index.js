@@ -10,7 +10,7 @@ const masterKey = process.env.MORALIS_MASTER_KEY;
 
 Moralis.start({serverUrl, appId, masterKey})
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const indexPath = path.resolve(__dirname, '..', 'build', 'index.html');
 
 function getIndexData(res) {
