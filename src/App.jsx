@@ -8,34 +8,57 @@ import ScrollToTop from "ScrollToTop";
 import EventDisplay from "components/EventDisplay";
 import ManageEvents from "./ManageEvents";
 import MyTickets from "MyTickets";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import {useState} from "react";
 
 function App() {
+  const [navOpen, setNavOpen] = useState(false);
+  const navOpenClasses = "fixed text-[14px] leading-[21px] right-0 z-[9999] pt-[20.48px] top-0 h-[379px] backdrop-blur-2xl bg-brand-red w-[195px] px-[34px]";
+  const navClasses = "flex transition ease-in-out flex-col lg:flex-row appearance-none lg:font-[500] lg:text-[18.65px] lg:leading-[27.98px] gap-[32px] lg:gap-[40.29px] lg:items-center";
+
   return (
     <Router>
       <ScrollToTop>
         <Web3Boot>
-          <div className="bg-brand-black font-poppins">
+          <div className="bg-brand-black relative font-poppins">
             <div className="max-w-[1728px] mx-auto">
               <nav className="pt-[25px] z-50 lg:pt-[45px] px-5 sm:px-10 lg:px-8">
                 <div className="flex items-center text-white lg:px-10">
-                  <Link to="/">
+                  <div className={"lg:hidden z-50"}>
+                    <ConnectWallet />
+                  </div>
+                  <Link className={"z-50 hidden lg:block"} to="/">
                     <h3 className="lg:mr-[79px] lg:font-[500] lg:text-[30px] lg:leading-[45px]">
                       Bloc-Ticks
                     </h3>
                   </Link>
-                  <ul className="lg:flex hidden appearance-none lg:font-[500] lg:text-[18.65px] lg:leading-[27.98px] lg:gap-[40.29px] items-center">
-                    <li>
+                  <ul className={`${ navOpen ? navOpenClasses : "w-0 h-0 overflow-hidden"} lg:w-auto lg:h-auto lg:overflow-auto ${navClasses}`}>
+                    <li className={`lg:hidden ${ navOpen ? "" : "hidden" } absolute right-[20.48px] top-[20.48px]`}>
+                      <button onClick={() => setNavOpen(false)} className={"lg:hidden bg-none"}>
+                        <FontAwesomeIcon icon={solid("times")} className={"text-2xl"} />
+                      </button>
+                    </li>
+                    <li onClick={() => setNavOpen(false)} className={"mt-[42.48px] lg:mt-0"}>
+                      <Link to="/">Home</Link>
+                    </li>
+                    <li onClick={() => setNavOpen(false)}>
                       <Link to="/my-tickets">My Tickets</Link>
                     </li>
-                    <li>
+                    <li onClick={() => setNavOpen(false)}>
                       <Link to="/my-events">Manage Events</Link>
                     </li>
-                    <li>
+                    <li onClick={() => setNavOpen(false)}>
                       <Link to="/faqs">Need Help?</Link>
                     </li>
                   </ul>
                   <div className="z-10 flex justify-end flex-1 lg:pr-4">
-                    <ConnectWallet />
+                    <div className={"hidden lg:block"}>
+                      <ConnectWallet />
+                    </div>
+                    <button onClick={() => setNavOpen(true)} className={"lg:hidden z-50 btn"}>
+                      <FontAwesomeIcon icon={solid("bars")} />
+                    </button>
                   </div>
                 </div>
               </nav>
