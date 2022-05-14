@@ -45,7 +45,7 @@
   }
 
   .event-card-image {
-    @apply object-scale-down lg:object-cover lg:max-h-[280px] h-[160px] w-full;
+    @apply object-scale-down lg:object-cover lg:max-h-[290px] lg:h-auto h-[160px] md:h-[220px] w-full;
   }
   .event-card-content {
     @apply lg:px-[33px] px-[14px] py-[6px] md:py-[12px] bg-brand-red text-white;
