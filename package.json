@@ -1,7 +1,7 @@
 {
   "name": "bloc-tickets-frontend",
   "version": "0.1.0",
-  "main": "lambda/serverless.js",
+  "main": "functions/serverless.js",
   "private": true,
   "dependencies": {
     "@babel/eslint-parser": "^7.17.0",
@@ -69,6 +69,7 @@
     "build-local": "GENERATE_SOURCEMAP=false react-app-rewired build",
     "test": "GENERATE_SOURCEMAP=false react-app-rewired test",
     "eject": "GENERATE_SOURCEMAP=false react-app-rewired eject",
+    "export": "yarn export",
     "server-local": "GENERATE_SOURCEMAP=false yarn run build-local && nodemon server/local.js"
   },
   "eslintConfig": {
