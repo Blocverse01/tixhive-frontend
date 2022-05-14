@@ -69,7 +69,6 @@
     "build-local": "GENERATE_SOURCEMAP=false react-app-rewired build",
     "test": "GENERATE_SOURCEMAP=false react-app-rewired test",
     "eject": "GENERATE_SOURCEMAP=false react-app-rewired eject",
-    "export": "yarn export",
     "server-local": "GENERATE_SOURCEMAP=false yarn run build-local && nodemon server/local.js"
   },
   "eslintConfig": {
