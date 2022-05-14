@@ -12,12 +12,15 @@ const masterKey = process.env.MORALIS_MASTER_KEY;
 Moralis.start({serverUrl, appId, masterKey})
 
 const PORT = process.env.PORT || 3000;
-const indexPath = path.resolve(__dirname, '..', 'build', 'index.html');
+//const indexPath = path.resolve(__dirname, '..', 'build', 'index.html');
+const indexPath = "index.html"
+console.log(__dirname, indexPath);
+
 
 const router = express.Router();
 
 function getIndexData(res) {
-    fs.readFile(indexPath, 'utf8', (err, htmlData) => {
+    fs.readFile(path.join(__dirname, "index.html"), 'utf8', (err, htmlData) => {
         if (err) {
             console.error('Error during file reading', err);
             return res.status(404).end()
@@ -85,6 +88,7 @@ router.get('/*', (req, res, next) => {
     return getIndexData(res);
 })
 
+app.use(`/.netlify/functions/serverless`, router);
 
 module.exports = app;
 module.exports.handler = serverless(app);

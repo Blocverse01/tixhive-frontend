@@ -22,6 +22,7 @@
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
     "dotenv": "^16.0.1",
+    "ecdh": "^0.1.1",
     "encoding": "^0.1.13",
     "express": "4.17.1",
     "fs": "^0.0.1-security",
@@ -69,7 +70,8 @@
     "build-local": "GENERATE_SOURCEMAP=false react-app-rewired build",
     "test": "GENERATE_SOURCEMAP=false react-app-rewired test",
     "eject": "GENERATE_SOURCEMAP=false react-app-rewired eject",
-    "server-local": "GENERATE_SOURCEMAP=false yarn run build-local && nodemon server/local.js"
+    "server-local": "GENERATE_SOURCEMAP=false yarn run build-local && nodemon server/local.js",
+    "start-lambda": "netlify-lambda serve express"
   },
   "eslintConfig": {
     "extends": [

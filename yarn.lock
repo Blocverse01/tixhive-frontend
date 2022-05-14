@@ -6122,6 +6122,13 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
+ecdh@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/ecdh/-/ecdh-0.1.1.tgz#97f9b0e470409dc9f8ffd93bd67a34cb5c85c613"
+  integrity sha1-l/mw5HBAncn4/9k71no0y1yFxhM=
+  dependencies:
+    jsbn "0.1.0"
+
 ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
@@ -9314,6 +9321,11 @@ js-yaml@^4.1.0:
   integrity sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==
   dependencies:
     argparse "^2.0.1"
+
+jsbn@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.0.tgz#650987da0dd74f4ebf5a11377a2aa2d273e97dfd"
+  integrity sha1-ZQmH2g3XT06/WhE3eiqi0nPpff0=
 
 jsbn@~0.1.0:
   version "0.1.1"
