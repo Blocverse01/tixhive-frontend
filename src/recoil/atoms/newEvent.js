@@ -1,18 +1,19 @@
 import { atom } from "recoil";
+import moment from "moment";
 
 export const newEventState = atom({
   key: "newEventState",
   default: {
-    name: "Get Cavvy 2.0",
-    host: "Cavemen",
-    category: "Live perfomance",
+    name: "",
+    host: "",
+    category: "",
     venue_type: 0,
-    venue: "O2 Arena, London, UK",
-    start_time: "09:00:00",
-    start_date: "2022-03-13",
-    end_time: "12:00:00",
-    end_date: "2022-05-16",
-    description: "An event to get cavy in",
+    venue: "",
+    start_time: moment().format('HH:MM'),
+    start_date: moment().format('YYYY-MM-DD'),
+    end_time: moment().add(4, 'hours').format('HH:MM'),
+    end_date: moment().add(2, 'days').format('YYYY-MM-DD'),
+    description: "",
     cover_image: null,
     visibility: 1,
     currency: process.env.REACT_APP_EVENT_CURRENCY || "MATIC"

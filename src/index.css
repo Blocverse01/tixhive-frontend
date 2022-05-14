@@ -45,7 +45,7 @@
   }
 
   .event-card-image {
-    @apply object-cover lg:max-h-[280px] w-full;
+    @apply object-scale-down lg:object-cover lg:max-h-[280px] h-[160px] w-full;
   }
   .event-card-content {
     @apply lg:px-[33px] px-[14px] py-[6px] md:py-[12px] bg-brand-red text-white;
@@ -92,7 +92,7 @@
   }
 
   .mint-modal-body {
-    @apply grid grid-cols-1 py-[32px] lg:grid-cols-2 gap-y-[14px] gap-x-[75px];
+    @apply grid grid-cols-1 py-[18px] md:py-[32px] lg:grid-cols-2 gap-y-[14px] gap-x-[75px];
   }
 
   .empty-events {

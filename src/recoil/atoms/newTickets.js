@@ -4,26 +4,12 @@ export const newTicketsState = atom({
   key: "newTicketsState",
   default: [
     {
-      name: "General Admission",
+      name: "Sample Ticket",
       description: "",
       ticket_type: 1,
       quantity_available: 300,
-      price: 0.001,
-    },
-    {
-      name: "VIP",
-      description: "",
-      ticket_type: 1,
-      quantity_available: 30,
-      price: 0.002,
-    },
-    {
-      name: "Poor Paupers",
-      description: "",
-      ticket_type: 1,
-      quantity_available: 3000,
-      price: 0.003,
-    },
+      price: 100,
+    }
   ],
 });
 
