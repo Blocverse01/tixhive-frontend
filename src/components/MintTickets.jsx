@@ -155,9 +155,9 @@ export default function MintTickets({ event, setBodyScroll }) {
     try {
       if (!isAuthenticated) {
         Swal.fire({
-          title: "Error!",
+          title: "Hello fren 😁...",
           text: "Please connect your wallet to continue",
-          icon: "error",
+          icon: "info",
         });
         return;
       }
