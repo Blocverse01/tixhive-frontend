@@ -68,6 +68,7 @@ function App() {
                 <Route element={<EventDisplay />} path="/events/:contract" />
                 <Route element={<MyTickets />} path="/my-tickets" />
                 <Route element={<ManageEvents />} path="/my-events" />
+                {/*TODO Add route for ticket validation*/}
               </Routes>
             </div>
           </div>
