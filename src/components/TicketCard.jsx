@@ -7,7 +7,7 @@ import {useState} from "react";
 export default function TicketCard({ ticket, event }) {
     const [modal, setOpen] = useState(false);
     return (
-        <section>
+        <section className={"mb-7"}>
             <div className={"bg-event-gradient"}>
                 <div
                     className={"border-b px-5 flex justify-between items-center pt-3 border-slate-300 pb-3"}>

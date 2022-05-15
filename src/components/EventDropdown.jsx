@@ -44,7 +44,7 @@ export default function EventDropdown({event}) {
                     <FontAwesomeIcon className={"text-2xl"} icon={modalOpen ? solid("chevron-up") : solid("chevron-down")} />
                 </div>
             </div>
-            <div className={`${modalOpen ? "h-full" : "h-0 overflow-hidden"} grid grid-cols-1 mt-5 gap-5 transition-all ease-out`}>
+            <div className={`${modalOpen ? "h-full" : "h-0 overflow-hidden"}  mt-7 transition-all ease-out`}>
                 {tickets.map((item, index) => <TicketCard ticket={item} key={index} event={event} />)}
             </div>
         </section>
