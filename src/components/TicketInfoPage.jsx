@@ -15,6 +15,7 @@ import truncateEthAddress from "truncate-eth-address";
 export default function TicketInfoPage() {
     const {contract, purchase} = useParams();
     const {user, isAuthenticated, web3, isWeb3Enabled} = useMoralis();
+    // eslint-disable-next-line no-unused-vars
     const [isLoading, setLoading] = useState(true);
     const events = useRecoilValue(eventsState);
     const [ticketInfo, setTicketInfo] = useState({});
@@ -38,6 +39,7 @@ export default function TicketInfoPage() {
         if(loaded) {
             setLoading(false);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loaded])
 
     useEffect(() => {
@@ -71,6 +73,7 @@ export default function TicketInfoPage() {
         }
 
         loadStuff();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [event]);
 
     return (
