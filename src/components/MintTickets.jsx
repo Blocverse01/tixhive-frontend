@@ -155,7 +155,7 @@ export default function MintTickets({ event, setBodyScroll }) {
     try {
       if (!isAuthenticated) {
         Swal.fire({
-          title: "Hello fren 😁...",
+          title: "Hello fren 😁",
           text: "Please connect your wallet to continue",
           icon: "info",
         });
@@ -180,7 +180,7 @@ export default function MintTickets({ event, setBodyScroll }) {
       const receipt = await tx.wait();
       if (receipt && receipt.blockNumber) {
         Swal.fire({
-          title: "Success!",
+          title: "Yay 🎉",
           text: `Tickets minted successfully`,
           icon: "success",
         });
@@ -200,7 +200,7 @@ export default function MintTickets({ event, setBodyScroll }) {
       <div
         className={`mint-modal ${
           modalOpen
-            ? "min-h-screen overflow-auto h-full"
+            ? "overflow-auto h-full"
             : "max-h-0 h-0 overflow-hidden hidden"
         }`}
       >

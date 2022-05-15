@@ -35,9 +35,9 @@ export default function EventPublisher() {
   const publishEvent = async () => {
     if (!user) {
       Swal.fire({
-        title: "Error!",
+        title: "Hello fren 😁",
         text: "Please connect your wallet to continue",
-        icon: "error",
+        icon: "info",
       });
       return;
     }
