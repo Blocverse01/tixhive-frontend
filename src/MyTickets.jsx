@@ -1,11 +1,11 @@
 import { useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
 import LoginMessage from "components/LoginMessage";
-import moment from "moment";
 import EVENT from "contract-abis/Event.json";
 import { enableContract } from "utils/web3-utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import EventDropdown from "./components/EventDropdown";
 
 export default function MyTickets() {
   const { user, isAuthenticated, Moralis, web3, isWeb3Enabled } = useMoralis();
@@ -26,13 +26,14 @@ export default function MyTickets() {
           let tokens = await eventContract.ownerTokens(user.get("ethAddress"));
           if (tokens.length > 0) {
             // eslint-disable-next-line no-unused-vars
-            const [totalSold, sales] = await eventContract.getInfo();
+            const [totalSold, sales, tickets] = await eventContract.getInfo();
             tokens = tokens.map((token) => token.toNumber());
             const advancedEvent = {
               ...event.attributes,
               sales: sales.filter((sale) =>
-                tokens.includes(sale.tokenId.toNumber())
+                tokens.includes(sale.tokenId.toNumber()),
               ),
+              tickets: tickets
             };
             return advancedEvent;
           }
@@ -48,60 +49,12 @@ export default function MyTickets() {
   return (
     <section className="page">
       <div className="page-wrapper">
-        <h3 className="page-title">Your Events {"&"} Tickets</h3>
+        <h3 className="page-title">Tickets Bought</h3>
         {isAuthenticated ? (
-          <section>
-            <div className="table w-full text-left text-white table-auto events-table">
-              <div className="table-header-group">
-                <div className="table-row">
-                  <div className="events-header-text">Event</div>
-                  <div className="events-header-text">Tickets</div>
-                  <div className="events-header-text">Status</div>
-                </div>
-              </div>
-              <div className="events-wrapper">
-                {userEvents.map((event, index) => (
-                  <div key={index} className="relative table-row event">
-                    <div className="table-cell p-[16.5px] md:p-[24px] lg:p-[32px] text-left">
-                      <div className="flex items-center">
-                        <div className="hidden md:block">
-                          <h3 className="event-month">
-                            {moment(event.starts_on).format("MMM")}
-                          </h3>
-                          <h3 className="event-day">
-                            {moment(event.starts_on).format("DD")}
-                          </h3>
-                        </div>
-                        <div className="md:pl-[60px]">
-                          <h3 className="event-title">{event.name}</h3>
-                          <h3 className="event-start-date">
-                            {moment(event.starts_on).format("DD MMM hh:mm A")}
-                          </h3>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="table-cell">
-                      <h3>{event.sales.length}</h3>
-                    </div>
-                    <div className="table-cell">
-                      {event.saleIsActive ? (
-                        <div className="flex items-center">
-                          <div className="h-[14px] w-[14px] rounded-full bg-brand-red"></div>
-                          <h3 className="ml-3">On-Sale</h3>
-                        </div>
-                      ) : (
-                        <div className="flex items-center">
-                          <div className="h-[14px] w-[14px] rounded-full bg-slate-300"></div>
-                          <h3 className="ml-3">Sale-Closed</h3>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <section className={"grid-cols-1 text-white gap-5 grid"}>
+            {userEvents.map((event, index) => <EventDropdown key={index} event={event} />)}
             {loading ? (
-              <div className="empty-events">
+              <div className="empty-events text-sm md:text-base">
                 <FontAwesomeIcon
                   icon={solid("spinner")}
                   className="mr-4"
