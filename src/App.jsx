@@ -11,6 +11,7 @@ import MyTickets from "MyTickets";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import {useState} from "react";
+import TicketInfoPage from "./components/TicketInfoPage";
 
 function App() {
   const [navOpen, setNavOpen] = useState(false);
@@ -68,7 +69,7 @@ function App() {
                 <Route element={<EventDisplay />} path="/events/:contract" />
                 <Route element={<MyTickets />} path="/my-tickets" />
                 <Route element={<ManageEvents />} path="/my-events" />
-                {/*TODO Add route for ticket validation*/}
+                <Route element={<TicketInfoPage />} path={"/:contract/tickets/:purchase"} />
               </Routes>
             </div>
           </div>

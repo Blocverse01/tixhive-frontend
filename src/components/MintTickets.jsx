@@ -295,10 +295,10 @@ export default function MintTickets({ event, setBodyScroll }) {
                 </div>
               </div>
               <div className="lg:mt-[55px] mt-[15px] flex justify-end">
-                <button onClick={() => purchaseTickets()} className="px-3 btn">
+                <button onClick={() => purchaseTickets()} className="px-3 btn text-sm md:text-base">
                   Pay {totalAmount} MATIC{" "}
                   <FontAwesomeIcon
-                    className="ml-3"
+                    className="ml-2"
                     icon={solid("chevron-right")}
                   />
                 </button>
