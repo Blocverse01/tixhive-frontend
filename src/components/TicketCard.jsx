@@ -19,13 +19,13 @@ export default function TicketCard({ ticket, event }) {
                 </div>
                 <div>
                     <div className={"grid-cols-3 text-center grid border-slate-300"}>
-                        <div className={"p-3 border-r border-b"}>
+                        <div className={"p-3 border-b"}>
                             Token ID
                         </div>
-                        <div className={"p-3 border-r border-b"}>Name</div>
+                        <div className={"p-3 border-b"}>Name</div>
                         <div className={"p-3 border-b"}>Cost</div>
-                        <div className={"p-3 border-r"}>{ticket.tokenId}</div>
-                        <div className={"p-3 border-r truncate"}>{ticket.name}</div>
+                        <div className={"p-3"}>{ticket.tokenId}</div>
+                        <div className={"p-3 truncate"}>{ticket.name}</div>
                         <div className={"p-3"}>{ticket.cost}</div>
                     </div>
                 </div>
