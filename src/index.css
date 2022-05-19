@@ -20,7 +20,11 @@
 
   .mint-modal-content {
     @apply max-w-[1220px] w-full flex-1 z-[55] mx-auto overflow-auto p-5 md:px-[84px] sm:py-[64px];
-    background: linear-gradient(110.95deg, #0d0d0d -0.79%, rgba(0, 0, 0, 0.5) 103.78%);
+    background: linear-gradient(
+      110.95deg,
+      #0d0d0d -0.79%,
+      rgba(0, 0, 0, 0.5) 103.78%
+    );
     border: 0.4px solid rgba(255, 255, 255, 0.4);
   }
 
@@ -86,7 +90,11 @@
   }
 
   .form-card {
-    background: linear-gradient(119.07deg, rgba(17, 19, 23, 0.8) 0%, rgba(17, 19, 23, 0.3) 101.47%);
+    background: linear-gradient(
+      119.07deg,
+      rgba(17, 19, 23, 0.8) 0%,
+      rgba(17, 19, 23, 0.3) 101.47%
+    );
     border: 1px solid rgba(255, 255, 255, 0.5);
     @apply lg:px-[67px] px-[26.53px] grid grid-cols-1 gap-[10px] md:gap-[23px] place-content-center py-[26.53px] lg:py-[43px];
   }
@@ -97,7 +105,11 @@
 
   .empty-events {
     border: 1px solid rgba(255, 255, 255, 0.5);
-    background: linear-gradient(96.52deg, rgba(62, 62, 62, 0.8) 0%, rgba(49, 49, 49, 0.2) 105.62%);
+    background: linear-gradient(
+      96.52deg,
+      rgba(62, 62, 62, 0.8) 0%,
+      rgba(49, 49, 49, 0.2) 105.62%
+    );
     @apply p-[16.5px] mt-8 md:p-[24px] lg:p-[32px] text-center font-medium text-2xl md:text-3xl text-white lg:text-4xl;
   }
   .page {
@@ -123,7 +135,11 @@
   }
   .event {
     border: 1px solid rgba(255, 255, 255, 0.5);
-    background: linear-gradient(96.52deg, rgba(62, 62, 62, 0.8) 0%, rgba(49, 49, 49, 0.2) 105.62%);
+    background: linear-gradient(
+      96.52deg,
+      rgba(62, 62, 62, 0.8) 0%,
+      rgba(49, 49, 49, 0.2) 105.62%
+    );
   }
   .events-wrapper {
     @apply table-row-group;

@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 import Events from "components/Events";
 function Home() {
   return (
-    <div>
-      <div className="flex lg:px-8 justify-between lg:flex-row flex-col">
-        <div className="mt-[110px] z-30 lg:mt-[60px] px-5 sm:px-6 order-2 lg:order-1 lg:pl-10">
+    <div className="static">
+      <div className="flex flex-col justify-between lg:px-8 lg:flex-row">
+        <div className="mt-[110px] z-0 lg:mt-[60px] px-5 sm:px-6 order-2 lg:order-1 lg:pl-10">
           <div className="relative">
             <h3 className="font-medium text-[2.311rem] max-w-[226px] leading-[55.45px] lg:max-w-[546px] text-white lg:text-[78px] lg:leading-[132px]">
               A New Era of NFT Utility
@@ -26,29 +26,46 @@ function Home() {
             <button className="bg-black-gradient px-3 flex-shrink-0 lg:px-0 lg:w-[233px] btn-border h-[45px] lg:h-[65px] text-white text-[16px] sm:text-[20px] lg:text-[25px] leading-[37.5px] flex justify-center items-center">
               Get Started
             </button>
-            <Link className="flex-shrink-0" to="/create-event">
-              <button className="bg-brand-red h-[45px] lg:h-[65px] px-3 lg:px-0 lg:w-[233px] text-white text-[16px] sm:text-[20px] lg:text-[25px] leading-[37.5px] flex justify-center items-center">
-                Create Event
-              </button>
+            <Link
+              className="flex-shrink-0 bg-brand-red h-[45px] lg:h-[65px] px-3 lg:px-0 lg:w-[233px] text-white text-[16px] sm:text-[20px] lg:text-[25px] leading-[37.5px] flex justify-center items-center"
+              to="/create-event"
+            >
+              Create Event
             </Link>
           </div>
           <div className="hidden lg:flex lg:mt-[61px] text-white lg:gap-[64px] xl:gap-[55px]">
             <div>
-              <h3 className="lg:text-[48px] xl:text-[53px] lg:leading-[86.14px]">20k+</h3>
-              <h4 className="lg:text-[16px] xl:text-[17px] lg:leading-[35.89px]">Events Hosted</h4>
+              <h3 className="lg:text-[48px] xl:text-[53px] lg:leading-[86.14px]">
+                20k+
+              </h3>
+              <h4 className="lg:text-[16px] xl:text-[15px] lg:leading-[35.89px]">
+                Events Hosted
+              </h4>
             </div>
             <div>
-              <h3 className="lg:text-[48px] xl:text-[53px] lg:leading-[86.14px]">300k+</h3>
-              <h4 className="lg:text-[16px] xl:text-[17px] lg:leading-[35.89px]">Tickets Generated</h4>
+              <h3 className="lg:text-[48px] xl:text-[53px] lg:leading-[86.14px]">
+                300k+
+              </h3>
+              <h4 className="lg:text-[16px] xl:text-[15px] lg:leading-[35.89px]">
+                Tickets Generated
+              </h4>
             </div>
             <div>
-              <h3 className="lg:text-[48px] xl:text-[53px] lg:leading-[86.14px]">8k+</h3>
-              <h4 className="lg:text-[16px] xl:text-[17px] lg:leading-[35.89px]">Daily Visitors</h4>
+              <h3 className="lg:text-[48px] xl:text-[53px] lg:leading-[86.14px]">
+                8k+
+              </h3>
+              <h4 className="lg:text-[16px] xl:text-[15px] lg:leading-[35.89px]">
+                Daily Visitors
+              </h4>
             </div>
           </div>
         </div>
         <div className="order-1 w-full lg:order-2">
-          <img src={eventPeople} alt="event-people" className="lg:hidden w-full -mt-[110px]" />
+          <img
+            src={eventPeople}
+            alt="event-people"
+            className="lg:hidden w-full -mt-[110px]"
+          />
           <img
             src={eventTickets}
             alt="event-tickets"
