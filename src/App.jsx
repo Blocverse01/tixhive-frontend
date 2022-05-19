@@ -31,7 +31,7 @@ function App() {
                   </div>
                   <Link className={"z-50 hidden lg:block"} to="/">
                     <h3 className="lg:mr-[79px] lg:font-[500] lg:text-[30px] lg:leading-[45px]">
-                      Bloc-Ticks
+                      Bloc-Tix
                     </h3>
                   </Link>
                   <ul className={`${ navOpen ? navOpenClasses : "w-0 h-0 overflow-hidden"} lg:w-auto lg:h-auto lg:overflow-auto ${navClasses}`}>
