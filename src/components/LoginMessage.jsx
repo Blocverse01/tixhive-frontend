@@ -1,4 +1,4 @@
-import ConnectWallet from "components/ConnectWallet";
+import ConnectWallet from "components/auth/moralis/ConnectWalletWithWeb3Auth";
 
 export default function LoginMessage({ authAction }) {
   return (

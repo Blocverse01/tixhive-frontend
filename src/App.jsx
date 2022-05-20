@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./Home";
 import CreateEvent from "./CreateEvent";
-import ConnectWallet from "components/auth/moralis/ConnectWallet";
+import ConnectWallet from "components/auth/moralis/ConnectWalletWithWeb3Auth";
 import Web3Boot from "components/Web3Boot";
 import ScrollToTop from "ScrollToTop";
 import EventDisplay from "components/EventDisplay";
@@ -24,7 +24,7 @@ function App() {
     <Router>
       <ScrollToTop>
         <Web3Boot>
-          <div className="bg-brand-black relative font-poppins">
+          <div className="relative bg-brand-black font-poppins">
             <div className="max-w-[1728px] mx-auto">
               <nav className="pt-[25px] z-50 lg:pt-[45px] px-5 sm:px-10 lg:px-8">
                 <div className="flex items-center text-white lg:px-10">

@@ -37,7 +37,7 @@ export default function ConnectWallet() {
     })
   }
   useEffect(() => {
-    if(isAuthenticated) {
+    if (isAuthenticated) {
       toggle(false);
     }
   }, [isAuthenticated, user])
@@ -184,7 +184,7 @@ export default function ConnectWallet() {
                         website.
                       </p>
                       <h3 className="mt-5 text-sm font-semibold text-gray-600 md:hidden">
-                        💁‍♀️: Use the Magic Link option to connect with your email.
+                        💁‍♀️: Use the Email option to connect with your email.
                       </h3>
                     </div>
                     <div className="mt-10 text-sm hidden md:block md:max-w-[300px]">

@@ -21,7 +21,7 @@ export const connectors =
     {
         title: "Email",
         icon: Email,
-        connectorId: "magicLink",
+        connectorId: "web3Auth",
         priority: 4,
     },
     {
