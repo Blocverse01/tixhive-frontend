@@ -1,0 +1,52 @@
+import Metamask from "../WalletIcons/metamaskWallet.png";
+import Coin98 from "../WalletIcons/Coin98.png";
+import WalletConnect from "../WalletIcons/walletconnect.png";
+//import MathWallet from "../WalletIcons/MathWallet.svg";
+//import SafePal from "../WalletIcons/SafePal.svg";
+import TrustWallet from "../WalletIcons/TrustWallet.png";
+import Email from "../WalletIcons/Email.png";
+
+export const connectors =
+    [{
+        title: "Metamask",
+        icon: Metamask,
+        connectorId: "injected",
+        priority: 1,
+    }, {
+        title: "WalletConnect",
+        icon: WalletConnect,
+        connectorId: "walletconnect",
+        priority: 2,
+    },
+    {
+        title: "Email",
+        icon: Email,
+        connectorId: "web3Auth",
+        priority: 4,
+    },
+    {
+        title: "Coin98",
+        icon: Coin98,
+        connectorId: "injected",
+        priority: 999,
+    }, {
+        title: "Trust Wallet",
+        icon: TrustWallet,
+        connectorId: "injected",
+        priority: 3,
+    }];
+
+export const getWallets = [{
+    title: "Metamask",
+    icon: Metamask,
+    type: "Browser Extension & Mobile Wallet",
+},
+{
+    title: "Coin98",
+    icon: Coin98,
+    type: "Mobile Wallet",
+}, {
+    title: "Trust Wallet",
+    icon: TrustWallet,
+    type: "Mobile Wallet"
+}];
