@@ -69,7 +69,7 @@ function Home() {
           <img
             src={eventTickets}
             alt="event-tickets"
-            className="lg:hidden w-full absolute z-20 top-[140px] sm:top-[330px]"
+            className="lg:hidden w-full absolute z-0 top-[140px] sm:top-[330px]"
           />
           <img
             src={event}

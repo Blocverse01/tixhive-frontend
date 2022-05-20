@@ -26,32 +26,32 @@ export default function ConnectWallet() {
     } catch (e) {
       console.error(e);
     }
-  }
+  };
   const onSubmit = async (e) => {
     e.preventDefault();
     await login({
       provider: "magicLink",
-      email: document.getElementById('email').value,
+      email: document.getElementById("email").value,
       apiKey: process.env.REACT_APP_MAGIC_KEY,
       network: "polygon",
-    })
-  }
+    });
+  };
   useEffect(() => {
     if (isAuthenticated) {
       toggle(false);
     }
-  }, [isAuthenticated, user])
+  }, [isAuthenticated, user]);
   return (
     <div>
       <button
-        onClick={async () => isAuthenticated ? await logout() : toggle(true)}
+        onClick={async () => (isAuthenticated ? await logout() : toggle(true))}
         className="bg-brand-red connect-wallet h-[45px] md:h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
       >
         {user
           ? truncateEthAddress(account || user.get("ethAddress"))
           : isAuthenticating
-            ? "Connecting"
-            : "Connect Wallet"}
+          ? "Connecting"
+          : "Connect Wallet"}
       </button>
       <Modal
         showModal={isOpen}
@@ -62,15 +62,24 @@ export default function ConnectWallet() {
             <div className="flex flex-row py-5 pl-5 pr-5 overflow-x-auto md:py-8 md:flex-col md:pl-8 md:pr-8">
               <div className="flex justify-between md:w-[420px] overflow-x-auto md:grid md:grid-cols-1 md:gap-5">
                 {connectors.map((connector, connectorIndex) => (
-                  <div onClick={async () => {
-                    if (connector.connectorId === "magicLink") {
-                      setEmailSignIn(true);
-                      return;
-                    }
-                    await login({ provider: connector.connectorId, chainId: chainId, signingMessage: "Log in to BlocTix", });
-                  }}
+                  <div
+                    onClick={async () => {
+                      if (connector.connectorId === "magicLink") {
+                        setEmailSignIn(true);
+                        return;
+                      }
+                      await login({
+                        provider: connector.connectorId,
+                        chainId: chainId,
+                        signingMessage: "Log in to BlocTix",
+                      });
+                    }}
                     key={`conn_${connectorIndex}`}
-                    className={`${!window.ethereum && connector.connectorId === "injected" ? "hidden" : "flex"}  flex-col cursor-pointer overflow-y-hidden flex-shrink-0 md:flex-row md:items-center mr-5
+                    className={`${
+                      !window.ethereum && connector.connectorId === "injected"
+                        ? "hidden"
+                        : "flex"
+                    }  flex-col cursor-pointer overflow-y-hidden flex-shrink-0 md:flex-row md:items-center mr-5
                         }`}
                   >
                     <div className="flex justify-center md:flex-shrink-0">
@@ -104,17 +113,37 @@ export default function ConnectWallet() {
                 </div>
                 <div>
                   <form onSubmit={onSubmit}>
-                    <div className="">
-
-                    </div>
-                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
-                    <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="johndoe@email.com" required />
+                    <div className=""></div>
+                    <label
+                      htmlFor="email"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      Your email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder="johndoe@email.com"
+                      required
+                    />
                     <div className="flex justify-end mt-6">
-                      <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{isAuthenticating && emailSignIn ? <FontAwesomeIcon icon={solid("spinner")} spin /> : ""} Submit</button>
+                      <button
+                        type="submit"
+                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      >
+                        {isAuthenticating && emailSignIn ? (
+                          <FontAwesomeIcon icon={solid("spinner")} spin />
+                        ) : (
+                          ""
+                        )}{" "}
+                        Submit
+                      </button>
                     </div>
                   </form>
                 </div>
-              </div>) : (
+              </div>
+            ) : (
               <div>
                 {getWalletOpen ? (
                   <div className="pl-5 py-6 bg-slate-100 md:bg-transparent md:py-0 md:pt-8 md:pb-14 md:w-[400px] pr-5">
@@ -133,8 +162,9 @@ export default function ConnectWallet() {
                       {getWallets.map((wallet, index) => (
                         <div
                           key={index}
-                          className={`flex justify-between ${index !== parseInt(wallet.length) - 1 ? "mb-7" : ""
-                            }`}
+                          className={`flex justify-between ${
+                            index !== parseInt(wallet.length) - 1 ? "mb-7" : ""
+                          }`}
                         >
                           <div className="flex text-xs">
                             <img
@@ -152,9 +182,14 @@ export default function ConnectWallet() {
                             </div>
                           </div>
                           <div>
-                            <button className="px-3 py-1 text-sm font-semibold uppercase rounded-full text-brand-red bg-slate-200">
+                            <a
+                              target="_blank"
+                              rel="noreferrer"
+                              href={wallet.link}
+                              className="px-3 py-1 text-sm font-semibold uppercase rounded-full text-brand-red bg-slate-200"
+                            >
                               Get
-                            </button>
+                            </a>
                           </div>
                         </div>
                       ))}
@@ -165,9 +200,9 @@ export default function ConnectWallet() {
                       </h3>
                       <p className="text-sm text-center text-gray-500">
                         Select a wallet{" "}
-                        <span class="hidden md:inline">on the left</span>{" "}
-                        <span class="md:hidden">above</span> to get started with a
-                        different wallet provider.
+                        <span className="hidden md:inline">on the left</span>{" "}
+                        <span className="md:hidden">above</span> to get started
+                        with a different wallet provider.
                       </p>
                     </div>
                   </div>
@@ -202,8 +237,8 @@ export default function ConnectWallet() {
                           A New Way to Log In
                         </h3>
                         <p className="text-slate-500">
-                          Instead of creating new accounts and passwords on every
-                          website, just connect your wallet.
+                          Instead of creating new accounts and passwords on
+                          every website, just connect your wallet.
                         </p>
                       </div>
                     </div>
@@ -217,10 +252,11 @@ export default function ConnectWallet() {
                     </div>
                   </div>
                 )}
-              </div>)}
+              </div>
+            )}
           </div>
         }
-      ></Modal >
-    </div >
+      ></Modal>
+    </div>
   );
 }

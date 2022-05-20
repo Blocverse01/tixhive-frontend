@@ -40,13 +40,16 @@ export const getWallets = [{
     title: "Metamask",
     icon: Metamask,
     type: "Browser Extension & Mobile Wallet",
+    link: "https://metamask.io/download/"
 },
 {
     title: "Coin98",
     icon: Coin98,
     type: "Mobile Wallet",
+    link: "https://coin98.com/"
 }, {
     title: "Trust Wallet",
     icon: TrustWallet,
-    type: "Mobile Wallet"
+    type: "Mobile Wallet",
+    link: "https://trustwallet.com/"
 }];

@@ -81,7 +81,7 @@ export default function ConnectWallet() {
         content={
           <div className="flex flex-col md:flex-row md:divide-slate-300 md:divide-x">
             <div className="flex flex-row py-5 pl-5 pr-5 overflow-x-auto md:py-8 md:flex-col md:pl-8 md:pr-8">
-              <div className="flex justify-between md:w-[350px] overflow-x-auto md:grid md:grid-cols-1 md:gap-5">
+              <div className="flex justify-between md:w-[310px] overflow-x-auto md:grid md:grid-cols-1 md:gap-5">
                 {connectors.map((connector, connectorIndex) => (
                   <div
                     onClick={async () => {
@@ -156,9 +156,14 @@ export default function ConnectWallet() {
                           </div>
                         </div>
                         <div>
-                          <button className="px-3 py-1 text-sm font-semibold uppercase rounded-full text-brand-red bg-slate-200">
+                          <a
+                            target="_blank"
+                            rel="noreferrer"
+                            href={wallet.link}
+                            className="px-3 py-1 text-sm font-semibold uppercase rounded-full text-brand-red bg-slate-200"
+                          >
                             Get
-                          </button>
+                          </a>
                         </div>
                       </div>
                     ))}
@@ -169,9 +174,9 @@ export default function ConnectWallet() {
                     </h3>
                     <p className="text-sm text-center text-gray-500">
                       Select a wallet{" "}
-                      <span class="hidden md:inline">on the left</span>{" "}
-                      <span class="md:hidden">above</span> to get started with a
-                      different wallet provider.
+                      <span className="hidden md:inline">on the left</span>{" "}
+                      <span className="md:hidden">above</span> to get started
+                      with a different wallet provider.
                     </p>
                   </div>
                 </div>
@@ -188,7 +193,7 @@ export default function ConnectWallet() {
                       website.
                     </p>
                   </div>
-                  <div className="mt-10 text-sm hidden md:block md:max-w-[300px]">
+                  <div className="mt-10 text-sm hidden md:block md:max-w-[360px]">
                     <div>
                       <h3 className="font-bold capitalize text-slate-800">
                         A Home for your Digital Assets
@@ -208,10 +213,27 @@ export default function ConnectWallet() {
                       </p>
                     </div>
                   </div>
-                  <h3 className="mt-5 md:max-w-[300px] text-sm font-semibold text-gray-600">
-                    💁‍♀️: Use the Email option to connect with your email, Google
-                    account and other social accounts.
-                  </h3>
+                  <div
+                    className="flex mt-5 md:max-w-[360px] p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
+                    role="alert"
+                  >
+                    <svg
+                      className="flex-shrink-0 inline w-5 h-5 mr-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg>
+                    <div>
+                      Click on Email to connect with your email, Google and
+                      social accounts.
+                    </div>
+                  </div>
                   <div className="flex justify-center mt-10">
                     <button
                       onClick={() => setGetWalletOpen(true)}
