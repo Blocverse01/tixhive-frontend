@@ -1,6 +1,6 @@
 import event from "svgs/event.png";
 import eventPeople from "svgs/event-people.png";
-import eventTickets from "svgs/tickets.svg";
+import eventTickets from "svgs/tickets.png";
 import curveLine from "svgs/curve-line.svg";
 import { Link } from "react-router-dom";
 import Events from "components/Events";
@@ -69,7 +69,7 @@ function Home() {
           <img
             src={eventTickets}
             alt="event-tickets"
-            className="lg:hidden w-full absolute z-0 top-[70px] sm:top-[330px]"
+            className="lg:hidden w-full absolute z-0 top-[85px] sm:top-[330px]"
           />
           <img
             src={event}
