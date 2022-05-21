@@ -73,7 +73,7 @@ function Home() {
           />
           <img
             src={event}
-            className="lg:h-[725px] hidden lg:block xl:h-[880px] 2xl:h-[980px] -mt-[110px] top-0 absolute right-0 object-scale-down"
+            className="lg:h-[720px] hidden lg:block xl:h-[750px] 2xl:h-[980px] -mt-[110px] top-0 absolute right-0 object-scale-down"
             alt="event"
           />
         </div>
