@@ -1,21 +1,21 @@
-import event from "svgs/event.svg";
-import eventPeople from "svgs/event-people.svg";
-import eventTickets from "svgs/event-tickets-sharp.png";
+import event from "svgs/event.png";
+import eventPeople from "svgs/event-people.png";
+import eventTickets from "svgs/event-tickets.png";
 import curveLine from "svgs/curve-line.svg";
 import { Link } from "react-router-dom";
 import Events from "components/Events";
 function Home() {
   return (
-    <div className="static">
+    <div className="relative">
       <div className="flex flex-col justify-between lg:px-8 lg:flex-row">
         <div className="mt-[110px] z-0 lg:mt-[60px] px-5 sm:px-6 order-2 lg:order-1 lg:pl-10">
           <div className="relative">
-            <h3 className="font-medium text-[2.311rem] max-w-[226px] leading-[55.45px] lg:max-w-[546px] text-white lg:text-[78px] lg:leading-[132px]">
+            <h3 className="font-medium text-[2.311rem] max-w-[226px] leading-[55.45px] lg:max-w-[546px] text-white lg:text-[65px] lg:leading-[119px] xl:text-[78px] xl:leading-[132px]">
               A New Era of NFT Utility
             </h3>
             <img
               src={curveLine}
-              className="lg:max-w-[330px] max-w-[157.12px] absolute top-12 lg:top-28 ml-[36px] lg:ml-[76px]"
+              className="lg:max-w-[280px] xl:max-w-[330px] max-w-[157.12px] absolute top-12 xl:top-28 lg:top-[6rem] ml-[36px] lg:ml-[63px] xl:ml-[76px]"
               alt="curve"
             />
           </div>
@@ -73,7 +73,7 @@ function Home() {
           />
           <img
             src={event}
-            className="lg:h-[600px] hidden lg:block xl:h-[760px] 2xl:h-[1088px] lg:-mt-[110px]"
+            className="lg:h-[725px] hidden lg:block xl:h-[880px] 2xl:h-[980px] -mt-[110px] top-0 absolute right-0 object-scale-down"
             alt="event"
           />
         </div>

@@ -12,13 +12,11 @@ const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
-  <React.StrictMode>
-    <RecoilRoot>
-      <MoralisProvider serverUrl={serverUrl} appId={appId}>
-        <App />
-      </MoralisProvider>
-    </RecoilRoot>
-  </React.StrictMode>
+  <RecoilRoot>
+    <MoralisProvider serverUrl={serverUrl} appId={appId}>
+      <App />
+    </MoralisProvider>
+  </RecoilRoot>
 );
 
 // If you want to start measuring performance in your app, pass a function

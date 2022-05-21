@@ -12,13 +12,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useState } from "react";
 import TicketInfoPage from "./components/TicketInfoPage";
+import blocTixLogo from "images/bloctix-b.png";
 
 function App() {
   const [navOpen, setNavOpen] = useState(false);
   const navOpenClasses =
     "fixed text-[14px] leading-[21px] right-0 z-[9999] pt-[20.48px] top-0 h-[379px] backdrop-blur-2xl bg-brand-red w-[195px] px-[34px]";
   const navClasses =
-    "flex transition ease-in-out flex-col lg:flex-row appearance-none lg:font-[500] lg:text-[18.65px] lg:leading-[27.98px] gap-[32px] lg:gap-[40.29px] lg:items-center";
+    "flex transition ease-in-out flex-col lg:flex-row appearance-none lg:font-[500] lg:text-[14.65px] lg:leading-[27.98px] gap-[32px] lg:gap-[40.29px] lg:items-center";
 
   return (
     <Router>
@@ -31,9 +32,14 @@ function App() {
                   <div className={"lg:hidden z-50"}>
                     <ConnectWallet />
                   </div>
-                  <Link className={"z-50 hidden lg:block"} to="/">
-                    <h3 className="lg:mr-[79px] lg:font-[500] lg:text-[30px] lg:leading-[45px]">
-                      Bloc-Ticks
+                  <Link className={"z-50 hidden items-center lg:flex"} to="/">
+                    <img
+                      src={blocTixLogo}
+                      className="mr-2 h-[45px] xl:h-[50px]"
+                      alt="BlocTix Logo"
+                    />
+                    <h3 className="lg:mr-[79px] lg:font-[500] lg:text-[25px] xl:text-[30px] lg:leading-[45px]">
+                      BlocTix
                     </h3>
                   </Link>
                   <ul

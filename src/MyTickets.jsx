@@ -31,9 +31,9 @@ export default function MyTickets() {
             const advancedEvent = {
               ...event.attributes,
               sales: sales.filter((sale) =>
-                tokens.includes(sale.tokenId.toNumber()),
+                tokens.includes(sale.tokenId.toNumber())
               ),
-              tickets: tickets
+              tickets: tickets,
             };
             return advancedEvent;
           }
@@ -52,9 +52,11 @@ export default function MyTickets() {
         <h3 className="page-title">Tickets Bought</h3>
         {isAuthenticated ? (
           <section className={"grid-cols-1 text-white gap-5 grid"}>
-            {userEvents.map((event, index) => <EventDropdown key={index} event={event} />)}
+            {userEvents.map((event, index) => (
+              <EventDropdown key={index} event={event} />
+            ))}
             {loading ? (
-              <div className="empty-events text-sm md:text-base">
+              <div className="empty-events">
                 <FontAwesomeIcon
                   icon={solid("spinner")}
                   className="mr-4"
