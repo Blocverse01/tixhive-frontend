@@ -5,6 +5,7 @@ import truncateEthAddress from "truncate-eth-address";
 import Modal from "../Modal";
 import { connectors, getWallets } from "./config";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import LoopingImages from "components/LoopingImages";
 
 export default function ConnectWallet() {
   const [isOpen, toggle] = useState(false);
@@ -51,7 +52,7 @@ export default function ConnectWallet() {
           ? truncateEthAddress(account || user.get("ethAddress"))
           : isAuthenticating
           ? "Connecting"
-          : "Connect Wallet"}
+          : "Connect"}
       </button>
       <Modal
         showModal={isOpen}
@@ -82,12 +83,16 @@ export default function ConnectWallet() {
                     }  flex-col cursor-pointer overflow-y-hidden flex-shrink-0 md:flex-row md:items-center mr-5
                         }`}
                   >
-                    <div className="flex justify-center md:flex-shrink-0">
-                      <img
-                        src={connector.icon}
-                        className="h-[40px] mb-2 md:mb-0 md:mr-3"
-                        alt={connector.title}
-                      />
+                    <div className="flex justify-center mb-2 md:mb-0 md:mr-3 md:flex-shrink-0">
+                      {connector.connectorId === "walletconnect" ? (
+                        <LoopingImages />
+                      ) : (
+                        <img
+                          src={connector.icon}
+                          className="h-[40px]"
+                          alt={connector.title}
+                        />
+                      )}
                     </div>
                     <div className="md:flex-shrink-0">
                       <h3 className="text-xs font-semibold text-center capitalize text-slate-800 md:text-left md:text-base">

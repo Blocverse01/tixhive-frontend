@@ -1,9 +1,9 @@
-import Metamask from "../WalletIcons/metamaskWallet.png";
+import Metamask from "../WalletIcons/metamask.svg";
 import Coin98 from "../WalletIcons/Coin98.png";
-import WalletConnect from "../WalletIcons/walletconnect.png";
+import WalletConnect from "../WalletIcons/walletconnect.svg";
 //import MathWallet from "../WalletIcons/MathWallet.svg";
 //import SafePal from "../WalletIcons/SafePal.svg";
-import TrustWallet from "../WalletIcons/TrustWallet.png";
+import TrustWallet from "../WalletIcons/trustwallet.svg";
 import Email from "../WalletIcons/Email.png";
 
 export const connectors =
@@ -13,7 +13,7 @@ export const connectors =
         connectorId: "injected",
         priority: 1,
     }, {
-        title: "WalletConnect",
+        title: "Mobile Wallets",
         icon: WalletConnect,
         connectorId: "walletconnect",
         priority: 2,
