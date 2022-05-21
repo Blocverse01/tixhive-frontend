@@ -8,7 +8,7 @@ const serverUrl = process.env.REACT_APP_MORALIS_SERVER_URL;
 const appId = process.env.REACT_APP_MORALIS_APP_ID;
 const masterKey = process.env.MORALIS_MASTER_KEY;
 
-Moralis.start({serverUrl, appId, masterKey})
+Moralis.start({ serverUrl, appId, masterKey })
 
 const PORT = process.env.PORT || 3000;
 const indexPath = path.resolve(__dirname, '..', 'build', 'index.html');
@@ -22,15 +22,15 @@ function getIndexData(res) {
 
         // inject meta tags
         htmlData = htmlData
-            .replace('__META_OG_TITLE__', 'Bloc-Tickets')
-            .replace('__META_OG_URL__', `https://www.bloctickets.co/`)
+            .replace('__META_OG_TITLE__', 'BlocTix')
+            .replace('__META_OG_URL__', `https://www.bloctix.com/`)
             .replace('__META_OG_DESCRIPTION__', 'Put Your Event on-chain')
             .replace('__META_DESCRIPTION__', 'Put Your Event on-chain')
-            .replace('__META_OG_IMAGE__', "https://www.bloctickets.co/bloc-tickets-logo.png")
-            .replace('__META_TWITTER_TITLE__', 'Bloc-Tickets')
-            .replace('__META_TWITTER_URL__', `https://www.bloctickets.co/`)
+            .replace('__META_OG_IMAGE__', "https://www.bloctix.com/bloc-tickets-logo.png")
+            .replace('__META_TWITTER_TITLE__', 'BlocTix')
+            .replace('__META_TWITTER_URL__', `https://www.bloctix.com/`)
             .replace('__META_TWITTER_DESCRIPTION__', 'Put Your Event on-chain')
-            .replace('__META_TWITTER_IMAGE__',"https://www.bloctickets.co/bloc-tickets-logo.png")
+            .replace('__META_TWITTER_IMAGE__', "https://www.bloctix.com/bloc-tickets-logo.png")
         return res.send(htmlData);
     });
 }
@@ -42,7 +42,7 @@ app.get("/", (req, res) => { // the root
 // static resources should just be served as they are
 app.use(express.static(
     path.resolve(__dirname, '..', 'build'),
-    {maxAge: '30d'},
+    { maxAge: '30d' },
 ));
 
 //serve event page
@@ -60,16 +60,16 @@ app.get('/events/:contract', (req, res, next) => {
             if (!platformEvent) return res.status(404).send("Event Not Found");
             // inject meta tags
             htmlData = htmlData.replace(
-                "<title>Bloc-Tickets</title>",
-                `<title>Bloc-Tickets - ${platformEvent.get("name")}</title>`
+                "<title>BlocTix</title>",
+                `<title>BlocTix - ${platformEvent.get("name")}</title>`
             )
-                .replace('__META_OG_TITLE__', `Bloc-Tickets - ${platformEvent.get("name")}`)
-                .replace('__META_OG_URL__', `https://www.bloctickets.co/events/${contractAddress}`)
+                .replace('__META_OG_TITLE__', `BlocTix - ${platformEvent.get("name")}`)
+                .replace('__META_OG_URL__', `https://www.bloctix.com/events/${contractAddress}`)
                 .replace('__META_OG_DESCRIPTION__', platformEvent.get("description"))
                 .replace('__META_DESCRIPTION__', platformEvent.get("description"))
                 .replace('__META_OG_IMAGE__', platformEvent.get("cover_image_url"))
-                .replace('__META_TWITTER_TITLE__', `Bloc-Tickets - ${platformEvent.get("name")}`)
-                .replace('__META_TWITTER_URL__', `https://www.bloctickets.co/events/${contractAddress}`)
+                .replace('__META_TWITTER_TITLE__', `BlocTix - ${platformEvent.get("name")}`)
+                .replace('__META_TWITTER_URL__', `https://www.bloctix.com/events/${contractAddress}`)
                 .replace('__META_TWITTER_DESCRIPTION__', platformEvent.get("description"))
                 .replace('__META_TWITTER_IMAGE__', platformEvent.get("cover_image_url"))
             return res.send(htmlData);
