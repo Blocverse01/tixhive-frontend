@@ -11,7 +11,7 @@ function Home() {
         <div className='mt-[110px] z-0 lg:mt-[60px] px-5 sm:px-6 order-2 lg:order-1 lg:pl-10'>
           <div className='relative'>
             <h3 className='font-medium text-[2.311rem] max-w-[226px] leading-[55.45px] lg:max-w-[546px] text-white lg:text-[65px] lg:leading-[119px] xl:text-[78px] xl:leading-[132px]'>
-              A New Era of NFT Utilitiesssss
+              Logan
             </h3>
             <img
               src={curveLine}
