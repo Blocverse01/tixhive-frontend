@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&family=Sora:wght@500&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -149,5 +151,50 @@
   }
   .page-wrapper {
     @apply lg:px-8 py-[38px];
+  }
+
+  .header {
+    @apply text-6xl font-sora;
+  }
+  .header2 {
+    @apply text-4xl font-sora;
+  }
+
+  .margin {
+    @apply mt-40;
+  }
+
+  .text {
+    @apply font-poppins text-lg;
+  }
+
+  .text2 {
+    @apply text-base font-dmsans;
+  }
+
+  .padded-btn {
+    @apply px-4 py-2 rounded-lg;
+  }
+  .padded-btn {
+    @apply px-4 py-2 rounded-lg;
+  }
+
+  .darker-red {
+    @apply hover:bg-brand-darkred duration-500;
+  }
+  .lighter-black {
+    @apply hover:bg-brand-black3 duration-500;
+  }
+
+  .padding {
+    @apply md:px-24;
+  }
+
+  .box {
+    @apply rounded-3xl hover:rotate-3 duration-300;
+  }
+
+  .social-icons {
+    @apply hover:rotate-12 duration-300 hover:scale-125 h-12 w-12;
   }
 }

@@ -6,12 +6,16 @@ module.exports = {
         brand: {
           black: "#111317",
           red: "#FF4601",
+          darkred: "#c33500",
           black2: "#1A1D25",
+          black3: "#404756",
           eventDate: "#1A1D25",
         },
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
+        dmsans: ["DM Sans", "sans-serif"],
+        sora: ["Sora", "sans-serif"],
       },
     },
   },

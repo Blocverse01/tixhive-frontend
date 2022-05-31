@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useState } from "react";
 import TicketInfoPage from "./components/TicketInfoPage";
-import blocTixLogo from "images/bloctix-b.png";
+import blocTixLogo from "images/tixhive-logo.min.svg";
 
 function App() {
   const [navOpen, setNavOpen] = useState(false);
@@ -25,21 +25,21 @@ function App() {
     <Router>
       <ScrollToTop>
         <Web3Boot>
-          <div className="relative bg-brand-black font-poppins">
-            <div className="max-w-[1728px] mx-auto">
-              <nav className="pt-[25px] z-50 lg:pt-[45px] px-5 sm:px-10 lg:px-8">
-                <div className="flex items-center text-white lg:px-10">
+          <div className='relative bg-brand-black text-white '>
+            <div className='max-w-[1728px] mx-auto'>
+              <nav className='pt-[25px] z-50 lg:pt-[45px] px-5 sm:px-10 lg:px-8 font-poppins'>
+                <div className='flex items-center text-white lg:px-10'>
                   <div className={"lg:hidden z-50"}>
                     <ConnectWallet />
                   </div>
-                  <Link className={"z-50 hidden items-center lg:flex"} to="/">
+                  <Link className={"z-50 hidden items-center lg:flex"} to='/'>
                     <img
                       src={blocTixLogo}
-                      className="mr-2 h-[45px] xl:h-[50px]"
-                      alt="BlocTix Logo"
+                      className='mr-2 h-[45px] xl:h-[50px]'
+                      alt='TixHive Logo'
                     />
-                    <h3 className="lg:mr-[79px] lg:font-[500] lg:text-[25px] xl:text-[30px] lg:leading-[45px]">
-                      BlocTix
+                    <h3 className='lg:mr-[79px] lg:font-[500] lg:text-[25px] xl:text-[30px] lg:leading-[45px]'>
+                      TixHive
                     </h3>
                   </Link>
                   <ul
@@ -66,19 +66,23 @@ function App() {
                       onClick={() => setNavOpen(false)}
                       className={"mt-[42.48px] lg:mt-0"}
                     >
-                      <Link to="/">Home</Link>
+                      <Link to='/'>Home</Link>
                     </li>
                     <li onClick={() => setNavOpen(false)}>
-                      <Link to="/my-tickets">My Tickets</Link>
+                      <Link to='/my-tickets'>My Tickets</Link>
                     </li>
                     <li onClick={() => setNavOpen(false)}>
-                      <Link to="/my-events">Manage Events</Link>
+                      <Link to='/my-events'>Manage Events</Link>
                     </li>
                     <li onClick={() => setNavOpen(false)}>
-                      <Link to="/faqs">Need Help?</Link>
+                      <Link to='/faqs'>Need Help?</Link>
                     </li>
                   </ul>
-                  <div className="z-10 flex justify-end flex-1 lg:pr-4">
+                  <div className='z-10 items-center flex justify-end flex-1 lg:pr-4'>
+                    <div className='padded-btn bgblack-gradient  '>
+                      <span className=''>20</span>
+                      <span className=''> MATIC</span>
+                    </div>
                     <div className={"hidden lg:block"}>
                       <ConnectWallet />
                     </div>
@@ -91,16 +95,17 @@ function App() {
                   </div>
                 </div>
               </nav>
+
               <Routes>
-                <Route exact path="/" element={<Home />} />
-                <Route exact path="/create-event" element={<CreateEvent />} />
-                <Route element={<EventDisplay />} path="/events/:contract" />
-                <Route element={<MyTickets />} path="/my-tickets" />
-                <Route element={<ManageEvents />} path="/my-events" />
+                <Route exact path='/' element={<Home />} />
+                {/* <Route exact path='/create-event' element={<CreateEvent />} />
+                <Route element={<EventDisplay />} path='/events/:contract' />
+                <Route element={<MyTickets />} path='/my-tickets' />
+                <Route element={<ManageEvents />} path='/my-events' />
                 <Route
                   element={<TicketInfoPage />}
                   path={"/:contract/tickets/:purchase"}
-                />
+                /> */}
               </Routes>
             </div>
           </div>
