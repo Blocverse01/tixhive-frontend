@@ -1,11 +1,9 @@
 import React from "react";
 import { useMoralisWeb3Api } from "react-moralis";
-import useWalletCryptoBalance from "./useWalletCryptoBalance";
 import { calculateUsdValue } from "utils/web3-utils";
 
-export default function useWalletUsdBalance() {
+export default function useWalletUsdBalance(maticBalance, usdtBalance) {
     const Web3Api = useMoralisWeb3Api();
-    const { maticBalance, usdtBalance } = useWalletCryptoBalance();
     const fetchTokenPrice = async (tokenAddress) => {
         //Get token price on QuickSwap Polygon
         const options = {
