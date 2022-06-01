@@ -154,30 +154,30 @@
   }
 
   .header {
-    @apply text-6xl font-sora;
+    @apply text-3xl md:text-3xl xl:text-6xl font-sora;
   }
   .header2 {
-    @apply text-4xl font-sora;
+    @apply text-2xl md:text-4xl font-sora;
   }
 
   .margin {
-    @apply mt-40;
+    @apply mt-20 xl:mt-40;
   }
 
   .text {
-    @apply font-poppins text-lg;
+    @apply font-poppins text-sm md:text-lg;
   }
 
   .text2 {
-    @apply text-base font-dmsans;
+    @apply text-xs md:text-base font-dmsans;
   }
 
   .padded-btn {
-    @apply px-4 py-2 rounded-lg;
+    @apply px-10  md:px-4 py-2 rounded-lg;
   }
-  .padded-btn {
+  /* .padded-btn {
     @apply px-4 py-2 rounded-lg;
-  }
+  } */
 
   .darker-red {
     @apply hover:bg-brand-darkred duration-500;
@@ -187,14 +187,18 @@
   }
 
   .padding {
-    @apply md:px-24;
+    @apply md:px-12;
+  }
+
+  .padding2 {
+    @apply px-5;
   }
 
   .box {
-    @apply rounded-3xl hover:rotate-3 duration-300;
+    @apply rounded-2xl md:rounded-3xl hover:rotate-3 duration-300;
   }
 
   .social-icons {
-    @apply hover:rotate-12 duration-300 hover:scale-125 h-12 w-12;
+    @apply hover:rotate-12 duration-300 xl:hover:scale-125;
   }
 }

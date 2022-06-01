@@ -18,11 +18,11 @@
   backdrop-filter: blur(5.00169px);
 }
 
-html,
+/* html,
 body {
   max-width: 100%;
   overflow-x: hidden;
-}
+} */
 
 .border {
   border: 0.629574px solid rgba(255, 255, 255, 0.6);
