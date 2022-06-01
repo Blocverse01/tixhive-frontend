@@ -83,8 +83,13 @@ export default function MintTickets({ event, setBodyScroll }) {
       traits: [
         { trait_type: "Checked In", value: "true" },
         { trait_type: "Purchased", value: "true" },
+        { trait_type: "Ticket Type", value: ticket.name },
       ],
+      purchase_id: purchaseId,
+      external_url: `${window.location.origin}/events/${event.contractAddress}`,
       ticketId: purchase.ticketId,
+      seller_fee_basis_points: 1000, // Define how much % you want from secondary market sales 1000 = 10%
+      fee_recipient: event.owner,
     };
     const base64 = btoa(JSON.stringify(metadata));
     const storedMetadata = await saveFile(
@@ -204,7 +209,7 @@ export default function MintTickets({ event, setBodyScroll }) {
             : "max-h-0 h-0 overflow-hidden hidden"
         }`}
       >
-        <div className="mint-modal-content relative">
+        <div className="relative mint-modal-content">
           {mintingState >= 0 ? (
             <ProgressTracker
               state={mintingState}
@@ -295,7 +300,10 @@ export default function MintTickets({ event, setBodyScroll }) {
                 </div>
               </div>
               <div className="lg:mt-[55px] mt-[15px] flex justify-end">
-                <button onClick={() => purchaseTickets()} className="px-3 btn text-sm md:text-base">
+                <button
+                  onClick={() => purchaseTickets()}
+                  className="px-3 text-sm btn md:text-base"
+                >
                   Pay {totalAmount} MATIC{" "}
                   <FontAwesomeIcon
                     className="ml-2"
