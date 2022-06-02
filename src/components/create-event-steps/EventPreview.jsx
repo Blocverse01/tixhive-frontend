@@ -25,10 +25,10 @@ export default function EventPreview({ handleChange }) {
     getImageFromQRCode();
   });
   return (
-    <section className="relative">
+    <section className='relative'>
       <div>
-        <div className="hidden">
-          <QRCode id="QRCode" value={event.name + " - Ticket Preview"} />
+        <div className='hidden'>
+          <QRCode id='QRCode' value={event.name + " - Ticket Preview"} />
         </div>
         <Ticket
           eventHost={event.host}
@@ -40,13 +40,13 @@ export default function EventPreview({ handleChange }) {
           eventDate={moment(event.start_date).format("DD-MM-YYYY")}
         />
       </div>
-      <div className="active-title text-white another-gradient p-[26px] mt-[50.17px]">
-        <h3 className="visibility-header lg:text-[25px] lg:leading-[38px] mb-[15px]">
+      <div className='active-title rounded-lg text-white another-gradient p-[26px] mt-[50.17px]'>
+        <h3 className='visibility-header lg:text-[25px] lg:leading-[38px] mb-[15px]'>
           Who can see your event?
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-[34px]">
-          <div className="bg-visibility-selector md:col-span-2 p-[23px]">
-            <div className="flex gap-2">
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-[34px]'>
+          <div className='bg-visibility-selector rounded-lg md:col-span-2 p-[23px]'>
+            <div className='flex gap-2'>
               <div
                 onClick={() =>
                   handleChange({
@@ -57,15 +57,15 @@ export default function EventPreview({ handleChange }) {
                   event.visibility === 1 ? "bg-brand-red" : "bg-[#BEBEBE]"
                 } h-[14px] w-[14px] rounded-full cursor-pointer`}
               ></div>
-              <h3 className="-mt-1">
-                <span className="font-medium">Public</span>
+              <h3 className='-mt-1'>
+                <span className='font-medium'>Public</span>
                 <br />
-                <span className="text-[14px]">
+                <span className='text-[14px]'>
                   Anyone can search on BlocTicks and find your event.
                 </span>
               </h3>
             </div>
-            <div className="flex mt-[6px] gap-2">
+            <div className='flex mt-[6px] gap-2'>
               <div
                 onClick={() =>
                   handleChange({
@@ -76,16 +76,16 @@ export default function EventPreview({ handleChange }) {
                   event.visibility === 0 ? "bg-brand-red" : "bg-[#BEBEBE]"
                 } h-[14px] w-[14px] rounded-full cursor-pointer`}
               ></div>
-              <h3 className="-mt-1">
-                <span className="font-medium">Private</span>
+              <h3 className='-mt-1'>
+                <span className='font-medium'>Private</span>
                 <br />
-                <span className="text-[14px]">
+                <span className='text-[14px]'>
                   Only people with the event link.
                 </span>
               </h3>
             </div>
           </div>
-          <div className="flex flex-col gap-[17px]">
+          <div className='flex flex-col gap-[17px]'>
             <div>
               <button></button>
             </div>

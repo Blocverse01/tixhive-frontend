@@ -18,10 +18,10 @@ function Home() {
       <section className='  relative bg-contain bg-bottom xl:bg-center bg-no-repeat  margin xl:h-screen md:px-0 padding2'>
         <img
           src={sec}
-          className=' z-0 absolute top-10 lg:-top-28 md:top-2 xl:top-0 left-0 right-0'
+          className=' z-0 absolute top-[13rem] lg:-top-28 md:top-2 xl:top-0 left-0 right-0'
           alt='background'
         />
-        <div className='z-10 relative auth-modal2 '>
+        <div className='z-1 relative auth-modal2 '>
           <h1 className='  text-center  text-bold header mx-auto md:w-[600px] xl:w-[1200px]'>
             Hassle-free event management for everyone.
           </h1>
@@ -68,7 +68,7 @@ function Home() {
         </div>
       </section>
 
-      <section className='margin padding md:justify-between  md:flex md:items-center'>
+      <section className=' mt-10 xl:mt-32 padding md:justify-between  md:flex md:items-center'>
         <div className='px-5 order-2  md:px-0 md:w-[300px] xl:w-[500px]'>
           <p className='header'>Track your ticket sales on the go.</p>
           <p className=' mt-5 text2'>
@@ -85,7 +85,7 @@ function Home() {
           >
             <img
               src={ticket2}
-              className='assets xl:h-[36rem] xl:-mt-28 xl:-ml-10 '
+              className='assets xl:h-[36rem] relative  -top-10 xl:top-0 xl:-mt-28 xl:-ml-10 '
               alt='asset'
             />
           </Tilt>
@@ -110,7 +110,7 @@ function Home() {
             >
               <img
                 src={ticket3}
-                className='assets xl:h-[36rem] xl:-mt-28 xl:-ml-10 '
+                className='assets xl:h-[36rem] relative xl:left-10  -top-10 xl:top-0 xl:-mt-28 xl:-ml-10 '
                 alt='asset'
               />
             </Tilt>

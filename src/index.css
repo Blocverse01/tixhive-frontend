@@ -205,6 +205,6 @@
   }
 
   .assets {
-    @apply h-full w-full object-scale-down;
+    @apply h-[15rem] w-full object-scale-down;
   }
 }

@@ -78,6 +78,8 @@ body {
 }
 
 .create-event-section {
+  border-radius: 0.5rem;
+
   background: linear-gradient(
     96.52deg,
     rgba(62, 62, 62, 0.8) 0%,
@@ -92,6 +94,8 @@ body {
 }
 
 .create-event-gradient {
+  border-radius: 0.5rem;
+
   background: linear-gradient(
     96.52deg,
     rgba(151, 151, 151, 0.8) 0%,
