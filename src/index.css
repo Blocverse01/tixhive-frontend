@@ -14,12 +14,14 @@
     @apply text-[10px] md:text-[14px] font-[500] leading-[25.81px] text-white;
   }
   .btn {
-    @apply bg-brand-red h-[45px] md:h-[56px] px-5 lg:px-0 lg:min-w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center;
+    @apply bg-brand-red h-[45px] md:h-[56px] px-5 lg:px-0 lg:min-w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center rounded-lg;
   }
   .social-icon {
     @apply w-[18.55px] h-[18.55px] md:w-[42px] md:h-[42px];
   }
-
+  button {
+    @apply rounded-lg;
+  }
   .mint-modal-content {
     @apply max-w-[1220px] w-full flex-1 z-[55] mx-auto overflow-auto p-5 md:px-[84px] sm:py-[64px];
     background: linear-gradient(
@@ -200,5 +202,9 @@
 
   .social-icons {
     @apply hover:rotate-12 duration-300 xl:hover:scale-125;
+  }
+
+  .assets {
+    @apply h-full w-full object-scale-down;
   }
 }

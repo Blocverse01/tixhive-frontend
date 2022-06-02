@@ -98,14 +98,14 @@ function App() {
 
               <Routes>
                 <Route exact path='/' element={<Home />} />
-                {/* <Route exact path='/create-event' element={<CreateEvent />} />
+                <Route exact path='/create-event' element={<CreateEvent />} />
                 <Route element={<EventDisplay />} path='/events/:contract' />
                 <Route element={<MyTickets />} path='/my-tickets' />
                 <Route element={<ManageEvents />} path='/my-events' />
                 <Route
                   element={<TicketInfoPage />}
                   path={"/:contract/tickets/:purchase"}
-                /> */}
+                />
               </Routes>
             </div>
           </div>

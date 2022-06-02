@@ -12191,6 +12191,11 @@ react-native-crypto-js@1.0.0:
   resolved "https://registry.yarnpkg.com/react-native-crypto-js/-/react-native-crypto-js-1.0.0.tgz#e677e022e147f41b35614416c92d655f87e2450a"
   integrity sha512-FNbLuG/HAdapQoybeZSoes1PWdOj0w242gb+e1R0hicf3Gyj/Mf8M9NaED2AnXVOX01b2FXomwUiw1xP1K+8sA==
 
+react-parallax-tilt@^1.7.39:
+  version "1.7.39"
+  resolved "https://registry.yarnpkg.com/react-parallax-tilt/-/react-parallax-tilt-1.7.39.tgz#14923e77847da66eeb683717b71f7bcecfbfe56b"
+  integrity sha512-lPJcD2PbkwTBVdGwlNYHT9jr0w9XoPKV+r5TYyWdhK3vDpjSm8XBf+rxEU3iwG+gp1WZATKIHfbjadipdc+nRA==
+
 react-qr-code@^2.0.5, react-qr-code@^2.0.7:
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/react-qr-code/-/react-qr-code-2.0.7.tgz#508304e031e82426a044f5e9490aca87d7c3de38"

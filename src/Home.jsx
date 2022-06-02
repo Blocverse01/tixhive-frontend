@@ -4,53 +4,47 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { regular } from "@fortawesome/fontawesome-svg-core/import.macro";
 import tw from "images/tw.svg";
 import metamask from "images/metamask.svg";
-import sfp from "images/sfp.svg";
+import sec from "images/bg-sec-1.png";
+import Tilt from "react-parallax-tilt";
+
+import ticket from "images/ticket-1.png";
+import ticket2 from "images/ticket-2.png";
+import ticket3 from "images/ticket-3.png";
+import coin98 from "images/coin98.svg";
 
 function Home() {
   return (
     <div>
-      <section className='margin md:px-0 padding2'>
-        <h1 className='  text-center  text-bold header mx-auto md:w-[600px] xl:w-[1200px]'>
-          Hassle-free event management for everyone.
-        </h1>
-        <p className='mx-auto md:text-center mt-10 md:w-[400px] xl:w-[410px] text2'>
-          Create events, then create tickets for your event. Monitor sales,
-          receive payments, verify tickets - all in one place.
-        </p>
-        <div className='md:flex justify-between mx-auto md:w-[400px] mt-12 md:mt-10  text'>
-          <Link
-            className='bg-brand-red text padded-btn darker-red  '
-            to='/create-event'
-          >
-            Create an Event
-          </Link>
-          <button className='bgblack-gradient mt-10 md:mt-0 text padded-btn'>
-            <FontAwesomeIcon className='mr-1' icon={regular("circle-play")} />{" "}
-            Watch Video
-          </button>
+      <section className='  relative bg-contain bg-bottom xl:bg-center bg-no-repeat  margin xl:h-screen md:px-0 padding2'>
+        <img
+          src={sec}
+          className=' z-0 absolute top-10 lg:-top-28 md:top-2 xl:top-0 left-0 right-0'
+          alt='background'
+        />
+        <div className='z-10 relative auth-modal2 '>
+          <h1 className='  text-center  text-bold header mx-auto md:w-[600px] xl:w-[1200px]'>
+            Hassle-free event management for everyone.
+          </h1>
+          <p className='mx-auto md:text-center mt-10 md:w-[400px] xl:w-[410px] text2'>
+            Create events, then create tickets for your event. Monitor sales,
+            receive payments, verify tickets - all in one place.
+          </p>
+          <div className='md:flex justify-between mx-auto md:w-[400px] mt-12 md:mt-10  text'>
+            <Link
+              className='bg-brand-red text padded-btn darker-red  '
+              to='/create-event'
+            >
+              Create an Event
+            </Link>
+            <button className='bgblack-gradient mt-10 md:mt-0 text padded-btn'>
+              <FontAwesomeIcon className='mr-1' icon={regular("circle-play")} />{" "}
+              Watch Video
+            </button>
+          </div>
         </div>
       </section>
 
-      <section className='flex justify-around  bg-brand-red py-10  md:py-28  margin md:items-center '>
-        <button>
-          <div className=' h-20 w-20 xl:h-60 xl:w-60 md:h-40 md:w-40     bg-brand-black      box'></div>
-          <p className='text-center mt-3 text'>Create</p>
-        </button>
-        <button>
-          <div className=' h-20 w-20 xl:h-60 xl:w-60 md:h-40 md:w-40    bg-brand-black    box'></div>
-          <p className='text-center mt-3 text'>Choose</p>
-        </button>
-        <button>
-          <div className=' h-20 w-20 xl:h-60 xl:w-60 md:h-40 md:w-40     bg-brand-black   box'></div>
-          <p className='text-center mt-3 text'>Track</p>
-        </button>
-        <button>
-          <div className=' h-20 w-20 xl:h-60 xl:w-60 md:h-40 md:w-40    bg-brand-black    box'></div>
-          <p className='text-center mt-3 text'>Follow-up</p>
-        </button>
-      </section>
-
-      <section className='margin padding md:justify-between  md:flex md:items-center'>
+      <section className=' margin xl:mt-0  xl:h-[600px] bg-brand-red py-32 padding md:justify-between  md:flex md:items-center'>
         <div className=' px-5 md:px-0 md:w-[300px] xl:w-[500px]'>
           <p className='header'>Create your dream event in minutes.</p>
           <p className=' mt-5 text2'>
@@ -59,20 +53,23 @@ function Home() {
             few minutes.
           </p>
         </div>
-        <div className=' w-[300px] h-48 mx-auto md:mx-0 mt-10 md:mt-10 md:w-[300px] md:h-48   xl:w-[600px] xl:h-96  rounded-3xl  dummy-box'></div>
-      </section>
-      <section className='margin padding md:justify-between  md:flex md:items-center'>
-        <div className='px-5 md:px-0 md:w-[300px] xl:w-[500px]'>
-          <p className='header'>Choose a ticketing type that fits you.</p>
-          <p className=' mt-5 text2'>
-            Whether you want your event tickets to be free, paid, donation based
-            - or even a combination of all three, it’s all up to you.
-          </p>
+        <div className=' w-[300px] h-48 mx-auto md:mx-0 mt-10 md:mt-10 md:w-[300px] md:h-48   xl:w-[600px] xl:h-96  rounded-3xl  dummy-box'>
+          <Tilt
+            glareMaxOpacity={0.9}
+            glareColor='lightblue'
+            glarePosition='all'
+          >
+            <img
+              src={ticket}
+              className='   assets xl:-ml-12 xl:-mt-10 xl:h-[32rem]  '
+              alt='asset'
+            />
+          </Tilt>
         </div>
-        <div className=' w-[300px] h-48 mx-auto md:mx-0 mt-10 md:mt-10 md:w-[300px] md:h-48 xl:w-[600px] xl:h-96  rounded-3xl  dummy-box'></div>
       </section>
+
       <section className='margin padding md:justify-between  md:flex md:items-center'>
-        <div className='px-5 md:px-0 md:w-[300px] xl:w-[500px]'>
+        <div className='px-5 order-2  md:px-0 md:w-[300px] xl:w-[500px]'>
           <p className='header'>Track your ticket sales on the go.</p>
           <p className=' mt-5 text2'>
             Your event dashboard has all the details on the tickets sold, total
@@ -80,8 +77,21 @@ function Home() {
             whenever you make a sale!
           </p>
         </div>
-        <div className=' w-[300px] h-48 mx-auto md:mx-0 mt-10 md:mt-10 md:w-[300px] md:h-48 xl:w-[600px] xl:h-96  rounded-3xl  dummy-box'></div>
+        <div className=' w-[300px] h-48 mx-auto md:mx-0 mt-10 md:mt-10 md:w-[300px] md:h-48 xl:w-[600px] xl:h-96  rounded-3xl  dummy-box'>
+          <Tilt
+            glareMaxOpacity={0.9}
+            glareColor='lightblue'
+            glarePosition='all'
+          >
+            <img
+              src={ticket2}
+              className='assets xl:h-[36rem] xl:-mt-28 xl:-ml-10 '
+              alt='asset'
+            />
+          </Tilt>
+        </div>
       </section>
+
       <div className='py-16 margin bg-brand-red'>
         <section className=' padding md:justify-between  md:flex md:items-center'>
           <div className='px-5 md:px-0 md:w-[300px] xl:w-[500px]'>
@@ -92,7 +102,19 @@ function Home() {
               attendees.
             </p>
           </div>
-          <div className=' w-[300px] h-48 mx-auto md:mx-0 mt-10 md:mt-10 md:w-[300px] md:h-48 xl:w-[600px] xl:h-96  rounded-3xl  dummy-box'></div>
+          <div className=' w-[300px] h-48 mx-auto md:mx-0 mt-10 md:mt-10 md:w-[300px] md:h-48 xl:w-[600px] xl:h-96  rounded-3xl  dummy-box'>
+            <Tilt
+              glareMaxOpacity={0.9}
+              glareColor='lightblue'
+              glarePosition='all'
+            >
+              <img
+                src={ticket3}
+                className='assets xl:h-[36rem] xl:-mt-28 xl:-ml-10 '
+                alt='asset'
+              />
+            </Tilt>
+          </div>
         </section>
       </div>
 
@@ -111,7 +133,7 @@ function Home() {
           <div className=' flex mt-10 w-[300px] justify-around'>
             <img className='' alt='' src={tw} />
             <img className='' alt='' src={metamask} />
-            <img className='' alt='' src={sfp} />
+            <img className='' alt='' src={coin98} />
           </div>
         </div>
       </section>

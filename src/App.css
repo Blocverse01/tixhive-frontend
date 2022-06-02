@@ -18,6 +18,10 @@
   backdrop-filter: blur(5.00169px);
 }
 
+.sec-1 {
+  background-image: url("/src/images/bg-sec-1.png");
+}
+
 /* html,
 body {
   max-width: 100%;
@@ -145,4 +149,8 @@ body {
 
 .auth-modal {
   backdrop-filter: blur(2px);
+}
+
+.auth-modal2 {
+  backdrop-filter: blur(1px);
 }
