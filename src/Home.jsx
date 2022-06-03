@@ -23,11 +23,10 @@ function Home() {
         />
         <div className='z-1 relative auth-modal2 '>
           <h1 className='  text-center  text-bold header mx-auto md:w-[600px] xl:w-[1200px]'>
-            Hassle-free event management for everyone.
+            The easiest way to sell your events.
           </h1>
           <p className='mx-auto md:text-center mt-10 md:w-[400px] xl:w-[410px] text2'>
-            Create events, then create tickets for your event. Monitor sales,
-            receive payments, verify tickets - all in one place.
+          Make your events come to life with NFT-based ticketing.
           </p>
           <div className='md:flex justify-between mx-auto md:w-[400px] mt-12 md:mt-10  text'>
             <Link
@@ -46,11 +45,9 @@ function Home() {
 
       <section className=' margin xl:mt-0  xl:h-[600px] bg-brand-red py-32 padding md:justify-between  md:flex md:items-center'>
         <div className=' px-5 md:px-0 md:w-[300px] xl:w-[500px]'>
-          <p className='header'>Create your dream event in minutes.</p>
+          <p className='header'>Enjoy cross-platform ticket sales.</p>
           <p className=' mt-5 text2'>
-            A simple step-by-step guided process where you set up your event
-            name, date, time and venue. These details are editable, and take a
-            few minutes.
+           Earn royalties on your ticket resale from NFT marketplaces like OpenSea and Rarible.
           </p>
         </div>
         <div className=' w-[300px] h-48 mx-auto md:mx-0 mt-10 md:mt-10 md:w-[300px] md:h-48   xl:w-[600px] xl:h-96  rounded-3xl  dummy-box'>
@@ -70,11 +67,9 @@ function Home() {
 
       <section className=' mt-10 xl:mt-32 padding md:justify-between  md:flex md:items-center'>
         <div className='px-5 order-2  md:px-0 md:w-[300px] xl:w-[500px]'>
-          <p className='header'>Track your ticket sales on the go.</p>
+          <p className='header'>Expirence 100% control on ticket sales and remitance.</p>
           <p className=' mt-5 text2'>
-            Your event dashboard has all the details on the tickets sold, total
-            revenue generated and more. As an added bonus, you get notified
-            whenever you make a sale!
+            Get instant payout on ticket sales and enjoy transparent ticketing powered by SmartContracts
           </p>
         </div>
         <div className=' w-[300px] h-48 mx-auto md:mx-0 mt-10 md:mt-10 md:w-[300px] md:h-48 xl:w-[600px] xl:h-96  rounded-3xl  dummy-box'>
@@ -97,8 +92,7 @@ function Home() {
           <div className='px-5 md:px-0 md:w-[300px] xl:w-[500px]'>
             <p className='header'>Follow-up and reward your attendees.</p>
             <p className=' mt-5 text2'>
-              You get the chance to airdrop POAPs or tokens, give discounts on
-              your next event, and a lot of exclusive benefits for your
+              You get the chance to airdrop POAPs or tokens, and a lot of exclusive benefits for your
               attendees.
             </p>
           </div>
