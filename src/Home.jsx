@@ -6,7 +6,6 @@ import tw from "images/tw.svg";
 import metamask from "images/metamask.svg";
 import sec from "images/bg-sec-1.png";
 import Tilt from "react-parallax-tilt";
-
 import ticket from "images/ticket-1.png";
 import ticket2 from "images/ticket-2.png";
 import ticket3 from "images/ticket-3.png";
