@@ -1,14 +1,40 @@
+/* eslint-disable no-unused-vars */
 import { useEffect } from "react";
 import { useMoralis, useMoralisQuery } from "react-moralis";
 import { eventsState } from "recoil/atoms/events";
 import { useRecoilState } from "recoil";
+import useWalletCryptoBalance from "hooks/useWalletCryptoBalance";
+import useWalletUsdBalance from "hooks/useWalletUsdBalance";
+import {
+  walletCryptoBalanceState,
+  walletUsdBalanceState,
+} from "recoil/atoms/wallet-balance";
 
 export default function Web3Boot({ children }) {
   const chainId = process.env.REACT_APP_CHAIN_ID;
-  // eslint-disable-next-line no-unused-vars
   const [events, setEvents] = useRecoilState(eventsState);
-  const { fetch } = useMoralisQuery("Event", (query) => query.descending("createdAt"), [], { autoFetch: false });
-  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, user, isInitialized } = useMoralis();
+  const { fetch } = useMoralisQuery(
+    "Event",
+    (query) => query.descending("createdAt"),
+    [],
+    { autoFetch: false }
+  );
+  const {
+    isWeb3Enabled,
+    enableWeb3,
+    isAuthenticated,
+    isWeb3EnableLoading,
+    user,
+    isInitialized,
+  } = useMoralis();
+  const [walletCryptoBalance, setWalletCryptoBalance] = useRecoilState(
+    walletCryptoBalanceState
+  );
+  const [walletUsdBalance, setWalletUsdBalance] = useRecoilState(
+    walletUsdBalanceState
+  );
+  const { maticBalance, usdtBalance } = useWalletCryptoBalance();
+  const { maticUsd, usdtUsd } = useWalletUsdBalance(maticBalance, usdtBalance);
   const connectorId = window.localStorage.getItem("connectorId");
   useEffect(() => {
     async function bootWeb3() {
@@ -18,8 +44,20 @@ export default function Web3Boot({ children }) {
       }
     }
     bootWeb3();
+    if (user) {
+      setWalletCryptoBalance({ maticBalance, usdtBalance });
+      setWalletUsdBalance({ maticUsd, usdtUsd });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated, isWeb3Enabled, user]);
+  }, [
+    isAuthenticated,
+    isWeb3Enabled,
+    user,
+    maticBalance,
+    usdtBalance,
+    maticUsd,
+    usdtUsd,
+  ]);
   useEffect(() => {
     async function fetchEvents() {
       const blocEvents = (await fetch()) || [];
