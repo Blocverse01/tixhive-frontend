@@ -163,11 +163,11 @@
   }
 
   .margin {
-    @apply mt-20 xl:mt-40;
+    @apply mt-20 xl:mt-24;
   }
 
   .text {
-    @apply font-poppins text-sm md:text-lg;
+    @apply text-sm font-poppins md:text-lg;
   }
 
   .text2 {
@@ -175,17 +175,17 @@
   }
 
   .padded-btn {
-    @apply px-10  md:px-4 py-2 rounded-lg;
+    @apply px-10 py-2 rounded-lg md:px-4;
   }
   /* .padded-btn {
     @apply px-4 py-2 rounded-lg;
   } */
 
   .darker-red {
-    @apply hover:bg-brand-darkred duration-500;
+    @apply duration-500 hover:bg-brand-darkred;
   }
   .lighter-black {
-    @apply hover:bg-brand-black3 duration-500;
+    @apply duration-500 hover:bg-brand-black3;
   }
 
   .padding {
@@ -197,11 +197,11 @@
   }
 
   .box {
-    @apply rounded-2xl md:rounded-3xl hover:rotate-3 duration-300;
+    @apply duration-300 rounded-2xl md:rounded-3xl hover:rotate-3;
   }
 
   .social-icons {
-    @apply hover:rotate-12 duration-300 xl:hover:scale-125;
+    @apply duration-300 hover:rotate-12 xl:hover:scale-125;
   }
 
   .assets {
