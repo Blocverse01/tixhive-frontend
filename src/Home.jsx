@@ -67,9 +67,9 @@ function Home() {
 
       <section className=' mt-10 xl:mt-32 padding md:justify-between  md:flex md:items-center'>
         <div className='px-5 order-2  md:px-0 md:w-[300px] xl:w-[500px]'>
-          <p className='header'>Expirence 100% control on ticket sales and remitance.</p>
+          <p className='header'>Experience 100% control on ticket sales and remitance.</p>
           <p className=' mt-5 text2'>
-            Get instant payout on ticket sales and enjoy transparent ticketing powered by SmartContracts
+            Get instant payout on ticket sales and enjoy transparent ticketing powered by Smart Contracts.
           </p>
         </div>
         <div className=' w-[300px] h-48 mx-auto md:mx-0 mt-10 md:mt-10 md:w-[300px] md:h-48 xl:w-[600px] xl:h-96  rounded-3xl  dummy-box'>
