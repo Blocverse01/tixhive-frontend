@@ -97,6 +97,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",
+    "jest": "^28.1.0",
     "postcss": "^8.4.7",
     "tailwindcss": "^3.0.23"
   }
