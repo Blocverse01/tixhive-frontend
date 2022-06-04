@@ -45,13 +45,13 @@ export default function NewTicket({ ticket }) {
             </h3>
             <div className="flex">
               <button
-                className="text-white pr-3 text-lg"
+                className="pr-3 text-lg text-white"
                 onClick={() => setEditing(true)}
               >
                 <FontAwesomeIcon icon={solid("pen")} />
               </button>
               <button
-                className="text-white text-lg"
+                className="text-lg text-white"
                 onClick={() => deleteTicket(index)}
               >
                 <FontAwesomeIcon icon={solid("trash")} />
@@ -76,7 +76,7 @@ export default function NewTicket({ ticket }) {
               Editing {ticket.name}
             </h3>
             <button
-              className="text-white text-2xl"
+              className="text-2xl text-white"
               onClick={() => setEditing(false)}
             >
               <FontAwesomeIcon icon={solid("times")} />
@@ -137,6 +137,7 @@ export default function NewTicket({ ticket }) {
                 name="name"
                 className="create-event-gradient w-full px-3 mt-2 h-[45px]"
                 type="text"
+                placeholder="Ticket Name"
               />
             </div>
 
@@ -155,6 +156,7 @@ export default function NewTicket({ ticket }) {
                 name="quantity_available"
                 className="create-event-gradient w-full px-3 mt-2 h-[45px]"
                 type="number"
+                placeholder="How many tickets are available?"
               />
             </div>
             {ticket.ticket_type > 0 ? (
@@ -173,6 +175,7 @@ export default function NewTicket({ ticket }) {
                   name="price"
                   className="create-event-gradient w-full px-3 mt-2 h-[45px]"
                   type="number"
+                  placeholder="How much does this ticket cost?"
                 />
               </div>
             ) : (
