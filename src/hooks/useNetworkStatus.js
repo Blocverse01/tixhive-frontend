@@ -8,6 +8,8 @@ export default function useNetworkStatus() {
     React.useEffect(() => {
         if (chainId === "0x89") {
             setIsPolygon(true);
+        } else {
+            setIsPolygon(false);
         }
     }, [chainId]);
     const switchToPolygon = async () => {
