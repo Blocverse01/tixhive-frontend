@@ -28,6 +28,6 @@ export default function useWalletUsdBalance(maticBalance, usdtBalance) {
             fetchBalance();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user, isInitialized]);
+    }, [user, isInitialized, maticBalance, usdtBalance]);
     return { maticUsd, usdtUsd };
 }

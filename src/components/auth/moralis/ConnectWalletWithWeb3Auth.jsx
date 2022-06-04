@@ -8,20 +8,19 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import blocTix from "images/tixhive-logo.min.svg";
 import LoopingImages from "components/LoopingImages";
 import useNetworkStatus from "hooks/useNetworkStatus";
+import { useRecoilState } from "recoil";
+import { showWalletModalState } from "recoil/atoms/wallet";
 
 export default function ConnectWallet() {
   const [isOpen, toggle] = useState(false);
   const [getWalletOpen, setGetWalletOpen] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [showWalletModal, setShowWalletModal] =
+    useRecoilState(showWalletModalState);
   const { isPolygon } = useNetworkStatus();
   const chainId = process.env.REACT_APP_CHAIN_ID;
-  const {
-    authenticate,
-    isAuthenticated,
-    isAuthenticating,
-    user,
-    account,
-    logout,
-  } = useMoralis();
+  const { authenticate, isAuthenticated, isAuthenticating, user } =
+    useMoralis();
   const login = async (options) => {
     try {
       await authenticate(options);
@@ -52,7 +51,7 @@ export default function ConnectWallet() {
       <div className="flex items-center">
         <button
           onClick={async () =>
-            isAuthenticated ? await logout() : toggle(true)
+            isAuthenticated ? setShowWalletModal(true) : toggle(true)
           }
           className={`${
             showRed ? "bg-[#D30000]" : "bg-brand-red"

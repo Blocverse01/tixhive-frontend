@@ -8,7 +8,7 @@ import useWalletUsdBalance from "hooks/useWalletUsdBalance";
 import {
   walletCryptoBalanceState,
   walletUsdBalanceState,
-} from "recoil/atoms/wallet-balance";
+} from "recoil/atoms/wallet";
 
 export default function Web3Boot({ children }) {
   const chainId = process.env.REACT_APP_CHAIN_ID;
@@ -44,7 +44,7 @@ export default function Web3Boot({ children }) {
       }
     }
     bootWeb3();
-    if (user) {
+    if (user && isAuthenticated) {
       setWalletCryptoBalance({ maticBalance, usdtBalance });
       setWalletUsdBalance({ maticUsd, usdtUsd });
     }
