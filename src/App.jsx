@@ -90,7 +90,7 @@ function App() {
                     {user ? (
                       <div>
                         {isPolygon ? (
-                          <div className="padded-btn bg-black-gradient">
+                          <div className="text-sm padded-btn sm:text-base bg-black-gradient">
                             <span className="">
                               {convertBalanceToEther(maticBalance)}
                             </span>
@@ -99,7 +99,7 @@ function App() {
                         ) : (
                           <button
                             onClick={() => switchToPolygon()}
-                            className="padded-btn bg-black-gradient"
+                            className="py-3 text-xs padded-btn sm:text-base bg-black-gradient"
                           >
                             Switch to Polygon
                           </button>

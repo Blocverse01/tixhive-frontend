@@ -46,6 +46,7 @@ export default function ConnectWallet() {
     }
   }, [isAuthenticated, user]);
   const showRed = isAuthenticated && !isPolygon;
+  const showWallet = isAuthenticated && isPolygon;
   return (
     <div>
       <div className="flex items-center">
@@ -55,15 +56,15 @@ export default function ConnectWallet() {
           }
           className={`${
             showRed ? "bg-[#D30000]" : "bg-brand-red"
-          } mr-3 connect-wallet h-[45px] md:h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center darker-red rounded-lg`}
+          } mr-3 connect-wallet h-[45px] md:h-[56px] px-3 sm:px-5 lg:px-0 lg:w-[170px] text-white text-sm md:text-[18px] md:leading-[35px] flex justify-center items-center darker-red rounded-lg`}
         >
           {isAuthenticating ? (
             <FontAwesomeIcon className="mr-2" icon={solid("spinner")} spin />
           ) : (
             ""
           )}
-          {user
-            ? truncateEthAddress(account || user.get("ethAddress"))
+          {user && isAuthenticated
+            ? truncateEthAddress(user.get("ethAddress") || "")
             : isAuthenticating
             ? "Connecting"
             : "Connect"}
@@ -72,6 +73,9 @@ export default function ConnectWallet() {
               icon={solid("exclamation-triangle")}
               className="ml-2"
             />
+          )}
+          {showWallet && (
+            <FontAwesomeIcon icon={solid("chevron-down")} className="ml-2" />
           )}
         </button>
       </div>
