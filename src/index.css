@@ -175,7 +175,7 @@
   }
 
   .padded-btn {
-    @apply px-2 py-2 rounded-lg md:px-4;
+    @apply px-2 py-3 rounded-lg md:px-4;
   }
   /* .padded-btn {
     @apply px-4 py-2 rounded-lg;
