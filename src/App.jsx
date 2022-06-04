@@ -14,10 +14,11 @@ import { useState } from "react";
 import TicketInfoPage from "./components/TicketInfoPage";
 import blocTixLogo from "images/tixhive-logo.min.svg";
 import { useRecoilValue } from "recoil";
-import { walletCryptoBalanceState } from "recoil/atoms/wallet-balance";
+import { walletCryptoBalanceState } from "recoil/atoms/wallet";
 import { convertBalanceToEther } from "utils/web3-utils";
 import { useMoralis } from "react-moralis";
 import useNetworkStatus from "hooks/useNetworkStatus";
+import Wallet from "components/Wallet";
 
 function App() {
   const [navOpen, setNavOpen] = useState(false);
@@ -33,6 +34,7 @@ function App() {
     <Router>
       <ScrollToTop>
         <Web3Boot>
+          <Wallet />
           <div className="relative text-white bg-brand-black ">
             <div className="max-w-[1728px] mx-auto">
               <nav className="pt-[25px] z-50 lg:pt-[45px] px-5 sm:px-10 lg:px-8 font-poppins">

@@ -20,6 +20,11 @@ export const totalUsdBalanceState = selector({
     key: "totalUsdBalance",
     get: ({ get }) => {
         const usdBalance = get(walletUsdBalanceState);
-        return usdBalance.maticUsd + usdBalance.usdtUsd;
+        return Number(parseFloat(usdBalance.maticUsd) + parseFloat(usdBalance.usdtUsd)).toFixed(2);
     }
 })
+
+export const showWalletModalState = atom({
+    key: "showWalletModal",
+    default: false,
+});
