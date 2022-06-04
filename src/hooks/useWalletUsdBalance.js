@@ -1,9 +1,10 @@
 import React from "react";
-import { useMoralisWeb3Api } from "react-moralis";
+import { useMoralisWeb3Api, useMoralis } from "react-moralis";
 import { calculateUsdValue } from "utils/web3-utils";
 
 export default function useWalletUsdBalance(maticBalance, usdtBalance) {
     const Web3Api = useMoralisWeb3Api();
+    const { user, isInitialized } = useMoralis();
     const fetchTokenPrice = async (tokenAddress) => {
         //Get token price on QuickSwap Polygon
         const options = {
@@ -23,8 +24,10 @@ export default function useWalletUsdBalance(maticBalance, usdtBalance) {
             setMaticUsd(calculateUsdValue(maticUsdValue, maticBalance));
             setUsdtUsd(calculateUsdValue(usdtUsdValue, usdtBalance, 6));
         };
-        fetchBalance();
+        if (isInitialized) {
+            fetchBalance();
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [user, isInitialized]);
     return { maticUsd, usdtUsd };
 }

@@ -17,10 +17,12 @@ import { useRecoilValue } from "recoil";
 import { walletCryptoBalanceState } from "recoil/atoms/wallet-balance";
 import { convertBalanceToEther } from "utils/web3-utils";
 import { useMoralis } from "react-moralis";
+import useNetworkStatus from "hooks/useNetworkStatus";
 
 function App() {
   const [navOpen, setNavOpen] = useState(false);
   const { maticBalance } = useRecoilValue(walletCryptoBalanceState);
+  const { isPolygon, switchToPolygon } = useNetworkStatus();
   const { user } = useMoralis();
   const navOpenClasses =
     "fixed text-[14px] leading-[21px] right-0 z-[9999] pt-[20.48px] top-0 h-[379px] backdrop-blur-2xl bg-brand-red w-[195px] px-[34px]";
@@ -86,11 +88,22 @@ function App() {
                   </ul>
                   <div className="z-10 flex items-center justify-end flex-1 lg:pr-4">
                     {user ? (
-                      <div className="padded-btn bg-black-gradient">
-                        <span className="">
-                          {convertBalanceToEther(maticBalance)}
-                        </span>
-                        <span className=""> MATIC</span>
+                      <div>
+                        {isPolygon ? (
+                          <div className="padded-btn bg-black-gradient">
+                            <span className="">
+                              {convertBalanceToEther(maticBalance)}
+                            </span>
+                            <span className=""> MATIC</span>
+                          </div>
+                        ) : (
+                          <button
+                            onClick={() => switchToPolygon()}
+                            className="padded-btn bg-black-gradient"
+                          >
+                            Switch to Polygon
+                          </button>
+                        )}
                       </div>
                     ) : (
                       ""
