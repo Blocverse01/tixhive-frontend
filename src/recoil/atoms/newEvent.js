@@ -7,7 +7,7 @@ export const newEventState = atom({
     name: "",
     host: "",
     category: "",
-    venue_type: 0,
+    venue_type: null,
     venue: "",
     start_time: moment().format('HH:MM'),
     start_date: moment().format('YYYY-MM-DD'),

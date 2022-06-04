@@ -29,11 +29,11 @@ function StepThree({ setStep }) {
     tickets.length === 0 ? true : false
   );
   const [newTicket, setInputValue] = useState({
-    name: "General Admission",
+    name: "",
     description: "",
     ticket_type: 1,
-    quantity_available: 300,
-    price: 200,
+    quantity_available: "",
+    price: "",
   });
 
   const beforeSetShouldAddTicket = (status) => {
@@ -59,7 +59,7 @@ function StepThree({ setStep }) {
               Let’s Setup Your Tickets
             </h3>
             <button
-              className="text-white text-2xl"
+              className="text-2xl text-white"
               onClick={() => beforeSetShouldAddTicket(false)}
             >
               <FontAwesomeIcon icon={solid("times")} />
@@ -120,6 +120,7 @@ function StepThree({ setStep }) {
                 name="name"
                 className="create-event-gradient w-full px-3 mt-2 h-[45px]"
                 type="text"
+                placeholder="Ticket Name"
               />
             </div>
 
@@ -138,7 +139,7 @@ function StepThree({ setStep }) {
                 name="quantity_available"
                 className="create-event-gradient w-full px-3 mt-2 h-[45px]"
                 type="number"
-                step="any"
+                placeholder="How many tickets are available?"
               />
             </div>
             {newTicket.ticket_type > 0 ? (
@@ -157,6 +158,7 @@ function StepThree({ setStep }) {
                   name="price"
                   className="create-event-gradient w-full px-3 mt-2 h-[45px]"
                   type="number"
+                  placeholder="How much does this ticket cost?"
                 />
               </div>
             ) : (
