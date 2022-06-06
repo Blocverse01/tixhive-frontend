@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { regular } from "@fortawesome/fontawesome-svg-core/import.macro";
 import tw from "images/tw.svg";
 import metamask from "images/metamask.svg";
-import sec from "images/bg-sec-1.png";
+import sec from "images/confetti.png";
 import Tilt from "react-parallax-tilt";
 import ticket from "images/ticket-1.png";
-import ticket2 from "images/ticket-2.png";
+import ticket2 from "images/analytics-chart.png";
 import ticket3 from "images/ticket-3.png";
 import coin98 from "images/coin98.svg";
 
@@ -20,8 +20,8 @@ function Home() {
           className=" z-0 absolute hidden lg:block top-[13rem] lg:-top-28 md:top-2 xl:top-0 left-0 right-0 w-full"
           alt="background"
         />
-        <div className="relative z-1 auth-modal2 ">
-          <h1 className="text-center text-bold header mx-auto md:w-[600px] xl:w-[1000px]">
+        <div className="relative z-1">
+          <h1 className="text-center text-bold header mx-auto md:w-[600px] xl:w-[708px]">
             The easiest way to earn forever on your events.
           </h1>
           <p className="mx-auto md:text-center mt-10 md:w-[400px] xl:w-[410px] text2">
@@ -58,14 +58,14 @@ function Home() {
           >
             <img
               src={ticket}
-              className="   assets xl:-ml-12 xl:-mt-10 xl:h-[32rem]  "
+              className="assets xl:-ml-12 xl:-mt-10 xl:h-[32rem]"
               alt="asset"
             />
           </Tilt>
         </div>
       </section>
 
-      <section className="mt-10 xl:mt-32 padding md:justify-between md:flex md:items-center">
+      <section className="mt-10 xl:mt-32 xl:pb-[7rem] padding md:justify-between md:flex md:items-center">
         <div className="px-5 order-2  md:px-0 md:w-[300px] xl:w-[500px]">
           <p className="header">A 100% control on ticket sales.</p>
           <p className="mt-5 text2">
@@ -74,7 +74,7 @@ function Home() {
             Contracts.
           </p>
         </div>
-        <div className=" w-[300px] h-48 mx-auto md:mx-0 mt-10 md:mt-10 md:w-[300px] md:h-48 xl:w-[600px] xl:h-96  rounded-3xl  dummy-box">
+        <div className=" w-[300px] h-48 mx-auto md:mx-0 mt-10 md:mt-10 md:w-[300px] md:h-48 xl:w-[600px] xl:h-96  rounded-3xl dummy-box">
           <Tilt
             glareMaxOpacity={0.9}
             glareColor="lightblue"
@@ -82,7 +82,7 @@ function Home() {
           >
             <img
               src={ticket2}
-              className="assets xl:h-[36rem] relative  -top-10 xl:top-0 xl:-mt-28 xl:-ml-10 "
+              className="assets h-[12rem] xl:h-[35rem] relative xl:-mt-[4rem] xl:-ml-7"
               alt="asset"
             />
           </Tilt>
@@ -90,7 +90,7 @@ function Home() {
       </section>
 
       <div className="py-16 margin bg-brand-red">
-        <section className=" padding md:justify-between md:flex md:items-center">
+        <section className="padding xl:pb-[4rem] xl:pt-[1.5rem] md:justify-between md:flex md:items-center">
           <div className="px-5 md:px-0 md:w-[300px] xl:w-[500px]">
             <p className="header">Follow-up and reward your attendees.</p>
             <p className="mt-5 text2">
