@@ -17,7 +17,7 @@ function Home() {
       <section className="relative margin xl:h-screen md:px-0 padding2">
         <img
           src={sec}
-          className=" z-0 absolute hidden lg:block top-[13rem] lg:-top-28 md:top-2 xl:top-0 left-0 right-0 w-full"
+          className=" z-0 absolute top-[4rem] lg:-top-28 md:top-2 xl:top-0 left-0 right-0 w-full"
           alt="background"
         />
         <div className="relative z-1">
