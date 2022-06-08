@@ -19,6 +19,7 @@ import { convertBalanceToEther } from "utils/web3-utils";
 import { useMoralis } from "react-moralis";
 import useNetworkStatus from "hooks/useNetworkStatus";
 import Wallet from "components/Wallet";
+import EventsPage from "EventsPage";
 
 function App() {
   const [navOpen, setNavOpen] = useState(false);
@@ -28,14 +29,14 @@ function App() {
   const navOpenClasses =
     "fixed text-[14px] leading-[21px] right-0 z-[9999] pt-[20.48px] top-0 h-[379px] backdrop-blur-2xl bg-brand-red w-[195px] px-[34px]";
   const navClasses =
-    "flex transition ease-in-out flex-col lg:flex-row appearance-none lg:font-[500] lg:text-[14.65px] lg:leading-[27.98px] gap-[32px] lg:gap-[40.29px] lg:items-center";
+    "flex transition ease-in-out flex-col lg:flex-row appearance-none lg:font-[500] lg:text-[14.65px] lg:leading-[22.13px] gap-[32px] lg:gap-[21.21px] lg:items-center";
 
   return (
     <Router>
       <ScrollToTop>
         <Web3Boot>
           <Wallet />
-          <div className="relative text-white bg-brand-black ">
+          <div className="relative text-white bg-brand-black">
             <div className="max-w-[1728px] mx-auto">
               <nav className="pt-[25px] z-50 lg:pt-[45px] px-5 sm:px-10 lg:px-8 font-poppins">
                 <div className="flex items-center text-white lg:px-10">
@@ -48,7 +49,7 @@ function App() {
                       className="mr-2 h-[45px] xl:h-[50px]"
                       alt="TixHive Logo"
                     />
-                    <h3 className="lg:mr-[79px] lg:font-[500] lg:text-[25px] xl:text-[30px] lg:leading-[45px]">
+                    <h3 className="lg:mr-[66.17px] lg:font-[500] lg:text-[22.71px] lg:leading-[28.62px]">
                       TixHive
                     </h3>
                   </Link>
@@ -76,13 +77,16 @@ function App() {
                       onClick={() => setNavOpen(false)}
                       className={"mt-[42.48px] lg:mt-0"}
                     >
-                      <Link to="/">Home</Link>
+                      <Link to="/">Create an Event</Link>
                     </li>
                     <li onClick={() => setNavOpen(false)}>
                       <Link to="/my-tickets">My Tickets</Link>
                     </li>
                     <li onClick={() => setNavOpen(false)}>
                       <Link to="/my-events">Manage Events</Link>
+                    </li>
+                    <li onClick={() => setNavOpen(false)}>
+                      <Link to="/events">Buy Tickets</Link>
                     </li>
                     <li onClick={() => setNavOpen(false)}>
                       <Link to="/faqs">Need Help?</Link>
@@ -122,7 +126,6 @@ function App() {
                   </div>
                 </div>
               </nav>
-
               <Routes>
                 <Route exact path="/" element={<Home />} />
                 <Route exact path="/create-event" element={<CreateEvent />} />
@@ -133,6 +136,7 @@ function App() {
                   element={<TicketInfoPage />}
                   path={"/:contract/tickets/:purchase"}
                 />
+                <Route exact path="/events" element={<EventsPage />} />
               </Routes>
             </div>
           </div>
