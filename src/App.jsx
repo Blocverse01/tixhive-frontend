@@ -77,7 +77,7 @@ function App() {
                       onClick={() => setNavOpen(false)}
                       className={"mt-[42.48px] lg:mt-0"}
                     >
-                      <Link to="/">Create an Event</Link>
+                      <Link to="/create-event">Create an Event</Link>
                     </li>
                     <li onClick={() => setNavOpen(false)}>
                       <Link to="/my-tickets">My Tickets</Link>
