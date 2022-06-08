@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect } from "react";
 import { useMoralis, useMoralisQuery } from "react-moralis";
-import { eventsState } from "recoil/atoms/events";
+import { eventListState } from "recoil/atoms/events";
 import { useRecoilState } from "recoil";
 import useWalletCryptoBalance from "hooks/useWalletCryptoBalance";
 import useWalletUsdBalance from "hooks/useWalletUsdBalance";
@@ -12,7 +12,7 @@ import {
 
 export default function Web3Boot({ children }) {
   const chainId = process.env.REACT_APP_CHAIN_ID;
-  const [events, setEvents] = useRecoilState(eventsState);
+  const [events, setEvents] = useRecoilState(eventListState);
   const { fetch } = useMoralisQuery(
     "Event",
     (query) => query.descending("createdAt"),
