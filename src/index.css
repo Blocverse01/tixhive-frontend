@@ -209,19 +209,19 @@
   }
 
   .EventsPage__hero__container {
-    @apply lg:mt-[34px] bg-[url('./images/events-hero-bg.jpg')] relative;
+    @apply lg:mt-[34px] bg-[url('./images/events-hero-bg.jpg')] bg-cover bg-center bg-no-repeat relative;
   }
   .EventsPage__hero__content {
     @apply z-[1] relative flex flex-col lg:flex-row lg:items-end lg:justify-center lg:pt-[89px];
   }
   .EventsPage__hero__header {
-    @apply font-semibold flex-shrink-0 font-sora lg:text-[2.7rem] lg:leading-[3.25rem] lg:mb-[93px] xl:text-[3.25rem] xl:leading-[4.095rem] lg:max-w-[504px];
+    @apply font-semibold flex-shrink-0 font-sora lg:text-[2.6rem] lg:leading-[3.25rem] lg:mb-[93px] xl:text-[3.25rem] xl:leading-[4.095rem] lg:max-w-[410px] xl:max-w-[504px];
   }
   .EventsPage__hero__img {
-    @apply lg:mb-[26px] object-scale-down lg:h-[632px];
+    @apply lg:mb-[26px] object-scale-down lg:h-[493px] xl:h-[632px];
   }
   .EventsPage__search__bar {
-    @apply bg-brand-red w-full font-poppins text-white max-w-[1086px] left-0 right-0 z-0 flex flex-col md:flex-row md:items-center md:pl-[36px] md:py-[22px] md:pr-[17px] -bottom-[3.8rem] absolute mx-auto rounded-[8px] lg:h-[120px];
+    @apply bg-brand-red w-full font-poppins text-white lg:max-w-[873px] xl:max-w-[1086px] left-0 right-0 z-0 flex flex-col md:flex-row md:items-center md:pl-[36px] md:py-[22px] md:pr-[17px] -bottom-[3.8rem] absolute mx-auto rounded-[8px] lg:h-[120px];
   }
   .EventsPage__search__bar div[field="true"] {
     @apply md:mr-[84px];
@@ -241,7 +241,7 @@
     @apply bg-[#111317] px-3 py-2 lg:h-[57px] lg:w-[67px] flex items-center justify-center md:text-2xl;
   }
   .EventsPage__upcoming__events {
-    @apply mt-8 lg:mt-[125px] px-5 lg:px-0 max-w-[1086px] mx-auto mb-8 lg:mb-16;
+    @apply mt-8 lg:mt-[125px] px-5 lg:px-0 lg:max-w-[873px] xl:max-w-[1086px] mx-auto mb-8 lg:mb-16;
   }
   .EventsPage__upcoming__events__header {
     @apply flex justify-between items-center text-white mb-[2.1875rem];

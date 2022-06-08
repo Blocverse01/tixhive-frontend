@@ -1,11 +1,23 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import useGetEvents from "hooks/useGetEvents";
+import { useEventList, useEventCategories } from "hooks/data/events";
 import tickets from "images/event-tickets.png";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import EventList from "components/EventsList";
+import { useRecoilState } from "recoil";
+import { eventListFilterState } from "recoil/atoms/events";
 
 function EventsPage() {
-  const { events } = useGetEvents();
+  const events = useEventList();
+  const eventCategories = useEventCategories();
+  const [eventFilter, setFilter] = useRecoilState(eventListFilterState);
+
+  const updateFilter = ({ target: { name, value } }) => {
+    setFilter((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   return (
     <section>
       <div className="EventsPage__hero__container">
@@ -20,22 +32,30 @@ function EventsPage() {
           <div field="true">
             <label>Looking for</label>
             <input
+              value={eventFilter.name}
+              onChange={updateFilter}
               type="search"
-              name="search_category"
+              name="name"
               placeholder="Blockchain Event"
             />
           </div>
           <div field="true">
             <label>In</label>
             <input
+              onChange={updateFilter}
+              value={eventFilter.location}
               type="search"
-              name="search_location"
+              name="location"
               placeholder="Lagos, Nigeria"
             />
           </div>
           <div field="last">
             <label>When</label>
-            <select name="search_date">
+            <select
+              value={eventFilter.date}
+              name="date"
+              onChange={updateFilter}
+            >
               <option>Any Date</option>
             </select>
           </div>
@@ -52,8 +72,18 @@ function EventsPage() {
             Upcoming Events
           </h3>
           <div>
-            <select className="EventsPage__upcoming__events__header__filter">
-              <option>Any Category</option>
+            <select
+              name="category"
+              onChange={updateFilter}
+              value={eventFilter.category}
+              className="EventsPage__upcoming__events__header__filter"
+            >
+              <option value={"Any Category"}>Any Category</option>
+              {eventCategories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
             </select>
           </div>
         </div>

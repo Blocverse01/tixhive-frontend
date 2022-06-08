@@ -34,9 +34,9 @@ export default function EventListCard({ event }) {
                 <path
                   d="M0.878906 8.09093L1.1938 9.351C1.24864 9.5704 1.37524 9.76518 1.55348 9.90437C1.73172 10.0436 1.95137 10.1192 2.17751 10.1192H9.72171C9.94786 10.1192 10.1675 10.0436 10.3457 9.90437C10.524 9.76518 10.6506 9.5704 10.7054 9.351L11.0203 8.09093M5.94961 0.991943V7.07679V0.991943ZM5.94961 0.991943L3.92133 3.02023L5.94961 0.991943ZM5.94961 0.991943L7.9779 3.02023L5.94961 0.991943Z"
                   stroke="white"
-                  stroke-width="1.01414"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.01414"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </div>

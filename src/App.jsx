@@ -29,7 +29,7 @@ function App() {
   const navOpenClasses =
     "fixed text-[14px] leading-[21px] right-0 z-[9999] pt-[20.48px] top-0 h-[379px] backdrop-blur-2xl bg-brand-red w-[195px] px-[34px]";
   const navClasses =
-    "flex transition ease-in-out flex-col lg:flex-row appearance-none lg:font-[500] lg:text-[14.65px] lg:leading-[22.13px] gap-[32px] lg:gap-[21.21px] lg:items-center";
+    "flex transition ease-in-out flex-col lg:flex-row appearance-none lg:font-[500] lg:text-[11px] xl:text-[14.65px] lg:leading-[22.13px] gap-[32px] lg:gap-[16px] xl:gap-[21.21px] lg:items-center";
 
   return (
     <Router>
@@ -39,7 +39,7 @@ function App() {
           <div className="relative text-white bg-brand-black">
             <div className="max-w-[1728px] mx-auto">
               <nav className="pt-[25px] z-50 lg:pt-[45px] px-5 sm:px-10 lg:px-8 font-poppins">
-                <div className="flex items-center text-white lg:px-10">
+                <div className="flex items-center text-white lg:px-5 xl:px-10">
                   <div className={"lg:hidden z-50"}>
                     <ConnectWallet />
                   </div>
@@ -49,7 +49,7 @@ function App() {
                       className="mr-2 h-[45px] xl:h-[50px]"
                       alt="TixHive Logo"
                     />
-                    <h3 className="lg:mr-[66.17px] lg:font-[500] lg:text-[22.71px] lg:leading-[28.62px]">
+                    <h3 className="lg:mr-[40px] xl:mr-[66.17px] lg:font-[500] lg:text-[22.71px] lg:leading-[28.62px]">
                       TixHive
                     </h3>
                   </Link>
@@ -77,7 +77,7 @@ function App() {
                       onClick={() => setNavOpen(false)}
                       className={"mt-[42.48px] lg:mt-0"}
                     >
-                      <Link to="/">Create an Event</Link>
+                      <Link to="/create-event">Create an Event</Link>
                     </li>
                     <li onClick={() => setNavOpen(false)}>
                       <Link to="/my-tickets">My Tickets</Link>

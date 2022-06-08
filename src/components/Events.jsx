@@ -1,17 +1,20 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import EventsList from "components/EventsList"
-import { eventsState } from "recoil/atoms/events";
+import EventsList from "components/EventsList";
+import { eventListState } from "recoil/atoms/events";
 import { useRecoilValue } from "recoil";
 
 function Events() {
-  const events = useRecoilValue(eventsState);
+  const events = useRecoilValue(eventListState);
   return (
     <section className="pb-12 pt-[60px] lg:pt-28 px-5 sm:px-6 lg:px-8">
       <div className="lg:px-10">
         <div className="relative text-white focus-within:text-gray-200">
           <span className="absolute inset-y-0 left-[20px] flex items-center pl-2">
-            <button type="submit" className="p-1 focus:outline-none focus:shadow-outline">
+            <button
+              type="submit"
+              className="p-1 focus:outline-none focus:shadow-outline"
+            >
               <svg
                 fill="none"
                 stroke="currentColor"
@@ -57,7 +60,10 @@ function Events() {
           <button className="see-more-btn px-[35px] lg:text-[22px] lg:leading-[37.5px] font-[400] h-[65px] flex items-center justify-center text-white">
             <span>
               See More
-              <FontAwesomeIcon icon={solid("chevron-right")} className="ml-[22px]" />
+              <FontAwesomeIcon
+                icon={solid("chevron-right")}
+                className="ml-[22px]"
+              />
             </span>
           </button>
         </div>
