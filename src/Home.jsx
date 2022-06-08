@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Footer from "./components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { regular } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import tw from "images/tw.svg";
 import metamask from "images/metamask.svg";
 import sec from "images/confetti.png";
@@ -17,27 +17,30 @@ function Home() {
       <section className="relative margin xl:h-screen md:px-0 padding2">
         <img
           src={sec}
-          className=" z-0 absolute top-[4rem] lg:-top-28 md:top-2 xl:top-0 left-0 right-0 w-full"
+          className="z-0 absolute top-[4rem] lg:-top-28 md:top-2 xl:top-[3.7rem] xl:bottom-0 left-0 right-0 w-full"
           alt="background"
         />
         <div className="relative z-1">
           <h1 className="text-center text-bold header mx-auto md:w-[600px] xl:w-[708px]">
             The easiest way to earn forever on your events.
           </h1>
-          <p className="mx-auto md:text-center mt-10 md:w-[400px] xl:w-[410px] text2">
+          <p className="mx-auto md:text-center mt-10 md:w-[400px] xl:w-[377.63px] text2">
             Make your events come to life with NFT-based ticketing.
           </p>
-          <div className="md:flex justify-between mx-auto md:w-[400px] mt-12 md:mt-10  text">
+          <div className="md:flex justify-between xl:justify-center mx-auto md:w-[400px] mt-12 md:mt-10  text">
             <Link
-              className="bg-brand-red text padded-btn darker-red "
+              className="bg-brand-red text padded-btn darker-red xl:mr-[18.29px]"
               to="/create-event"
             >
               Create an Event
             </Link>
-            <button className="mt-10 bgblack-gradient md:mt-0 text padded-btn">
-              <FontAwesomeIcon className="mr-1" icon={regular("circle-play")} />{" "}
-              Watch Video
-            </button>
+            <Link
+              to="/events"
+              className="mt-10 border-white border bgblack-gradient md:mt-0 text padded-btn"
+            >
+              <FontAwesomeIcon className="mr-1" icon={solid("search")} />{" "}
+              Explore Events
+            </Link>
           </div>
         </div>
       </section>

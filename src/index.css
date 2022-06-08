@@ -167,7 +167,7 @@
   }
 
   .text {
-    @apply text-sm font-poppins md:text-lg;
+    @apply text-sm font-poppins md:text-lg xl:text-[12.96px] xl:leading-[19.38px] font-[500];
   }
 
   .text2 {
@@ -206,5 +206,53 @@
 
   .assets {
     @apply h-[15rem] w-full object-scale-down;
+  }
+
+  .EventsPage__hero__container {
+    @apply lg:mt-[34px] bg-[url('./images/events-hero-bg.jpg')] relative;
+  }
+  .EventsPage__hero__content {
+    @apply z-[1] relative flex flex-col lg:flex-row lg:items-end lg:justify-center lg:pt-[89px];
+  }
+  .EventsPage__hero__header {
+    @apply font-semibold flex-shrink-0 font-sora lg:text-[2.7rem] lg:leading-[3.25rem] lg:mb-[93px] xl:text-[3.25rem] xl:leading-[4.095rem] lg:max-w-[504px];
+  }
+  .EventsPage__hero__img {
+    @apply lg:mb-[26px] object-scale-down lg:h-[632px];
+  }
+  .EventsPage__search__bar {
+    @apply bg-brand-red w-full font-poppins text-white max-w-[1086px] left-0 right-0 z-0 flex flex-col md:flex-row md:items-center md:pl-[36px] md:py-[22px] md:pr-[17px] -bottom-[3.8rem] absolute mx-auto rounded-[8px] lg:h-[120px];
+  }
+  .EventsPage__search__bar div[field="true"] {
+    @apply md:mr-[84px];
+  }
+  .EventsPage__search__bar div[field="last"] {
+    @apply md:mr-[48px];
+  }
+  .EventsPage__search__bar label {
+    @apply font-medium xl:text-[1.025rem] xl:leading-[1.5381rem];
+  }
+  .EventsPage__search__bar input,
+  .EventsPage__search__bar select {
+    @apply font-medium capitalize mt-[.1181rem] focus:outline-none focus:border-b-[#111317] bg-transparent w-full placeholder-slate-300 xl:text-[1.3619rem] xl:leading-[2.0431rem];
+    border-bottom: 1.4px solid #ffffff;
+  }
+  .EventsPage__search__bar__button {
+    @apply bg-[#111317] px-3 py-2 lg:h-[57px] lg:w-[67px] flex items-center justify-center md:text-2xl;
+  }
+  .EventsPage__upcoming__events {
+    @apply mt-8 lg:mt-[125px] px-5 lg:px-0 max-w-[1086px] mx-auto mb-8 lg:mb-16;
+  }
+  .EventsPage__upcoming__events__header {
+    @apply flex justify-between items-center text-white mb-[2.1875rem];
+  }
+  .EventsPage__upcoming__events__header__title {
+    @apply font-medium xl:text-[2rem] xl:leading-[3rem] flex-1 flex-shrink-0;
+  }
+  .EventsPage__upcoming__events__header__filter {
+    @apply bg-[#22262F] lg:text-[.865rem] lg:leading-[1.2975rem] px-[1rem] py-[.75rem] w-full rounded-[7px];
+  }
+  .EventListCard__ctas {
+    @apply absolute top-5 lg:top-[24.69px] left-4 right-4 flex justify-between z-10 text-[10.09px] leading-[15.13px] text-white;
   }
 }
