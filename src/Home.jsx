@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Footer from "./components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import tw from "images/tw.svg";
@@ -36,7 +35,7 @@ function Home() {
             </Link>
             <Link
               to="/events"
-              className="mt-10 border-white border bgblack-gradient md:mt-0 text padded-btn"
+              className="mt-10 border border-white bgblack-gradient md:mt-0 text padded-btn"
             >
               <FontAwesomeIcon className="mr-1" icon={solid("search")} />{" "}
               Explore Events
@@ -136,8 +135,6 @@ function Home() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 }
