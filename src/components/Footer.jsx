@@ -9,8 +9,8 @@ import tiktok from "images/tictok.min.svg";
 
 function Footer() {
   return (
-    <div>
-      <section className=" py-20 md:py-32  padding justify-around md:flex px-5  margin bg-brand-red ">
+    <div className="relative z-10">
+      <section className="justify-around px-5 py-20  md:py-32 padding md:flex margin bg-brand-red">
         <div className="h-96 md:w-[400px]">
           <p className="header2">Hassle-free event management for everyone.</p>
           <div className="xl:flex mx-auto md:w-[400px] mt-12 md:mt-10 text">
@@ -20,7 +20,7 @@ function Footer() {
             >
               Create an Event
             </Link>
-            <button className="md:mt-5 bgblack-gradient block mt-10 lg:mt-0 text padded-btn border">
+            <button className="block mt-10 border md:mt-5 bgblack-gradient lg:mt-0 text padded-btn">
               <FontAwesomeIcon className="mr-1" icon={regular("circle-play")} />{" "}
               Watch Video
             </button>
@@ -28,20 +28,20 @@ function Footer() {
 
           <div className="flex mt-10 md:mt-32">
             <img className="w-10 h-12" alt="" src={blocTixLogo2} />
-            <p className="font-sora ml-5 header2">TixHive</p>
+            <p className="ml-5 font-sora header2">TixHive</p>
           </div>
         </div>
         <div className="md:h-96 md:w-[300px] ">
           <p className="header2">About</p>
-          <p className="text2 mt-2 md:mt-5">
+          <p className="mt-2 text2 md:mt-5">
             TixHive is a product of BlocVerse, a Blockchain and Web3 Company
             leveraging the blockchain and its opportunities to bring value to
             the ecosystem.
           </p>
 
           <div className="">
-            <p className="header2 mt-16 md:mt-40">Socials</p>
-            <div className="flex mt-5 justify-between xl:justify-start md:w-48 mx-auto md:mx-0">
+            <p className="mt-16 header2 md:mt-40">Socials</p>
+            <div className="flex justify-between mx-auto mt-5 xl:justify-start md:w-48 md:mx-0">
               <a href="/" className="social-icons xl:mr-[14.86px]">
                 <img
                   src={twitter}

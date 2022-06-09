@@ -20,6 +20,7 @@ import { useMoralis } from "react-moralis";
 import useNetworkStatus from "hooks/useNetworkStatus";
 import Wallet from "components/Wallet";
 import EventsPage from "EventsPage";
+import Footer from "./components/Footer";
 
 function App() {
   const [navOpen, setNavOpen] = useState(false);
@@ -138,6 +139,7 @@ function App() {
                 />
                 <Route exact path="/events" element={<EventsPage />} />
               </Routes>
+              <Footer />
             </div>
           </div>
         </Web3Boot>
