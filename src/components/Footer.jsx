@@ -10,7 +10,7 @@ import tiktok from "images/tictok.min.svg";
 function Footer() {
   return (
     <div className="relative z-10">
-      <section className="justify-around px-5 py-20  md:py-32 padding md:flex margin bg-brand-red">
+      <section className="justify-around px-5 py-20 md:py-32 padding md:flex margin bg-brand-red">
         <div className="h-96 md:w-[400px]">
           <p className="header2">Hassle-free event management for everyone.</p>
           <div className="xl:flex mx-auto md:w-[400px] mt-12 md:mt-10 text">
