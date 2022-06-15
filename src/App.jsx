@@ -7,7 +7,7 @@ import Web3Boot from "components/Web3Boot";
 import ScrollToTop from "ScrollToTop";
 import EventDisplay from "components/EventDisplay";
 import ManageEvents from "./ManageEvents";
-import ErrorPage from "./components/ErrorPage";
+// import ErrorPage from "./components/ErrorPage";
 import MyTickets from "MyTickets";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
@@ -90,12 +90,12 @@ function App() {
                     <li onClick={() => setNavOpen(false)}>
                       <Link to='/events'>Buy Tickets</Link>
                     </li>
-                    <li onClick={() => setNavOpen(false)}>
-                      <Link to='/error'>404-page</Link>
-                    </li>
                     {/* <li onClick={() => setNavOpen(false)}>
-                      <Link to="/faqs">Need Help?</Link>
+                      <Link to='/error'>404-page</Link>
                     </li> */}
+                    <li onClick={() => setNavOpen(false)}>
+                      <Link to='/faqs'>Need Help?</Link>
+                    </li>
                   </ul>
                   <div className='z-10 flex items-center justify-end flex-1 lg:pr-4'>
                     {user ? (
@@ -137,7 +137,7 @@ function App() {
                 <Route element={<EventDisplay />} path='/events/:contract' />
                 <Route element={<MyTickets />} path='/my-tickets' />
                 <Route element={<ManageEvents />} path='/my-events' />
-                <Route element={<ErrorPage />} path='/error' />
+                {/* <Route element={<ErrorPage />} path='/error' /> */}
                 <Route
                   element={<TicketInfoPage />}
                   path={"/:contract/tickets/:purchase"}
