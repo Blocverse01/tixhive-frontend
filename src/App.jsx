@@ -7,7 +7,7 @@ import Web3Boot from "components/Web3Boot";
 import ScrollToTop from "ScrollToTop";
 import EventDisplay from "components/EventDisplay";
 import ManageEvents from "./ManageEvents";
-// import ErrorPage from "./components/ErrorPage";
+import { default as Error404 } from "components/ErrorPage";
 import MyTickets from "MyTickets";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
@@ -38,20 +38,16 @@ function App() {
       <ScrollToTop>
         <Web3Boot>
           <Wallet />
-          <div className='relative text-white bg-brand-black'>
-            <div className='max-w-[1728px] mx-auto'>
-              <nav className='pt-[25px] z-50 lg:pt-[45px] px-5 sm:px-10 lg:px-8 font-poppins'>
-                <div className='flex items-center text-white lg:px-5 xl:px-10'>
+          <div className="relative text-white bg-brand-black">
+            <div className="max-w-[1728px] mx-auto">
+              <nav className="pt-[25px] z-50 lg:pt-[45px] px-5 sm:px-10 lg:px-8 font-poppins">
+                <div className="flex items-center text-white lg:px-5 xl:px-10">
                   <div className={"lg:hidden z-50"}>
                     <ConnectWallet />
                   </div>
-                  <Link className={"z-50 hidden items-center lg:flex"} to='/'>
-                    <img
-                      src={blocTixLogo}
-                      className='mr-2 h-[45px] xl:h-[50px]'
-                      alt='TixHive Logo'
-                    />
-                    <h3 className='lg:mr-[40px] xl:mr-[66.17px] lg:font-[500] lg:text-[22.71px] lg:leading-[28.62px]'>
+                  <Link className={"z-50 hidden items-center lg:flex"} to="/">
+                    <img src={blocTixLogo} className="mr-2 h-[45px] xl:h-[50px]" alt="TixHive Logo" />
+                    <h3 className="lg:mr-[40px] xl:mr-[66.17px] lg:font-[500] lg:text-[22.71px] lg:leading-[28.62px]">
                       TixHive
                     </h3>
                   </Link>
@@ -60,57 +56,39 @@ function App() {
                       navOpen ? navOpenClasses : "w-0 h-0 overflow-hidden"
                     } lg:w-auto lg:h-auto lg:overflow-auto ${navClasses}`}
                   >
-                    <li
-                      className={`lg:hidden ${
-                        navOpen ? "" : "hidden"
-                      } absolute right-[20.48px] top-[20.48px]`}
-                    >
-                      <button
-                        onClick={() => setNavOpen(false)}
-                        className={"lg:hidden bg-none"}
-                      >
-                        <FontAwesomeIcon
-                          icon={solid("times")}
-                          className={"text-2xl"}
-                        />
+                    <li className={`lg:hidden ${navOpen ? "" : "hidden"} absolute right-[20.48px] top-[20.48px]`}>
+                      <button onClick={() => setNavOpen(false)} className={"lg:hidden bg-none"}>
+                        <FontAwesomeIcon icon={solid("times")} className={"text-2xl"} />
                       </button>
                     </li>
-                    <li
-                      onClick={() => setNavOpen(false)}
-                      className={"mt-[42.48px] lg:mt-0"}
-                    >
-                      <Link to='/create-event'>Create an Event</Link>
+                    <li onClick={() => setNavOpen(false)} className={"mt-[42.48px] lg:mt-0"}>
+                      <Link to="/create-event">Create an Event</Link>
                     </li>
                     <li onClick={() => setNavOpen(false)}>
-                      <Link to='/my-tickets'>My Tickets</Link>
+                      <Link to="/my-tickets">My Tickets</Link>
                     </li>
                     <li onClick={() => setNavOpen(false)}>
-                      <Link to='/my-events'>Manage Events</Link>
+                      <Link to="/my-events">Manage Events</Link>
                     </li>
                     <li onClick={() => setNavOpen(false)}>
-                      <Link to='/events'>Buy Tickets</Link>
+                      <Link to="/events">Buy Tickets</Link>
                     </li>
-                    {/* <li onClick={() => setNavOpen(false)}>
-                      <Link to='/error'>404-page</Link>
-                    </li> */}
                     <li onClick={() => setNavOpen(false)}>
-                      <Link to='/faqs'>Need Help?</Link>
+                      <Link to="/faqs">Need Help?</Link>
                     </li>
                   </ul>
-                  <div className='z-10 flex items-center justify-end flex-1 lg:pr-4'>
+                  <div className="z-10 flex items-center justify-end flex-1 lg:pr-4">
                     {user ? (
                       <div>
                         {isPolygon ? (
-                          <div className='text-sm padded-btn sm:text-base bg-black-gradient'>
-                            <span className=''>
-                              {convertBalanceToEther(maticBalance)}
-                            </span>
-                            <span className=''> MATIC</span>
+                          <div className="text-sm padded-btn sm:text-base bg-black-gradient">
+                            <span className="">{convertBalanceToEther(maticBalance)}</span>
+                            <span className=""> MATIC</span>
                           </div>
                         ) : (
                           <button
                             onClick={() => switchToPolygon()}
-                            className='py-3 text-xs padded-btn sm:text-base bg-black-gradient'
+                            className="py-3 text-xs padded-btn sm:text-base bg-black-gradient"
                           >
                             Switch to Polygon
                           </button>
@@ -122,27 +100,21 @@ function App() {
                     <div className={"hidden lg:block"}>
                       <ConnectWallet />
                     </div>
-                    <button
-                      onClick={() => setNavOpen(true)}
-                      className={"lg:hidden z-50 btn"}
-                    >
+                    <button onClick={() => setNavOpen(true)} className={"lg:hidden z-50 btn"}>
                       <FontAwesomeIcon icon={solid("bars")} />
                     </button>
                   </div>
                 </div>
               </nav>
               <Routes>
-                <Route exact path='/' element={<Home />} />
-                <Route exact path='/create-event' element={<CreateEvent />} />
-                <Route element={<EventDisplay />} path='/events/:contract' />
-                <Route element={<MyTickets />} path='/my-tickets' />
-                <Route element={<ManageEvents />} path='/my-events' />
-                {/* <Route element={<ErrorPage />} path='/error' /> */}
-                <Route
-                  element={<TicketInfoPage />}
-                  path={"/:contract/tickets/:purchase"}
-                />
-                <Route exact path='/events' element={<EventsPage />} />
+                <Route exact path="/" element={<Home />} />
+                <Route exact path="/create-event" element={<CreateEvent />} />
+                <Route element={<EventDisplay />} path="/events/:contract" />
+                <Route element={<MyTickets />} path="/my-tickets" />
+                <Route element={<ManageEvents />} path="/my-events" />
+                <Route element={<TicketInfoPage />} path={"/:contract/tickets/:purchase"} />
+                <Route exact path="/events" element={<EventsPage />} />
+                <Route element={<Error404 />} path="*" />
               </Routes>
               <Footer />
             </div>
