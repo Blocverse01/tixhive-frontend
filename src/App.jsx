@@ -139,7 +139,9 @@ function App() {
                 />
                 <Route exact path="/events" element={<EventsPage />} />
               </Routes>
-              <Footer />
+              <footer>
+                <Footer />
+              </footer>
             </div>
           </div>
         </Web3Boot>

@@ -13,7 +13,7 @@ import { useRecoilState } from "recoil";
 import { newEventState } from "recoil/atoms/newEvent";
 
 function CreateEvent() {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(2);
   const [event, setNewEventState] = useRecoilState(newEventState);
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -79,7 +79,7 @@ function CreateEvent() {
         >
           {index}
         </span>
-        <span className='text-[13px] leading-[24px] sm:text-[18px] sm:leading-[34px] md:text-[25.43px] px-3 lg:px-0 md:leading-[38.15px]'>
+        <span className="text-[13px] leading-[24px] sm:text-[18px] sm:leading-[34px] md:text-[25.43px] px-3 lg:px-0 md:leading-[38.15px]">
           {step.title}
         </span>
       </h3>
@@ -87,34 +87,34 @@ function CreateEvent() {
   });
 
   return (
-    <div className='relative z-0 h-screen'>
+    <div className="relative z-0 min-h-screen">
       <div
         className={`grid grid-cols-1  ${
           currentStep > 1 ? "lg:grid-cols-6" : "lg:grid-cols-5"
         }`}
       >
         <div className={`px-5 sm:px-10 lg:px-8 lg:col-span-2`}>
-          <div className='lg:pl-10 mt-[60px] text-white'>
+          <div className="lg:pl-10 mt-[60px] text-white">
             {currentStep < 2 ? (
               <div>
-                <h3 className='font-[600] max-w-[171px] sm:max-w-none text-[28.23px] leading-[42.34px] sm:text-4xl lg:text-[56px] lg:leading-[75px] xl:text-[70px] xl:leading-[105px]'>
+                <h3 className="font-[600] max-w-[171px] sm:max-w-none text-[28.23px] leading-[42.34px] sm:text-4xl lg:text-[56px] lg:leading-[75px] xl:text-[70px] xl:leading-[105px]">
                   {steps[currentStep].title}
                 </h3>
-                <div className='mt-[10px] max-w-[209.7px] sm:max-w-none font-[400] lg:max-w-[520px] text-[10.08px] sm:text-xl leading-[15.12px] lg:text-[25px] lg:leading-[37.5px] text-white'>
+                <div className="mt-[10px] max-w-[209.7px] sm:max-w-none font-[400] lg:max-w-[520px] text-[10.08px] sm:text-xl leading-[15.12px] lg:text-[25px] lg:leading-[37.5px] text-white">
                   {steps[currentStep].subtitle}
                 </div>
               </div>
             ) : (
               <div>
-                <h3 className='text-[18.49px] leading-[27.73px] sm:text-3xl sm:leading-[40px] lg:text-[40px] font-[500] lg:leading-[60px]'>
+                <h3 className="text-[18.49px] leading-[27.73px] sm:text-3xl sm:leading-[40px] lg:text-[40px] font-[500] lg:leading-[60px]">
                   {event.name}
                 </h3>
-                <h3 className='lg:text-[20px] text-[12px] sm:text-[18px] sm:leading-[28px] lg:leading-[30px] font-[500]'>
+                <h3 className="lg:text-[20px] text-[12px] sm:text-[18px] sm:leading-[28px] lg:leading-[30px] font-[500]">
                   {moment(event.start_date + " " + event.start_time).format(
                     "ddd, MMM DD YYYY, h:mm A"
                   )}
                 </h3>
-                <div className='mt-[18.86px] flex flex-wrap gap-2.5 lg:gap-0 lg:flex-col'>
+                <div className="mt-[18.86px] flex flex-wrap gap-2.5 lg:gap-0 lg:flex-col">
                   {titleList}
                 </div>
               </div>
@@ -128,13 +128,13 @@ function CreateEvent() {
         >
           <img
             src={vector}
-            alt='vector'
-            className='fixed hidden lg:block bottom-0 h-full top-0 z-[-1] right-0'
+            alt="vector"
+            className="fixed hidden lg:block bottom-0 h-full top-0 z-[-1] right-0"
           />
           <img
             src={vectorMobile}
-            alt='vector'
-            className='fixed lg:hidden inset-0 h-full z-[-1] w-full'
+            alt="vector"
+            className="fixed lg:hidden inset-0 h-full z-[-1] w-full"
           />
           <div
             className={`${

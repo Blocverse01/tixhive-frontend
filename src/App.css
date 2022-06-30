@@ -132,6 +132,10 @@
   backdrop-filter: blur(6px);
 }
 
+.input-filter {
+  backdrop-filter: blur(6px);
+}
+
 .auth-modal {
   backdrop-filter: blur(2px);
 }
