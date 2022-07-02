@@ -3,10 +3,9 @@ import Label from "./Label";
 import ValidationError from "./ValidationError";
 import useWatchHandleChange from "hooks/useWatchHandleChange";
 
-export default function InputField({
+export default function DateTimeInputField({
   label,
   name,
-  placeholder,
   type,
   error,
   register,
@@ -16,6 +15,8 @@ export default function InputField({
   watch,
 }) {
   useWatchHandleChange(name, watch, onChange);
+  const inputClasses =
+    "w-full create-event-gradient text-[12px] px-2 sm:text-[16px] text-white uppercase";
   return (
     <div className="text-[15px] md:text-[18px] font-[400] text-white leading-[30px]">
       {label && <Label value={label} htmlFor={name} />}{" "}
@@ -27,8 +28,7 @@ export default function InputField({
           value={value}
           onChange={onChange}
           {...register(name, rules)}
-          className="w-full pt-2 pb-1 text-white bg-transparent input focus:outline-none focus:border-gray-500"
-          placeholder={placeholder}
+          className={inputClasses}
         />
       ) : (
         <input
@@ -37,8 +37,7 @@ export default function InputField({
           name={name}
           value={value}
           onChange={onChange}
-          className="w-full pt-2 pb-1 text-white bg-transparent input focus:outline-none focus:border-gray-500"
-          placeholder={placeholder}
+          className={inputClasses}
         />
       )}
       {error && <ValidationError message={error.message} />}

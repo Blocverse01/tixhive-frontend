@@ -4,65 +4,110 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import Label from "components/Label";
 import { useRecoilValue } from "recoil";
 import { newEventState } from "recoil/atoms/newEvent";
+import { useForm } from "react-hook-form";
+import DateTimeInputField from "components/DateTimeInput";
 
 function StepOne({ handleChange, setStep }) {
   const event = useRecoilValue(newEventState);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      name: event.name,
+      venue: event.venue,
+      start_date: event.start_date,
+      end_date: event.end_date,
+      start_time: event.start_time,
+      end_time: event.end_time,
+    },
+  });
+  const handleStepChange = (data) => {
+    setStep(2);
+  };
+  const handleError = (errors) => {
+    console.log(errors);
+  };
+  const validationOptions = {
+    name: { required: "A name for your event is required" },
+    venue: { required: "A venue is required" },
+    start_date: { required: "Required field" },
+    end_date: { required: "Required field" },
+    start_time: { required: "Required field" },
+    end_time: { required: "Required field" },
+  };
   return (
-    <div className="grid grid-cols-1 gap-[27px]">
+    <form
+      onSubmit={handleSubmit(handleStepChange, handleError)}
+      className="grid grid-cols-1 gap-[27px]"
+    >
       <InputField
+        register={register}
+        rules={validationOptions.name}
         type="text"
-        value={event.name}
         placeholder="e.g Cavvy 2.0"
         name="name"
         label="What is the name of your event?"
+        error={errors.name}
+        watch={watch}
         onChange={handleChange}
       />
       <div>
         <Label value="When will your event happen?" htmlFor="event_time" />
-        <div className="create-event-gradient p-4 md:p-5 grid mt-[23px] grid-cols-1 gap-5 sm:grid-cols-2">
+        <div className="create-event-gradient p-4 md:p-5 grid mt-[23px] gap-5 grid-cols-2">
           <div>
             <div>
-              <h3 className="text-white text-[15px] sm:text-[16px] leading-[24px]">Start Date</h3>
-              <input
-                onChange={handleChange}
-                name="start_date"
-                value={event.start_date}
+              <DateTimeInputField
+                register={register}
+                rules={validationOptions.start_date}
                 type="date"
-                className="bg-transparent text-[15px] sm:text-[16px] text-white uppercase"
+                name="start_date"
+                label="Start Date"
+                error={errors.start_date}
+                watch={watch}
+                onChange={handleChange}
               />
             </div>
-            <div className="mt-2 sm:mt-[11px]">
-              <h3 className="text-white text-[15px] sm:text-[16px] leading-[24px]">End Date</h3>
-              <input
-                onChange={handleChange}
-                value={event.end_date}
-                name="end_date"
+            <div className="mt-2 sm:mt-[13px]">
+              <DateTimeInputField
+                register={register}
+                rules={validationOptions.end_date}
                 type="date"
-                className="bg-transparent text-[15px] sm:text-[16px] text-white uppercase"
+                name="end_date"
+                label="End Date"
+                error={errors.end_date}
+                watch={watch}
+                onChange={handleChange}
               />
             </div>
           </div>
 
-          <div className="sm:flex justify-center">
+          <div className="justify-center sm:flex">
             <div>
               <div>
-                <h3 className="text-white text-[15px] sm:text-[16px] leading-[24px]">Start Time</h3>
-                <input
-                  onChange={handleChange}
-                  name="start_time"
-                  value={event.start_time}
+                <DateTimeInputField
+                  register={register}
+                  rules={validationOptions.start_time}
                   type="time"
-                  className="bg-transparent text-[15px] sm:text-[16px] text-white uppercase"
+                  name="start_time"
+                  label="Start Time"
+                  error={errors.start_time}
+                  watch={watch}
+                  onChange={handleChange}
                 />
               </div>
-              <div className="mt-2 sm:mt-[11px]">
-                <h3 className="text-white text-[15px] sm:text-[16px] leading-[24px]">End Time</h3>
-                <input
+              <div className="mt-2 sm:mt-[13px]">
+                <DateTimeInputField
+                  register={register}
+                  rules={validationOptions.end_time}
                   type="time"
-                  value={event.end_time}
-                  onChange={handleChange}
                   name="end_time"
-                  className="bg-transparent text-white text-[15px] sm:text-[16px] uppercase"
+                  label="End Time"
+                  error={errors.end_time}
+                  watch={watch}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -71,11 +116,14 @@ function StepOne({ handleChange, setStep }) {
       </div>
       {event.venue_type === 0 ? (
         <InputField
+          register={register}
+          rules={validationOptions.venue}
           type="text"
-          value={event.venue}
           placeholder="eg. O2 Arena, London, UK"
           name="venue"
           label="Where will your event happen?"
+          error={errors.venue}
+          watch={watch}
           onChange={handleChange}
         />
       ) : (
@@ -90,24 +138,27 @@ function StepOne({ handleChange, setStep }) {
           className="bg-brand-red connect-wallet h-[45px] lg:h-[56px] px-3 lg:px-0 lg:w-[170px] text-white text-[15px] md:text-[18px] leading-[35px] flex justify-center items-center"
         >
           <span className="flex items-center">
-            <FontAwesomeIcon icon={solid("chevron-left")} className="mr-[13px] md:mr-[22px]" />
+            <FontAwesomeIcon
+              icon={solid("chevron-left")}
+              className="mr-[13px] md:mr-[22px]"
+            />
             Previous
           </span>
         </button>
         <button
-          onClick={() => {
-            setStep(2);
-          }}
-          type="button"
+          type="submit"
           className="bg-brand-red connect-wallet h-[45px] lg:h-[56px] px-3 lg:px-0 lg:w-[170px] text-white text-[15px] md:text-[18px] leading-[35px] flex justify-center items-center"
         >
           <span className="flex items-center">
             Continue
-            <FontAwesomeIcon icon={solid("chevron-right")} className="ml-[13px] md:ml-[22px]" />
+            <FontAwesomeIcon
+              icon={solid("chevron-right")}
+              className="ml-[13px] md:ml-[22px]"
+            />
           </span>
         </button>
       </div>
-    </div>
+    </form>
   );
 }
 

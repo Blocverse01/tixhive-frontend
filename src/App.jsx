@@ -116,7 +116,9 @@ function App() {
                 <Route exact path="/events" element={<EventsPage />} />
                 <Route element={<Error404 />} path="*" />
               </Routes>
-              <Footer />
+              <footer>
+                <Footer />
+              </footer>
             </div>
           </div>
         </Web3Boot>
