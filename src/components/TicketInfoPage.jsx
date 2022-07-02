@@ -5,16 +5,31 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useEffect, useState } from "react";
 import TicketAuthenticationCard from "./TicketAuthenticationCard";
+import { useMoralis } from "react-moralis";
 
 export default function TicketInfoPage() {
   const { contract, purchase } = useParams();
   const eventList = useRecoilValue(eventListState);
   const [event, setEvent] = useState(null);
+  const { isInitialized } = useMoralis();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const event = eventList.find((e) => e.contractAddress === contract);
-    setEvent(event);
+    let eventOnMoralis;
+    if (eventList.length > 0) {
+      eventOnMoralis = eventList.find((e) => e.contractAddress === contract);
+      if (!eventOnMoralis) {
+        setLoading(false);
+      }
+      setEvent(eventOnMoralis);
+      return;
+    }
+    if (eventList.length === 0 && isInitialized) {
+      setLoading(false);
+    }
+    if (!eventOnMoralis && isInitialized) {
+      setLoading(false);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventList]);
   useEffect(() => {

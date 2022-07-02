@@ -12,7 +12,10 @@ export default function MyTickets() {
   return (
     <section className="page">
       <div className="page-wrapper">
-        <h3 className="page-title">Tickets In Your Wallet</h3>
+        <h3 className="page-title">
+          <FontAwesomeIcon icon={solid("wallet")} className="mr-3" /> Tickets In
+          Your Wallet
+        </h3>
         {isAuthenticated ? (
           <div>
             {isLoading ? (
@@ -34,7 +37,7 @@ export default function MyTickets() {
                   </section>
                 ) : (
                   <div className="empty-events">
-                    Your purchased and owned tickets would display here.
+                    We found zero tickets in your wallet.
                   </div>
                 )}
               </div>

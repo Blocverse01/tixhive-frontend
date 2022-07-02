@@ -2,14 +2,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import ViewTicket from "./ViewTicket";
 import { useState, useEffect } from "react";
-import useReadNFTData from "hooks/data/useReadNFTData";
 import useReadNFTImage from "hooks/data/useReadNFTImage";
 
 export default function TicketCard({ ticket, event, image }) {
   const [fallBackImage, setFallBackImage] = useState(null);
   const [modal, setOpen] = useState(false);
-  const { data } = useReadNFTData(event.contractAddress, ticket.tokenId);
-  const nftImage = useReadNFTImage(data);
+  const nftImage = useReadNFTImage(event.contractAddress, ticket.tokenId);
   useEffect(() => {
     if (nftImage) {
       setFallBackImage(nftImage);

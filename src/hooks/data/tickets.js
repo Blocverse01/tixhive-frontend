@@ -72,7 +72,7 @@ export function useTicketInfo(event, purchaseId) {
     const [isLoading, setLoading] = React.useState(true);
     const { eventSales } = useEventOverview(event);
     React.useEffect(() => {
-        if (eventSales && purchaseId) {
+        if (eventSales.length > 0 && purchaseId) {
             const ticket = eventSales.find((sale) => sale[0] === purchaseId);
             if (ticket) {
                 setTicketInfo({
@@ -80,6 +80,8 @@ export function useTicketInfo(event, purchaseId) {
                     cost: `${convertBalanceToEther(ticket[4])} ${event.currency}`,
                     tokenId: ticket[2]
                 });
+            } else {
+                setLoading(false);
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -88,6 +90,7 @@ export function useTicketInfo(event, purchaseId) {
         if (ticketInfo) {
             setLoading(false)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ticketInfo]);
     return { ticketInfo, isLoading };
 }
