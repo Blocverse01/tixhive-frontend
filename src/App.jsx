@@ -7,6 +7,7 @@ import Web3Boot from "components/Web3Boot";
 import ScrollToTop from "ScrollToTop";
 import EventDisplay from "components/EventDisplay";
 import ManageEvents from "./ManageEvents";
+import { default as Error404 } from "components/ErrorPage";
 import MyTickets from "MyTickets";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
@@ -45,11 +46,7 @@ function App() {
                     <ConnectWallet />
                   </div>
                   <Link className={"z-50 hidden items-center lg:flex"} to="/">
-                    <img
-                      src={blocTixLogo}
-                      className="mr-2 h-[45px] xl:h-[50px]"
-                      alt="TixHive Logo"
-                    />
+                    <img src={blocTixLogo} className="mr-2 h-[45px] xl:h-[50px]" alt="TixHive Logo" />
                     <h3 className="lg:mr-[40px] xl:mr-[66.17px] lg:font-[500] lg:text-[22.71px] lg:leading-[28.62px]">
                       TixHive
                     </h3>
@@ -59,25 +56,12 @@ function App() {
                       navOpen ? navOpenClasses : "w-0 h-0 overflow-hidden"
                     } lg:w-auto lg:h-auto lg:overflow-auto ${navClasses}`}
                   >
-                    <li
-                      className={`lg:hidden ${
-                        navOpen ? "" : "hidden"
-                      } absolute right-[20.48px] top-[20.48px]`}
-                    >
-                      <button
-                        onClick={() => setNavOpen(false)}
-                        className={"lg:hidden bg-none"}
-                      >
-                        <FontAwesomeIcon
-                          icon={solid("times")}
-                          className={"text-2xl"}
-                        />
+                    <li className={`lg:hidden ${navOpen ? "" : "hidden"} absolute right-[20.48px] top-[20.48px]`}>
+                      <button onClick={() => setNavOpen(false)} className={"lg:hidden bg-none"}>
+                        <FontAwesomeIcon icon={solid("times")} className={"text-2xl"} />
                       </button>
                     </li>
-                    <li
-                      onClick={() => setNavOpen(false)}
-                      className={"mt-[42.48px] lg:mt-0"}
-                    >
+                    <li onClick={() => setNavOpen(false)} className={"mt-[42.48px] lg:mt-0"}>
                       <Link to="/create-event">Create an Event</Link>
                     </li>
                     <li onClick={() => setNavOpen(false)}>
@@ -98,9 +82,7 @@ function App() {
                       <div>
                         {isPolygon ? (
                           <div className="text-sm padded-btn sm:text-base bg-black-gradient">
-                            <span className="">
-                              {convertBalanceToEther(maticBalance)}
-                            </span>
+                            <span className="">{convertBalanceToEther(maticBalance)}</span>
                             <span className=""> MATIC</span>
                           </div>
                         ) : (
@@ -118,10 +100,7 @@ function App() {
                     <div className={"hidden lg:block"}>
                       <ConnectWallet />
                     </div>
-                    <button
-                      onClick={() => setNavOpen(true)}
-                      className={"lg:hidden z-50 btn"}
-                    >
+                    <button onClick={() => setNavOpen(true)} className={"lg:hidden z-50 btn"}>
                       <FontAwesomeIcon icon={solid("bars")} />
                     </button>
                   </div>
@@ -133,11 +112,9 @@ function App() {
                 <Route element={<EventDisplay />} path="/events/:contract" />
                 <Route element={<MyTickets />} path="/my-tickets" />
                 <Route element={<ManageEvents />} path="/my-events" />
-                <Route
-                  element={<TicketInfoPage />}
-                  path={"/:contract/tickets/:purchase"}
-                />
+                <Route element={<TicketInfoPage />} path={"/:contract/tickets/:purchase"} />
                 <Route exact path="/events" element={<EventsPage />} />
+                <Route element={<Error404 />} path="*" />
               </Routes>
               <footer>
                 <Footer />
