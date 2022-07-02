@@ -4,8 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import TicketCard from "./TicketCard";
-import { ethers } from "../utils/web3-utils";
-import { useEventSales, useUnwrapTickets } from "hooks/data/events";
+import { useUnwrapTickets } from "hooks/data/events";
 
 export default function EventDropdown({ event }) {
   const [modalOpen, toggle] = useState(false);
@@ -18,7 +17,7 @@ export default function EventDropdown({ event }) {
       >
         <div
           className={
-            "border-b px-5 flex justify-between items-center pt-3 border-slate-300 pb-3"
+            "border-b px-5 flex justify-between tickets-center pt-3 border-slate-300 pb-3"
           }
         >
           <h3 className={"font-semibold"}>Event</h3>
@@ -30,8 +29,8 @@ export default function EventDropdown({ event }) {
             <span className={"hidden md:block"}>Check Event</span>
           </Link>
         </div>
-        <div className="flex items-start justify-between p-5">
-          <div className={"flex items-center"}>
+        <div className="flex tickets-start justify-between p-5">
+          <div className={"flex tickets-center"}>
             <div className="hidden md:block">
               <h3 className="event-month">
                 {moment(event.starts_on).format("MMM")}
@@ -58,12 +57,12 @@ export default function EventDropdown({ event }) {
           modalOpen ? "h-full" : "h-0 overflow-hidden"
         }  mt-7 transition-all ease-out`}
       >
-        {tickets.map((item, index) => (
+        {tickets.map((ticket, index) => (
           <TicketCard
-            ticket={item}
+            ticket={ticket}
             key={index}
             event={event}
-            image={item.image}
+            image={ticket.image}
           />
         ))}
       </div>
