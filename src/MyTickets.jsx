@@ -25,7 +25,7 @@ export default function MyTickets() {
                   className="mr-4"
                   spin
                 />{" "}
-                Your event list is loading.
+                Scanning your wallet.
               </div>
             ) : (
               <div>
@@ -44,7 +44,7 @@ export default function MyTickets() {
             )}
           </div>
         ) : (
-          <LoginMessage authAction="view your events" />
+          <LoginMessage authAction="view your tickets" />
         )}
       </div>
     </section>
