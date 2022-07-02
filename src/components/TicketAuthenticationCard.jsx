@@ -62,17 +62,17 @@ export default function TicketAuthenticationCard({ event, purchase }) {
                           </div>
                         </div>
                       </div>
-                      <div className="table-cell pr-4">
+                      <div className="table-cell px-2">
                         <div className="flex items-center">
                           {ticketInfo.cost}
                         </div>
                       </div>
-                      <div className="table-cell pr-4">
+                      <div className="table-cell px-4">
                         <div className="flex items-center">
                           {ticketInfo.name}
                         </div>
                       </div>
-                      <div className="table-cell pr-4">
+                      <div className="table-cell">
                         <div className="flex justify-center items-center">
                           #{ticketInfo.tokenId}
                         </div>
