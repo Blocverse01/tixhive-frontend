@@ -1,10 +1,18 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import ViewTicket from "./ViewTicket";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useReadNFTImage from "hooks/data/useReadNFTImage";
 
 export default function TicketCard({ ticket, event, image }) {
+  const [fallBackImage, setFallBackImage] = useState(null);
   const [modal, setOpen] = useState(false);
+  const nftImage = useReadNFTImage(event.contractAddress, ticket.tokenId);
+  useEffect(() => {
+    if (nftImage) {
+      setFallBackImage(nftImage);
+    }
+  }, [nftImage]);
   return (
     <section className={"mb-7"}>
       <div className={"bg-event-gradient"}>
@@ -42,7 +50,7 @@ export default function TicketCard({ ticket, event, image }) {
             </button>
           </div>
           <div className="py-[32px] flex justify-center">
-            <ViewTicket image={image} />
+            <ViewTicket image={image || fallBackImage} />
           </div>
         </div>
       ) : (

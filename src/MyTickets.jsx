@@ -12,12 +12,12 @@ export default function MyTickets() {
   return (
     <section className="page">
       <div className="page-wrapper">
-        <h3 className="page-title">Tickets Bought</h3>
+        <h3 className="page-title">
+          <FontAwesomeIcon icon={solid("wallet")} className="mr-3" /> Tickets In
+          Your Wallet
+        </h3>
         {isAuthenticated ? (
-          <section className={"grid-cols-1 text-white gap-5 grid"}>
-            {userEvents.map((event, index) => (
-              <EventDropdown key={index} event={event} />
-            ))}
+          <div>
             {isLoading ? (
               <div className="empty-events">
                 <FontAwesomeIcon
@@ -28,18 +28,23 @@ export default function MyTickets() {
                 Your event list is loading.
               </div>
             ) : (
-              ""
+              <div>
+                {userEvents.length > 0 ? (
+                  <section className={"grid-cols-1 text-white gap-5 grid"}>
+                    {userEvents.map((event, index) => (
+                      <EventDropdown key={index} event={event} />
+                    ))}
+                  </section>
+                ) : (
+                  <div className="empty-events">
+                    We found zero tickets in your wallet.
+                  </div>
+                )}
+              </div>
             )}
-            {userEvents.length === 0 && !isLoading ? (
-              <div className="empty-events">Your event list is empty.</div>
-            ) : (
-              ""
-            )}
-          </section>
-        ) : (
-          <div>
-            <LoginMessage authAction="view your events" />
           </div>
+        ) : (
+          <LoginMessage authAction="view your events" />
         )}
       </div>
     </section>

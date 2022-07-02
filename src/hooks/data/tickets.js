@@ -24,14 +24,20 @@ export function useMyEvents() {
                     (typeof sortedEvents[event.contractAddress]?.nfts === 'object') ? sortedEvents[event.contractAddress].nfts.push(nft) : sortedEvents[event.contractAddress] = { ...sortedEvents[event.contractAddress], nfts: [nft] };
                 }
             });
-            setUserEvents(Object.values(sortedEvents));
+            const sortedEventsArray = Object.values(sortedEvents);
+            setUserEvents(sortedEventsArray);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [events, userNFTs]);
     React.useEffect(() => {
         if (userEvents.length > 0) {
             setLoading(false)
+            return;
         }
+        if (userEvents.length === 0 && events.length > 0 && userNFTs.length > 0) {
+            setLoading(false)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userEvents]);
     return { userEvents, isLoading };
 }
@@ -66,7 +72,7 @@ export function useTicketInfo(event, purchaseId) {
     const [isLoading, setLoading] = React.useState(true);
     const { eventSales } = useEventOverview(event);
     React.useEffect(() => {
-        if (eventSales && purchaseId) {
+        if (eventSales.length > 0 && purchaseId) {
             const ticket = eventSales.find((sale) => sale[0] === purchaseId);
             if (ticket) {
                 setTicketInfo({
@@ -74,6 +80,8 @@ export function useTicketInfo(event, purchaseId) {
                     cost: `${convertBalanceToEther(ticket[4])} ${event.currency}`,
                     tokenId: ticket[2]
                 });
+            } else {
+                setLoading(false);
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -82,6 +90,7 @@ export function useTicketInfo(event, purchaseId) {
         if (ticketInfo) {
             setLoading(false)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ticketInfo]);
     return { ticketInfo, isLoading };
 }
