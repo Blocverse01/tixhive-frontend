@@ -6,45 +6,11 @@ import { enableContract } from "utils/web3-utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import EventDropdown from "./components/EventDropdown";
+import { useMyEvents } from "hooks/data/tickets";
 
 export default function MyTickets() {
-  const { user, isAuthenticated, Moralis, web3, isWeb3Enabled } = useMoralis();
-  const [userEvents, setUserEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (isAuthenticated && isWeb3Enabled) {
-      const query = new Moralis.Query("Event");
-      query.descending("createdAt");
-      query.find().then(async (events) => {
-        const unresolvedPromises = events.map(async (event) => {
-          const eventContract = await enableContract(
-            event.get("contractAddress"),
-            EVENT,
-            web3
-          );
-          let tokens = await eventContract.ownerTokens(user.get("ethAddress"));
-          if (tokens.length > 0) {
-            // eslint-disable-next-line no-unused-vars
-            const [totalSold, sales, tickets] = await eventContract.getInfo();
-            tokens = tokens.map((token) => token.toNumber());
-            const advancedEvent = {
-              ...event.attributes,
-              sales: sales.filter((sale) =>
-                tokens.includes(sale.tokenId.toNumber())
-              ),
-              tickets: tickets,
-            };
-            return advancedEvent;
-          }
-          return null;
-        });
-        setUserEvents((await Promise.all(unresolvedPromises)).filter(Boolean));
-        setLoading(false);
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, web3, isWeb3Enabled]);
+  const { userEvents, isLoading } = useMyEvents();
+  const { isAuthenticated } = useMoralis();
 
   return (
     <section className="page">
@@ -55,7 +21,7 @@ export default function MyTickets() {
             {userEvents.map((event, index) => (
               <EventDropdown key={index} event={event} />
             ))}
-            {loading ? (
+            {isLoading ? (
               <div className="empty-events">
                 <FontAwesomeIcon
                   icon={solid("spinner")}
@@ -67,7 +33,7 @@ export default function MyTickets() {
             ) : (
               ""
             )}
-            {userEvents.length === 0 && !loading ? (
+            {userEvents.length === 0 && !isLoading ? (
               <div className="empty-events">Your event list is empty.</div>
             ) : (
               ""

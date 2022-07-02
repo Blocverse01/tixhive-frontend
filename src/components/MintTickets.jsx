@@ -5,13 +5,13 @@ import { useMoralis, useMoralisFile } from "react-moralis";
 import { useState, useEffect } from "react";
 import QRCode from "react-qr-code";
 import TicketDesign from "components/TicketDesign";
-import { enableContract, ethers } from "utils/web3-utils";
-import { eventFactory } from "data/contracts";
+import { ethers } from "utils/web3-utils";
 import { safeFloat } from "utils/numbers";
 import { nanoid } from "nanoid";
 import { jsxToPng } from "jsx-to-png";
 import Swal from "sweetalert2";
 import ProgressTracker from "./ProgressTracker";
+import { useRunEventFactoryFunction } from "hooks/useRunEventFactoryFunction";
 
 export default function MintTickets({ event, setBodyScroll }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -19,6 +19,7 @@ export default function MintTickets({ event, setBodyScroll }) {
   const [mintingState, setMintingState] = useState(-1);
   const processes = ["Generating Tickets and Metadata", "Minting Tickets"];
   const { saveFile } = useMoralisFile();
+  const { run } = useRunEventFactoryFunction();
   const eventStartDate = moment(event.starts_on);
   const localDateGenerated =
     eventStartDate.local().format("hA") +
@@ -32,7 +33,7 @@ export default function MintTickets({ event, setBodyScroll }) {
     }))
   );
 
-  const preparePuchases = async () => {
+  const preparePurchases = async () => {
     const purchasePromises = [];
     const preparedPurchases = [];
     purchases
@@ -166,22 +167,15 @@ export default function MintTickets({ event, setBodyScroll }) {
         });
         return;
       }
-
-      const EventFactory = await enableContract(
-        eventFactory.contractAddress,
-        eventFactory.abi,
-        web3
-      );
       setMintingState(0);
-      const preparedPurchases = await preparePuchases();
+      const preparedPurchases = await preparePurchases();
       setMintingState(1);
       const matic = ethers.utils.parseEther(totalAmount.toString());
-      console.log(event.contractAddress);
-      const tx = await EventFactory.connect(web3.getSigner()).mintTickets(
-        event.contractAddress,
-        preparedPurchases,
-        { value: matic }
-      );
+      const tx = await run({
+        functionName: "mintTickets",
+        params: { purchases: preparedPurchases, e: event.contractAddress },
+        msgValue: matic,
+      });
       const receipt = await tx.wait();
       if (receipt && receipt.blockNumber) {
         Swal.fire({
@@ -192,6 +186,7 @@ export default function MintTickets({ event, setBodyScroll }) {
         setMintingState(-1);
       }
     } catch (err) {
+      console.error(err);
       setMintingState(-1);
       Swal.fire({
         title: "Error!",

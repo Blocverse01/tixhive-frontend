@@ -11,3 +11,4 @@ export default function useDataFromContractFunction() {
         load, data, error, isLoading,
     }
 }
+
