@@ -1,8 +1,5 @@
 import { useMoralis } from "react-moralis";
-import { useEffect, useState } from "react";
 import LoginMessage from "components/LoginMessage";
-import EVENT from "contract-abis/Event.json";
-import { enableContract } from "utils/web3-utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import EventDropdown from "./components/EventDropdown";
