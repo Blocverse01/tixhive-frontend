@@ -24,14 +24,20 @@ export function useMyEvents() {
                     (typeof sortedEvents[event.contractAddress]?.nfts === 'object') ? sortedEvents[event.contractAddress].nfts.push(nft) : sortedEvents[event.contractAddress] = { ...sortedEvents[event.contractAddress], nfts: [nft] };
                 }
             });
-            setUserEvents(Object.values(sortedEvents));
+            const sortedEventsArray = Object.values(sortedEvents);
+            setUserEvents(sortedEventsArray);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [events, userNFTs]);
     React.useEffect(() => {
         if (userEvents.length > 0) {
             setLoading(false)
+            return;
         }
+        if (userEvents.length === 0 && events.length > 0 && userNFTs.length > 0) {
+            setLoading(false)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userEvents]);
     return { userEvents, isLoading };
 }
