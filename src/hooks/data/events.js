@@ -14,11 +14,7 @@ export function useRawEvents() {
     return events;
 }
 
-<<<<<<< HEAD
 export function useEventOverview(event) {
-=======
-export function useEventAnalytics(event) {
->>>>>>> c37613bf702df385de6862bba6e7708c812b193b
     const [analytics, setAnalytics] = React.useState(null)
     const options = {
         chain: process.env.REACT_APP_NET_ID,
