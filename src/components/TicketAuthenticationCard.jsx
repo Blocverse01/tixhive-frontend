@@ -34,13 +34,13 @@ export default function TicketAuthenticationCard({ event, purchase }) {
                         <div className="events-header-text w-48">
                           Event Details
                         </div>
-                        <div className="events-header-text w-28">
+                        <div className="events-header-text w-32">
                           Ticket Fee
                         </div>
-                        <div className="events-header-text w-40">
+                        <div className="events-header-text w-44">
                           Ticket Type
                         </div>
-                        <div className="events-header-text w-20">Token ID</div>
+                        <div className="events-header-text w-24">Token ID</div>
                       </div>
                     </div>
                     <div className="table-row relative event rounded-md">
