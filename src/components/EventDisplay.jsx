@@ -9,7 +9,7 @@ import {
   telegramIcon,
   instagramIcon,
 } from "svgs/social-icons";
-import map from "svgs/unsplash_Uk3t05ndSng.png";
+//import map from "svgs/unsplash_Uk3t05ndSng.png";
 import EventsList from "components/EventsList";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
@@ -20,6 +20,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import MintTickets from "./MintTickets";
 //import MetaTags from "react-meta-tags";
 import { Helmet } from "react-helmet";
+import GoogleMapIframe from "./GoogleMapIframe";
 
 export default function EventDisplay() {
   // eslint-disable-next-line no-unused-vars
@@ -74,7 +75,6 @@ export default function EventDisplay() {
         <meta
           property="twitter:url"
           content={`https://www.tixhive.com/events/${contract}`}
-        />
         />
         <meta
           property="twitter:title"
@@ -229,30 +229,41 @@ export default function EventDisplay() {
             </SkeletonTheme>
           )}
         </h3>
-        {event &&
-        event.contractAddress ===
-          "0x7481B9dE7CAd690D9Fffdb318B6574dDB6061186" ? (
-          <iframe
-            title={"map"}
-            className="w-full mt-5"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.7370764980396!2d3.4666013142765255!3d6.427815126052796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf5a5611e8a6f%3A0x551f035f8326d09a!2s3%20New%20Creation%20St%2C%20Lekki%20Phase%20I%20106104%2C%20Lagos!5e0!3m2!1sen!2sng!4v1652520973811!5m2!1sen!2sng"
-            width="100%"
-            height="600"
-            style={{ border: "0px" }}
-            allowFullScreen=""
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
-        ) : (
-          <img src={map} className="w-full mt-5" alt="map" />
-        )}
+        {() => {
+          if (event.venue_type === 0) {
+            switch (event.contractAddress) {
+              case "0x7481B9dE7CAd690D9Fffdb318B6574dDB6061186":
+                return (
+                  <GoogleMapIframe
+                    embedCode={
+                      "!1m18!1m12!1m3!1d3964.7370764980396!2d3.4666013142765255!3d6.427815126052796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf5a5611e8a6f%3A0x551f035f8326d09a!2s3%20New%20Creation%20St%2C%20Lekki%20Phase%20I%20106104%2C%20Lagos!5e0!3m2!1sen!2sng!4v1652520973811!5m2!1sen!2sng"
+                    }
+                  />
+                );
+              case "0x244CD6E678e2b2D957A2195b20cF36f997E8918A":
+                return (
+                  <GoogleMapIframe
+                    embedCode={
+                      "!1m18!1m12!1m3!1d3963.7641685132235!2d3.3746513141679984!3d6.551430795261575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d73a658782b%3A0x7a1de11d89cccc84!2sZone%20Tech%20Park!5e0!3m2!1sen!2sng!4v1656889339504!5m2!1sen!2sng"
+                    }
+                  />
+                );
+              default:
+                return "";
+            }
+          }
+        }}
       </section>
       <section className="mt-[28.2px] px-5 md:px-[54px] lg:px-[45px] lg:mt-[121px]">
         <h3 className="text-[8px] text-center text-white leading-[12px] md:text-[14px] md:leading-[18px] lg:text-[30px] lg:leading-[45px]">
           Events You May Like
         </h3>
         <div className="mt-5">
-          <EventsList events={events} />
+          <EventsList
+            events={events.filter(
+              (event) => event.contractAddress !== contract
+            )}
+          />
         </div>
       </section>
     </section>

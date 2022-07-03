@@ -94,7 +94,7 @@ export default function EventPublisher() {
         });
       }, 1000);
       const query = new Moralis.Query("Event");
-      query.descending("createdAt").equalTo("owner", user?.get("ethAddress"));
+      query.descending("createdAt");
       query
         .find()
         .then((events) => {
