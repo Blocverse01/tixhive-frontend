@@ -5,22 +5,22 @@ import truncateEthAddress from "truncate-eth-address";
 import Modal from "../Modal";
 import { connectors, getWallets } from "./config";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import blocTix from "images/bloctix-b.png";
-import ClickToCopy from "components/ClickToCopy";
+import blocTix from "images/tixhive-logo.min.svg";
 import LoopingImages from "components/LoopingImages";
+import useNetworkStatus from "hooks/useNetworkStatus";
+import { useRecoilState } from "recoil";
+import { showWalletModalState } from "recoil/atoms/wallet";
 
 export default function ConnectWallet() {
   const [isOpen, toggle] = useState(false);
   const [getWalletOpen, setGetWalletOpen] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [showWalletModal, setShowWalletModal] =
+    useRecoilState(showWalletModalState);
+  const { isPolygon } = useNetworkStatus();
   const chainId = process.env.REACT_APP_CHAIN_ID;
-  const {
-    authenticate,
-    isAuthenticated,
-    isAuthenticating,
-    user,
-    account,
-    logout,
-  } = useMoralis();
+  const { authenticate, isAuthenticated, isAuthenticating, user } =
+    useMoralis();
   const login = async (options) => {
     try {
       await authenticate(options);
@@ -44,36 +44,39 @@ export default function ConnectWallet() {
       toggle(false);
     }
   }, [isAuthenticated, user]);
+  const showRed = isAuthenticated && !isPolygon;
+  const showWallet = isAuthenticated && isPolygon;
   return (
     <div>
       <div className="flex items-center">
         <button
           onClick={async () =>
-            isAuthenticated ? await logout() : toggle(true)
+            isAuthenticated ? setShowWalletModal(true) : toggle(true)
           }
-          className="bg-brand-red mr-3 connect-wallet h-[45px] md:h-[56px] px-5 lg:px-0 lg:w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center"
+          className={`${
+            showRed ? "bg-[#D30000]" : "bg-brand-red"
+          } mr-3 connect-wallet h-[45px] md:h-[56px] px-3 sm:px-5 lg:px-0 lg:w-[170px] text-white text-xs sm:text-sm md:text-[18px] md:leading-[35px] flex justify-center items-center darker-red rounded-lg`}
         >
           {isAuthenticating ? (
             <FontAwesomeIcon className="mr-2" icon={solid("spinner")} spin />
           ) : (
             ""
           )}
-          {user
-            ? truncateEthAddress(account || user.get("ethAddress"))
+          {user && isAuthenticated
+            ? truncateEthAddress(user.get("ethAddress") || "")
             : isAuthenticating
             ? "Connecting"
             : "Connect"}
-        </button>
-        {user ? (
-          <div className="bg-gray-600 h-[40px] px-3 flex items-center">
-            <ClickToCopy
-              buttonText={<FontAwesomeIcon icon={solid("copy")} />}
-              text={`${user.get("ethAddress")}`}
+          {showRed && (
+            <FontAwesomeIcon
+              icon={solid("exclamation-triangle")}
+              className="ml-2"
             />
-          </div>
-        ) : (
-          ""
-        )}
+          )}
+          {showWallet && (
+            <FontAwesomeIcon icon={solid("chevron-down")} className="ml-2" />
+          )}
+        </button>
       </div>
       <Modal
         showModal={isOpen}
@@ -93,7 +96,7 @@ export default function ConnectWallet() {
                       await login({
                         provider: connector.connectorId,
                         chainId: chainId,
-                        signingMessage: "Log in to BlocTix",
+                        signingMessage: "Log in to TixHive",
                       });
                     }}
                     key={`conn_${connectorIndex}`}

@@ -10,9 +10,9 @@ export default function Modal({
       {showModal ? (
         <>
           <div className="justify-center items-center flex overflow-x-hidden auth-modal overflow-y-auto bottom-0 left-0 right-0 fixed md:inset-0 z-[1050] outline-none focus:outline-none">
-            <div className="relative w-auto md:my-6 mx-auto max-w-3xl">
+            <div className="relative w-auto z-[1150] md:my-6 mx-auto max-w-3xl">
               {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              <div className="border-0 rounded-lg shadow-lg relative z-[1150] flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-center justify-between pl-5 md:pl-8 pr-5 border-b border-solid border-slate-200 rounded-t">
                   <h3 className="text-sm text-center md:text-left md:text-xl text-black font-semibold">

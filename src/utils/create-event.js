@@ -25,6 +25,7 @@ export const saveToMoralis = async (newEvent, contractAddress, cover_image, leas
   event.set("saleIsActive", true);
   event.set("tickets", tickets);
   event.set("currency", newEvent.currency);
+  event.set("contractVersion", process.env.REACT_APP_CONTRACT_VERSION);
   event.setACL(eventACL);
   return event;
 };

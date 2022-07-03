@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { newEventState } from "recoil/atoms/newEvent";
-import { eventsState } from "recoil/atoms/events";
+import { eventListState } from "recoil/atoms/events";
 import { useMoralisFile, useMoralis } from "react-moralis";
 import { newTicketsState } from "recoil/atoms/newTickets";
 import Swal from "sweetalert2";
@@ -25,7 +25,7 @@ export default function EventPublisher() {
   const newEvent = useRecoilValue(newEventState);
   const leastTicketCost = useRecoilValue(leastTicketPriceState);
   // eslint-disable-next-line no-unused-vars
-  const [events, setEvents] = useRecoilState(eventsState);
+  const [events, setEvents] = useRecoilState(eventListState);
   const processes = [
     "Uploading Cover Photo",
     "Creating NFT Contract",

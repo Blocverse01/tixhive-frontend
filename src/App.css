@@ -6,16 +6,39 @@
   );
 }
 
+/*Logan CSS*/
+
+.bgblack-gradient {
+  background: linear-gradient(
+    90.17deg,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.04) 98.08%
+  );
+
+  backdrop-filter: blur(5.00169px);
+}
+
+.border-btn {
+  border: 0.83px solid #ffffff99;
+}
+
+.dummy-box {
+  background: linear-gradient(
+    90.17deg,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.04) 98.08%
+  );
+  backdrop-filter: blur(4.19717px);
+}
+
+/*Logan CSS ends*/
+
 .bg-input-gradient {
   background: linear-gradient(
     90.17deg,
     rgba(255, 255, 255, 0.16) 0%,
     rgba(255, 255, 255, 0.04) 98.08%
   );
-}
-
-.btn-border {
-  border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .bg-event-gradient {
@@ -27,26 +50,23 @@
   border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-.connect-wallet {
-  border: 1px solid rgba(255, 255, 255, 0.6);
-}
-
 .see-more-btn {
   background: linear-gradient(
     96.52deg,
     rgba(151, 151, 151, 0.8) 0%,
     rgba(151, 151, 151, 0.2) 105.62%
   );
-  border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .create-event-section {
+  border-radius: 0.5rem;
+
   background: linear-gradient(
     96.52deg,
     rgba(62, 62, 62, 0.8) 0%,
     rgba(49, 49, 49, 0.2) 105.62%
   );
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  /* border: 1px solid rgba(255, 255, 255, 0.6); */
   backdrop-filter: blur(6px);
 }
 
@@ -55,6 +75,8 @@
 }
 
 .create-event-gradient {
+  border-radius: 0.5rem;
+
   background: linear-gradient(
     96.52deg,
     rgba(151, 151, 151, 0.8) 0%,
@@ -110,6 +132,14 @@
   backdrop-filter: blur(6px);
 }
 
+.input-filter {
+  backdrop-filter: blur(6px);
+}
+
 .auth-modal {
   backdrop-filter: blur(2px);
+}
+
+.auth-modal2 {
+  backdrop-filter: blur(1px);
 }

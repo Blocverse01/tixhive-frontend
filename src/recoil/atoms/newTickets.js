@@ -2,15 +2,7 @@ import { atom, selector } from "recoil";
 
 export const newTicketsState = atom({
   key: "newTicketsState",
-  default: [
-    {
-      name: "Sample Ticket",
-      description: "",
-      ticket_type: 1,
-      quantity_available: 300,
-      price: 100,
-    }
-  ],
+  default: [],
 });
 
 export const leastTicketPriceState = selector({

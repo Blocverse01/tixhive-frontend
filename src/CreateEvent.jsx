@@ -30,16 +30,14 @@ function CreateEvent() {
   const steps = [
     {
       title: "Create Your Event",
-      subtitle:
-        "Let your audience know what to expect ",
+      subtitle: "Let your audience know what to expect ",
       content: (
         <StepZero setStep={setCurrentStep} handleChange={handleChange} />
       ),
     },
     {
       title: "Event Info",
-      subtitle:
-        "Let your audience know what to expect ",
+      subtitle: "Let your audience know what to expect ",
       content: <StepOne setStep={setCurrentStep} handleChange={handleChange} />,
     },
     {
@@ -62,7 +60,7 @@ function CreateEvent() {
     }
     return (
       <h3
-        className={`cursor-pointer flex py-2 items-center ${
+        className={`cursor-pointer rounded-lg flex py-2 items-center ${
           currentStep === index
             ? "active-title"
             : index < steps.length - 1
@@ -89,7 +87,7 @@ function CreateEvent() {
   });
 
   return (
-    <div className="relative z-0 h-screen">
+    <div className="relative z-0 min-h-screen">
       <div
         className={`grid grid-cols-1  ${
           currentStep > 1 ? "lg:grid-cols-6" : "lg:grid-cols-5"

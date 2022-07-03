@@ -14,7 +14,7 @@ import EventsList from "components/EventsList";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useRecoilValue } from "recoil";
-import { eventsState } from "recoil/atoms/events";
+import { eventListState } from "recoil/atoms/events";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import MintTickets from "./MintTickets";
@@ -25,7 +25,7 @@ export default function EventDisplay() {
   // eslint-disable-next-line no-unused-vars
   const [bodyScroll, setBodyScroll] = useState(true);
   const { contract } = useParams();
-  const events = useRecoilValue(eventsState);
+  const events = useRecoilValue(eventListState);
   const [event, setEvent] = useState(null);
 
   useEffect(() => {
@@ -52,18 +52,18 @@ export default function EventDisplay() {
   return (
     <section className={`py-[38px] lg:px-20 lg:py-[65px]`}>
       <Helmet id={"event-display"}>
-        <title>BlocTix Event - {event ? event.name : "Loading"}</title>
+        <title>TixHive Event - {event ? event.name : "Loading"}</title>
         <meta
           name="description"
           content={event ? event.description : "Loading"}
         />
         <meta
           property="og:url"
-          content={`https://www.bloctix.com/events/${contract}`}
+          content={`https://www.tixhive.com/events/${contract}`}
         />
         <meta
           property="og:title"
-          content={`BlocTix Event - ${event ? event.name : "Loading"}`}
+          content={`TixHive Event - ${event ? event.name : "Loading"}`}
         />
         <meta property="og:image" content={event?.cover_image_url} />
         <meta
@@ -73,12 +73,12 @@ export default function EventDisplay() {
         <meta property="twitter:card" content="summary_large_image" />
         <meta
           property="twitter:url"
-          content={`https://www.bloctix.com/events/${contract}`}
+          content={`https://www.tixhive.com/events/${contract}`}
         />
         />
         <meta
           property="twitter:title"
-          content={`BlocTix Event - ${event ? event.name : "Loading"}`}
+          content={`TixHive Event - ${event ? event.name : "Loading"}`}
         />
         <meta
           property="twitter:description"
