@@ -40,7 +40,7 @@ export default function Wallet() {
                   </button>
                 </div>
                 {/*body*/}
-                <div className="relative flex-auto px-8 md:px-14 pb-8 md:pb-10 text-white">
+                <div className="relative flex-auto px-8 md:px-14 pb-8 md:pb-14 lg:px-[60px] lg:pb-[68px] 2xl:pb-[88.99px] text-white">
                   <h3 className="text-center text-base md:text-lg lg:leading-[26.04px]">
                     <span className="mr-3">
                       {truncateEthAddress(user.get("ethAddress"))}

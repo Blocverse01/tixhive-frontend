@@ -75,7 +75,7 @@ function App() {
                           </button>
                         </li>
                         <li
-                          className={"mt-[42.48px] lg:mt-0"}
+                          className={"mt-[42.48px] lg:hidden lg:mt-0"}
                           onClick={() => setNavOpen(false)}
                         >
                           <Link to="/">Home</Link>
