@@ -55,7 +55,7 @@ export default function ConnectWallet() {
           }
           className={`${
             showRed ? "bg-[#D30000]" : "bg-brand-red"
-          } mr-3 connect-wallet h-[45px] md:h-[56px] px-3 sm:px-5 lg:px-0 lg:w-[170px] text-white text-sm md:text-[18px] md:leading-[35px] flex justify-center items-center darker-red rounded-lg`}
+          } mr-3 connect-wallet h-[45px] md:h-[56px] px-3 sm:px-5 lg:px-0 lg:w-[170px] text-white text-xs sm:text-sm md:text-[18px] md:leading-[35px] flex justify-center items-center darker-red rounded-lg`}
         >
           {isAuthenticating ? (
             <FontAwesomeIcon className="mr-2" icon={solid("spinner")} spin />
