@@ -15,7 +15,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 export default function Wallet() {
-  const { user } = useMoralis();
+  const { user, logout, isAuthenticated, isAuthenticating } = useMoralis();
   const [showWalletModal, setShowWalletModal] =
     useRecoilState(showWalletModalState);
   const totalUsdBalance = useRecoilValue(totalUsdBalanceState);
@@ -41,16 +41,35 @@ export default function Wallet() {
                 </div>
                 {/*body*/}
                 <div className="relative flex-auto px-8 md:px-14 pb-8 md:pb-14 lg:px-[60px] lg:pb-[68px] 2xl:pb-[88.99px] text-white">
+                  <div className="flex items-center justify-center">
+                    <button
+                      onClick={async () => {
+                        await logout();
+                        setShowWalletModal(false);
+                      }}
+                      className="Wallet-disconnect-btn"
+                    >
+                      {isAuthenticating && (
+                        <FontAwesomeIcon
+                          icon={solid("spinner")}
+                          className="mr-2 text-white"
+                          spin
+                        />
+                      )}
+                      Disconnect
+                    </button>
+                  </div>
                   <h3 className="text-center text-base md:text-lg lg:leading-[26.04px]">
                     <span className="mr-3">
-                      {truncateEthAddress(user.get("ethAddress"))}
+                      {isAuthenticated &&
+                        truncateEthAddress(user.get("ethAddress"))}
                     </span>{" "}
                     <ClickToCopy
-                      text={user.get("ethAddress")}
+                      text={isAuthenticated && user.get("ethAddress")}
                       buttonText={<FontAwesomeIcon icon={solid("copy")} />}
                     />
                   </h3>
-                  <h3 className="font-medium mb-5 text-[40px] md:text-5xl lg:text-[67.87px] lg:leading-[85.51px] text-center">
+                  <h3 className="font-medium font-sora mb-5 text-[40px] md:text-5xl lg:text-[67.87px] lg:leading-[85.51px] text-center">
                     ${totalUsdBalance}
                   </h3>
                   <div className="mb-5 bg-[#22262F] p-3 flex items-center justify-between rounded-[8.69px]">
