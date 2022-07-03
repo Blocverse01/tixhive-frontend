@@ -7,35 +7,43 @@ import { convertBalanceToEther } from "utils/web3-utils";
 
 export function useMyEvents() {
     const events = useRecoilValue(eventListState);
-    const userNFTs = useGetUserNFTs();
-    const [userEvents, setUserEvents] = React.useState([]);
+    const { userNFTs, isLoading: loadingUserNFTs } = useGetUserNFTs();
+    const [userEvents, setUserEvents] = React.useState(null);
     const [isLoading, setLoading] = React.useState(false);
 
     React.useEffect(() => {
-        if (events && userNFTs) {
-            setLoading(true);
-            let sortedEvents = {};
-            userNFTs.forEach((nft) => {
-                const event = events.find((event) => event.contractAddress.toLowerCase() === nft.token_address.toLowerCase());
-                if (event) {
-                    if (!sortedEvents[event.contractAddress]) {
-                        sortedEvents[event.contractAddress] = event;
+        if (!loadingUserNFTs) {
+            if (events && userNFTs) {
+                let sortedEvents = {};
+                userNFTs.forEach((nft) => {
+                    const event = events.find((event) => event.contractAddress.toLowerCase() === nft.token_address.toLowerCase());
+                    if (event) {
+                        if (!sortedEvents[event.contractAddress]) {
+                            sortedEvents[event.contractAddress] = event;
+                        }
+                        (typeof sortedEvents[event.contractAddress]?.nfts === 'object') ? sortedEvents[event.contractAddress].nfts.push(nft) : sortedEvents[event.contractAddress] = { ...sortedEvents[event.contractAddress], nfts: [nft] };
                     }
-                    (typeof sortedEvents[event.contractAddress]?.nfts === 'object') ? sortedEvents[event.contractAddress].nfts.push(nft) : sortedEvents[event.contractAddress] = { ...sortedEvents[event.contractAddress], nfts: [nft] };
-                }
-            });
-            const sortedEventsArray = Object.values(sortedEvents);
-            setUserEvents(sortedEventsArray);
+                });
+                const sortedEventsArray = Object.values(sortedEvents);
+                setUserEvents(sortedEventsArray);
+                return;
+            }
+            setUserEvents([]);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [events, userNFTs]);
     React.useEffect(() => {
-        if (userEvents.length > 0) {
+        if (userEvents && userEvents.length > 0) {
             setLoading(false)
             return;
         }
-        if (userEvents.length === 0 && events.length > 0 && userNFTs.length > 0) {
+        if (userEvents && userEvents.length === 0) {
             setLoading(false)
+            return;
+        }
+        if (!userEvents && loadingUserNFTs) {
+            setLoading(true)
+            return;
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userEvents]);
@@ -50,6 +58,7 @@ export function useGetUserNFTs(address = null) {
         chain: process.env.REACT_APP_NET_ID,
         address: address
     };
+    const [isLoading, setLoading] = React.useState(true);
     const fetchUserNFTs = async () => {
         try {
             let query = await Web3Api.account.getNFTs(options);
@@ -61,10 +70,11 @@ export function useGetUserNFTs(address = null) {
     React.useEffect(() => {
         if (isInitialized) {
             fetchUserNFTs();
+            setLoading(false);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isInitialized]);
-    return userNFTs;
+    return { userNFTs, isLoading };
 }
 
 export function useTicketInfo(event, purchaseId) {

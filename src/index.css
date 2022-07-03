@@ -7,6 +7,9 @@
 @tailwind utilities;
 
 @layer base {
+  .loading {
+    @apply flex justify-center items-center w-screen h-screen text-white fixed inset-0 z-[9999];
+  }
   .create-event-headline {
     @apply text-[18px] leading-[28px] md:text-[25px] font-[500] md:leading-[51.62px] text-white;
   }

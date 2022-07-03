@@ -29,15 +29,22 @@ export default function MyTickets() {
               </div>
             ) : (
               <div>
-                {userEvents.length > 0 ? (
+                {userEvents && userEvents.length > 0 ? (
                   <section className={"grid-cols-1 text-white gap-5 grid"}>
                     {userEvents.map((event, index) => (
                       <EventDropdown key={index} event={event} />
                     ))}
                   </section>
                 ) : (
-                  <div className="empty-events">
-                    We found zero tickets in your wallet.
+                  <div>
+                    {userEvents && userEvents.length === 0 ? (
+                      <div className="empty-events">
+                        {" "}
+                        We found zero tickets in your wallet.
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 )}
               </div>
