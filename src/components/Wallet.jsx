@@ -50,7 +50,7 @@ export default function Wallet() {
                       buttonText={<FontAwesomeIcon icon={solid("copy")} />}
                     />
                   </h3>
-                  <h3 className="font-medium mb-5 text-[54px] md:text-7xl lg:text-[84.88px] lg:leading-[106.95px] text-center">
+                  <h3 className="font-medium mb-5 text-[40px] md:text-5xl lg:text-[67.87px] lg:leading-[85.51px] text-center">
                     ${totalUsdBalance}
                   </h3>
                   <div className="mb-5 bg-[#22262F] p-3 flex items-center justify-between rounded-[8.69px]">
