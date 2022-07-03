@@ -10,6 +10,9 @@ import truncateEthAddress from "truncate-eth-address";
 import usdtLogo from "svgs/tether-usdt-logo.svg";
 import maticLogo from "svgs/polygon-matic-logo.svg";
 import { convertBalanceToEther } from "utils/web3-utils";
+import ClickToCopy from "./ClickToCopy";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 export default function Wallet() {
   const { user } = useMoralis();
@@ -37,9 +40,15 @@ export default function Wallet() {
                   </button>
                 </div>
                 {/*body*/}
-                <div className="relative flex-auto px-5 pb-5 text-white">
+                <div className="relative flex-auto px-8 md:px-14 pb-8 md:pb-10 text-white">
                   <h3 className="text-center text-base md:text-lg lg:leading-[26.04px]">
-                    {truncateEthAddress(user.get("ethAddress"))}
+                    <span className="mr-3">
+                      {truncateEthAddress(user.get("ethAddress"))}
+                    </span>{" "}
+                    <ClickToCopy
+                      text={user.get("ethAddress")}
+                      buttonText={<FontAwesomeIcon icon={solid("copy")} />}
+                    />
                   </h3>
                   <h3 className="font-medium mb-5 text-[54px] md:text-7xl lg:text-[84.88px] lg:leading-[106.95px] text-center">
                     ${totalUsdBalance}

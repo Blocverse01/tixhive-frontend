@@ -18,8 +18,8 @@
   backdrop-filter: blur(5.00169px);
 }
 
-.border {
-  border: 0.629574px solid rgba(255, 255, 255, 0.6);
+.border-btn {
+  border: 0.83px solid #ffffff99;
 }
 
 .dummy-box {
