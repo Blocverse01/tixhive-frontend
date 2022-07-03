@@ -3,7 +3,7 @@ import error from "images/404.png";
 
 function ErrorPage() {
   return (
-    <div className=" flex flex-col-reverse md:flex-row  md:items-center mt-32   md:mt-0 md:h-[80vh] md:px-12 px-5 md:justify-between  ">
+    <div className="flex flex-col-reverse md:flex-row md:items-center mt-32 md:mt-0 md:h-[80vh] md:px-12 px-5 md:justify-between">
       <div className=" mt-10 md:w-96">
         <h1 className="header">Oops!</h1>
         <p className="text-2xl mt-5">

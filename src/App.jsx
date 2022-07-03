@@ -43,7 +43,7 @@ function App() {
               <div className="relative text-white bg-brand-black">
                 <div className="max-w-[1728px] mx-auto">
                   <nav className="pt-[25px] z-50 lg:pt-[45px] px-5 sm:px-10 lg:px-8 font-poppins">
-                    <div className="flex items-center justify-between lg:justify-start text-white lg:px-5 xl:px-10">
+                    <div className="flex items-center justify-between text-white lg:justify-start lg:px-5 xl:px-10">
                       <Link className={"z-50 items-center flex"} to="/">
                         <img
                           src={blocTixLogo}
@@ -96,7 +96,7 @@ function App() {
                           <Link to="/faqs">Need Help?</Link>
                         </li>
                       </ul>
-                      <div className="z-10 flex items-center justify-center lg:justify-end lg:flex-1 lg:pr-4">
+                      <div className="z-10 flex items-center justify-start lg:justify-end lg:flex-1 lg:pr-4">
                         {user ? (
                           <div>
                             {isPolygon ? (

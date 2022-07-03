@@ -35,7 +35,7 @@ function Home() {
             </Link>
             <Link
               to="/events"
-              className="mt-5 border-btn bgblack-gradient md:mt-0 text padded-btn"
+              className="mt-5 bordered-btn bgblack-gradient md:mt-0 text padded-btn"
             >
               <FontAwesomeIcon className="mr-1" icon={solid("search")} />{" "}
               Explore Events

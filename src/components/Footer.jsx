@@ -20,7 +20,7 @@ function Footer() {
             >
               Create an Event
             </Link>
-            <button className="block mt-10 border-btn md:mt-5 bgblack-gradient lg:mt-0 text padded-btn">
+            <button className="block mt-10 bordered-btn md:mt-5 bgblack-gradient lg:mt-0 text padded-btn">
               <FontAwesomeIcon className="mr-1" icon={regular("circle-play")} />{" "}
               Watch Video
             </button>

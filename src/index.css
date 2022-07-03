@@ -245,7 +245,7 @@
   }
   .EventsPage__search__bar input,
   .EventsPage__search__bar select {
-    @apply font-medium capitalize mt-[.1181rem] focus:outline-none focus:border-b-[#111317] bg-transparent w-full placeholder-slate-300 xl:text-[1.3619rem] xl:leading-[2.0431rem];
+    @apply font-medium capitalize rounded-none mt-[.1181rem] focus:outline-none focus:border-b-[#111317] bg-transparent w-full placeholder-slate-300 xl:text-[1.3619rem] xl:leading-[2.0431rem];
     border-bottom: 1.4px solid #ffffff;
   }
   .EventsPage__search__bar__button {
@@ -265,5 +265,10 @@
   }
   .EventListCard__ctas {
     @apply absolute top-5 lg:top-[24.69px] left-4 right-4 flex justify-between z-10 text-[10.09px] leading-[15.13px] text-white;
+  }
+
+  .Wallet-disconnect-btn {
+    @apply rounded-full text-white px-5 py-3 hover:bg-[#22262F] hover:scale-110 transition-all ease-linear text-center text-sm lg:text-[14.98px] font-poppins lg:leading-[22.47px] w-[160px] lg:w-[202px] mx-auto;
+    border: 2px solid #22262f;
   }
 }
