@@ -92,7 +92,7 @@ export default function EventDisplay() {
           alt="rectangle"
           className="lg:top-0 z-[-1] bottom-0 lg:bottom-auto absolute right-0 left-0"
         />
-        <div className="z-50 px-[28px] pb-[28px] pt-[12px] md:pb-[54px] md:px-[54px] md:pt-[20px] lg:p-[45px] lg:gap-[45px] grid lg:grid-cols-2">
+        <div className="z-50 px-5 pb-[28px] pt-[12px] md:pb-[54px] md:px-[54px] md:pt-[20px] lg:p-[45px] lg:gap-[45px] grid lg:grid-cols-2">
           <div className="relative">
             {event ? (
               <img
@@ -163,10 +163,10 @@ export default function EventDisplay() {
           </div>
         </div>
       </div>
-      <div className="mt-[75px] md:mt-[140px] lg:hidden px-[28px] pb-[28px] md:px-[54px] text-white">
+      <div className="mt-[75px] md:mt-[140px] lg:hidden px-5 pb-[28px] md:px-[54px] text-white">
         {aboutEvent}
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 px-[28px] md:px-[54px] lg:px-[45px] mt-[24.54px] gap-[45px]">
+      <div className="grid grid-cols-1 lg:grid-cols-2 px-5 md:px-[54px] lg:px-[45px] mt-[24.54px] gap-[45px]">
         <div className="order-2 lg:order-1">
           <h3 className="text-[9.26px] text-white leading-[13.89px] md:text-[13px] md:leading-[13.89px] lg:text-[18px] lg:leading-[27px]">
             Share Event
@@ -221,7 +221,7 @@ export default function EventDisplay() {
           </div>
         </div>
       </div>
-      <section className="mt-[28.2px] px-[28px] md:px-[54px] lg:px-[45px] lg:mt-[121px]">
+      <section className="mt-[28.2px] px-5 md:px-[54px] lg:px-[45px] lg:mt-[121px]">
         <h3 className="text-[8px] text-center text-white leading-[12px] md:text-[14px] md:leading-[18px] lg:text-[30px] lg:leading-[45px]">
           {event?.venue || (
             <SkeletonTheme baseColor="#1A1D25" highlightColor="#374151">
@@ -247,7 +247,7 @@ export default function EventDisplay() {
           <img src={map} className="w-full mt-5" alt="map" />
         )}
       </section>
-      <section className="mt-[28.2px] px-[28px] md:px-[54px] lg:px-[45px] lg:mt-[121px]">
+      <section className="mt-[28.2px] px-5 md:px-[54px] lg:px-[45px] lg:mt-[121px]">
         <h3 className="text-[8px] text-center text-white leading-[12px] md:text-[14px] md:leading-[18px] lg:text-[30px] lg:leading-[45px]">
           Events You May Like
         </h3>
