@@ -42,15 +42,20 @@ export default function TicketCard({ ticket, event, image }) {
         </div>
       </div>
       {modal ? (
-        <div className="mint-modal-content fixed w-[90%] bottom-5 mx-auto top-5">
-          <div className="mint-modal-header">
-            <h3 className="mint-modal-title">Your ticket for {event.name}</h3>
-            <button onClick={() => setOpen(false)} className={"text-brand-red"}>
-              <FontAwesomeIcon icon={solid("times")} className={"text-2xl"} />
-            </button>
-          </div>
-          <div className="py-[32px] flex justify-center">
-            <ViewTicket image={image || fallBackImage} />
+        <div className="mint-modal">
+          <div className="mint-modal-content">
+            <div className="mint-modal-header">
+              <h3 className="mint-modal-title">Your ticket for {event.name}</h3>
+              <button
+                onClick={() => setOpen(false)}
+                className={"text-brand-red"}
+              >
+                <FontAwesomeIcon icon={solid("times")} className={"text-2xl"} />
+              </button>
+            </div>
+            <div className="py-[32px] flex justify-center">
+              <ViewTicket image={image || fallBackImage} />
+            </div>
           </div>
         </div>
       ) : (

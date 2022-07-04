@@ -230,7 +230,7 @@ export default function EventDisplay() {
             </SkeletonTheme>
           )}{" "}
           {event?.venue && (
-            <div className="border-brand-eventDate border rounded-full hover:bg-brand-eventDate transition-all ease-linear w-auto h-auto inline ml-2 text-base text-white text-center px-[16px] py-[12px]">
+            <div className="inline ml-2 Wallet-disconnect-btn">
               <ClickToCopy text={event.venue} buttonText="Copy Address" />
             </div>
           )}
