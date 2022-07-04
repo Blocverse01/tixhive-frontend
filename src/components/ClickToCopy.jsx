@@ -10,7 +10,7 @@ export default function ClickToCopy({ text, buttonText }) {
   };
 
   return (
-    <button className="py-[24px] text-center" onClick={copyText}>
+    <button className="text-center rounded-none" onClick={copyText}>
       {copied ? "Copied" : buttonText}
     </button>
   );

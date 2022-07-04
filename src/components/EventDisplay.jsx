@@ -21,6 +21,7 @@ import MintTickets from "./MintTickets";
 //import MetaTags from "react-meta-tags";
 import { Helmet } from "react-helmet";
 import EventVenueMap from "./event/EventVenue";
+import ClickToCopy from "./ClickToCopy";
 
 export default function EventDisplay() {
   // eslint-disable-next-line no-unused-vars
@@ -227,9 +228,14 @@ export default function EventDisplay() {
             <SkeletonTheme baseColor="#1A1D25" highlightColor="#374151">
               <Skeleton />
             </SkeletonTheme>
+          )}{" "}
+          {event?.venue && (
+            <div className="border-brand-eventDate border rounded-full hover:bg-brand-eventDate transition-all ease-linear w-auto h-auto inline ml-2 text-base text-white text-center px-[16px] py-[12px]">
+              <ClickToCopy text={event.venue} buttonText="Copy Address" />
+            </div>
           )}
         </h3>
-        <EventVenueMap eventContract={event.contractAddress} />
+        {event && <EventVenueMap eventContract={event?.contractAddress} />}
       </section>
       <section className="mt-[28.2px] px-5 md:px-[54px] lg:px-[45px] lg:mt-[121px]">
         <h3 className="text-[8px] text-center text-white leading-[12px] md:text-[14px] md:leading-[18px] lg:text-[30px] lg:leading-[45px]">

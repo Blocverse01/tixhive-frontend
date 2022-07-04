@@ -121,11 +121,15 @@ export default function EventOverview({ rawEvent }) {
                     );
                   case "Copy URL":
                     return (
-                      <ClickToCopy
+                      <div
                         key={index}
-                        buttonText={option}
-                        text={`${window.location.origin}/events/${event.contractAddress}`}
-                      />
+                        className="py-[24px] px-[20px] md:px-[54px] text-center"
+                      >
+                        <ClickToCopy
+                          buttonText={option}
+                          text={`${window.location.origin}/events/${event.contractAddress}`}
+                        />
+                      </div>
                     );
                   default:
                     return (

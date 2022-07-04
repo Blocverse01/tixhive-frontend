@@ -59,7 +59,7 @@ export default function Wallet() {
                       Disconnect
                     </button>
                   </div>
-                  <h3 className="text-center text-base md:text-lg lg:leading-[26.04px]">
+                  <h3 className="text-center text-base md:text-lg py-[26px] lg:leading-[26.04px]">
                     <span className="mr-3">
                       {isAuthenticated &&
                         truncateEthAddress(user.get("ethAddress"))}
