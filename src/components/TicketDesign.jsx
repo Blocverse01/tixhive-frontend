@@ -18,8 +18,8 @@ export default function TicketDesign({
       fill="none"
       viewBox="0 0 835 359"
     >
-      <rect width="624" height="359" fill="#8c1755" rx="26"></rect>
-      <rect width="215" height="359" x="620" fill="#262626" rx="26"></rect>
+      <rect width="624" height="359" fill="#262626" rx="26"></rect>
+      <rect width="215" height="359" x="620" fill="#8c1755" rx="26"></rect>
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
