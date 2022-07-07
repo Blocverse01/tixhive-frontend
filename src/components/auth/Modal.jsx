@@ -14,15 +14,15 @@ export default function Modal({
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative z-[1150] flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
-                <div className="flex items-center justify-between pl-5 md:pl-8 pr-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-sm text-center md:text-left md:text-xl text-black font-semibold">
+                <div className="flex items-center justify-between pl-5 pr-5 border-b border-solid rounded-t md:pl-8 border-slate-200">
+                  <h3 className="text-sm font-semibold text-center text-black md:text-left md:text-xl">
                     {title}
                   </h3>
                   <button
-                    className="p-1 mb-3 mt-3 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-normal outline-none focus:outline-none"
+                    className="float-right p-1 mt-3 mb-3 ml-auto text-3xl font-normal leading-none text-black bg-transparent border-0 outline-none focus:outline-none"
                     onClick={() => setShowModal(false)}
                   >
-                    <span className="bg-slate-100 border-slate-300 border rounded-full flex justify-center items-center text-slate-500 h-10 w-10 text-3xl outline-none focus:outline-none">
+                    <span className="flex items-center justify-center w-10 h-10 text-3xl border rounded-full outline-none bg-slate-100 border-slate-300 text-slate-500 focus:outline-none">
                       ×
                     </span>
                   </button>
@@ -31,7 +31,7 @@ export default function Modal({
                 <div className="relative flex-auto">{content}</div>
                 {/*footer*/}
                 {footer ? (
-                  <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                  <div className="flex items-center justify-end p-6 border-t border-solid rounded-b border-slate-200">
                     {footer}
                   </div>
                 ) : (
@@ -40,7 +40,7 @@ export default function Modal({
               </div>
             </div>
           </div>
-          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          <div className="fixed inset-0 z-40 bg-black opacity-25"></div>
         </>
       ) : null}
     </>

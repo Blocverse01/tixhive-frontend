@@ -60,7 +60,7 @@ function CreateEvent() {
     }
     return (
       <h3
-        className={`cursor-pointer rounded-lg flex py-2 items-center ${
+        className={`rounded-lg flex py-2 items-center ${
           currentStep === index
             ? "active-title"
             : index < steps.length - 1
@@ -69,7 +69,6 @@ function CreateEvent() {
             ? "py-2 lg:py-3"
             : "lg:py-0"
         } ${index < currentStep ? "bg-brand-red lg:bg-transparent" : ""}`}
-        onClick={() => setCurrentStep(index)}
         key={index}
       >
         <span

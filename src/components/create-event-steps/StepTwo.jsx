@@ -27,6 +27,7 @@ function StepTwo({ handleChange, setStep }) {
   };
   const rules = {
     cover_image: { required: "Select A Cover Image" },
+    description: { required: "A description is required" },
   };
   return (
     <form
@@ -44,7 +45,7 @@ function StepTwo({ handleChange, setStep }) {
             name="cover_image"
             type="file"
             hidden
-            {...register("cover_image", rules.cover_image)}
+            /* {...register("cover_image", rules.cover_image)} */
           />
           <FileUploader
             types={fileTypes}
@@ -107,6 +108,7 @@ function StepTwo({ handleChange, setStep }) {
         </h4>
         <textarea
           defaultValue={event.description}
+          {...register("description", rules.description)}
           maxLength="200"
           name="description"
           placeholder="Write Summary..."
@@ -114,9 +116,14 @@ function StepTwo({ handleChange, setStep }) {
           className="create-event-gradient text-[15px] md:text-[18px] focus:outline-none text-white placeholder-[#FFFFFFB2] w-full p-5 mt-[20.21px]"
           onChange={handleChange}
         ></textarea>
-        <h3 className="text-right mt-[18px] text-white text-[15px] md:text-[18px] leading-[30.97px] font-[500]">
-          {event.description.length}/200
-        </h3>
+        <div className="flex items-baseline justify-between">
+          {errors.description && (
+            <ValidationError message={errors.description.message} />
+          )}
+          <h3 className="text-right flex-1 mt-[18px] text-white text-[15px] md:text-[18px] leading-[30.97px] font-[500]">
+            {event.description.length}/200
+          </h3>
+        </div>
       </div>
 
       <div className="flex justify-between mt-[10px]">

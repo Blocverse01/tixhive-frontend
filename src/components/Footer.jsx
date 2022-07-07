@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { regular } from "@fortawesome/fontawesome-svg-core/import.macro";
 import blocTixLogo2 from "images/logo2.min.svg";
 import twitter from "images/twitter.min.svg";
 import linkedln from "images/linkedln.min.svg";
 import instagram from "images/IG.min.svg";
 import tiktok from "images/tictok.min.svg";
+import WatchVideo from "./WatchVideo";
 
 function Footer() {
   return (
@@ -20,10 +19,7 @@ function Footer() {
             >
               Create an Event
             </Link>
-            <button className="block mt-10 bordered-btn md:mt-5 bgblack-gradient lg:mt-0 text padded-btn">
-              <FontAwesomeIcon className="mr-1" icon={regular("circle-play")} />{" "}
-              Watch Video
-            </button>
+            <WatchVideo />
           </div>
 
           <div className="flex mt-10 md:mt-32">

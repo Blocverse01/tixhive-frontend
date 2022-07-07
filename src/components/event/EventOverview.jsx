@@ -18,7 +18,7 @@ export default function EventOverview({ rawEvent }) {
   return (
     <>
       {!event || isLoading ? (
-        <div className="table-row relative">
+        <div className="relative table-row">
           <div className="table-cell pr-4">
             <SkeletonTheme baseColor="#1A1D25" highlightColor="#374151">
               <Skeleton height={90} width={"100%"} />
@@ -46,7 +46,7 @@ export default function EventOverview({ rawEvent }) {
           </div>
         </div>
       ) : (
-        <div className="table-row relative event">
+        <div className="relative table-row event">
           <div className="table-cell p-[16.5px] md:p-[24px] lg:p-[32px] text-left">
             <div className="flex items-center">
               <div className="hidden md:block">
@@ -121,11 +121,15 @@ export default function EventOverview({ rawEvent }) {
                     );
                   case "Copy URL":
                     return (
-                      <ClickToCopy
+                      <div
                         key={index}
-                        buttonText={option}
-                        text={`${window.location.origin}/events/${event.contractAddress}`}
-                      />
+                        className="py-[24px] px-[20px] md:px-[54px] text-center"
+                      >
+                        <ClickToCopy
+                          buttonText={option}
+                          text={`${window.location.origin}/events/${event.contractAddress}`}
+                        />
+                      </div>
                     );
                   default:
                     return (
