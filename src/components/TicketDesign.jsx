@@ -18,12 +18,12 @@ export default function TicketDesign({
       fill="none"
       viewBox="0 0 835 359"
     >
-      <rect width="624" height="359" fill="#262626" rx="26"></rect>
-      <rect width="215" height="359" x="620" fill="#5E5CD7" rx="26"></rect>
+      <rect width="624" height="359" fill="#8c1755" rx="26"></rect>
+      <rect width="215" height="359" x="620" fill="#262626" rx="26"></rect>
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-        fontSize="35"
+        fontSize="30"
         letterSpacing="0em"
         transform="translate(47 81)"
         style={{ whiteSpace: "pre" }}
@@ -36,7 +36,7 @@ export default function TicketDesign({
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-        fontSize="26.546"
+        fontSize="20.546"
         letterSpacing="0em"
         transform="rotate(90 377.822 425.823)"
         style={{ whiteSpace: "pre" }}
@@ -49,7 +49,7 @@ export default function TicketDesign({
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-        fontSize="23"
+        fontSize="18"
         letterSpacing="0em"
         transform="rotate(90 343.66 391.66)"
         style={{ whiteSpace: "pre" }}
@@ -62,7 +62,7 @@ export default function TicketDesign({
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-        fontSize="33.85"
+        fontSize="30.85"
         letterSpacing="0em"
         transform="translate(45 256)"
         style={{ whiteSpace: "pre" }}
@@ -75,7 +75,7 @@ export default function TicketDesign({
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-        fontSize="16"
+        fontSize="15"
         letterSpacing=".08em"
         transform="translate(47 58)"
         style={{ whiteSpace: "pre" }}
@@ -88,7 +88,7 @@ export default function TicketDesign({
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-        fontSize="16"
+        fontSize="15"
         letterSpacing=".08em"
         transform="translate(47 140)"
         style={{ whiteSpace: "pre" }}
