@@ -90,7 +90,7 @@ export default function MintTickets({ event, setBodyScroll }) {
         <TicketDesign
           eventHost={event.host_name}
           eventName={event.name}
-          qrCode={<QRCode value={validateUrl} size={91} fgColor="#8c1755" />}
+          qrCode={<QRCode value={validateUrl} size={91} fgColor="#FE5252" />}
           eventCategory={event.category.toUpperCase()}
           eventTime={localDateGenerated}
           ticketInfo={{

@@ -19,7 +19,7 @@ export default function TicketDesign({
       viewBox="0 0 835 359"
     >
       <rect width="624" height="359" fill="#262626" rx="26"></rect>
-      <rect width="215" height="359" x="620" fill="#8c1755" rx="26"></rect>
+      <rect width="215" height="359" x="620" fill="#FE5252" rx="26"></rect>
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
@@ -139,7 +139,7 @@ export default function TicketDesign({
       </text>
       <g clipPath="url(#clip0_17_24)">
         <path
-          stroke="white"
+          stroke="#FE5252"
           strokeWidth="2.892"
           d="M490.133-14.027C646.319-12.87 207.839 373.837 582.688 399M452.743-57c156.187 1.157-282.293 387.864 92.555 413.027"
         ></path>
