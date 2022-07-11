@@ -17,7 +17,7 @@ export default function TicketInfoPage() {
   useEffect(() => {
     let eventOnMoralis;
     if (eventList.length > 0) {
-      eventOnMoralis = eventList.find((e) => e.contractAddress === contract);
+      eventOnMoralis = eventList.find((e) => e.contractAddress.toLowerCase() === contract.toLowerCase());
       if (!eventOnMoralis) {
         setLoading(false);
       }
@@ -44,21 +44,14 @@ export default function TicketInfoPage() {
         <div>
           {loading ? (
             <div className="empty-events">
-              <FontAwesomeIcon icon={solid("spinner")} className="mr-4" spin />{" "}
-              Loading Ticket Info.
+              <FontAwesomeIcon icon={solid("spinner")} className="mr-4" spin /> Loading Ticket Info.
             </div>
           ) : (
             <div>
-              {event && (
-                <TicketAuthenticationCard event={event} purchase={purchase} />
-              )}
+              {event && <TicketAuthenticationCard event={event} purchase={purchase} />}
               {!event && (
                 <div className="empty-events">
-                  <FontAwesomeIcon
-                    icon={solid("exclamation-triangle")}
-                    className="mr-4"
-                  />{" "}
-                  No event info found.
+                  <FontAwesomeIcon icon={solid("exclamation-triangle")} className="mr-4" /> No event info found.
                 </div>
               )}
             </div>

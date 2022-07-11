@@ -118,7 +118,7 @@ export default function TicketAuthenticationCard({ event, purchase }) {
                     </Link>
                   </div>
                 </div>
-                <div className="mt-5 md:mt-7">
+                <div className="mt-5 md:mt-7 max-w-7xl mx-auto">
                   <DisplayTicketImage
                     contractAddress={event.contractAddress}
                     token_id={ticketInfo.tokenId}

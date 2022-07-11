@@ -31,7 +31,7 @@ export default function EventDisplay() {
   const [event, setEvent] = useState(null);
 
   useEffect(() => {
-    setEvent(events.find((event) => event.contractAddress === contract));
+    setEvent(events.find((event) => event.contractAddress.toLowerCase() === contract.toLowerCase()));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [events, contract]);
 

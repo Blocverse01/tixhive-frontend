@@ -13,8 +13,8 @@ export default function TicketDesign({
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      width="835"
-      height="359"
+      width="835px"
+      height="359px"
       fill="none"
       viewBox="0 0 835 359"
     >
@@ -23,7 +23,7 @@ export default function TicketDesign({
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-        fontSize="40"
+        fontSize="30"
         letterSpacing="0em"
         transform="translate(47 81)"
         style={{ whiteSpace: "pre" }}
@@ -36,7 +36,7 @@ export default function TicketDesign({
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-        fontSize="27.546"
+        fontSize="20.546"
         letterSpacing="0em"
         transform="rotate(90 377.822 425.823)"
         style={{ whiteSpace: "pre" }}
@@ -49,7 +49,7 @@ export default function TicketDesign({
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-        fontSize="25"
+        fontSize="18"
         letterSpacing="0em"
         transform="rotate(90 343.66 391.66)"
         style={{ whiteSpace: "pre" }}
@@ -62,7 +62,7 @@ export default function TicketDesign({
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-        fontSize="36.85"
+        fontSize="30.85"
         letterSpacing="0em"
         transform="translate(45 256)"
         style={{ whiteSpace: "pre" }}
@@ -75,7 +75,7 @@ export default function TicketDesign({
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-        fontSize="20"
+        fontSize="15"
         letterSpacing=".08em"
         transform="translate(47 58)"
         style={{ whiteSpace: "pre" }}
@@ -88,7 +88,7 @@ export default function TicketDesign({
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-        fontSize="20"
+        fontSize="15"
         letterSpacing=".08em"
         transform="translate(47 140)"
         style={{ whiteSpace: "pre" }}
@@ -101,7 +101,7 @@ export default function TicketDesign({
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-        fontSize="13.773"
+        fontSize="11.773"
         letterSpacing=".08em"
         transform="rotate(90 357.507 405.508)"
         style={{ whiteSpace: "pre" }}
@@ -114,7 +114,7 @@ export default function TicketDesign({
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-        fontSize="13.773"
+        fontSize="11.773"
         letterSpacing=".08em"
         transform="rotate(90 324.33 372.33)"
         style={{ whiteSpace: "pre" }}
@@ -127,7 +127,7 @@ export default function TicketDesign({
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-        fontSize="18.43"
+        fontSize="14.43"
         letterSpacing=".08em"
         transform="translate(45 232)"
         style={{ whiteSpace: "pre" }}
@@ -145,29 +145,10 @@ export default function TicketDesign({
         ></path>
         <path fill="url(#pattern0)" d="M490.5 229H581.5V320H490.5z"></path>
       </g>
-      <defs>
-        <pattern
-          id="pattern0"
-          width="1"
-          height="1"
-          patternContentUnits="objectBoundingBox"
-        >
-          <use transform="scale(.00444)" xlinkHref="#image0_17_24"></use>
-        </pattern>
-        <clipPath id="clip0_17_24">
-          <path
-            fill="#fff"
-            d="M0 0H332V359H0z"
-            transform="translate(325)"
-          ></path>
-        </clipPath>
-        <image
-          id="image0_17_24"
-          width="225"
-          height="225"
-          xlinkHref={qrCode}
-        ></image>
-      </defs>
+      <rect x="481" y="211" width="110" height="110" fill="white" />
+      <svg x="491" y="221">
+        {qrCode}
+      </svg>
     </svg>
   );
 }
