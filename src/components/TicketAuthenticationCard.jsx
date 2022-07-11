@@ -7,6 +7,7 @@ import NFTOwner from "./NFTOwner";
 import { useMoralis } from "react-moralis";
 import { Link } from "react-router-dom";
 import DisplayTicketImage from "./ticket/DisplayTicket";
+import { useEvent } from "hooks/data/events";
 
 export default function TicketAuthenticationCard({ event, purchase }) {
   const { ticketInfo, isLoading: loadingTicketInfo } = useTicketInfo(
@@ -14,6 +15,9 @@ export default function TicketAuthenticationCard({ event, purchase }) {
     purchase
   );
   const { user, isAuthenticated } = useMoralis();
+  const { eventObject } = useEvent(event.contractAddress);
+  console.log(eventObject);
+
   return (
     <div>
       {loadingTicketInfo ? (
@@ -31,19 +35,19 @@ export default function TicketAuthenticationCard({ event, purchase }) {
                   <div className="table w-full text-left text-white table-fixed events-table">
                     <div className="table-header-group">
                       <div className="table-row">
-                        <div className="events-header-text w-48">
+                        <div className="w-48 events-header-text">
                           Event Details
                         </div>
-                        <div className="events-header-text w-32">
+                        <div className="w-32 events-header-text">
                           Ticket Fee
                         </div>
                         <div className="events-header-text w-44">
                           Ticket Type
                         </div>
-                        <div className="events-header-text w-24">Token ID</div>
+                        <div className="w-24 events-header-text">Token ID</div>
                       </div>
                     </div>
-                    <div className="table-row relative event rounded-md">
+                    <div className="relative table-row rounded-md event">
                       <div className="table-cell p-[16.5px] md:p-[24px] lg:p-[32px] text-left">
                         <div className="flex items-center">
                           <div className="hidden md:block">
@@ -73,14 +77,14 @@ export default function TicketAuthenticationCard({ event, purchase }) {
                         </div>
                       </div>
                       <div className="table-cell">
-                        <div className="flex justify-center items-center">
+                        <div className="flex items-center justify-center">
                           #{ticketInfo.tokenId}
                         </div>
                       </div>
                       {isAuthenticated &&
                         user.get("ethAddress") === event.contractAddress && (
                           <div className="table-cell p-[16.5px] md:p-[24px] lg:p-[32px]">
-                            <div className="flex items-center h-full justify-end">
+                            <div className="flex items-center justify-end h-full">
                               <button className="btn">Check In</button>
                             </div>
                           </div>
@@ -88,7 +92,7 @@ export default function TicketAuthenticationCard({ event, purchase }) {
                     </div>
                   </div>
                 </div>
-                <div className="flex justify-center flex-col md:flex-row items-center mt-5 md:mt-7">
+                <div className="flex flex-col items-center justify-center mt-5 md:flex-row md:mt-7">
                   <div className="mb-5 md:mr-7 md:mb-0">
                     <NFTOwner
                       token_id={ticketInfo.tokenId}
