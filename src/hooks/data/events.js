@@ -4,7 +4,6 @@ import { eventCategoriesState, eventListState, filteredEventListState } from "re
 import EVENT from "contract-abis/Event.json";
 import React from "react";
 import { convertBalanceToEther } from "utils/web3-utils";
-import { useMoralisQuery } from "react-moralis";
 
 export function useEventCategories() {
     const eventCategories = useRecoilValue(eventCategoriesState);
@@ -69,19 +68,4 @@ export function useUnwrapTickets(event, nfts) {
 export function useEventList() {
     const events = useRecoilValue(filteredEventListState);
     return events;
-}
-
-export function useEvent(contract) {
-    const [event, setEvent] = React.useState(null);
-    const { data } = useMoralisQuery(
-        "Event",
-        (query) => query.equalTo("contractAddress", contract),
-        [],
-    );
-    React.useEffect(() => {
-        if (data) {
-            setEvent(data[0]);
-        }
-    }, [data]);
-    return event;
 }
