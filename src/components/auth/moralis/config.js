@@ -44,6 +44,12 @@ export const connectors = [
     priority: 2,
   },
   {
+    title: "Coin98",
+    icon: Coin98,
+    connectorId: "injected",
+    priority: 999,
+  },
+  {
     title: "Trust Wallet",
     icon: TrustWallet,
     connectorId: "injected",

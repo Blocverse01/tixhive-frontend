@@ -159,15 +159,15 @@ export default function ConnectWallet() {
                     ))}
                   </div>
                   <div className="pt-10">
-                    <h3 className="text-sm font-semibold text-center text-gray-800">Not what you’re looking for?</h3>
-                    <p className="text-sm text-center text-gray-500">
+                    <h3 className="text-xs font-semibold text-center text-gray-800">Not what you’re looking for?</h3>
+                    <p className="text-xs text-center text-gray-500">
                       Select a wallet <span className="hidden md:inline">on the left</span>{" "}
                       <span className="md:hidden">above</span> to get started with a different wallet provider.
                     </p>
                   </div>
                 </div>
               ) : (
-                <div className="flex flex-col px-5 py-6 md:py-14 bg-slate-100 md:bg-transparent md:px-14">
+                <div className="flex flex-col px-5 text-xs py-6 md:py-14 bg-slate-100 md:bg-transparent md:px-14">
                   <h3 className="font-bold text-center capitalize text-slate-800 md:text-left">What is a Wallet?</h3>
                   <div>
                     <p className="text-center text-slate-500 md:hidden">
@@ -175,7 +175,7 @@ export default function ConnectWallet() {
                       in, without needing to create new accounts and passwords on every website.
                     </p>
                   </div>
-                  <div className="mt-10 text-sm hidden md:block md:max-w-[360px]">
+                  <div className="mt-10 text-xs hidden md:block md:max-w-[360px]">
                     <div>
                       <h3 className="font-bold capitalize text-slate-800">A Home for your Digital Assets</h3>
                       <p className="text-slate-500">
