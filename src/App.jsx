@@ -45,13 +45,9 @@ function App() {
                   <nav className="pt-[25px] z-50 lg:pt-[45px] px-5 sm:px-10 lg:px-8 font-poppins">
                     <div className="flex items-center justify-between text-white lg:justify-start lg:px-5 xl:px-10">
                       <Link className={"z-50 items-center flex"} to="/">
-                        <img
-                          src={blocTixLogo}
-                          className="h-[22.74px] lg:h-[45px] xl:h-[50px]"
-                          alt="TixHive Logo"
-                        />
+                        <img src={blocTixLogo} className="h-[22.74px] lg:h-[45px] xl:h-[50px]" alt="BlocTix Logo" />
                         <h3 className="lg:mr-[40px] ml-2 hidden md:block xl:mr-[66.17px] lg:font-[500] lg:text-[22.71px] lg:leading-[28.62px]">
-                          TixHive
+                          BlocTix
                         </h3>
                       </Link>
                       <ul
@@ -59,25 +55,12 @@ function App() {
                           navOpen ? navOpenClasses : "w-0 h-0 overflow-hidden"
                         } lg:w-auto lg:h-auto lg:overflow-auto ${navClasses}`}
                       >
-                        <li
-                          className={`lg:hidden ${
-                            navOpen ? "" : "hidden"
-                          } absolute right-[20.48px] top-[20.48px]`}
-                        >
-                          <button
-                            onClick={() => setNavOpen(false)}
-                            className={"lg:hidden bg-none"}
-                          >
-                            <FontAwesomeIcon
-                              icon={solid("times")}
-                              className={"text-2xl"}
-                            />
+                        <li className={`lg:hidden ${navOpen ? "" : "hidden"} absolute right-[20.48px] top-[20.48px]`}>
+                          <button onClick={() => setNavOpen(false)} className={"lg:hidden bg-none"}>
+                            <FontAwesomeIcon icon={solid("times")} className={"text-2xl"} />
                           </button>
                         </li>
-                        <li
-                          className={"mt-[42.48px] lg:hidden lg:mt-0"}
-                          onClick={() => setNavOpen(false)}
-                        >
+                        <li className={"mt-[42.48px] lg:hidden lg:mt-0"} onClick={() => setNavOpen(false)}>
                           <Link to="/">Home</Link>
                         </li>
                         <li onClick={() => setNavOpen(false)}>
@@ -101,9 +84,7 @@ function App() {
                           <div>
                             {isPolygon ? (
                               <div className="text-sm padded-btn sm:text-base bg-[#22262F]">
-                                <span className="">
-                                  {convertBalanceToEther(maticBalance)}
-                                </span>
+                                <span className="">{convertBalanceToEther(maticBalance)}</span>
                                 <span className=""> MATIC</span>
                               </div>
                             ) : (
@@ -122,31 +103,18 @@ function App() {
                           <ConnectWallet />
                         </div>
                       </div>
-                      <button
-                        onClick={() => setNavOpen(true)}
-                        className={"lg:hidden z-50 text-brand-red text-3xl"}
-                      >
+                      <button onClick={() => setNavOpen(true)} className={"lg:hidden z-50 text-brand-red text-3xl"}>
                         <FontAwesomeIcon icon={solid("bars")} />
                       </button>
                     </div>
                   </nav>
                   <Routes>
                     <Route exact path="/" element={<Home />} />
-                    <Route
-                      exact
-                      path="/create-event"
-                      element={<CreateEvent />}
-                    />
-                    <Route
-                      element={<EventDisplay />}
-                      path="/events/:contract"
-                    />
+                    <Route exact path="/create-event" element={<CreateEvent />} />
+                    <Route element={<EventDisplay />} path="/events/:contract" />
                     <Route element={<MyTickets />} path="/my-tickets" />
                     <Route element={<ManageEvents />} path="/my-events" />
-                    <Route
-                      element={<TicketInfoPage />}
-                      path={"/:contract/tickets/:purchase"}
-                    />
+                    <Route element={<TicketInfoPage />} path={"/:contract/tickets/:purchase"} />
                     <Route exact path="/events" element={<EventsPage />} />
                     <Route element={<Error404 />} path="*" />
                   </Routes>
