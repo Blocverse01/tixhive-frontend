@@ -24,47 +24,30 @@ function Footer() {
 
           <div className="flex mt-10 md:mt-32">
             <img className="w-10 h-12" alt="" src={blocTixLogo2} />
-            <p className="ml-5 font-sora header2">TixHive</p>
+            <p className="ml-5 font-sora header2">BlocTix</p>
           </div>
         </div>
         <div className="md:h-96 md:w-[300px] ">
           <p className="header2">About</p>
           <p className="mt-2 text2 md:mt-5">
-            TixHive is a product of BlocVerse, a Blockchain and Web3 Company
-            leveraging the blockchain and its opportunities to bring value to
-            the ecosystem.
+            BlocTix is a product of BlocVerse, a Blockchain and Web3 Company leveraging the blockchain and its
+            opportunities to bring value to the ecosystem.
           </p>
 
           <div className="">
             <p className="mt-16 header2 md:mt-40">Socials</p>
             <div className="flex justify-between mx-auto mt-5 xl:justify-start md:w-48 md:mx-0">
               <a href="/" className="social-icons xl:mr-[14.86px]">
-                <img
-                  src={twitter}
-                  alt="twitter"
-                  className="w-8 h-8 md:h-8 md:w-8 xl:w-[22px] xl:h-[18px]"
-                />
+                <img src={twitter} alt="twitter" className="w-8 h-8 md:h-8 md:w-8 xl:w-[22px] xl:h-[18px]" />
               </a>
               <a href="/" className="social-icons xl:mr-[14.86px]">
-                <img
-                  src={tiktok}
-                  alt="tiktok"
-                  className="w-8 h-8 md:h-8 md:w-8 xl:w-[17.8px] xl:h-[20.5px]"
-                />
+                <img src={tiktok} alt="tiktok" className="w-8 h-8 md:h-8 md:w-8 xl:w-[17.8px] xl:h-[20.5px]" />
               </a>
               <a href="/" className="social-icons xl:mr-[14.86px]">
-                <img
-                  src={linkedln}
-                  alt="linkedin"
-                  className="w-8 h-8 md:h-8 md:w-8 xl:w-[21px] xl:h-[21px]"
-                />
+                <img src={linkedln} alt="linkedin" className="w-8 h-8 md:h-8 md:w-8 xl:w-[21px] xl:h-[21px]" />
               </a>
               <a href="/" className="social-icons">
-                <img
-                  src={instagram}
-                  alt="instagram"
-                  className="w-8 h-8 md:h-8 md:w-8 xl:w-[21px] xl:h-[21px]"
-                />
+                <img src={instagram} alt="instagram" className="w-8 h-8 md:h-8 md:w-8 xl:w-[21px] xl:h-[21px]" />
               </a>
             </div>
           </div>
