@@ -38,7 +38,7 @@ function Footer() {
           <div className="">
             <p className="mt-16 header2 md:mt-40">Socials</p>
             <div className="flex justify-between mx-auto mt-5 xl:justify-start md:w-48 md:mx-0">
-              <a href="/" className="social-icons xl:mr-[14.86px]">
+              <a href="https://mobile.twitter.com/TixHive" className="social-icons xl:mr-[14.86px]">
                 <img
                   src={twitter}
                   alt="twitter"
@@ -52,7 +52,7 @@ function Footer() {
                   className="w-8 h-8 md:h-8 md:w-8 xl:w-[17.8px] xl:h-[20.5px]"
                 />
               </a>
-              <a href="/" className="social-icons xl:mr-[14.86px]">
+              <a href="https://www.linkedin.com/mwlite/company/blocverse" className="social-icons xl:mr-[14.86px]">
                 <img
                   src={linkedln}
                   alt="linkedin"
