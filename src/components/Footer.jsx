@@ -3,7 +3,8 @@ import blocTixLogo2 from "images/logo2.min.svg";
 import twitter from "images/twitter.min.svg";
 import linkedln from "images/linkedln.min.svg";
 import instagram from "images/IG.min.svg";
-import tiktok from "images/tictok.min.svg";
+import youtube from "images/youtube.svg";
+
 import WatchVideo from "./WatchVideo";
 
 function Footer() {
@@ -45,10 +46,10 @@ function Footer() {
                   className="w-8 h-8 md:h-8 md:w-8 xl:w-[22px] xl:h-[18px]"
                 />
               </a>
-              <a href="/" className="social-icons xl:mr-[14.86px]">
+              <a href="https://youtube.com/channel/UCSwXfu1DAfzrpSqeo4MYtyQ" className="social-icons xl:mr-[14.86px]">
                 <img
-                  src={tiktok}
-                  alt="tiktok"
+                  src={youtube}
+                  alt="youtube"
                   className="w-8 h-8 md:h-8 md:w-8 xl:w-[17.8px] xl:h-[20.5px]"
                 />
               </a>
