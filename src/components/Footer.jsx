@@ -53,14 +53,14 @@ function Footer() {
                   className="w-8 h-8 md:h-8 md:w-8 xl:w-[17.8px] xl:h-[20.5px]"
                 />
               </a>
-              <a href="https://www.linkedin.com/mwlite/company/blocverse" className="social-icons xl:mr-[14.86px]">
+              <a href="https://www.linkedin.com/company/81568150/" className="social-icons xl:mr-[14.86px]">
                 <img
                   src={linkedln}
                   alt="linkedin"
                   className="w-8 h-8 md:h-8 md:w-8 xl:w-[21px] xl:h-[21px]"
                 />
               </a>
-              <a href="/" className="social-icons">
+              <a href="https://www.instagram.com/p/CbgniZOquQV/?igshid=YmMyMTA2M2Y=" className="social-icons">
                 <img
                   src={instagram}
                   alt="instagram"
