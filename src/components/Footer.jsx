@@ -3,7 +3,8 @@ import blocTixLogo2 from "images/logo2.min.svg";
 import twitter from "images/twitter.min.svg";
 import linkedln from "images/linkedln.min.svg";
 import instagram from "images/IG.min.svg";
-import tiktok from "images/tictok.min.svg";
+import youtube from "images/youtube.svg";
+
 import WatchVideo from "./WatchVideo";
 
 function Footer() {
@@ -38,28 +39,28 @@ function Footer() {
           <div className="">
             <p className="mt-16 header2 md:mt-40">Socials</p>
             <div className="flex justify-between mx-auto mt-5 xl:justify-start md:w-48 md:mx-0">
-              <a href="/" className="social-icons xl:mr-[14.86px]">
+              <a href="https://mobile.twitter.com/TixHive" className="social-icons xl:mr-[14.86px]">
                 <img
                   src={twitter}
                   alt="twitter"
                   className="w-8 h-8 md:h-8 md:w-8 xl:w-[22px] xl:h-[18px]"
                 />
               </a>
-              <a href="/" className="social-icons xl:mr-[14.86px]">
+              <a href="https://youtube.com/channel/UCSwXfu1DAfzrpSqeo4MYtyQ" className="social-icons xl:mr-[14.86px]">
                 <img
-                  src={tiktok}
-                  alt="tiktok"
+                  src={youtube}
+                  alt="youtube"
                   className="w-8 h-8 md:h-8 md:w-8 xl:w-[17.8px] xl:h-[20.5px]"
                 />
               </a>
-              <a href="/" className="social-icons xl:mr-[14.86px]">
+              <a href="https://www.linkedin.com/company/81568150/" className="social-icons xl:mr-[14.86px]">
                 <img
                   src={linkedln}
                   alt="linkedin"
                   className="w-8 h-8 md:h-8 md:w-8 xl:w-[21px] xl:h-[21px]"
                 />
               </a>
-              <a href="/" className="social-icons">
+              <a href="https://www.instagram.com/p/CbgniZOquQV/?igshid=YmMyMTA2M2Y=" className="social-icons">
                 <img
                   src={instagram}
                   alt="instagram"
