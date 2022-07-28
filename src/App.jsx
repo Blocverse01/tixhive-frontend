@@ -7,6 +7,7 @@ import Web3Boot from "components/Web3Boot";
 import ScrollToTop from "ScrollToTop";
 import EventDisplay from "components/EventDisplay";
 import ManageEvents from "./ManageEvents";
+
 import { default as Error404 } from "components/ErrorPage";
 import MyTickets from "MyTickets";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -95,6 +96,7 @@ function App() {
                         <li onClick={() => setNavOpen(false)}>
                           <Link to="/faqs">Need Help?</Link>
                         </li>
+                       
                       </ul>
                       <div className="z-10 flex items-center justify-start lg:justify-end lg:flex-1 lg:pr-4">
                         {user ? (
@@ -143,6 +145,7 @@ function App() {
                     />
                     <Route element={<MyTickets />} path="/my-tickets" />
                     <Route element={<ManageEvents />} path="/my-events" />
+                 
                     <Route
                       element={<TicketInfoPage />}
                       path={"/:contract/tickets/:purchase"}
