@@ -117,5 +117,7 @@ app.listen(PORT, (error) => {
   if (error) {
     return console.log("Error during app startup", error);
   }
-  console.log("listening on " + PORT + "...");
+  console.log("listening on:" + PORT + "...");
 });
+
+module.exports = app;
