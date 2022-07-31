@@ -218,24 +218,14 @@ export default function MintTickets({ event, setBodyScroll }) {
         icon: "error",
       });
     }
-  };
+  };  
   return (
     <section>
       {modalOpen && purchases.length > 0 && (
-        <div
-          className={`mint-modal ${
-            modalOpen
-              ? "overflow-auto h-full"
-              : "max-h-0 h-0 overflow-hidden hidden"
-          }`}
-        >
+        <div className={`mint-modal ${modalOpen ? "overflow-hidden h-fit" : "max-h-0 h-0 overflow-hidden hidden"}`}>
           <div className="relative mint-modal-content">
             {mintingState >= 0 ? (
-              <ProgressTracker
-                state={mintingState}
-                processes={processes}
-                title={`Processing tickets`}
-              />
+              <ProgressTracker state={mintingState} processes={processes} title={`Processing tickets`} />
             ) : (
               ""
             )}
@@ -249,18 +239,9 @@ export default function MintTickets({ event, setBodyScroll }) {
               </button>
             </div>
             <div className="mint-modal-body">
-              <div>
-                <h3 className="mint-modal-title">Payment</h3>
-                <h3 className="mint-modal-subtitle">
-                  Tickets will be minted to your wallet after payment.
-                </h3>
-                <div className="event-card">
-                  <img
-                    src={event.cover_image_url}
-                    className="event-card-image"
-                    alt={event.name}
-                  />
-                  <div className="event-card-content">
+             <div>
+              <h3 className="mint-modal-subtitle">Event Summary</h3>
+              <div className="mt-2">
                     <h3 className="event-card-title">{event.name}</h3>
                     <h3 className="event-card-subtitle">
                       by {event.host_name}
@@ -282,10 +263,23 @@ export default function MintTickets({ event, setBodyScroll }) {
                           {eventStartDate.format("HH:mm a")}
                         </h3>
                       </div>
-                    </section>
-                  </div>
-                </div>
+                    </section>  
               </div>
+
+              <div className=" mt-4 lg:mt-10">
+                <h3 className="mint-modal-subtitle">Payment Methods</h3>
+
+                <div className="w-[246px] ">
+                <button type="button" className=" mint-modal-subtitle pay-btn">Pay with Fiat</button>
+                <button type="button" className=" mint-modal-subtitle pay-btn">Pay with Crypto</button>
+
+                </div>
+
+              </div>
+
+             </div>
+
+
               <div>
                 <div className="form-card">
                   {event.tickets.map((ticket, index) => (
@@ -337,7 +331,7 @@ export default function MintTickets({ event, setBodyScroll }) {
           </div>
         </div>
       )}
-      <button onClick={() => setModalOpen(true)} className="btn">
+      <button onClick={() => setModalOpen(true)} className="btn darker-red">
         Get a Ticket
       </button>
     </section>
