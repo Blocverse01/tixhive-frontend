@@ -176,7 +176,7 @@ export default function MintTickets({ event, setBodyScroll }) {
         icon: "error",
       });
     }
-  };
+  };  
   return (
     <section>
       {modalOpen && purchases.length > 0 && (
