@@ -1,7 +1,10 @@
 import rectangle7 from "svgs/Rectangle-7.png";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { regular } from "@fortawesome/fontawesome-svg-core/import.macro";
+import {
+  regular,
+  brands,
+} from "@fortawesome/fontawesome-svg-core/import.macro";
 //import map from "svgs/unsplash_Uk3t05ndSng.png";
 import EventsList from "components/EventsList";
 import { useEffect, useState } from "react";
@@ -178,7 +181,14 @@ export default function EventDisplay() {
                 <SocialShare media={"facebook"} />
                 <SocialShare media={"whatsapp"} />
                 <SocialShare media={"telegram"} />
-                <SocialShare media={"instagram"} />
+                <SocialShare
+                  media={"linkedin"}
+                  customIcon={
+                    <div className="custom-social-icon social-icon">
+                      <FontAwesomeIcon icon={brands("linkedin-in")} />
+                    </div>
+                  }
+                />
                 <SocialShare
                   media={"twitter"}
                   shareLink={composeTweet({
