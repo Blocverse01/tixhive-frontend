@@ -19,7 +19,6 @@
     "@web3auth/web3auth": "^1.0.0-alpha.0",
     "aos": "^2.3.4",
     "assert": "^2.0.0",
-    "axios": "^0.27.2",
     "babel-plugin-macros": "^3.1.0",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",

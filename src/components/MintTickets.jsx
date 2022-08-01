@@ -12,24 +12,17 @@ import Swal from "sweetalert2";
 import ProgressTracker from "./ProgressTracker";
 import { useRunEventFactoryFunction } from "hooks/useRunEventFactoryFunction";
 import QRCode from "react-qr-code";
-import mintFreeTickets from "utils/mint-free-tickets";
 
 export default function MintTickets({ event, setBodyScroll }) {
   const [modalOpen, setModalOpen] = useState(false);
   const { user, isAuthenticated } = useMoralis();
   const [mintingState, setMintingState] = useState(-1);
-  const processes = [
-    "Generating Tickets and Metadata",
-    "Preparing to Mint",
-    "Minting Tickets",
-  ];
+  const processes = ["Generating Tickets and Metadata", "Preparing to Mint", "Minting Tickets"];
   const { saveFile } = useMoralisFile();
   const { run } = useRunEventFactoryFunction();
   const eventStartDate = moment(event.starts_on);
   const localDateGenerated =
-    eventStartDate.local().format("hA") +
-    " " +
-    String(eventStartDate.local()._d).split(" ")[5];
+    eventStartDate.local().format("hA") + " " + String(eventStartDate.local()._d).split(" ")[5];
   const [purchases, setPurchases] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
 
@@ -45,14 +38,8 @@ export default function MintTickets({ event, setBodyScroll }) {
             new Promise(async (res, rej) => {
               try {
                 let purchaseId = nanoid();
-                let ticket = event.tickets.find(
-                  (ticket, index) => index === purchase.ticketId
-                );
-                const metadata = await generateTicket(
-                  purchaseId,
-                  ticket,
-                  purchase
-                );
+                let ticket = event.tickets.find((ticket, index) => index === purchase.ticketId);
+                const metadata = await generateTicket(purchaseId, ticket, purchase);
                 preparedPurchases.push({
                   purchaseId: purchaseId,
                   ticketId: purchase.ticketId,
@@ -72,12 +59,7 @@ export default function MintTickets({ event, setBodyScroll }) {
     return preparedPurchases;
   };
 
-  const generateTicketMetadata = async (
-    purchaseId,
-    purchase,
-    ticket,
-    image
-  ) => {
+  const generateTicketMetadata = async (purchaseId, purchase, ticket, image) => {
     const metadata = {
       name: `${event.name} - ${ticket.name}`,
       description: `${ticket.name} pass for ${event.name}`,
@@ -130,12 +112,7 @@ export default function MintTickets({ event, setBodyScroll }) {
           throwOnError: true,
         }
       );
-      return await generateTicketMetadata(
-        purchaseId,
-        purchase,
-        ticket,
-        ticketImage._ipfs
-      );
+      return await generateTicketMetadata(purchaseId, purchase, ticket, ticketImage._ipfs);
     } catch (err) {
       console.error(err);
     }
@@ -143,11 +120,7 @@ export default function MintTickets({ event, setBodyScroll }) {
 
   useEffect(() => {
     setTotalAmount(
-      purchases
-        .map(
-          (purchase) => safeFloat(purchase.quantity) * safeFloat(purchase.cost)
-        )
-        .reduce((a, b) => a + b, 0)
+      purchases.map((purchase) => safeFloat(purchase.quantity) * safeFloat(purchase.cost)).reduce((a, b) => a + b, 0)
     );
   }, [purchases]);
   useEffect(() => {
@@ -179,29 +152,14 @@ export default function MintTickets({ event, setBodyScroll }) {
       const preparedPurchases = await preparePurchases();
       setMintingState(1);
       const matic = ethers.utils.parseEther(totalAmount.toString());
-      const shouldFreeMint = matic.isZero();
-      let success;
-      if (shouldFreeMint) {
-        setMintingState(2);
-        const response = await mintFreeTickets(
-          preparedPurchases,
-          event.contractAddress
-        );
-        if (response.status) {
-          success = true;
-        }
-      } else {
-        const tx = await run({
-          functionName: "mintTickets",
-          params: { purchases: preparedPurchases, e: event.contractAddress },
-          msgValue: matic,
-        });
-        setMintingState(2);
-        const receipt = await tx.wait();
-        success = receipt && receipt.blockNumber;
-      }
-
-      if (success) {
+      const tx = await run({
+        functionName: "mintTickets",
+        params: { purchases: preparedPurchases, e: event.contractAddress },
+        msgValue: matic,
+      });
+      setMintingState(2);
+      const receipt = await tx.wait();
+      if (receipt && receipt.blockNumber) {
         Swal.fire({
           title: "Yay 🎉",
           text: `Tickets minted successfully`,
@@ -232,10 +190,7 @@ export default function MintTickets({ event, setBodyScroll }) {
             <div className="mint-modal-header">
               <h3 className="mint-modal-title">Get Your Tickets</h3>
               <button onClick={() => setModalOpen(false)}>
-                <FontAwesomeIcon
-                  className="text-3xl text-brand-red md:text-5xl"
-                  icon={solid("times")}
-                />
+                <FontAwesomeIcon className="text-3xl text-brand-red md:text-5xl" icon={solid("times")} />
               </button>
             </div>
             <div className="mint-modal-body">
@@ -243,25 +198,15 @@ export default function MintTickets({ event, setBodyScroll }) {
               <h3 className="mint-modal-subtitle">Event Summary</h3>
               <div className="mt-2">
                     <h3 className="event-card-title">{event.name}</h3>
-                    <h3 className="event-card-subtitle">
-                      by {event.host_name}
-                    </h3>
+                    <h3 className="event-card-subtitle">by {event.host_name}</h3>
                     <section className="mt-[8px] flex items-center">
                       <div className="mr-[10px] md:mr-[31.06px]">
-                        <h3 className="event-card-month">
-                          {eventStartDate?.format("MMM")}
-                        </h3>
-                        <h3 className="event-card-day">
-                          {eventStartDate?.format("DD")}
-                        </h3>
+                        <h3 className="event-card-month">{eventStartDate?.format("MMM")}</h3>
+                        <h3 className="event-card-day">{eventStartDate?.format("DD")}</h3>
                       </div>
                       <div>
-                        <h3 className="event-card-start-date">
-                          {eventStartDate.format("dddd")}
-                        </h3>
-                        <h3 className="event-card-start-time">
-                          {eventStartDate.format("HH:mm a")}
-                        </h3>
+                        <h3 className="event-card-start-date">{eventStartDate.format("dddd")}</h3>
+                        <h3 className="event-card-start-time">{eventStartDate.format("HH:mm a")}</h3>
                       </div>
                     </section>  
               </div>
@@ -292,11 +237,7 @@ export default function MintTickets({ event, setBodyScroll }) {
                         <input
                           onChange={(e) => {
                             setPurchases(
-                              purchases.map((q, i) =>
-                                i === index
-                                  ? { ...q, quantity: e.target.value }
-                                  : q
-                              )
+                              purchases.map((q, i) => (i === index ? { ...q, quantity: e.target.value } : q))
                             );
                           }}
                           name={index}
@@ -315,15 +256,8 @@ export default function MintTickets({ event, setBodyScroll }) {
                   </div>
                 </div>
                 <div className="lg:mt-[55px] mt-[15px] flex justify-end">
-                  <button
-                    onClick={() => purchaseTickets()}
-                    className="px-3 text-sm btn md:text-base"
-                  >
-                    Pay {totalAmount} MATIC{" "}
-                    <FontAwesomeIcon
-                      className="ml-2"
-                      icon={solid("chevron-right")}
-                    />
+                  <button onClick={() => purchaseTickets()} className="px-3 darker-red text-sm btn md:text-base">
+                    Pay {totalAmount} MATIC <FontAwesomeIcon className="ml-2" icon={solid("chevron-right")} />
                   </button>
                 </div>
               </div>
