@@ -189,7 +189,7 @@ export default function EventDisplay() {
                   media={"linkedin"}
                   shareLink={composeLinkedInArticle({
                     url: window.location.href,
-                    title: `${event.host} presents ${event.name}`,
+                    title: `${event.host_name} presents ${event.name}`,
                     summary: event.description,
                   })}
                   customIcon={
