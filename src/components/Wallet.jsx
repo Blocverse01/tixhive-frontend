@@ -32,7 +32,7 @@ const [show, setShow] = useState(false)
         <>
           <div className="justify-center items-center flex overflow-x-hidden auth-modal overflow-y-auto bottom-0 left-0 right-0 fixed md:inset-0 z-[1050] outline-none focus:outline-none">
             <div className="relative w-full max-w-[472px] mx-auto md:my-6">
-              <div className="relative flex flex-col w-full  bg-[#111317] border-2 border-brand-red rounded-lg shadow-lg outline-none focus:outline-none">
+              <div className="relative flex flex-col w-full  bg-[#111317] modal-border shadow-lg outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-center justify-end pr-5 rounded-t md:pl-8">
                   <button

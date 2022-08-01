@@ -23,7 +23,7 @@
     @apply bg-transparent text-brand-red border hover:bg-gray-800 h-[45px] md:h-[56px] px-5 text-[18px] leading-[35px] flex justify-center items-center rounded-lg;
   }
   .social-icon {
-    @apply w-[18.55px] h-[18.55px] md:w-[42px] md:h-[42px];
+    @apply w-[18.55px] h-[18.55px] duration-200 lg:hover:rotate-12 md:w-[42px] md:h-[42px];
   }
   .custom-social-icon {
     @apply rounded-lg text-[#111317] flex items-center justify-center text-xs lg:text-2xl;
@@ -39,7 +39,7 @@
     @apply rounded-lg;
   }
   .mint-modal-content {
-    @apply max-w-[1220px] border-2 border-brand-red w-full flex-1 z-[55] mx-auto overflow-auto p-5 md:px-[84px] sm:py-[64px];
+    @apply max-w-[1220px]  w-full flex-1 z-[55] mx-auto overflow-auto p-5 md:px-[84px] sm:py-[64px];
   background: #111317;
     border-radius: 9px;
   }
@@ -288,7 +288,12 @@
 }
 
 .modal-content{
-  @apply w-[full] border-2 border-brand-red rounded-[17px]  shadow-lg bg-[#111317]   
+  @apply w-[full]   shadow-lg bg-[#111317]   
+}
+
+.modal-border{
+
+  @apply border-2 border-brand-darkred rounded-[17px]
 }
 
 .modal-padding{

@@ -222,8 +222,8 @@ export default function MintTickets({ event, setBodyScroll }) {
   return (
     <section>
       {modalOpen && purchases.length > 0 && (
-        <div className={`mint-modal ${modalOpen ? "overflow-hidden h-fit" : "max-h-0 h-0 overflow-hidden hidden"}`}>
-          <div className="relative mint-modal-content">
+        <div className={`mint-modal  ${modalOpen ? "overflow-hidden h-fit" : "max-h-0 h-0 overflow-hidden hidden"}`}>
+          <div className="relative modal-border mint-modal-content">
             {mintingState >= 0 ? (
               <ProgressTracker state={mintingState} processes={processes} title={`Processing tickets`} />
             ) : (

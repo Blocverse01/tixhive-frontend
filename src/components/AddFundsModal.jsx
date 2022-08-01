@@ -24,7 +24,7 @@ export default function AddFundsModal(props){
                
                 <div className="relative w-full max-w-[400px] mx-auto md:my-6">
                 
-                <div className="modal-content py-8  ">
+                <div className="modal-content modal-border py-12  ">
                 <div className="flex justify-between modal-padding items-center">
                     <button onClick={props.onBack}>
                         <img src={caret} alt={caret} className ="scale-75 " />
@@ -39,15 +39,15 @@ export default function AddFundsModal(props){
                 </div>
                 
                 
-                <div className="flex mt-4 justify-between modal-padding">
-                    <div className="border-b-2 cursor-pointer font-bold border-b-brand-red"  >
-                          <p className="text font-bold modal-padding py-2">
+                <div className="flex mt-4 justify-between">
+                    <div className="border-b-[3px] cursor-pointer font-bold border-b-brand-red"  >
+                          <p className="text modal-padding font-bold  py-2">
                         Deposit Crypto
                          </p>
                         
                     </div>
                     <div className='cursor-not-allowed '> 
-                        <p className="text text-[#858D9F] modal-padding font-bold ">
+                        <p className="text text-[#858D9F] modal-padding py-2  font-bold ">
                          Fund with Card
                          </p>
                     </div>
@@ -73,7 +73,7 @@ export default function AddFundsModal(props){
                     
                 </div>
 
-                <p className="text-xs text-center mt-10 ">Only send Polygon (MATIC) to this address</p>
+                <p className="text-[10px] text-center mt-10 ">Only send Polygon (MATIC) to this address</p>
 
            </div>
 
