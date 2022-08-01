@@ -2,13 +2,6 @@ import rectangle7 from "svgs/Rectangle-7.png";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { regular } from "@fortawesome/fontawesome-svg-core/import.macro";
-import {
-  twitterIcon,
-  faceBookIcon,
-  whatsappIcon,
-  telegramIcon,
-  instagramIcon,
-} from "svgs/social-icons";
 //import map from "svgs/unsplash_Uk3t05ndSng.png";
 import EventsList from "components/EventsList";
 import { useEffect, useState } from "react";
@@ -22,6 +15,7 @@ import MintTickets from "./MintTickets";
 import { Helmet } from "react-helmet";
 import EventVenueMap from "./event/EventVenue";
 import ClickToCopy from "./ClickToCopy";
+import SocialShare from "./SocialShare";
 
 export default function EventDisplay() {
   // eslint-disable-next-line no-unused-vars
@@ -31,7 +25,12 @@ export default function EventDisplay() {
   const [event, setEvent] = useState(null);
 
   useEffect(() => {
-    setEvent(events.find((event) => event.contractAddress.toLowerCase() === contract.toLowerCase()));
+    setEvent(
+      events.find(
+        (event) =>
+          event.contractAddress.toLowerCase() === contract.toLowerCase()
+      )
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [events, contract]);
 
@@ -173,27 +172,11 @@ export default function EventDisplay() {
             Share Event
           </h3>
           <div className="flex mt-[7.12px] gap-[9.27px] md:gap-[21px] md:mt-[8px]">
-            <img
-              src={faceBookIcon}
-              className="social-icon"
-              alt="facebookicon"
-            />
-            <img
-              src={whatsappIcon}
-              className="social-icon"
-              alt="whatsappicon"
-            />
-            <img
-              src={telegramIcon}
-              className="social-icon"
-              alt="telegramIcon"
-            />
-            <img
-              src={instagramIcon}
-              className="social-icon"
-              alt="instagramIcon"
-            />
-            <img src={twitterIcon} className="social-icon" alt="twitterIcon" />
+            <SocialShare media={"facebook"} />
+            <SocialShare media={"whatsapp"} />
+            <SocialShare media={"telegram"} />
+            <SocialShare media={"instagram"} />
+            <SocialShare media={"twitter"} />
           </div>
         </div>
         <div className="order-1 lg:order-2">
