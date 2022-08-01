@@ -1,5 +1,5 @@
 export const composeTweet = (params) => {
-    let queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&');
+    let queryString = serialize_params(params);
     return `https://twitter.com/intent/tweet?${queryString}`;
 }
 
@@ -7,3 +7,12 @@ export const hashtags = (event_category) => {
     return `EventsOnTixHive,${event_category.replaceAll(" ", "")
         .toUpperCase()}`;
 }
+
+export const composeLinkedInArticle = (params) => {
+    let queryString = serialize_params(params);
+    return `https://www.linkedin.com/shareArticle?mini=true&${queryString}&source=TixHive`;
+}
+
+const serialize_params = (params) => {
+    return Object.keys(params).map(key => key + '=' + params[key]).join('&');
+} 
