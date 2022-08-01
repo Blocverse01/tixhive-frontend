@@ -13,6 +13,11 @@ export const composeLinkedInArticle = (params) => {
     return `https://www.linkedin.com/shareArticle?mini=true&${queryString}&source=TixHive`;
 }
 
+export const composeFacebookShare = (params) => {
+    let queryString = serialize_params(params);
+    return `https://www.facebook.com/sharer/sharer.php?${queryString}`;
+}
+
 const serialize_params = (params) => {
     return Object.keys(params).map(key => key + '=' + params[key]).join('&');
 } 
