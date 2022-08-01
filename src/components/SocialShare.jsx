@@ -6,7 +6,7 @@ import {
   instagramIcon,
 } from "svgs/social-icons";
 
-export default function SocialShare({ media, shareLink }) {
+export default function SocialShare({ media, shareLink, customIcon }) {
   const socialIcons = {
     facebook: faceBookIcon,
     instagram: instagramIcon,
@@ -21,11 +21,13 @@ export default function SocialShare({ media, shareLink }) {
       rel="noreferrer"
       title={`share on ${media}`}
     >
-      <img
-        src={socialIcons[media]}
-        className="social-icon"
-        alt={`share on ${media}`}
-      />
+      {customIcon || (
+        <img
+          src={socialIcons[media]}
+          className="social-icon"
+          alt={`share on ${media}`}
+        />
+      )}
     </a>
   );
 }
