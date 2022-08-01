@@ -168,16 +168,27 @@ export default function EventDisplay() {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 px-5 md:px-[54px] lg:px-[45px] mt-[24.54px] gap-[45px]">
         <div className="order-2 lg:order-1">
-          <h3 className="text-[9.26px] text-white leading-[13.89px] md:text-[13px] md:leading-[13.89px] lg:text-[18px] lg:leading-[27px]">
-            Share Event
-          </h3>
-          <div className="flex mt-[7.12px] gap-[9.27px] md:gap-[21px] md:mt-[8px]">
-            <SocialShare media={"facebook"} />
-            <SocialShare media={"whatsapp"} />
-            <SocialShare media={"telegram"} />
-            <SocialShare media={"instagram"} />
-            <SocialShare media={"twitter"} />
-          </div>
+          {event ? (
+            <div>
+              <h3 className="text-[9.26px] text-white leading-[13.89px] md:text-[13px] md:leading-[13.89px] lg:text-[18px] lg:leading-[27px]">
+                Share Event
+              </h3>
+              <div className="flex mt-[7.12px] gap-[9.27px] md:gap-[21px] md:mt-[8px]">
+                <SocialShare media={"facebook"} />
+                <SocialShare media={"whatsapp"} />
+                <SocialShare media={"telegram"} />
+                <SocialShare media={"instagram"} />
+                <SocialShare
+                  media={"twitter"}
+                  shareLink={`https://twitter.com/intent/tweet?url=${window.location.href}&hashtags=EventsOnTixHive,${event.category}`}
+                />
+              </div>
+            </div>
+          ) : (
+            <SkeletonTheme baseColor="#1A1D25" highlightColor="#374151">
+              <Skeleton height="100%" />
+            </SkeletonTheme>
+          )}
         </div>
         <div className="order-1 lg:order-2">
           <div className="flex items-center justify-between">

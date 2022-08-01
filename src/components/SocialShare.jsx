@@ -15,7 +15,7 @@ export default function SocialShare({ media, shareLink }) {
     telegram: telegramIcon,
   };
   return (
-    <a href={shareLink} title={`share on ${media}`}>
+    <a href={shareLink} target="__blank" title={`share on ${media}`}>
       <img
         src={socialIcons[media]}
         className="social-icon"
