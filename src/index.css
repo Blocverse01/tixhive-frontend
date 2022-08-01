@@ -25,6 +25,16 @@
   .social-icon {
     @apply w-[18.55px] h-[18.55px] md:w-[42px] md:h-[42px];
   }
+  .custom-social-icon {
+    @apply rounded-lg text-[#111317] flex items-center justify-center text-xs lg:text-2xl;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.8) -0.14%,
+        rgba(255, 255, 255, 0.2) 99.86%
+      ),
+      linear-gradient(0deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4));
+    border: 1px solid #ffffff66;
+  }
   button {
     @apply rounded-lg;
   }

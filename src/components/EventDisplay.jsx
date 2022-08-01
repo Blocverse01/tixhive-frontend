@@ -1,14 +1,10 @@
 import rectangle7 from "svgs/Rectangle-7.png";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { regular } from "@fortawesome/fontawesome-svg-core/import.macro";
 import {
-  twitterIcon,
-  faceBookIcon,
-  whatsappIcon,
-  telegramIcon,
-  instagramIcon,
-} from "svgs/social-icons";
+  regular,
+  brands,
+} from "@fortawesome/fontawesome-svg-core/import.macro";
 //import map from "svgs/unsplash_Uk3t05ndSng.png";
 import EventsList from "components/EventsList";
 import { useEffect, useState } from "react";
@@ -22,6 +18,15 @@ import MintTickets from "./MintTickets";
 import { Helmet } from "react-helmet";
 import EventVenueMap from "./event/EventVenue";
 import ClickToCopy from "./ClickToCopy";
+import SocialShare from "./SocialShare";
+import {
+  composeFacebookShare,
+  composeLinkedInArticle,
+  composeTweet,
+  composeWhatsappShare,
+  hashtags,
+  composeTelegramShare,
+} from "utils/social-share";
 
 export default function EventDisplay() {
   // eslint-disable-next-line no-unused-vars
@@ -31,7 +36,12 @@ export default function EventDisplay() {
   const [event, setEvent] = useState(null);
 
   useEffect(() => {
-    setEvent(events.find((event) => event.contractAddress.toLowerCase() === contract.toLowerCase()));
+    setEvent(
+      events.find(
+        (event) =>
+          event.contractAddress.toLowerCase() === contract.toLowerCase()
+      )
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [events, contract]);
 
@@ -169,32 +179,58 @@ export default function EventDisplay() {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 px-5 md:px-[54px] lg:px-[45px] mt-[24.54px] gap-[45px]">
         <div className="order-2 lg:order-1">
-          <h3 className="text-[9.26px] text-white leading-[13.89px] md:text-[13px] md:leading-[13.89px] lg:text-[18px] lg:leading-[27px]">
-            Share Event
-          </h3>
-          <div className="flex mt-[7.12px] gap-[9.27px] md:gap-[21px] md:mt-[8px]">
-            <img
-              src={faceBookIcon}
-              className="social-icon"
-              alt="facebookicon"
-            />
-            <img
-              src={whatsappIcon}
-              className="social-icon"
-              alt="whatsappicon"
-            />
-            <img
-              src={telegramIcon}
-              className="social-icon"
-              alt="telegramIcon"
-            />
-            <img
-              src={instagramIcon}
-              className="social-icon"
-              alt="instagramIcon"
-            />
-            <img src={twitterIcon} className="social-icon" alt="twitterIcon" />
-          </div>
+          {event ? (
+            <div>
+              <h3 className="text-[9.26px] text-white leading-[13.89px] md:text-[13px] md:leading-[13.89px] lg:text-[18px] lg:leading-[27px]">
+                Share Event
+              </h3>
+              <div className="flex mt-[7.12px] gap-[9.27px] md:gap-[21px] md:mt-[8px]">
+                <SocialShare
+                  media={"facebook"}
+                  shareLink={composeFacebookShare({
+                    u: window.location.href,
+                  })}
+                />
+                <SocialShare
+                  shareLink={composeWhatsappShare({
+                    text: window.location.href,
+                  })}
+                  media={"whatsapp"}
+                />
+                <SocialShare
+                  shareLink={composeTelegramShare({
+                    url: window.location.href,
+                    text: event.description,
+                  })}
+                  media={"telegram"}
+                />
+                <SocialShare
+                  media={"linkedin"}
+                  shareLink={composeLinkedInArticle({
+                    url: window.location.href,
+                    title: `${event.host_name} presents ${event.name}`,
+                    summary: event.description,
+                  })}
+                  customIcon={
+                    <div className="custom-social-icon social-icon">
+                      <FontAwesomeIcon icon={brands("linkedin-in")} />
+                    </div>
+                  }
+                />
+                <SocialShare
+                  media={"twitter"}
+                  shareLink={composeTweet({
+                    hashtags: hashtags(event.category),
+                    url: window.location.href,
+                  })}
+                />
+              </div>
+            </div>
+          ) : (
+            <SkeletonTheme baseColor="#1A1D25" highlightColor="#374151">
+              <Skeleton height="100%" />
+            </SkeletonTheme>
+          )}
         </div>
         <div className="order-1 lg:order-2">
           <div className="flex items-center justify-between">
