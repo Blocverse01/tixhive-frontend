@@ -192,7 +192,7 @@ export default function EventDisplay() {
                 />
                 <SocialShare
                   shareLink={composeWhatsappShare({
-                    url: window.location.href,
+                    text: window.location.href,
                   })}
                   media={"whatsapp"}
                 />
