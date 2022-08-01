@@ -16,6 +16,7 @@ import { Helmet } from "react-helmet";
 import EventVenueMap from "./event/EventVenue";
 import ClickToCopy from "./ClickToCopy";
 import SocialShare from "./SocialShare";
+import { composeTweet, hashtags } from "utils/social-share";
 
 export default function EventDisplay() {
   // eslint-disable-next-line no-unused-vars
@@ -180,7 +181,10 @@ export default function EventDisplay() {
                 <SocialShare media={"instagram"} />
                 <SocialShare
                   media={"twitter"}
-                  shareLink={`https://twitter.com/intent/tweet?url=${window.location.href}&hashtags=EventsOnTixHive,${event.category}`}
+                  shareLink={composeTweet({
+                    hashtags: hashtags(event.category),
+                    url: window.location.href,
+                  })}
                 />
               </div>
             </div>
