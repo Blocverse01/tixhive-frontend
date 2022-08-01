@@ -77,7 +77,8 @@
     "test": "GENERATE_SOURCEMAP=false react-app-rewired test",
     "eject": "GENERATE_SOURCEMAP=false react-app-rewired eject",
     "server-local": "GENERATE_SOURCEMAP=false yarn run build-local && nodemon server/index.js",
-    "server-lambda": "netlify-lambda serve express"
+    "server-lambda": "netlify-lambda serve express",
+    "server" : "node server/index.js"
   },
   "eslintConfig": {
     "extends": [

@@ -10,8 +10,8 @@ const masterKey = process.env.MORALIS_MASTER_KEY;
 
 Moralis.start({ serverUrl, appId, masterKey });
 
-const PORT = process.env.PORT || 3000;
-const indexPath = path.resolve(__dirname, "..", "build", "index.html");
+const PORT = process.env.PORT || 5000;
+const indexPath = path.resolve(__dirname, '..', 'build', 'index.html');
 
 function getIndexData(res) {
   fs.readFile(indexPath, "utf8", (err, htmlData) => {
