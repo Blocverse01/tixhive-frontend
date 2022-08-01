@@ -23,6 +23,11 @@ export const composeWhatsappShare = (params) => {
     return `whatsapp://send?${queryString}`;
 }
 
+export const composeTelegramShare = (params) => {
+    let queryString = serialize_params(params);
+    return `https://t.me/share/url?${queryString}`;
+}
+
 const serialize_params = (params) => {
     return Object.keys(params).map(key => key + '=' + params[key]).join('&');
 } 
