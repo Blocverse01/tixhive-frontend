@@ -20,6 +20,7 @@ import EventVenueMap from "./event/EventVenue";
 import ClickToCopy from "./ClickToCopy";
 import SocialShare from "./SocialShare";
 import {
+  composeFacebookShare,
   composeLinkedInArticle,
   composeTweet,
   hashtags,
@@ -182,7 +183,12 @@ export default function EventDisplay() {
                 Share Event
               </h3>
               <div className="flex mt-[7.12px] gap-[9.27px] md:gap-[21px] md:mt-[8px]">
-                <SocialShare media={"facebook"} />
+                <SocialShare
+                  media={"facebook"}
+                  shareLink={composeFacebookShare({
+                    u: window.location.href,
+                  })}
+                />
                 <SocialShare media={"whatsapp"} />
                 <SocialShare media={"telegram"} />
                 <SocialShare
