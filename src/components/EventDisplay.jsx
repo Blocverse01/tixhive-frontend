@@ -19,7 +19,11 @@ import { Helmet } from "react-helmet";
 import EventVenueMap from "./event/EventVenue";
 import ClickToCopy from "./ClickToCopy";
 import SocialShare from "./SocialShare";
-import { composeTweet, hashtags } from "utils/social-share";
+import {
+  composeLinkedInArticle,
+  composeTweet,
+  hashtags,
+} from "utils/social-share";
 
 export default function EventDisplay() {
   // eslint-disable-next-line no-unused-vars
@@ -183,6 +187,11 @@ export default function EventDisplay() {
                 <SocialShare media={"telegram"} />
                 <SocialShare
                   media={"linkedin"}
+                  shareLink={composeLinkedInArticle({
+                    url: window.location.href,
+                    title: `${event.host} presents ${event.name}`,
+                    summary: event.description,
+                  })}
                   customIcon={
                     <div className="custom-social-icon social-icon">
                       <FontAwesomeIcon icon={brands("linkedin-in")} />
