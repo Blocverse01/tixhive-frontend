@@ -17,7 +17,7 @@
     @apply text-[10px] md:text-[14px] font-[500] leading-[25.81px] text-white;
   }
   .btn {
-    @apply bg-brand-red  h-[45px] md:h-[56px] px-5 lg:px-0 lg:min-w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center rounded-lg;
+    @apply bg-brand-red h-[45px] md:h-[56px] px-5 lg:px-0 lg:min-w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center rounded-lg;
   }
   .open-sea-btn {
     @apply bg-transparent text-brand-red border hover:bg-gray-800 h-[45px] md:h-[56px] px-5 text-[18px] leading-[35px] flex justify-center items-center rounded-lg;
@@ -29,18 +29,22 @@
     @apply rounded-lg;
   }
   .mint-modal-content {
-    @apply max-w-[1220px] border-2 border-brand-red w-full flex-1 z-[55] mx-auto overflow-auto p-5 md:px-[84px] sm:py-[64px];
-  background: #111317;
-    border-radius: 9px;
+    @apply max-w-[1220px] w-full flex-1 z-[55] mx-auto overflow-auto p-5 md:px-[84px] sm:py-[64px];
+    background: linear-gradient(
+      110.95deg,
+      #0d0d0d -0.79%,
+      rgba(0, 0, 0, 0.5) 103.78%
+    );
+    border: 0.4px solid rgba(255, 255, 255, 0.4);
   }
 
   .mint-modal {
-    @apply px-5 xl:px-8 fixed bottom-0 z-[50] overflow-auto   top-0 py-8 lg:py-20 right-0 left-0 flex items-center;
+    @apply px-5 xl:px-8 fixed bottom-0 z-[50] overflow-auto transition-all duration-[1000ms] ease-linear top-0 py-8 lg:py-20 right-0 left-0 flex items-center;
     backdrop-filter: blur(6px);
   }
 
   .mint-modal-header {
-    @apply flex justify-between items-center border-b-[3px] border-brand-red pb-[12px] md:pb-[16px];
+    @apply flex justify-between items-center border-b-[3px] border-[#1A1D25] pb-[12px] md:pb-[16px];
   }
 
   .mint-modal-title {
@@ -51,12 +55,7 @@
     @apply lg:text-[24px] text-white lg:leading-[36px] font-medium;
   }
   .mint-modal-subtitle {
-    @apply text-[14px] text-[#707D90]  font-medium leading-[24.5px] md:text-[18px] md:leading-[30.5px];
-  }
-
-
-  .pay-btn{
-    @apply mt-4 cursor-not-allowed w-full block outline-none py-2 px-2 bg-[#22262F]
+    @apply text-[14px] text-[#707D90] mb-[32px] font-medium leading-[24.5px] md:text-[18px] md:leading-[30.5px];
   }
 
   .event-card-image {
@@ -189,10 +188,10 @@
   } */
 
   .darker-red {
-    @apply duration-200 hover:bg-brand-darkred;
+    @apply duration-500 hover:bg-brand-darkred;
   }
   .lighter-black {
-    @apply duration-200 hover:bg-brand-black3;
+    @apply duration-500 hover:bg-brand-black3;
   }
 
   .padding {
@@ -272,17 +271,4 @@
     @apply rounded-full text-white px-5 py-3 hover:bg-[#22262F] hover:scale-110 transition-all ease-linear text-center text-sm lg:text-[14.98px] font-poppins lg:leading-[22.47px] w-[160px] lg:w-[202px] mx-auto;
     border: 2px solid #22262f;
   }
-
-.modal{
-  @apply w-full mx-auto fixed left-0 z-[1050] top-10 right-0 bottom-0 text-white  flex items-center justify-center
-}
-
-.modal-content{
-  @apply w-[full] border-2 border-brand-red rounded-[17px]  shadow-lg bg-[#111317]   
-}
-
-.modal-padding{
-  @apply px-8;
-}
-
 }
