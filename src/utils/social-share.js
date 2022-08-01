@@ -18,6 +18,11 @@ export const composeFacebookShare = (params) => {
     return `https://www.facebook.com/sharer/sharer.php?${queryString}`;
 }
 
+export const composeWhatsappShare = (params) => {
+    let queryString = serialize_params(params);
+    return `whatsapp://send?${queryString}`;
+}
+
 const serialize_params = (params) => {
     return Object.keys(params).map(key => key + '=' + params[key]).join('&');
 } 

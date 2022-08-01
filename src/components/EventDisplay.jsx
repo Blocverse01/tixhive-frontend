@@ -23,6 +23,7 @@ import {
   composeFacebookShare,
   composeLinkedInArticle,
   composeTweet,
+  composeWhatsappShare,
   hashtags,
 } from "utils/social-share";
 
@@ -189,7 +190,12 @@ export default function EventDisplay() {
                     u: window.location.href,
                   })}
                 />
-                <SocialShare media={"whatsapp"} />
+                <SocialShare
+                  shareLink={composeWhatsappShare({
+                    url: window.location.href,
+                  })}
+                  media={"whatsapp"}
+                />
                 <SocialShare media={"telegram"} />
                 <SocialShare
                   media={"linkedin"}
