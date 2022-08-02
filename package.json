@@ -53,6 +53,7 @@
     "react-router": "^6.3.0",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
+    "react-tooltip": "^4.2.21",
     "recoil": "^0.7.0",
     "sass": "^1.50.1",
     "sass-loader": "^12.6.0",

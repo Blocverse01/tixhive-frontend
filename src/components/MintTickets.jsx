@@ -1,5 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+
+import ReactTooltip from "react-tooltip";
 import moment from "moment";
 import { useMoralis, useMoralisFile } from "react-moralis";
 import { useState, useEffect } from "react";
@@ -218,14 +220,24 @@ export default function MintTickets({ event, setBodyScroll }) {
         icon: "error",
       });
     }
-  };  
+  };
   return (
     <section>
       {modalOpen && purchases.length > 0 && (
-        <div className={`mint-modal  ${modalOpen ? "overflow-hidden h-fit" : "max-h-0 h-0 overflow-hidden hidden"}`}>
+        <div
+          className={`mint-modal  ${
+            modalOpen
+              ? "overflow-hidden h-fit"
+              : "max-h-0 h-0 overflow-hidden hidden"
+          }`}
+        >
           <div className="relative modal-border mint-modal-content">
             {mintingState >= 0 ? (
-              <ProgressTracker state={mintingState} processes={processes} title={`Processing tickets`} />
+              <ProgressTracker
+                state={mintingState}
+                processes={processes}
+                title={`Processing tickets`}
+              />
             ) : (
               ""
             )}
@@ -239,46 +251,56 @@ export default function MintTickets({ event, setBodyScroll }) {
               </button>
             </div>
             <div className="mint-modal-body">
-             <div>
-              <h3 className="mint-modal-subtitle">Event Summary</h3>
-              <div className="mt-2">
-                    <h3 className="event-card-title">{event.name}</h3>
-                    <h3 className="event-card-subtitle">
-                      by {event.host_name}
-                    </h3>
-                    <section className="mt-[8px] flex items-center">
-                      <div className="mr-[10px] md:mr-[31.06px]">
-                        <h3 className="event-card-month">
-                          {eventStartDate?.format("MMM")}
-                        </h3>
-                        <h3 className="event-card-day">
-                          {eventStartDate?.format("DD")}
-                        </h3>
-                      </div>
-                      <div>
-                        <h3 className="event-card-start-date">
-                          {eventStartDate.format("dddd")}
-                        </h3>
-                        <h3 className="event-card-start-time">
-                          {eventStartDate.format("HH:mm a")}
-                        </h3>
-                      </div>
-                    </section>  
-              </div>
-
-              <div className=" mt-4 lg:mt-10">
-                <h3 className="mint-modal-subtitle">Payment Methods</h3>
-
-                <div className="w-[246px] ">
-                <button type="button" className=" mint-modal-subtitle pay-btn">Pay with Fiat</button>
-                <button type="button" className=" mint-modal-subtitle pay-btn">Pay with Crypto</button>
-
+              <div>
+                <h3 className="mint-modal-subtitle">Event Summary</h3>
+                <div className="mt-2">
+                  <h3 className="event-card-title">{event.name}</h3>
+                  <h3 className="event-card-subtitle">by {event.host_name}</h3>
+                  <section className="mt-[8px] flex items-center">
+                    <div className="mr-[10px] md:mr-[31.06px]">
+                      <h3 className="event-card-month">
+                        {eventStartDate?.format("MMM")}
+                      </h3>
+                      <h3 className="event-card-day">
+                        {eventStartDate?.format("DD")}
+                      </h3>
+                    </div>
+                    <div>
+                      <h3 className="event-card-start-date">
+                        {eventStartDate.format("dddd")}
+                      </h3>
+                      <h3 className="event-card-start-time">
+                        {eventStartDate.format("HH:mm a")}
+                      </h3>
+                    </div>
+                  </section>
                 </div>
 
+                <div className=" mt-4 lg:mt-10">
+                  <h3 className="mint-modal-subtitle">Payment Methods</h3>
+
+                  <div className="w-[246px] ">
+                    <button
+                      type="button"
+                      data-tip
+                      data-for="payFiat"
+                      className=" mint-modal-subtitle text-[#707D90] outline-none pay-btn"
+                    >
+                      Pay with Fiat
+                    </button>
+                    <button
+                      type="button"
+                      className=" mint-modal-subtitle text-gray-300 pay-btn-clicked"
+                    >
+                      Pay with Crypto
+                    </button>
+
+                    <ReactTooltip id="payFiat" effect="solid">
+                      Coming Soon
+                    </ReactTooltip>
+                  </div>
+                </div>
               </div>
-
-             </div>
-
 
               <div>
                 <div className="form-card">

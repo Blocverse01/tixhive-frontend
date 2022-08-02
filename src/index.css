@@ -61,12 +61,16 @@
     @apply lg:text-[24px] text-white lg:leading-[36px] font-medium;
   }
   .mint-modal-subtitle {
-    @apply text-[14px] text-[#707D90]  font-medium leading-[24.5px] md:text-[18px] md:leading-[30.5px];
+    @apply text-[14px]   font-medium leading-[24.5px] md:text-[18px] md:leading-[30.5px];
   }
 
 
   .pay-btn{
-    @apply mt-4 cursor-not-allowed w-full block outline-none py-2 px-2 bg-[#22262F]
+    @apply mt-4  w-full block outline-none py-2 px-2 bg-[#22262F]
+  }
+
+  .pay-btn-clicked{
+    @apply mt-4  w-full block  py-2 px-2 bg-brand-darkred
   }
 
   .event-card-image {
