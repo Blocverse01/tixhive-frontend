@@ -24,14 +24,14 @@ export const connectors = [
     icon: Metamask,
     connectorId: "injected",
     priority: 1,
-    deepLink: `https://metamask.app.link/dapp/${window.location.href}?utm_source=Metamask_Dapp_Link`,
+    deepLink: `https://metamask.app.link/dapp/${window.location.href}?utm_from=Metamask_Dapp_Link`,
   },
   {
     title: "Trust Wallet",
     icon: TrustWallet,
     connectorId: "injected",
     priority: 3,
-    deepLink: `trust://open_url?coin_id=966&url=${window.location.href}`,
+    deepLink: `trust://open_url?coin_id=966&url=${window.location.href}?utm_from=TrustWallet_Dapp_Link`,
   },
   {
     title: "Email",
