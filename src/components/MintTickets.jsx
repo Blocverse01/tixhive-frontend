@@ -243,11 +243,13 @@ export default function MintTickets({ event, setBodyScroll }) {
             )}
             <div className="mint-modal-header">
               <h3 className="mint-modal-title">Get Your Tickets</h3>
-              <button onClick={() => setModalOpen(false)}>
-                <FontAwesomeIcon
-                  className="text-3xl text-brand-red md:text-5xl"
-                  icon={solid("times")}
-                />
+
+              <button
+                onClick={() => setModalOpen(false)}
+                className="bg-[#22262F] h-[42px] w-[42px] flex items-center justify-center rounded-full text-white duration-200 lg:hover:text-gray-300  text-xl"
+                type="button"
+              >
+                <FontAwesomeIcon icon={solid("xmark")} />
               </button>
             </div>
             <div className="mint-modal-body">
