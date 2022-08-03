@@ -38,7 +38,7 @@ export default function AddFundsModal(props) {
                     </p>
                   </div>
                   <div className="cursor-not-allowed flex-1 flex justify-end">
-                    <p className="text text-[#858D9F] modal-padding py-2  font-[500]] ">
+                    <p className="text text-[#858D9F] modal-padding py-2  font-[500] ">
                       Fund with Card
                     </p>
                   </div>
