@@ -1,5 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+
+import ReactTooltip from "react-tooltip";
 import moment from "moment";
 import { useMoralis, useMoralisFile } from "react-moralis";
 import { useState, useEffect } from "react";
@@ -223,13 +225,13 @@ export default function MintTickets({ event, setBodyScroll }) {
     <section>
       {modalOpen && purchases.length > 0 && (
         <div
-          className={`mint-modal ${
+          className={`mint-modal  ${
             modalOpen
-              ? "overflow-auto h-full"
+              ? "overflow-hidden h-fit"
               : "max-h-0 h-0 overflow-hidden hidden"
           }`}
         >
-          <div className="relative mint-modal-content">
+          <div className="relative modal-border mint-modal-content">
             {mintingState >= 0 ? (
               <ProgressTracker
                 state={mintingState}
@@ -241,51 +243,67 @@ export default function MintTickets({ event, setBodyScroll }) {
             )}
             <div className="mint-modal-header">
               <h3 className="mint-modal-title">Get Your Tickets</h3>
-              <button onClick={() => setModalOpen(false)}>
-                <FontAwesomeIcon
-                  className="text-3xl text-brand-red md:text-5xl"
-                  icon={solid("times")}
-                />
+
+              <button
+                onClick={() => setModalOpen(false)}
+                className="bg-[#22262F] h-[42px] w-[42px] flex items-center justify-center rounded-full text-white duration-200 lg:hover:text-gray-300  text-xl"
+                type="button"
+              >
+                <FontAwesomeIcon icon={solid("xmark")} />
               </button>
             </div>
             <div className="mint-modal-body">
               <div>
-                <h3 className="mint-modal-title">Payment</h3>
-                <h3 className="mint-modal-subtitle">
-                  Tickets will be minted to your wallet after payment.
-                </h3>
-                <div className="event-card">
-                  <img
-                    src={event.cover_image_url}
-                    className="event-card-image"
-                    alt={event.name}
-                  />
-                  <div className="event-card-content">
-                    <h3 className="event-card-title">{event.name}</h3>
-                    <h3 className="event-card-subtitle">
-                      by {event.host_name}
-                    </h3>
-                    <section className="mt-[8px] flex items-center">
-                      <div className="mr-[10px] md:mr-[31.06px]">
-                        <h3 className="event-card-month">
-                          {eventStartDate?.format("MMM")}
-                        </h3>
-                        <h3 className="event-card-day">
-                          {eventStartDate?.format("DD")}
-                        </h3>
-                      </div>
-                      <div>
-                        <h3 className="event-card-start-date">
-                          {eventStartDate.format("dddd")}
-                        </h3>
-                        <h3 className="event-card-start-time">
-                          {eventStartDate.format("HH:mm a")}
-                        </h3>
-                      </div>
-                    </section>
+                <h3 className="mint-modal-subtitle">Event Summary</h3>
+                <div className="mt-2">
+                  <h3 className="event-card-title">{event.name}</h3>
+                  <h3 className="event-card-subtitle">by {event.host_name}</h3>
+                  <section className="mt-[8px] flex items-center">
+                    <div className="mr-[10px] md:mr-[31.06px]">
+                      <h3 className="event-card-month">
+                        {eventStartDate?.format("MMM")}
+                      </h3>
+                      <h3 className="event-card-day">
+                        {eventStartDate?.format("DD")}
+                      </h3>
+                    </div>
+                    <div>
+                      <h3 className="event-card-start-date">
+                        {eventStartDate.format("dddd")}
+                      </h3>
+                      <h3 className="event-card-start-time">
+                        {eventStartDate.format("HH:mm a")}
+                      </h3>
+                    </div>
+                  </section>
+                </div>
+
+                <div className=" mt-4 lg:mt-10">
+                  <h3 className="mint-modal-subtitle">Payment Methods</h3>
+
+                  <div className="w-[246px] ">
+                    <button
+                      type="button"
+                      data-tip
+                      data-for="payFiat"
+                      className=" mint-modal-subtitle text-[#707D90] outline-none pay-btn"
+                    >
+                      Pay with Fiat
+                    </button>
+                    <button
+                      type="button"
+                      className=" mint-modal-subtitle text-gray-300 pay-btn-clicked"
+                    >
+                      Pay with Crypto
+                    </button>
+
+                    <ReactTooltip id="payFiat" effect="solid">
+                      Coming Soon
+                    </ReactTooltip>
                   </div>
                 </div>
               </div>
+
               <div>
                 <div className="form-card">
                   {event.tickets.map((ticket, index) => (
@@ -337,7 +355,7 @@ export default function MintTickets({ event, setBodyScroll }) {
           </div>
         </div>
       )}
-      <button onClick={() => setModalOpen(true)} className="btn">
+      <button onClick={() => setModalOpen(true)} className="btn darker-red">
         Get a Ticket
       </button>
     </section>

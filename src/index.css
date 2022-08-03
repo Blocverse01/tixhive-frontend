@@ -17,13 +17,13 @@
     @apply text-[10px] md:text-[14px] font-[500] leading-[25.81px] text-white;
   }
   .btn {
-    @apply bg-brand-red h-[45px] md:h-[56px] px-5 lg:px-0 lg:min-w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center rounded-lg;
+    @apply bg-brand-red  h-[45px] md:h-[56px] px-5 lg:px-0 lg:min-w-[170px] text-white text-[18px] leading-[35px] flex justify-center items-center rounded-lg;
   }
   .open-sea-btn {
     @apply bg-transparent text-brand-red border hover:bg-gray-800 h-[45px] md:h-[56px] px-5 text-[18px] leading-[35px] flex justify-center items-center rounded-lg;
   }
   .social-icon {
-    @apply w-[18.55px] h-[18.55px] md:w-[42px] md:h-[42px];
+    @apply w-[18.55px] h-[18.55px] duration-200 lg:hover:rotate-12 md:w-[42px] md:h-[42px];
   }
   .custom-social-icon {
     @apply rounded-lg text-[#111317] flex items-center justify-center text-xs lg:text-2xl;
@@ -39,22 +39,19 @@
     @apply rounded-lg;
   }
   .mint-modal-content {
-    @apply max-w-[1220px] w-full flex-1 z-[55] mx-auto overflow-auto p-5 md:px-[84px] sm:py-[64px];
-    background: linear-gradient(
-      110.95deg,
-      #0d0d0d -0.79%,
-      rgba(0, 0, 0, 0.5) 103.78%
-    );
-    border: 0.4px solid rgba(255, 255, 255, 0.4);
+    @apply max-w-[1220px]  w-full flex-1 z-[55] mx-auto overflow-auto p-5 md:px-[84px] sm:py-[64px];
+  background: #111317;
+    border-radius: 9px;
   }
 
   .mint-modal {
-    @apply px-5 xl:px-8 fixed bottom-0 z-[50] overflow-auto transition-all duration-[1000ms] ease-linear top-0 py-8 lg:py-20 right-0 left-0 flex items-center;
+    @apply px-5 xl:px-8 fixed bottom-0 z-[50] overflow-auto   top-0 py-8 lg:py-20 right-0 left-0 flex items-center;
     backdrop-filter: blur(6px);
   }
 
   .mint-modal-header {
-    @apply flex justify-between items-center border-b-[3px] border-[#1A1D25] pb-[12px] md:pb-[16px];
+    @apply flex justify-between items-center border-b-[2px] border-brand-darkred
+     pb-[12px] md:pb-[16px];
   }
 
   .mint-modal-title {
@@ -65,7 +62,16 @@
     @apply lg:text-[24px] text-white lg:leading-[36px] font-medium;
   }
   .mint-modal-subtitle {
-    @apply text-[14px] text-[#707D90] mb-[32px] font-medium leading-[24.5px] md:text-[18px] md:leading-[30.5px];
+    @apply text-[14px]   font-medium leading-[24.5px] md:text-[18px] md:leading-[30.5px];
+  }
+
+
+  .pay-btn{
+    @apply mt-4  w-full block outline-none py-2 px-2 bg-[#22262F]
+  }
+
+  .pay-btn-clicked{
+    @apply mt-4  w-full block  py-2 px-2 bg-brand-darkred
   }
 
   .event-card-image {
@@ -106,17 +112,12 @@
   }
 
   .field-input {
-    @apply border-brand-red border-2 py-1 px-4 w-[68px] text-white text-lg md:text-xl bg-transparent;
+    @apply border-brand-red rounded-[8.69px] border-2 py-1 px-4 w-[68px] text-white text-lg md:text-xl bg-transparent;
   }
 
   .form-card {
-    background: linear-gradient(
-      119.07deg,
-      rgba(17, 19, 23, 0.8) 0%,
-      rgba(17, 19, 23, 0.3) 101.47%
-    );
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    @apply lg:px-[67px] px-[26.53px] grid grid-cols-1 gap-[10px] md:gap-[23px] place-content-center py-[26.53px] lg:py-[43px];
+    
+    @apply lg:px-[67px] px-[26.53px] bg-[#22262F] rounded-[8.68px] grid grid-cols-1 gap-[10px] md:gap-[23px] place-content-center py-[26.53px] lg:py-[43px];
   }
 
   .mint-modal-body {
@@ -198,10 +199,10 @@
   } */
 
   .darker-red {
-    @apply duration-500 hover:bg-brand-darkred;
+    @apply duration-200 hover:bg-brand-darkred;
   }
   .lighter-black {
-    @apply duration-500 hover:bg-brand-black3;
+    @apply duration-200 hover:bg-brand-black3;
   }
 
   .padding {
@@ -281,4 +282,22 @@
     @apply rounded-full text-white px-5 py-3 hover:bg-[#22262F] hover:scale-110 transition-all ease-linear text-center text-sm lg:text-[14.98px] font-poppins lg:leading-[22.47px] w-[160px] lg:w-[202px] mx-auto;
     border: 2px solid #22262f;
   }
+
+.modal{
+  @apply w-full mx-auto fixed left-0 z-[1050] top-10 right-0 bottom-0 text-white  flex items-center justify-center
+}
+
+.modal-content{
+  @apply w-[full]   shadow-lg bg-[#111317]   
+}
+
+.modal-border{
+
+  @apply border-2 border-brand-darkred rounded-[17px]
+}
+
+.modal-padding{
+  @apply px-8;
+}
+
 }
