@@ -25,24 +25,26 @@ export default function WithDrawFundsModal(props) {
                   </button>
                 </div>
                 <div className="modal-header mt-6">
-                  <h4 className="text text-center font-bold">Withdraw funds</h4>
+                  <h4 className="text text-center font-[500]">
+                    Withdraw funds
+                  </h4>
                 </div>
 
                 <div className="flex mt-4 justify-between">
                   <div className="border-b-[3px] cursor-pointer flex-1 font-bold border-b-brand-red">
-                    <p className="text modal-padding font-bold py-2">
+                    <p className="text modal-padding font-[500]] py-2">
                       Withdraw MATIC
                     </p>
                   </div>
                   <div className="cursor-not-allowed flex-1 flex justify-end">
-                    <p className="text text-[#858D9F] modal-padding py-2  font-bold ">
+                    <p className="text text-[#858D9F] modal-padding py-2  font-[500] ">
                       Withdraw USDT
                     </p>
                   </div>
                 </div>
 
                 <div className="modal-padding">
-                  <p className="text w-full max-w-[295px] text-center mt-8 font-[300px] mx-auto">
+                  <p className="text w-full max-w-[295px] text-center mt-8 font-[300] mx-auto">
                     Withdraw to a Polygon (MATIC) Wallet.
                   </p>
 
