@@ -18,7 +18,7 @@ export default function ConnectWallet() {
   const [showWalletModal, setShowWalletModal] =
     useRecoilState(showWalletModalState);
   const { isPolygon } = useNetworkStatus();
-  //const chainId = process.env.REACT_APP_CHAIN_ID;
+  const chainId = process.env.REACT_APP_CHAIN_ID;
   const { authenticate, isAuthenticated, isAuthenticating, user } =
     useMoralis();
   const login = async (options) => {
@@ -113,6 +113,7 @@ export default function ConnectWallet() {
                       }
                       await login({
                         provider: connector.connectorId,
+                        chainId: chainId,
                         signingMessage: "Log in to TixHive",
                       });
                     }}
