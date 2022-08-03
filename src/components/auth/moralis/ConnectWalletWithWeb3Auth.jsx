@@ -131,7 +131,7 @@ export default function ConnectWallet() {
                       window.ethereum &&
                       (connector.title === "Trust Wallet" ||
                         connector.title === "Coin98")
-                        ? "hidden"
+                        ? "lg:hidden"
                         : ""
                     } flex-col cursor-pointer overflow-y-hidden flex-shrink-0 md:flex-row md:items-center mr-8 md:mr-0 }`}
                   >
