@@ -10,9 +10,13 @@ import LoopingImages from "components/LoopingImages";
 import useNetworkStatus from "hooks/useNetworkStatus";
 import { useRecoilState } from "recoil";
 import { showWalletModalState } from "recoil/atoms/wallet";
+import { useSearchParams } from "react-router-dom";
 
 export default function ConnectWallet() {
   const [isOpen, toggle] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  let [searchParams, setSearchParams] = useSearchParams();
+  const source = searchParams.get("utm_source");
   const [getWalletOpen, setGetWalletOpen] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [showWalletModal, setShowWalletModal] =
@@ -29,6 +33,19 @@ export default function ConnectWallet() {
       console.error(e);
     }
   };
+  useEffect(() => {
+    async function autoLogin() {
+      await login({
+        signingMessage: "Log in to TixHive",
+        provider: "injected",
+        chainId: chainId,
+      });
+    }
+    if (source && window.ethereum && !user) {
+      autoLogin();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [source]);
 
   const UDSignUp = async () => {
     toggle(false);
@@ -103,6 +120,10 @@ export default function ConnectWallet() {
                 {connectors.map((connector, connectorIndex) => (
                   <div
                     onClick={async () => {
+                      if (connector.deepLink && !window.ethereum) {
+                        window.location.href = connector.deepLink;
+                        return;
+                      }
                       if (connector.connectorId === "web3Auth") {
                         await web3Auth();
                         return;
@@ -119,7 +140,8 @@ export default function ConnectWallet() {
                     }}
                     key={`conn_${connectorIndex}`}
                     className={`${
-                      !window.ethereum && connector.connectorId === "injected"
+                      !window.ethereum &&
+                      connector.connectorId === "walletconnect"
                         ? "hidden"
                         : "flex"
                     } ${
