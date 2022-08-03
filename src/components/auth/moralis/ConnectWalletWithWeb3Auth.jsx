@@ -98,8 +98,8 @@ export default function ConnectWallet() {
         title={"Connect a Wallet"}
         content={
           <div className="flex flex-col md:flex-row md:divide-slate-300 md:divide-x">
-            <div className="flex flex-row py-5 pl-5 pr-5 overflow-x-auto md:py-8 md:flex-col md:pl-8 md:pr-8">
-              <div className="flex justify-between md:w-[360px] overflow-x-auto md:grid md:grid-cols-1 md:gap-5">
+            <div className="flex flex-row py-5 pl-5 pr-5 overflow-x-auto lg:overflow-x-hidden md:py-8 md:flex-col md:pl-8 md:pr-8">
+              <div className="flex justify-between md:w-[360px] overflow-x-auto lg:overflow-x-hidden md:grid md:grid-cols-1 md:gap-5">
                 {connectors.map((connector, connectorIndex) => (
                   <div
                     onClick={async () => {
@@ -127,7 +127,13 @@ export default function ConnectWallet() {
                       connector.connectorId === "walletconnect"
                         ? "hidden md:flex"
                         : "flex"
-                    }  flex-col cursor-pointer overflow-y-hidden flex-shrink-0 md:flex-row md:items-center mr-5 }`}
+                    } ${
+                      window.ethereum &&
+                      (connector.title === "Trust Wallet" ||
+                        connector.title === "Coin98")
+                        ? "hidden"
+                        : ""
+                    } flex-col cursor-pointer overflow-y-hidden flex-shrink-0 md:flex-row md:items-center mr-8 md:mr-0 }`}
                   >
                     <div className="flex justify-center mb-2 md:mb-0 md:mr-3 md:flex-shrink-0">
                       {connector.connectorId === "walletconnect" ? (
@@ -135,13 +141,13 @@ export default function ConnectWallet() {
                       ) : (
                         <img
                           src={connector.icon}
-                          className="h-[40px]"
+                          className="h-[60px] md:h-[48px]"
                           alt={connector.title}
                         />
                       )}
                     </div>
                     <div className="md:flex-shrink-0">
-                      <h3 className="text-xs font-semibold text-center capitalize text-slate-800 md:text-left md:text-base">
+                      <h3 className="text-[10px] break-words max-w-[80px] md:max-w-full font-semibold text-center capitalize text-slate-800 md:text-left md:text-base">
                         {connector.title}
                       </h3>
                     </div>

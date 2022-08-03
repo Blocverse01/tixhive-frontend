@@ -26,10 +26,10 @@ export const connectors = [
     priority: 1,
   },
   {
-    title: "Mobile Wallets",
-    icon: WalletConnect,
-    connectorId: "walletconnect",
-    priority: 2,
+    title: "Trust Wallet",
+    icon: TrustWallet,
+    connectorId: "injected",
+    priority: 3,
   },
   {
     title: "Email",
@@ -38,9 +38,9 @@ export const connectors = [
     priority: 4,
   },
   {
-    title: "UnstoppableDomains",
-    icon: UD,
-    connectorId: "UAuthMoralis",
+    title: "Mobile Wallets",
+    icon: WalletConnect,
+    connectorId: "walletconnect",
     priority: 2,
   },
   {
@@ -50,10 +50,10 @@ export const connectors = [
     priority: 999,
   },
   {
-    title: "Trust Wallet",
-    icon: TrustWallet,
-    connectorId: "injected",
-    priority: 3,
+    title: "Unstoppable Domains",
+    icon: UD,
+    connectorId: "UAuthMoralis",
+    priority: 2,
   },
 ];
 
