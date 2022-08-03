@@ -1,12 +1,9 @@
-import { useMoralis } from "react-moralis";
 import caret from "../images/caret.png";
-import ClickToCopy from "./ClickToCopy";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 export default function WithDrawFundsModal(props) {
-  const { user, isAuthenticated } = useMoralis();
-
   return (
     <>
       {!props.show ? null : (
