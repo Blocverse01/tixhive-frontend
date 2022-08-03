@@ -64,6 +64,11 @@ export default function WithDrawFundsModal(props) {
                     </div>
                   </div>
                 </div>
+                <div className="mt-5 w-fit mx-auto">
+                  <button className="bg-brand-red text padded-btn darker-red">
+                    Confirm
+                  </button>
+                </div>
               </div>
             </div>
           </div>
