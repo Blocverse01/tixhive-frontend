@@ -1,4 +1,3 @@
-
 import { useMoralis } from "react-moralis";
 import { useRecoilValue, useRecoilState } from "recoil";
 import {
@@ -24,7 +23,7 @@ export default function Wallet() {
   const totalUsdBalance = useRecoilValue(totalUsdBalanceState);
   const walletCryptoBalance = useRecoilValue(walletCryptoBalanceState);
   const walletUsdBalance = useRecoilValue(walletUsdBalanceState);
-const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
 
   return (
     <>
@@ -36,12 +35,11 @@ const [show, setShow] = useState(false)
                 {/*header*/}
                 <div className="flex items-center justify-end pr-5 rounded-t md:pl-8">
                   <button
-                    className="float-right p-1 mt-3 mb-3 ml-auto  font-normal leading-none text-white bg-transparent border-0 outline-none focus:outline-none"
+                    className="bg-[#22262F] h-[42px] mt-6 mr-2 w-[42px] flex items-center justify-center rounded-full text-white duration-200 lg:hover:text-gray-300  text-xl"
+                    type="button"
                     onClick={() => setShowWalletModal(false)}
                   >
-                    <span className='  flex items-center justify-center duration-200  hover:text-gray-300  w-10 h-10 text-xl text-white  rounded-full outline-none bg-[#22262F] focus:outline-none'>
-                      ×
-                    </span>
+                    <FontAwesomeIcon icon={solid("xmark")} />
                   </button>
                 </div>
                 {/*body*/}
@@ -109,9 +107,13 @@ const [show, setShow] = useState(false)
                     <span>${walletUsdBalance.maticUsd}</span>
                   </div>
                   <div className="flex justify-between mt-5">
-                    <button onClick={() =>{
-                       setShow(true); setShowWalletModal(false)
-                    }} className="bg-brand-red text padded-btn darker-red">
+                    <button
+                      onClick={() => {
+                        setShow(true);
+                        setShowWalletModal(false);
+                      }}
+                      className="bg-brand-red text padded-btn darker-red"
+                    >
                       Add Funds
                     </button>
                     <button className="bg-[#22262F] text padded-btn darker-red">
@@ -125,9 +127,14 @@ const [show, setShow] = useState(false)
           <div className="fixed inset-0 z-40 bg-black opacity-25"></div>
         </>
       ) : null}
-      <AddFundsModal  onClose={() => setShow(false)} onBack = {() =>{
-                       setShow(false); setShowWalletModal(true)
-                    }} show={show}/>
+      <AddFundsModal
+        onClose={() => setShow(false)}
+        onBack={() => {
+          setShow(false);
+          setShowWalletModal(true);
+        }}
+        show={show}
+      />
     </>
   );
 }
