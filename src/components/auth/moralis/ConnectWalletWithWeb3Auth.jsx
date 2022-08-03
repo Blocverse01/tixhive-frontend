@@ -10,9 +10,13 @@ import LoopingImages from "components/LoopingImages";
 import useNetworkStatus from "hooks/useNetworkStatus";
 import { useRecoilState } from "recoil";
 import { showWalletModalState } from "recoil/atoms/wallet";
+import { useSearchParams } from "react-router-dom";
 
 export default function ConnectWallet() {
   const [isOpen, toggle] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  let [searchParams, setSearchParams] = useSearchParams();
+  const source = searchParams.get("utm_from");
   const [getWalletOpen, setGetWalletOpen] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [showWalletModal, setShowWalletModal] = useRecoilState(showWalletModalState);
@@ -27,6 +31,19 @@ export default function ConnectWallet() {
       console.error(e);
     }
   };
+  useEffect(() => {
+    async function autoLogin() {
+      await login({
+        signingMessage: "Log in to TixHive",
+        provider: "injected",
+        chainId: chainId,
+      });
+    }
+    if (source && (source === "Metamask_Dapp_Link" || source === "TrustWallet_Dapp_Link") && window.ethereum && !user) {
+      autoLogin();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [source]);
 
   const UDSignUp = async () => {
     toggle(false);
@@ -83,11 +100,15 @@ export default function ConnectWallet() {
         title={"Connect a Wallet"}
         content={
           <div className="flex flex-col md:flex-row md:divide-slate-300 md:divide-x">
-            <div className="flex flex-row py-5 pl-5 pr-5 overflow-x-auto md:py-8 md:flex-col md:pl-8 md:pr-8">
-              <div className="flex justify-between md:w-[360px] overflow-x-auto md:grid md:grid-cols-1 md:gap-5">
+            <div className="flex flex-row py-5 pl-5 pr-5 overflow-x-auto lg:overflow-x-hidden md:py-8 md:flex-col md:pl-8 md:pr-8">
+              <div className="flex justify-between md:w-[360px] overflow-x-auto lg:overflow-x-hidden md:grid md:grid-cols-1 md:gap-5">
                 {connectors.map((connector, connectorIndex) => (
                   <div
                     onClick={async () => {
+                      if (connector.deepLink && !window.ethereum) {
+                        window.location.href = connector.deepLink;
+                        return;
+                      }
                       if (connector.connectorId === "web3Auth") {
                         await web3Auth();
                         return;
@@ -103,19 +124,27 @@ export default function ConnectWallet() {
                       });
                     }}
                     key={`conn_${connectorIndex}`}
-                    className={`${
-                      !window.ethereum && connector.connectorId === "injected" ? "hidden" : "flex"
-                    }  flex-col cursor-pointer overflow-y-hidden flex-shrink-0 md:flex-row md:items-center mr-5 }`}
+                    className={`${!window.ethereum && connector.connectorId === "walletconnect" ? "hidden" : "flex"} ${
+                      window.ethereum && connector.connectorId === "walletconnect" ? "hidden md:flex" : "flex"
+                    } ${!window.ethereum && connector.title === "Coin98" ? "hidden" : "flex"} ${
+                      window.ethereum && (connector.title === "Trust Wallet" || connector.title === "Coin98")
+                        ? "lg:hidden"
+                        : ""
+                    }  ${
+                      !window.ethereum && (connector.title === "Trust Wallet" || connector.title === "Metamask")
+                        ? "lg:hidden"
+                        : ""
+                    } flex-col cursor-pointer overflow-y-hidden flex-shrink-0 md:flex-row md:items-center mr-8 md:mr-0 }`}
                   >
                     <div className="flex justify-center mb-2 md:mb-0 md:mr-3 md:flex-shrink-0">
                       {connector.connectorId === "walletconnect" ? (
                         <LoopingImages />
                       ) : (
-                        <img src={connector.icon} className="h-[40px]" alt={connector.title} />
+                        <img src={connector.icon} className="h-[60px] md:h-[48px]" alt={connector.title} />
                       )}
                     </div>
                     <div className="md:flex-shrink-0">
-                      <h3 className="text-xs font-semibold text-center capitalize text-slate-800 md:text-left md:text-base">
+                      <h3 className="text-[10px] break-words max-w-[80px] md:max-w-full font-semibold text-center capitalize text-slate-800 md:text-left md:text-base">
                         {connector.title}
                       </h3>
                     </div>

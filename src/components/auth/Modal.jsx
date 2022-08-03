@@ -1,4 +1,10 @@
-export default function Modal({ showModal, setShowModal, title, content, footer }) {
+export default function Modal({
+  showModal,
+  setShowModal,
+  title,
+  content,
+  footer,
+}) {
   return (
     <>
       {showModal ? (
@@ -10,7 +16,9 @@ export default function Modal({ showModal, setShowModal, title, content, footer 
                 <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                   {/*header*/}
                   <div className="flex items-center justify-between pl-5 pr-5 border-b border-solid rounded-t md:pl-8 border-slate-200">
-                    <h3 className="text-sm font-semibold text-center text-black md:text-left md:text-xl">{title}</h3>
+                    <h3 className="text-sm font-semibold text-center text-black md:text-left md:text-xl">
+                      {title}
+                    </h3>
                     <button
                       className="float-right p-1 mt-3 mb-3 ml-auto text-3xl font-normal leading-none text-black bg-transparent border-0 outline-none focus:outline-none"
                       onClick={() => setShowModal(false)}
