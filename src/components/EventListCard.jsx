@@ -44,10 +44,7 @@ export default function EventListCard({ event }) {
         </div>
       </div>
       <div className="bg-event-gradient text-white py-[24px] px-[14px] sm:px-[20px]">
-        <Link
-          className="hover:underline"
-          to={`/events/${event.contractAddress}`}
-        >
+        <Link className="underline" to={`/events/${event.contractAddress}`}>
           <h3 className="text-[13px] line-clamp-1 sm:text-[18px] leading-[28.92px] font-[500]">
             {event.name}
           </h3>

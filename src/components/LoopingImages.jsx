@@ -30,7 +30,7 @@ export default function LoopingImages() {
   return (
     <img
       src={image}
-      className={`h-[40px] transition ${hidden} ease-in-out duration-500`}
+      className={`h-[60px] md:h-[48px] transition ${hidden} ease-in-out duration-500`}
       alt={`wallet`}
     />
   );

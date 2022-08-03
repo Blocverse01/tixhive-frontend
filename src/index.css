@@ -50,7 +50,8 @@
   }
 
   .mint-modal-header {
-    @apply flex justify-between items-center border-b-[3px] border-brand-red pb-[12px] md:pb-[16px];
+    @apply flex justify-between items-center border-b-[2px] border-brand-darkred
+     pb-[12px] md:pb-[16px];
   }
 
   .mint-modal-title {
@@ -111,17 +112,12 @@
   }
 
   .field-input {
-    @apply border-brand-red border-2 py-1 px-4 w-[68px] text-white text-lg md:text-xl bg-transparent;
+    @apply border-brand-red rounded-[8.69px] border-2 py-1 px-4 w-[68px] text-white text-lg md:text-xl bg-transparent;
   }
 
   .form-card {
-    background: linear-gradient(
-      119.07deg,
-      rgba(17, 19, 23, 0.8) 0%,
-      rgba(17, 19, 23, 0.3) 101.47%
-    );
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    @apply lg:px-[67px] px-[26.53px] grid grid-cols-1 gap-[10px] md:gap-[23px] place-content-center py-[26.53px] lg:py-[43px];
+    
+    @apply lg:px-[67px] px-[26.53px] bg-[#22262F] rounded-[8.68px] grid grid-cols-1 gap-[10px] md:gap-[23px] place-content-center py-[26.53px] lg:py-[43px];
   }
 
   .mint-modal-body {
