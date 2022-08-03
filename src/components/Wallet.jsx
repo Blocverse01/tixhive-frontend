@@ -13,6 +13,7 @@ import maticLogo from "svgs/polygon-matic-logo.svg";
 import { convertBalanceToEther } from "utils/web3-utils";
 import ClickToCopy from "./ClickToCopy";
 import AddFundsModal from "./AddFundsModal";
+import WithDrawFundsModal from "./WithDrawFundsModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
@@ -23,7 +24,8 @@ export default function Wallet() {
   const totalUsdBalance = useRecoilValue(totalUsdBalanceState);
   const walletCryptoBalance = useRecoilValue(walletCryptoBalanceState);
   const walletUsdBalance = useRecoilValue(walletUsdBalanceState);
-  const [show, setShow] = useState(false);
+  const [showAddFunds, setShowAddFunds] = useState(false);
+  const [showWithDrawFunds, setShowWithDrawFunds] = useState(false);
 
   return (
     <>
@@ -109,14 +111,20 @@ export default function Wallet() {
                   <div className="flex justify-between mt-5">
                     <button
                       onClick={() => {
-                        setShow(true);
+                        setShowAddFunds(true);
                         setShowWalletModal(false);
                       }}
                       className="bg-brand-red text padded-btn darker-red"
                     >
                       Add Funds
                     </button>
-                    <button className="bg-[#22262F] text padded-btn darker-red">
+                    <button
+                      onClick={() => {
+                        setShowWithDrawFunds(true);
+                        setShowWalletModal(false);
+                      }}
+                      className="bg-[#22262F] text padded-btn darker-red"
+                    >
                       Withdraw Funds
                     </button>
                   </div>
@@ -128,12 +136,21 @@ export default function Wallet() {
         </>
       ) : null}
       <AddFundsModal
-        onClose={() => setShow(false)}
+        onClose={() => setShowAddFunds(false)}
         onBack={() => {
-          setShow(false);
+          setShowAddFunds(false);
           setShowWalletModal(true);
         }}
-        show={show}
+        show={showAddFunds}
+      />
+
+      <WithDrawFundsModal
+        onClose={() => setShowWithDrawFunds(false)}
+        onBack={() => {
+          setShowWithDrawFunds(false);
+          setShowWalletModal(true);
+        }}
+        show={showWithDrawFunds}
       />
     </>
   );
