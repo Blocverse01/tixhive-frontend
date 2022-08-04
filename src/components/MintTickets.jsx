@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-
 import ReactTooltip from "react-tooltip";
+import faitPayment from "./fait/faitPayment";
 import moment from "moment";
 import { useMoralis, useMoralisFile } from "react-moralis";
 import { useState, useEffect } from "react";
@@ -19,6 +19,7 @@ import axios from "axios";
 
 export default function MintTickets({ event, setBodyScroll }) {
   const [modalOpen, setModalOpen] = useState(false);
+  const [faitModalOpen, setFailtModalOpen] = useState(false);
   const { user, isAuthenticated } = useMoralis();
   const [mintingState, setMintingState] = useState(-1);
   const processes = [
@@ -35,29 +36,16 @@ export default function MintTickets({ event, setBodyScroll }) {
     String(eventStartDate.local()._d).split(" ")[5];
   const [purchases, setPurchases] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
-  const [state, setState] = useState({
-    ip: "",
-    countryName: "",
-    countryCode: "",
-    city: "",
-    timezone: ""
-  });
+  const [country, setCountry] = useState({});
 
   const getGeoInfo = () => {
     axios
       .get("https://ipapi.co/json/")
       .then((response) => {
         let data = response.data;
-        console.log(data);
-        setState({
-          ...state,
-          ip: data.ip,
-          countryName: data.country_name,
-          countryCode: data.country_calling_code,
-          city: data.city,
-          timezone: data.timezone
-        });
-        alert(data);
+        console.log(data.country_name);
+        let country = setCountry(data.country_name)
+        alert(data.country_name)
       })
       .catch((error) => {
         console.log(error);
@@ -196,6 +184,16 @@ export default function MintTickets({ event, setBodyScroll }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modalOpen]);
 
+
+  useEffect(() => {
+    if (faitModalOpen) {
+      setModalOpen(false);
+      setBodyScroll(false);
+    }
+    setBodyScroll(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [faitModalOpen]);
+
   const purchaseTickets = async () => {
     try {
       if (!isAuthenticated) {
@@ -251,141 +249,146 @@ export default function MintTickets({ event, setBodyScroll }) {
     }
   };
   return (
-    <section>
-      {modalOpen && purchases.length > 0 && (
-        <div
-          className={`mint-modal  ${
-            modalOpen
-              ? "overflow-hidden h-fit"
-              : "max-h-0 h-0 overflow-hidden hidden"
-          }`}
-        >
-          <div className="relative modal-border mint-modal-content">
-            {mintingState >= 0 ? (
-              <ProgressTracker
-                state={mintingState}
-                processes={processes}
-                title={`Processing tickets`}
-              />
-            ) : (
-              ""
-            )}
-            <div className="mint-modal-header">
-              <h3 className="mint-modal-title">Get Your Tickets</h3>
+    <div>
+        <section>
+          {modalOpen && purchases.length > 0 && (
+            <div
+              className={`mint-modal  ${
+                modalOpen
+                  ? "overflow-hidden h-fit"
+                  : "max-h-0 h-0 overflow-hidden hidden"
+              }`}
+            >
+              <div className="relative modal-border mint-modal-content">
+                {mintingState >= 0 ? (
+                  <ProgressTracker
+                    state={mintingState}
+                    processes={processes}
+                    title={`Processing tickets`}
+                  />
+                ) : (
+                  ""
+                )}
+                <div className="mint-modal-header">
+                  <h3 className="mint-modal-title">Get Your Tickets</h3>
 
-              <button
-                onClick={() => setModalOpen(false)}
-                className="bg-[#22262F] h-[42px] w-[42px] flex items-center justify-center rounded-full text-white duration-200 lg:hover:text-gray-300  text-xl"
-                type="button"
-              >
-                <FontAwesomeIcon icon={solid("xmark")} />
-              </button>
-            </div>
-            <div className="mint-modal-body">
-              <div>
-                <h3 className="mint-modal-subtitle">Event Summary</h3>
-                <div className="mt-2">
-                  <h3 className="event-card-title">{event.name}</h3>
-                  <h3 className="event-card-subtitle">by {event.host_name}</h3>
-                  <section className="mt-[8px] flex items-center">
-                    <div className="mr-[10px] md:mr-[31.06px]">
-                      <h3 className="event-card-month">
-                        {eventStartDate?.format("MMM")}
-                      </h3>
-                      <h3 className="event-card-day">
-                        {eventStartDate?.format("DD")}
-                      </h3>
-                    </div>
-                    <div>
-                      <h3 className="event-card-start-date">
-                        {eventStartDate.format("dddd")}
-                      </h3>
-                      <h3 className="event-card-start-time">
-                        {eventStartDate.format("HH:mm a")}
-                      </h3>
-                    </div>
-                  </section>
-                </div>
-
-                <div className=" mt-4 lg:mt-10">
-                  <h3 className="mint-modal-subtitle">Payment Methods</h3>
-
-                  <div className="w-[246px] ">
-                    <button
-                      type="button"
-                      onClick={getGeoInfo}
-                      className=" mint-modal-subtitle text-[#707D90] outline-none pay-btn"
-                    >
-                      Pay with Fiat
-                    </button>
-                    <button
-                      type="button"
-                      className=" mint-modal-subtitle text-gray-300 pay-btn-clicked"
-                    >
-                      Pay with Crypto
-                    </button>
-
-                    <ReactTooltip id="payFiat" effect="solid">
-                      Coming Soon
-                    </ReactTooltip>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <div className="form-card">
-                  {event.tickets.map((ticket, index) => (
-                    <div key={index} className="field">
-                      <div>
-                        <h3 className="field-header">{ticket.name}</h3>
-                        <h3 className="field-header">{ticket.price} MATIC</h3>
-                      </div>
-                      <div>
-                        <input
-                          onChange={(e) => {
-                            setPurchases(
-                              purchases.map((q, i) =>
-                                i === index
-                                  ? { ...q, quantity: e.target.value }
-                                  : q
-                              )
-                            );
-                          }}
-                          name={index}
-                          className="field-input"
-                          type="number"
-                          min="0"
-                          value={purchases[index].quantity}
-                          max={ticket.quantity_available}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                  <div className="mt-5 text-white field">
-                    <h3 className="">Total Amount</h3>
-                    <h3 className="">{totalAmount} MATIC</h3>
-                  </div>
-                </div>
-                <div className="lg:mt-[55px] mt-[15px] flex justify-end">
                   <button
-                    onClick={() => purchaseTickets()}
-                    className="px-3 text-sm btn md:text-base"
+                    onClick={() => setModalOpen(false)}
+                    className="bg-[#22262F] h-[42px] w-[42px] flex items-center justify-center rounded-full text-white duration-200 lg:hover:text-gray-300  text-xl"
+                    type="button"
                   >
-                    Pay {totalAmount} MATIC{" "}
-                    <FontAwesomeIcon
-                      className="ml-2"
-                      icon={solid("chevron-right")}
-                    />
+                    <FontAwesomeIcon icon={solid("xmark")} />
                   </button>
+
+                </div>
+                <div className="mint-modal-body">
+                  <div>
+                    <h3 className="mint-modal-subtitle">Event Summary</h3>
+                    <div className="mt-2">
+                      <h3 className="event-card-title">{event.name}</h3>
+                      <h3 className="event-card-subtitle">by {event.host_name}</h3>
+                      <section className="mt-[8px] flex items-center">
+                        <div className="mr-[10px] md:mr-[31.06px]">
+                          <h3 className="event-card-month">
+                            {eventStartDate?.format("MMM")}
+                          </h3>
+                          <h3 className="event-card-day">
+                            {eventStartDate?.format("DD")}
+                          </h3>
+                        </div>
+                        <div>
+                          <h3 className="event-card-start-date">
+                            {eventStartDate.format("dddd")}
+                          </h3>
+                          <h3 className="event-card-start-time">
+                            {eventStartDate.format("HH:mm a")}
+                          </h3>
+                        </div>
+                      </section>
+                    </div>
+
+                    <div className=" mt-4 lg:mt-10">
+                      <h3 className="mint-modal-subtitle">Payment Methods</h3>
+
+                      <div className="w-[246px] ">
+                        <button
+                          type="button"
+                        onClick={() => setFailtModalOpen(true)}
+                          className=" text-[#707D90] outline-none pay-btn"
+                        >
+                          Pay with Fiat
+                        </button>
+                      
+                        <button
+                          type="button"
+                          className=" mint-modal-subtitle text-gray-300 pay-btn-clicked"
+                        >
+                          Pay with Crypto
+                        </button>
+
+                        <ReactTooltip id="payFiat" effect="solid">
+                          Coming Soon
+                        </ReactTooltip>
+                      
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="form-card">
+                      {event.tickets.map((ticket, index) => (
+                        <div key={index} className="field">
+                          <div>
+                            <h3 className="field-header">{ticket.name}</h3>
+                            <h3 className="field-header">{ticket.price} MATIC</h3>
+                          </div>
+                          <div>
+                            <input
+                              onChange={(e) => {
+                                setPurchases(
+                                  purchases.map((q, i) =>
+                                    i === index
+                                      ? { ...q, quantity: e.target.value }
+                                      : q
+                                  )
+                                );
+                              }}
+                              name={index}
+                              className="field-input"
+                              type="number"
+                              min="0"
+                              value={purchases[index].quantity}
+                              max={ticket.quantity_available}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                      <div className="mt-5 text-white field">
+                        <h3 className="">Total Amount </h3>
+                        <h3 className="">{totalAmount} MATIC</h3>
+                      </div>
+                    </div>
+                    <div className="lg:mt-[55px] mt-[15px] flex justify-end">
+                      <button
+                        onClick={() => purchaseTickets()}
+                        className="px-3 text-sm btn md:text-base"
+                      >
+                        Pay {totalAmount} MATIC{" "}
+                        <FontAwesomeIcon
+                          className="ml-2"
+                          icon={solid("chevron-right")}
+                        />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
-      <button onClick={() => setModalOpen(true)} className="btn darker-red">
-        Get a Ticket
-      </button>
-    </section>
+          )}
+          <button onClick={() => setModalOpen(true)} className="btn darker-red">
+            Get a Ticket
+          </button>
+        </section>
+    </div>
   );
 }
