@@ -15,6 +15,7 @@ import ProgressTracker from "./ProgressTracker";
 import { useRunEventFactoryFunction } from "hooks/useRunEventFactoryFunction";
 import QRCode from "react-qr-code";
 import mintFreeTickets from "utils/mint-free-tickets";
+import axios from "axios";
 
 export default function MintTickets({ event, setBodyScroll }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -34,6 +35,34 @@ export default function MintTickets({ event, setBodyScroll }) {
     String(eventStartDate.local()._d).split(" ")[5];
   const [purchases, setPurchases] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [state, setState] = useState({
+    ip: "",
+    countryName: "",
+    countryCode: "",
+    city: "",
+    timezone: ""
+  });
+
+  const getGeoInfo = () => {
+    axios
+      .get("https://ipapi.co/json/")
+      .then((response) => {
+        let data = response.data;
+        console.log(data);
+        setState({
+          ...state,
+          ip: data.ip,
+          countryName: data.country_name,
+          countryCode: data.country_calling_code,
+          city: data.city,
+          timezone: data.timezone
+        });
+        alert(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const preparePurchases = async () => {
     const purchasePromises = [];
@@ -284,8 +313,7 @@ export default function MintTickets({ event, setBodyScroll }) {
                   <div className="w-[246px] ">
                     <button
                       type="button"
-                      data-tip
-                      data-for="payFiat"
+                      onClick={getGeoInfo}
                       className=" mint-modal-subtitle text-[#707D90] outline-none pay-btn"
                     >
                       Pay with Fiat
