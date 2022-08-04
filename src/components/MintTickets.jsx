@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
-import ReactTooltip from "react-tooltip";
 import moment from "moment";
 import { useMoralis, useMoralisFile } from "react-moralis";
 import { useState, useEffect } from "react";
@@ -14,10 +13,13 @@ import Swal from "sweetalert2";
 import ProgressTracker from "./ProgressTracker";
 import { useRunEventFactoryFunction } from "hooks/useRunEventFactoryFunction";
 import QRCode from "react-qr-code";
+import PayWithFiat from "./PayWithFiat";
 import mintFreeTickets from "utils/mint-free-tickets";
 
 export default function MintTickets({ event, setBodyScroll }) {
   const [modalOpen, setModalOpen] = useState(false);
+  const [showPayWithFiat, setShowPayWithFiat] = useState(false);
+
   const { user, isAuthenticated } = useMoralis();
   const [mintingState, setMintingState] = useState(-1);
   const processes = [
@@ -283,10 +285,12 @@ export default function MintTickets({ event, setBodyScroll }) {
 
                   <div className="w-[246px] ">
                     <button
+                      onClick={() => {
+                        setShowPayWithFiat(true);
+                        setModalOpen(false);
+                      }}
                       type="button"
-                      data-tip
-                      data-for="payFiat"
-                      className=" mint-modal-subtitle text-[#707D90] outline-none pay-btn"
+                      className=" mint-modal-subtitle text-white outline-none pay-btn"
                     >
                       Pay with Fiat
                     </button>
@@ -296,10 +300,6 @@ export default function MintTickets({ event, setBodyScroll }) {
                     >
                       Pay with Crypto
                     </button>
-
-                    <ReactTooltip id="payFiat" effect="solid">
-                      Coming Soon
-                    </ReactTooltip>
                   </div>
                 </div>
               </div>
@@ -358,6 +358,11 @@ export default function MintTickets({ event, setBodyScroll }) {
       <button onClick={() => setModalOpen(true)} className="btn darker-red">
         Get a Ticket
       </button>
+
+      <PayWithFiat
+        onClose={() => setShowPayWithFiat(false)}
+        show={showPayWithFiat}
+      />
     </section>
   );
 }
