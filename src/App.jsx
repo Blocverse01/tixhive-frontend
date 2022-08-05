@@ -163,6 +163,7 @@ function App() {
           {isInitializing && ""}
         </Web3Boot>
       </ScrollToTop>
+      <script src="https://checkout.flutterwave.com/v3.js"></script>
     </Router>
   );
 }

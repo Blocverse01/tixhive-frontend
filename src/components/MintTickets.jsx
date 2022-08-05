@@ -36,7 +36,7 @@ export default function MintTickets({ event, setBodyScroll }) {
     String(eventStartDate.local()._d).split(" ")[5];
   const [purchases, setPurchases] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
-  const [country, setCountry] = useState({});
+  const [country, setCountry] = useState("");
 
   const getGeoInfo = () => {
     axios
@@ -44,7 +44,7 @@ export default function MintTickets({ event, setBodyScroll }) {
       .then((response) => {
         let data = response.data;
         console.log(data.country_name);
-        let country = setCountry(data.country_name)
+        setCountry(data.country_name)
         alert(data.country_name)
       })
       .catch((error) => {
@@ -304,6 +304,7 @@ export default function MintTickets({ event, setBodyScroll }) {
                       onClick={() => {
                         setShowPayWithFiat(true);
                         setModalOpen(false);
+                        getGeoInfo();
                       }}
                       type="button"
                       className=" mint-modal-subtitle text-white outline-none pay-btn"
@@ -376,8 +377,11 @@ export default function MintTickets({ event, setBodyScroll }) {
       </button>
 
       <PayWithFiat
-        onClose={() => setShowPayWithFiat(false)}
-        show={showPayWithFiat}
+       
+        onClose={() => setShowPayWithFiat(false)} 
+        show={showPayWithFiat} 
+        country={country}
+        totalAmount={totalAmount}
       />
       </section>
     </div>
