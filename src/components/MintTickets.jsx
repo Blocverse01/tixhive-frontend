@@ -1,7 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import ReactTooltip from "react-tooltip";
-import faitPayment from "./fait/faitPayment";
 import moment from "moment";
 import { useMoralis, useMoralisFile } from "react-moralis";
 import { useState, useEffect } from "react";
@@ -14,12 +12,14 @@ import Swal from "sweetalert2";
 import ProgressTracker from "./ProgressTracker";
 import { useRunEventFactoryFunction } from "hooks/useRunEventFactoryFunction";
 import QRCode from "react-qr-code";
+import PayWithFiat from "./PayWithFiat";
 import mintFreeTickets from "utils/mint-free-tickets";
 import axios from "axios";
 
 export default function MintTickets({ event, setBodyScroll }) {
   const [modalOpen, setModalOpen] = useState(false);
-  const [faitModalOpen, setFailtModalOpen] = useState(false);
+  const [showPayWithFiat, setShowPayWithFiat] = useState(false);
+
   const { user, isAuthenticated } = useMoralis();
   const [mintingState, setMintingState] = useState(-1);
   const processes = [
@@ -184,16 +184,6 @@ export default function MintTickets({ event, setBodyScroll }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modalOpen]);
 
-
-  useEffect(() => {
-    if (faitModalOpen) {
-      setModalOpen(false);
-      setBodyScroll(false);
-    }
-    setBodyScroll(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [faitModalOpen]);
-
   const purchaseTickets = async () => {
     try {
       if (!isAuthenticated) {
@@ -310,28 +300,23 @@ export default function MintTickets({ event, setBodyScroll }) {
                     <div className=" mt-4 lg:mt-10">
                       <h3 className="mint-modal-subtitle">Payment Methods</h3>
 
-                      <div className="w-[246px] ">
-                        <button
-                          type="button"
-                        onClick={() => setFailtModalOpen(true)}
-                          className=" text-[#707D90] outline-none pay-btn"
-                        >
-                          Pay with Fiat
-                        </button>
-                      
-                        <button
-                          type="button"
-                          className=" mint-modal-subtitle text-gray-300 pay-btn-clicked"
-                        >
-                          Pay with Crypto
-                        </button>
-
-                        <ReactTooltip id="payFiat" effect="solid">
-                          Coming Soon
-                        </ReactTooltip>
-                      
-                      </div>
-                    </div>
+                  <div className="w-[246px] ">
+                    <button
+                      onClick={() => {
+                        setShowPayWithFiat(true);
+                        setModalOpen(false);
+                      }}
+                      type="button"
+                      className=" mint-modal-subtitle text-white outline-none pay-btn"
+                    >
+                      Pay with Fiat
+                    </button>
+                    <button
+                      type="button"
+                      className=" mint-modal-subtitle text-gray-300 pay-btn-clicked"
+                    >
+                      Pay with Crypto
+                    </button>
                   </div>
 
                   <div>
@@ -384,11 +369,18 @@ export default function MintTickets({ event, setBodyScroll }) {
                 </div>
               </div>
             </div>
-          )}
-          <button onClick={() => setModalOpen(true)} className="btn darker-red">
-            Get a Ticket
-          </button>
-        </section>
-    </div>
+          </div>
+        </div>
+      )}
+      <button onClick={() => setModalOpen(true)} className="btn darker-red">
+        Get a Ticket
+      </button>
+
+      <PayWithFiat
+        onClose={() => setShowPayWithFiat(false)}
+        show={showPayWithFiat}
+      />
+    </section>
+  </div>
   );
 }
