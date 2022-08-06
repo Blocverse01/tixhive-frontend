@@ -4,44 +4,45 @@ import { useForm } from "react-hook-form";
 import ValidationError from "./ValidationError";
 import { useState, useEffect } from "react";
 import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
-
-import axios from "axios";
-
 export default function PayWithFiat(props) {
 
+  
     const [amount, setAmount] = useState(0);
     const [currency, setCurrency] = useState("");
     const [conversionRate, setconversionRate] = useState(0);
+    const [config, setConfig] = useState({});
+    const handleFlutterPayment = useFlutterwave(config);
     const {register, handleSubmit, formState : {errors} } = useForm();
 
     const onSubmit = (data) => {
-      handleFlutterPayment({
-        callback: (response) => {
-          console.log(response);
-            closePaymentModal() // this will close the modal programmatically
+      setConfig({
+        public_key: process.env.REACT_APP_FLW_PUBLIC_KEY,
+        tx_ref: Date.now(),
+        amount: conversionRate,
+        currency: currency,
+        payment_options: 'card,mobilemoney,ussd',
+        customer: {
+          email: data.userEmail,
         },
-        onClose: () => {},
-      });
-      console.log(data.userEmail);
+        customizations: {
+          title: 'Tixhive',
+          description: 'Payment for items in cart',
+          logo: process.env.REACT_APP_TIXHIVE_LOGO,
+        },
+      })
     }
 
-    const config = {
-      public_key: process.env.REACT_APP_FLW_PUBLIC_KEY,
-      tx_ref: Date.now(),
-      amount: conversionRate,
-      currency: currency,
-      payment_options: 'card,mobilemoney,ussd',
-      customer: {
-        email: 'user@gmail.com',
-      },
-      customizations: {
-        title: 'Tixhive',
-        description: 'Payment for items in cart',
-        logo: process.env.REACT_APP_TIXHIVE_LOGO,
-      },
-    };
-
-    const handleFlutterPayment = useFlutterwave(config);
+    useEffect(() => {
+      if(config) {
+        handleFlutterPayment({
+          callback: (response) => {
+            console.log(response);
+              closePaymentModal() // this will close the modal programmatically
+          },
+          onClose: () => {},
+        });
+      }
+    }, [config])
 
     useEffect(() => {
       if(props.country === "Nigeria"){
