@@ -45,7 +45,6 @@ export default function MintTickets({ event, setBodyScroll }) {
         let data = response.data;
         console.log(data.country_name);
         setCountry(data.country_name)
-        alert(data.country_name)
       })
       .catch((error) => {
         console.log(error);

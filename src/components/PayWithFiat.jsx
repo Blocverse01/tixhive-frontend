@@ -3,47 +3,37 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useForm } from "react-hook-form";
 import ValidationError from "./ValidationError";
 import { useState, useEffect } from "react";
-import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
 export default function PayWithFiat(props) {
-
-  
     const [amount, setAmount] = useState(0);
     const [currency, setCurrency] = useState("");
     const [conversionRate, setconversionRate] = useState(0);
-    const [config, setConfig] = useState({});
-    const handleFlutterPayment = useFlutterwave(config);
     const {register, handleSubmit, formState : {errors} } = useForm();
-
     const onSubmit = (data) => {
-      setConfig({
-        public_key: process.env.REACT_APP_FLW_PUBLIC_KEY,
-        tx_ref: Date.now(),
-        amount: conversionRate,
-        currency: currency,
-        payment_options: 'card,mobilemoney,ussd',
-        customer: {
-          email: data.userEmail,
-        },
-        customizations: {
-          title: 'Tixhive',
-          description: 'Payment for items in cart',
-          logo: process.env.REACT_APP_TIXHIVE_LOGO,
-        },
-      })
+          document.getElementById("paybutton").innerHTML = "Processing..."
+          let dataForPaymnet = JSON.stringify({
+            'email' : data.userEmail,
+            'currency' : currency,
+            'amount' : conversionRate,
+            'redirect_url' : window.location.href
+          })
+          fetch(`${process.env.REACT_APP_MAKE_PAYMENT}`, {
+            method: 'POST',
+            body: dataForPaymnet,
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          })
+          .then((response) => response.json())
+          .then((result) => {
+            window.location.replace(result.data.link);
+            return;
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
     }
 
-    useEffect(() => {
-      if(config) {
-        handleFlutterPayment({
-          callback: (response) => {
-            console.log(response);
-              closePaymentModal() // this will close the modal programmatically
-          },
-          onClose: () => {},
-        });
-      }
-    }, [config])
-
+    
     useEffect(() => {
       if(props.country === "Nigeria"){
           setCurrency("NGN")
@@ -96,8 +86,8 @@ export default function PayWithFiat(props) {
                         />
                           {errors.userEmail &&<ValidationError message={errors.userEmail.message} />}
                       </div>
-                      <button type="submit" className="mint-modal-subtitle w-fit mt-5 float-right  text-white outline-none pay-btn">
-                        Pay {currency}<span> {amount}</span>
+                      <button type="submit" id="paybutton" className="mint-modal-subtitle w-fit mt-5 float-right  text-white outline-none pay-btn">
+                         Pay {currency}<span> {amount}</span> 
                       </button>
                 </form>
               </div>
