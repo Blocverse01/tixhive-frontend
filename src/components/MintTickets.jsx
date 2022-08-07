@@ -40,7 +40,7 @@ export default function MintTickets({ event, setBodyScroll }) {
 
   const getGeoInfo = () => {
     axios
-      .get("https://ipapi.co/json/")
+      .get(`${REACT_APP_GEO_LOCATION_CHECK}`)
       .then((response) => {
         let data = response.data;
         console.log(data.country_name);
