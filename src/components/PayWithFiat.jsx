@@ -22,15 +22,6 @@ export default function PayWithFiat(props) {
   const onSubmit = (data) => {
     
     setuserEmail(data.userEmail);
-
-    handleFlutterPayment({
-      callback: (response) => {
-        console.log(response);
-        closePaymentModal() // this will close the modal programmatically
-      },
-      onClose: () => { },
-    });
-
     paymentButton.innerHTML = "Processing..."
     paymentButton.disabled = true; 
   }
