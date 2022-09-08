@@ -11,7 +11,7 @@ export default function EventListCard({ event }) {
         <img
           src={event.cover_image_url}
           alt="cover"
-          className="w-full h-[127.55px] sm:h-[195px] lg:h-[164.73px] object-cover"
+          className="w-full h-[127.55px] sm:h-[195px] lg:h-[200.73px] object-cover"
         />
         <div className="EventListCard__ctas">
           <div>
