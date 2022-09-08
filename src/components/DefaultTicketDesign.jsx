@@ -9,6 +9,15 @@ export default function DefaultTicketDesign({
   ticketStartsAt,
   eventCategory,
 }) {
+  const splitString = eventName
+    .replaceAll(/[&/\\#,+()$~%.'":*?<>{}]/g, "")
+    .split(" ");
+  const ticker = splitString.map((word) => {
+    if (!isNaN(parseInt(word))) {
+      return "-" + word;
+    }
+    return word[0];
+  });
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -45,38 +54,43 @@ export default function DefaultTicketDesign({
           y="0.17"
           fill="#FF1A87"
           rx="31.094"
+          style={{
+            whiteSpace: "pre",
+          }}
         ></rect>
         <text
           fill="#fff"
           xmlSpace="preserve"
-          style={{ whiteSpace: "pre" }}
+          style={{
+            whiteSpace: "pre",
+          }}
           fontFamily="Poppins"
-          fontSize="47.837"
-          fontWeight="500"
+          fontSize="21.6"
+          fontWeight="600"
           letterSpacing="0em"
         >
           <tspan x="56.208" y="149.783">
-            {eventName}
+            {eventName.trim()}
           </tspan>
         </text>
         <text
           fill="#fff"
           fontFamily="Poppins"
-          fontSize="32.948"
-          fontWeight="500"
+          fontSize="30"
+          fontWeight="600"
           letterSpacing="0em"
           transform="rotate(90 498.463 556.037)"
           xmlSpace="preserve"
           style={{ whiteSpace: "pre" }}
         >
           <tspan x="0" y="36.032">
-            {eventName}
+            #{ticker}
           </tspan>
         </text>
         <text
           fill="#fff"
           fontFamily="Poppins"
-          fontSize="29.898"
+          fontSize="18"
           fontWeight="500"
           letterSpacing="0em"
           transform="rotate(90 457.607 515.182)"
@@ -92,7 +106,7 @@ export default function DefaultTicketDesign({
           xmlSpace="preserve"
           style={{ whiteSpace: "pre" }}
           fontFamily="Poppins"
-          fontSize="47.837"
+          fontSize="30.85"
           fontWeight="500"
           letterSpacing="0em"
         >
@@ -105,7 +119,7 @@ export default function DefaultTicketDesign({
           xmlSpace="preserve"
           style={{ whiteSpace: "pre" }}
           fontFamily="Poppins"
-          fontSize="23.918"
+          fontSize="15"
           fontWeight="500"
           letterSpacing=".08em"
         >
@@ -118,7 +132,7 @@ export default function DefaultTicketDesign({
           xmlSpace="preserve"
           style={{ whiteSpace: "pre" }}
           fontFamily="Poppins"
-          fontSize="23.918"
+          fontSize="15"
           fontWeight="500"
           letterSpacing=".08em"
         >
@@ -129,7 +143,7 @@ export default function DefaultTicketDesign({
         <text
           fill="#fff"
           fontFamily="Poppins"
-          fontSize="16.471"
+          fontSize="11.773"
           fontWeight="500"
           letterSpacing=".08em"
           transform="rotate(90 474.168 531.742)"
@@ -143,7 +157,7 @@ export default function DefaultTicketDesign({
         <text
           fill="#fff"
           fontFamily="Poppins"
-          fontSize="16.471"
+          fontSize="11.773"
           fontWeight="500"
           letterSpacing=".08em"
           transform="rotate(90 434.49 492.065)"
@@ -159,7 +173,7 @@ export default function DefaultTicketDesign({
           xmlSpace="preserve"
           style={{ whiteSpace: "pre" }}
           fontFamily="Poppins"
-          fontSize="23.918"
+          fontSize="14.43"
           fontWeight="500"
           letterSpacing=".08em"
         >

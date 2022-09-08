@@ -9,6 +9,15 @@ export default function TicketDesign({
   ticketInfo,
   eventCategory,
 }) {
+  const splitString = eventName
+    .replaceAll(/[&/\\#,+()$~%.'":*?<>{}]/g, "")
+    .split(" ");
+  const ticker = splitString.map((word) => {
+    if (!isNaN(parseInt(word))) {
+      return "-" + word;
+    }
+    return word[0];
+  });
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -23,27 +32,27 @@ export default function TicketDesign({
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-        fontSize="30"
+        fontSize="21.6"
         letterSpacing="0em"
         transform="translate(47 81)"
         style={{ whiteSpace: "pre" }}
         fontWeight="500"
       >
         <tspan x="0" y="44">
-          {eventName}
+          {eventName.trim()}
         </tspan>
       </text>
       <text
         fill="#fff"
         fontFamily='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-        fontSize="20.546"
+        fontSize="30"
         letterSpacing="0em"
         transform="rotate(90 377.822 425.823)"
         style={{ whiteSpace: "pre" }}
-        fontWeight="500"
+        fontWeight="600"
       >
         <tspan x="0" y="30.141">
-          {eventName}
+          #{ticker}
         </tspan>
       </text>
       <text
