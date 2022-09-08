@@ -101,7 +101,7 @@ export default function EventDisplay() {
         <img
           src={rectangle7}
           alt="rectangle"
-          className="lg:top-0 z-[-1] bottom-0 lg:bottom-auto absolute right-0 left-0"
+          className="lg:top-0 z-[-1] bottom-0 lg:bottom-auto absolute w-full right-0 left-0"
         />
         <div className="z-50 px-5 pb-[28px] pt-[12px] md:pb-[54px] md:px-[54px] md:pt-[20px] lg:p-[45px] lg:gap-[45px] grid lg:grid-cols-2">
           <div className="relative">
