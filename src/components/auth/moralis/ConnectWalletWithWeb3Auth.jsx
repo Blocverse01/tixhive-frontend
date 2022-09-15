@@ -31,6 +31,15 @@ export default function ConnectWallet() {
       console.error(e);
     }
   };
+  const loginWithConnector = async (connector, id) => {
+    toggle(false);
+    try {
+      await authenticate({ connector: connector, signingMessage: "Login to TixHive with your Coinbase Wallet" });
+      window.localStorage.setItem("connectorId", id);
+    } catch (e) {
+      console.error(e);
+    }
+  };
   useEffect(() => {
     async function autoLogin() {
       await login({
@@ -115,6 +124,10 @@ export default function ConnectWallet() {
                       }
                       if (connector.connectorId === "UAuthMoralis") {
                         await UDSignUp();
+                        return;
+                      }
+                      if (connector.connector) {
+                        await loginWithConnector(connector.connector, connector.connectorId);
                         return;
                       }
                       await login({

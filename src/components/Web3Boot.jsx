@@ -5,41 +5,28 @@ import { eventListState } from "recoil/atoms/events";
 import { useRecoilState } from "recoil";
 import useWalletCryptoBalance from "hooks/useWalletCryptoBalance";
 import useWalletUsdBalance from "hooks/useWalletUsdBalance";
-import {
-  walletCryptoBalanceState,
-  walletUsdBalanceState,
-} from "recoil/atoms/wallet";
+import { walletCryptoBalanceState, walletUsdBalanceState } from "recoil/atoms/wallet";
+import { coinBaseConnector } from "components/auth/moralis/config";
 
 export default function Web3Boot({ children }) {
   const chainId = process.env.REACT_APP_CHAIN_ID;
   const [events, setEvents] = useRecoilState(eventListState);
-  const { fetch } = useMoralisQuery(
-    "Event",
-    (query) => query.descending("createdAt"),
-    [],
-    { autoFetch: false }
-  );
-  const {
-    isWeb3Enabled,
-    enableWeb3,
-    isAuthenticated,
-    isWeb3EnableLoading,
-    user,
-    isInitialized,
-  } = useMoralis();
-  const [walletCryptoBalance, setWalletCryptoBalance] = useRecoilState(
-    walletCryptoBalanceState
-  );
-  const [walletUsdBalance, setWalletUsdBalance] = useRecoilState(
-    walletUsdBalanceState
-  );
+  const { fetch } = useMoralisQuery("Event", (query) => query.descending("createdAt"), [], { autoFetch: false });
+  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, user, isInitialized } = useMoralis();
+  const [walletCryptoBalance, setWalletCryptoBalance] = useRecoilState(walletCryptoBalanceState);
+  const [walletUsdBalance, setWalletUsdBalance] = useRecoilState(walletUsdBalanceState);
   const { maticBalance, usdtBalance } = useWalletCryptoBalance();
   const { maticUsd, usdtUsd } = useWalletUsdBalance(maticBalance, usdtBalance);
   const connectorId = window.localStorage.getItem("connectorId");
+
   useEffect(() => {
     async function bootWeb3() {
       if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) {
         console.log("enabling web3");
+        if (connectorId === "coinbase") {
+          await enableWeb3({ connector: coinBaseConnector });
+          return;
+        }
         await enableWeb3({ provider: connectorId, chainId: chainId });
       }
     }
@@ -49,15 +36,7 @@ export default function Web3Boot({ children }) {
       setWalletUsdBalance({ maticUsd, usdtUsd });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    isAuthenticated,
-    isWeb3Enabled,
-    user,
-    maticBalance,
-    usdtBalance,
-    maticUsd,
-    usdtUsd,
-  ]);
+  }, [isAuthenticated, isWeb3Enabled, user, maticBalance, usdtBalance, maticUsd, usdtUsd]);
   useEffect(() => {
     async function fetchEvents() {
       const blocEvents = (await fetch()) || [];
