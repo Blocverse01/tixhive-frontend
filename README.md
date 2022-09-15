@@ -2,6 +2,8 @@
 
 TixHive is an event management platform that provides instant revenue to event organizers and gives them 100% control over primary and secondary ticket sales.
 
+<img width="1431" alt="Screenshot 2022-09-15 at 23 22 04" src="https://user-images.githubusercontent.com/67268931/190521239-00a40c87-bc04-4489-987b-8904e69b92ee.png">
+
 ## How it works
 
 Events on TixHive are published as ERC721 NFT collections on Polygon, with each ticket minted as a unique token, and a customized SVG with a QRCode and metadata is generated for each ticket during mint, this SVG and NFT metadata is then stored on IPFS. These tickets also give event organizers the superpowers they need to build token-gated and exclusive communities.
@@ -35,3 +37,34 @@ Events on TixHive are published as ERC721 NFT collections on Polygon, with each 
 
 - ### [Create an event](https://tixhive.netlify.app/create-event).
 - ### [Explore events](https://tixhive.netlify.app/events)
+
+## Screen Grabs
+
+### Authenticating with Coinbase Wallet
+
+#### 1 / 3
+<img width="1431" alt="Screenshot 2022-09-15 at 23 24 30" src="https://user-images.githubusercontent.com/67268931/190521392-e0596436-8a4b-481f-a9dd-fd287ca29e17.png">
+
+#### 2 / 3
+
+<img width="1431" alt="Screenshot 2022-09-15 at 23 24 30" src="https://user-images.githubusercontent.com/67268931/190521444-dbd1151e-8977-426a-95cd-f378921e59b0.png">
+
+#### 3 / 3 
+
+<img width="1431" alt="Screenshot 2022-09-15 at 23 25 02" src="https://user-images.githubusercontent.com/67268931/190521534-10e049c4-c006-41fe-a57b-77ae805ed0ad.png">
+
+### An event on TixHive
+
+<img width="1431" alt="Screenshot 2022-09-15 at 23 40 49" src="https://user-images.githubusercontent.com/67268931/190521718-b090bd40-bcae-4b1a-ac43-c9f64c713203.png">
+
+
+### Tickets
+
+#### 1/2 (Validation page on TixHive)
+<img width="1431" alt="Screenshot 2022-09-15 at 23 40 17" src="https://user-images.githubusercontent.com/67268931/190521659-0b77cd3c-27ce-4dbb-8948-47869f2804e7.png">
+
+#### 2/2 (On OpenSea)
+
+<img width="1431" alt="Screenshot 2022-09-15 at 23 41 06" src="https://user-images.githubusercontent.com/67268931/190521789-6c98da6c-215e-4b48-a844-478a5919dea2.png">
+
+#### 2/2 (On OpenSea)
